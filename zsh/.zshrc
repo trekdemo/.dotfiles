@@ -28,13 +28,13 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 unsetopt auto_name_dirs
 setopt auto_cd                   # automatically enter directories without cd
-cdpath=($HOME/Sites $HOME/dev)
+cdpath=($HOME/dev)
 
-export PATH=/usr/local/bin:/Users/trek/bin:$PATH
+export PATH=/usr/local/bin:$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export FLEX_HOME=/usr/local/Cellar/flex_sdk/4.6.0.23201
-export ANDROID_SDK=/Users/trek/Applications/eclipse/android-sdk-macosx/
+export ANDROID_SDK=$HOME/Applications/eclipse/android-sdk-macosx/
 export PATH=$FLEX_HOME/bin:$PATH
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 export EDITOR=vim
