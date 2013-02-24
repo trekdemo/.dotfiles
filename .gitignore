@@ -1,15 +1,2 @@
+vim/tmp
 .DS_Store
-tags
-.tags
-gems.tags
-my_super_secret_ruby_debug_initializer.rb
-.rbenv-version
-.ruby-version
-.bundle*
-
-# Zeus
-custom_plan.rb
-zeus.json
-_zeus.json
-
-.env
