@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+DEBUG = false
+puts "Debug mode" if DEBUG
+
+unless (from = ARGV[0]) && (to = ARGV[1])
+  puts "Usage: svntag from to"
+  exit
+end
+
+root = `svn info`.sub(/.*Repository Root: ([^\n]*)\n.*/m, '\1')
+from, from_rev = from.split(':') if from.include?(':')
+from, to = [from, to].map {|f| f == 'trunk' || f[0,1] == '/' ? f.gsub(/^\//, '') : "branches/#{f}"}
+
+from_rev = `svn info #{root}/#{from}`.sub(/.*Last Changed Rev: ([^\n]*)\n.*/m, '\1') unless from_rev
+puts from_rev
+
+["svn rm #{root}/#{to} -m 'Removed file/folder'", "svn copy -r #{from_rev} #{root}/#{from} #{root}/#{to} -m 'Copied from #{File.basename(from)} #{from_rev}'"].each do |p|
+  puts p
+  `#{p}` unless DEBUG
+end

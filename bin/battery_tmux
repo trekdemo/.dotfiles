@@ -1,0 +1,11 @@
+BAT=`battery`
+FRONT="#[fg=colour239]⮂#[bg=colour239,fg=colour15,bold]"
+BACK="#[fg=colour254,nobold]"
+
+if [[ $BAT -gt 25 ]]; then
+  echo "$FRONT #[fg=red]♥#[fg=colour15] $BAT% $BACK"
+else
+  echo "$FRONT #[fg=red]♡#[fg=colour15] $BAT% $BACK"
+fi
+
+# vim: ft=zsh

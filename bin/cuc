@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Run specs with great speed and daring-do.
+#
+
+if [ -f zeus.json ]; then
+  zeus cucumber "$@"
+else
+  bundle exec cucumber "$@"
+fi
+
