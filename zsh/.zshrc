@@ -86,4 +86,4 @@ bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Tmuxifier
-[[ -s "$HOME/.tmuxifier/init.sh" ]] && source "$HOME/.tmuxifier/init.sh"
+[[ -s "$HOME/.dotfiles/.tmuxifier/init.sh" ]] && source "$HOME/.dotfiles/.tmuxifier/init.sh"
