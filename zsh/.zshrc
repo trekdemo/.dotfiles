@@ -40,8 +40,8 @@ export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 export EDITOR=vim
 
 # aliases
-if [ -e "$HOME/.aliases" ]; then
-  source "$HOME/.aliases"
+if [ -e "$HOME/.dotfiles/zsh/.aliases" ]; then
+  source "$HOME/.dotfiles/zsh/.aliases"
 fi
 
 function psg() {
