@@ -2,11 +2,6 @@
 " Author: Gergo Sulymosi <gergo.sulymosi@gmail.com>
 " Source: http://github.com/trekdemo/.dotfiles
 "
-" To use it, copy it to
-"  for OS X, Unix and OS/2:  ~/.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"
-"  If you don't understand a setting in here, just type ':h setting'.
 " Preamble ---------------------------------------------------------------- {{{
 
 set nocompatible                        " I'm using vim not vi
@@ -16,7 +11,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required!
 Bundle 'gmarik/vundle'
 
 Bundle 'AndrewRadev/linediff.vim'
@@ -124,11 +118,6 @@ set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
 set background=dark
 colorscheme hybrid
-" colorscheme molokai
-" let g:solarized_termcolors=256
-" let g:solarized_underline = 0
-" let g:solarized_termtrans = 1
-" colorscheme solarized
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -204,8 +193,6 @@ vnoremap Q gq
 
 " Easier linewise reselection
 nnoremap <leader>v V`]
-" Swap windows
-nnoremap <leader>w <C-w>v<C-w>l
 " Move between windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -386,6 +373,7 @@ augroup ft_ruby
     au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
     au FileType ruby,eruby let g:rubycomplete_rails = 1
     au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+    au BufRead,BufNewFile {Guardfile} set ft=ruby
     "improve autocomplete menu color
     highlight Pmenu ctermbg=238 gui=bold
 
@@ -517,12 +505,6 @@ augroup END
     au Filetype html,eruby,erb set ts=2 sts=2 sw=2 noet
   augroup END
 " }}}
-" TaskPaper {{{
-  augroup ft_task_paper
-    au!
-    au Filetype taskpaper set noet
-  augroup END
-" }}}
 
 " }}}
 " Autocommands ------------------------------------------------------------ {{{
@@ -530,11 +512,6 @@ augroup END
 
   " Resize splits when the window is resized
   au VimResized * :wincmd =
-  au BufRead,BufNewFile {Guardfile} set ft=ruby
-
-  " Show cursorline only in the active window
-  " autocmd WinLeave * set nocursorline
-  " autocmd WinEnter * set cursorline
 
   " Make sure Vim returns to the same line when you reopen a file.
   " Thanks, Amit {{{
@@ -565,7 +542,6 @@ augroup END
 nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e ~/.vimrc<cr>
 nnoremap <leader>eg <C-w>s<C-w>j<C-w>L:e ~/.gitconfig<cr>
 nnoremap <leader>ez <C-w>s<C-w>j<C-w>L:e ~/.zshrc<cr>
-nnoremap <leader>es <C-w>s<C-w>j<C-w>L:e ~/.vim/bundle/snipmate/snippets/<cr>
 
 " }}}
 " Searching and movement -------------------------------------------------- {{{
@@ -633,7 +609,7 @@ endif
     let g:ctrlp_root_markers = ['.ruby-version', '.git']
     let g:ctrlp_working_path_mode = 2
     let g:ctrlp_max_height = 20
-		" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+  " let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
     "                         \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
     let g:ctrlp_extensions = ['tag', 'buffertag']
     let g:ctrlp_custom_ignore = {
@@ -698,13 +674,8 @@ endif
 
     augroup ft_fugitive
         au!
-
         au BufNewFile,BufRead .git/index setlocal nolist spell
     augroup END
-
-    " Hub
-    nnoremap <leader>H :Gbrowse<cr>
-    vnoremap <leader>H :Gbrowse<cr>
 
 " }}}
   " NERDCommenter mappings {{{
@@ -814,18 +785,11 @@ endif
       endif
     endfunction
   " }}}
-  " Turbux {{{
-    let g:no_turbux_mappings = 1
-    map <leader>rt <Plug>SendTestToTmux
-    map <leader>rT <Plug>SendFocusedTestToTmux
-  " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
 
 if has('gui_running') " {{{
   set guifont=Inconsolata-dz\ for\ Powerline:h12
-  " set guifont=Menlo\ Regular\ for\ Powerline:h12
-  " set linespace=1
 
   " Remove all the UI cruft
   set go-=T
