@@ -23,6 +23,7 @@ Bundle 'gregsexton/gitv'
 Bundle 'kana/vim-smartinput'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 Bundle 'mileszs/apidock.vim'
@@ -97,7 +98,7 @@ set ttimeout
 set timeoutlen=50
 set tags=./.tags,.tags
 set wildmenu                                        "show list for autocomplete
-set wildmode=list:longest:full                      "priority for tab completion
+set wildmode=longest:list,full                      "priority for tab completion
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
   " Backups {{{
 
@@ -502,7 +503,7 @@ augroup END
 " HTML {{{
   augroup ft_html
     au!
-    au Filetype html,eruby,erb set ts=2 sts=2 sw=2 noet
+    au Filetype html,eruby,erb set ts=2 sts=2 sw=2 et
   augroup END
 " }}}
 
@@ -587,9 +588,9 @@ endif
           \ 'v' : 'object',
           \ }
         \ }
-    let g:tagbar_type_javascript = {
-        \ 'ctagsbin' : '/usr/local/bin/jsctags'
-      \ }
+    " let g:tagbar_type_javascript = {
+        " \ 'ctagsbin' : '/usr/local/bin/jsctags'
+      " \ }
     let g:tagbar_type_ruby = {
         \ 'kinds' : [
           \ 'm:modules',
@@ -704,6 +705,9 @@ endif
     cabbrev rake Rake
     cabbrev rails Rails
     cabbrev bundle Bundle
+    cabbrev rmodel Rmodel
+    cabbrev rcontroller Rcontroller
+    cabbrev rmigration Rmigration
 
     " rspec mappings
     function! RunCurrentSpecFile()
