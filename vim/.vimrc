@@ -16,21 +16,18 @@ Bundle 'gmarik/vundle'
 Bundle 'AndrewRadev/linediff.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'danro/rename.vim'
 Bundle 'edsono/vim-matchit'
-Bundle 'gregsexton/gitv'
 Bundle 'kana/vim-smartinput'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
-Bundle 'mileszs/apidock.vim'
 " Bundle 'garbas/vim-snipmate' " Need to learn the difference
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'sjl/vitality.vim'
+Bundle 'sjl/splice.vim'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-endwise'
@@ -40,8 +37,11 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-dispatch'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'croaky/vim-colors-github'
+Bundle 'skalnik/vim-vroom'
 
 filetype plugin indent on
 
@@ -99,7 +99,7 @@ set timeoutlen=50
 set tags=./.tags,.tags
 set wildmenu                                        "show list for autocomplete
 set wildmode=longest:list,full                      "priority for tab completion
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
+set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
   " Backups {{{
 
   " Make Vim able to edit crontab files again.
@@ -417,9 +417,6 @@ augroup ft_quickfix
     au Filetype qf nnoremap <silent> <buffer> T <C-W><CR><C-W>TgT<C-W><C-W>
     au Filetype qf nnoremap <silent> <buffer> o <CR>
     au Filetype qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
-    au Filetype qf nnoremap <silent> <buffer> h <C-W><CR><C-W>K
-    au Filetype qf nnoremap <silent> <buffer> H <C-W><CR><C-W>K<C-W>b
-    au Filetype qf nnoremap <silent> <buffer> v <C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t
     au Filetype qf nnoremap <silent> <buffer> gv <C-W><CR><C-W>H<C-W>b<C-W>J
 augroup END
 
@@ -788,6 +785,10 @@ endif
         execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
       endif
     endfunction
+  " }}}
+  " VRoom {{{
+    let g:vroom_use_binstubs = 1
+    let g:vroom_test_unit_command = 'm'
   " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
