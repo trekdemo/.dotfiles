@@ -3,7 +3,7 @@
 # Run specs with great speed and daring-do.
 #
 
-if [ -f zeus.json ]; then
+if [ -S .zeus.sock ]; then
   zeus cucumber "$@"
 else
   bundle exec cucumber "$@"
