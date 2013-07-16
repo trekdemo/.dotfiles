@@ -9,7 +9,6 @@ alias rrg="rake routes | grep"
 alias :q="exit"
 alias tl="tail -f log/development.log"
 
-alias fos='foreman start'
 
 # PSQL commands
 alias psql-connect-development='psql `basename $PWD`_development'
@@ -22,3 +21,12 @@ alias bi="bundle install"
 alias bl="bundle list"
 alias bp="bundle package"
 alias bu="bundle update"
+
+# alias fos='foreman start'
+fos() {
+  if [ -f Procfile.local ]; then
+    foreman start -f Procfile.local
+  else
+    foreman start
+  fi
+}
