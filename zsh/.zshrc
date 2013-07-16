@@ -22,7 +22,7 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx rails3 git ruby rbenv brew pow powder ant svn github)
+plugins=(osx git ruby rails rbenv brew pow powder github)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
@@ -33,6 +33,7 @@ cdpath=($HOME/dev)
 export PATH=/usr/local/bin:$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=".git/safe/../../bin:$PATH"
 export FLEX_HOME=/usr/local/Cellar/flex_sdk/4.6.0.23201
 export ANDROID_SDK=$HOME/Applications/eclipse/android-sdk-macosx/
 export PATH=$FLEX_HOME/bin:$PATH
