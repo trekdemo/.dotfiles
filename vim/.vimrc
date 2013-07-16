@@ -15,7 +15,8 @@ Bundle 'gmarik/vundle'
 
 Bundle 'AndrewRadev/linediff.vim'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
+Bundle 'croaky/vim-colors-github'
 Bundle 'danro/rename.vim'
 Bundle 'edsono/vim-matchit'
 Bundle 'kana/vim-smartinput'
@@ -23,25 +24,27 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
-" Bundle 'garbas/vim-snipmate' " Need to learn the difference
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
-Bundle 'sjl/vitality.vim'
 Bundle 'sjl/splice.vim'
+Bundle 'sjl/vitality.vim'
+Bundle 'skalnik/vim-vroom'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-ragtag'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-dispatch'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'croaky/vim-colors-github'
-Bundle 'skalnik/vim-vroom'
+
+" Bundle 'garbas/vim-snipmate' " Need to learn the difference
 
 filetype plugin indent on
 
@@ -111,6 +114,25 @@ set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
   set noswapfile                          " It's 2012, Vim.
 
   " }}}
+  " Spelling {{{
+    try
+      lang en_us
+    catch
+    endtry
+
+    " Spelling highlights. Use underline in term to prevent cursorline highlights
+    " from interfering
+    if !has("gui_running")
+      hi clear SpellBad
+      hi SpellBad cterm=underline ctermfg=red
+      hi clear SpellCap
+      hi SpellCap cterm=underline ctermfg=blue
+      hi clear SpellLocal
+      hi SpellLocal cterm=underline ctermfg=blue
+      hi clear SpellRare
+      hi SpellRare cterm=underline ctermfg=blue
+    endif
+  " }}}
 " }}}
 " Color scheme ------------------------------------------------------------ {{{
 
@@ -119,6 +141,9 @@ set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
 set background=dark
 colorscheme hybrid
+let g:airline_theme='badwolf'
+" colorscheme github
+" let g:airline_theme='solarized'
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -234,6 +259,17 @@ map <leader>et :tabe %%
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 " unimpaired has [n ]n
+
+" Save file
+" command -nargs=0 -bar Update if &modified
+                           " \|    if empty(bufname('%'))
+                           " \|        browse confirm write
+                           " \|    else
+                           " \|        confirm write
+                           " \|    endif
+                           " \|endif
+" nnoremap <silent> <C-s> :<C-u>Update<CR>
+" inoremap <c-s> <c-o>:Update<CR>
 
 if has("gui_macvim") && has("gui_running")
   " Map command-[ and command-] to indenting or outdenting
@@ -567,8 +603,8 @@ endif
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
-  " Powerline {{{
-    let g:Powerline_symbols = 'fancy'
+  " Airline {{{
+    let g:airline_powerline_fonts=0
   " }}}
   " Tagbar {{{
 
@@ -597,6 +633,13 @@ endif
           \ 'f:methods',
           \ 'F:singleton methods'
         \ ]
+      \ }
+    let g:tagbar_type_markdown = {
+          \ 'ctagstype' : 'markdown',
+          \ 'kinds' : [
+              \ 'h:headings'
+          \ ],
+      \ 'sort' : 0,
       \ }
     " Regenerate ctags
     map <Leader>ct :!ctags -R -f .tags *<CR>
