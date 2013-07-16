@@ -33,3 +33,9 @@
 --regex-haxe=/^[ \t]*typedef[ \t]+([A-Za-z0-9_]+)/\1/t,typedef/
 --regex-haxe=/^[ \t]*enum[ \t]+([A-Za-z0-9_]+)/\1/t,typedef/
 --regex-haxe=/^[ \t]*+([A-Za-z0-9_]+)(;|\([^)]*:[^)]*\))/\1/t,enum_field/
+
+--langdef=markdown
+--langmap=markdown:.markdown
+--regex-markdown=/^#[ \t]+(.*)/\. \1/h,heading1/
+--regex-markdown=/^##[ \t]+(.*)/\.\. \1/h,heading2/
+--regex-markdown=/^###[ \t]+(.*)/\.\.\. \1/h,heading3/
