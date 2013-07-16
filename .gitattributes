@@ -1,3 +1,4 @@
 *.png diff=exif
 *.jpg diff=exif
 *.jpeg diff=exif
+*.xls diff=excel
