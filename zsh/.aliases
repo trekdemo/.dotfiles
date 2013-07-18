@@ -1,6 +1,5 @@
 alias vim="mvim -v"
 alias pryr='pry -r ./config/environment.rb'
-alias tm='TERM=screen-256color-bce tmux -u2 -S ~/.tmux_server'
 alias collapse="sed -e 's/  */ /g'"
 alias cuts="cut -d' '"
 alias clc="./get-last-commit-url.py | pbc"
@@ -8,6 +7,7 @@ alias count="sort | uniq -c | sort -n"
 alias rrg="rake routes | grep"
 alias :q="exit"
 alias tl="tail -f log/development.log"
+alias sl='afplay ~/bin/train.wav & /usr/local/bin/sl'
 
 
 # PSQL commands
