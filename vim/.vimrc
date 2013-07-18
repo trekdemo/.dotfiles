@@ -142,6 +142,8 @@ set synmaxcol=240                       " Hightlight only the first n chars
 set background=dark
 colorscheme hybrid
 let g:airline_theme='badwolf'
+" colorscheme cake16
+" let g:airline_theme='solarized2'
 " colorscheme github
 " let g:airline_theme='solarized'
 
