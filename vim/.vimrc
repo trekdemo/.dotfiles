@@ -23,7 +23,7 @@ Bundle 'kana/vim-smartinput'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
@@ -594,14 +594,11 @@ set hlsearch
 set gdefault
 
 " Use Ack instead of Grep when available
-if executable('ack')
-  set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
-  set grepformat=%f:%l:%c:%m
-endif
 if executable('ag')
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
 endif
+
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
@@ -655,13 +652,18 @@ endif
   " let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
     "                         \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
     let g:ctrlp_extensions = ['tag', 'buffertag']
+
     let g:ctrlp_custom_ignore = {
       \ 'dir':  '\.git$\|\.hg$\|\.svn$',
       \ 'file': '\.exe$\|\.so$\|\.dll$',
       \ 'link': 'some_bad_symbolic_link',
     \ }
-    let g:ctrlp_user_command =
-      \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+    if executable('ag')
+      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    else
+      let g:ctrlp_user_command =
+        \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+    endif
   " }}}
   " Easymotion {{{
 
@@ -731,17 +733,9 @@ endif
     imap <leader>/ <Esc><plug>NERDCommenterToggle<CR>i
   endif
   " }}}
-  " ACK {{{
-    let g:ackprg = 'ag --nogroup --nocolor --column'
-    map <D-F> :Ack!<space>
-    map <leader>F :Ack!<space>
-  " }}}
-  " GitV {{{
-    let g:Gitv_DoNotMapCtrlKey = 1
-    let g:Gitv_OpenHorizontal = 1
-    nmap <leader>gv :Gitv --all<cr>
-    nmap <leader>gV :Gitv! --all<cr>
-    vmap <leader>gV :Gitv! --all<cr>
+  " The Silver Searcher {{{
+    map <D-F> :Ag!<space>
+    map <leader>F :Ag!<space>
   " }}}
   " Rails {{{
     cabbrev rake Rake
