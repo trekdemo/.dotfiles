@@ -40,6 +40,7 @@ Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'thoughtbot/vim-rspec'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
 
@@ -401,9 +402,11 @@ augroup ft_ruby
     highlight Pmenu ctermbg=238 gui=bold
 
 
-    au Filetype ruby nnoremap <buffer> <Leader>ts :call RunCurrentSpecFile()<CR>
+
+    au Filetype ruby nnoremap <buffer> <Leader>t :call RunCurrentSpecFile()<CR>
     au Filetype ruby nnoremap <buffer> <Leader>s :call RunNearestSpec()<CR>
     au Filetype ruby nnoremap <buffer> <Leader>l :call RunLastSpec()<CR>
+    au Filetype ruby nnoremap <buffer> <Leader>a :call RunAllSpecs()<CR>
 
 augroup END
 
@@ -728,46 +731,9 @@ endif
     cabbrev rmodel Rmodel
     cabbrev rcontroller Rcontroller
     cabbrev rmigration Rmigration
-
-    " rspec mappings
-    function! RunCurrentSpecFile()
-      if InSpecFile()
-        let l:command = "s " . " -f documentation " . @%
-        call SetLastSpecCommand(l:command)
-        call RunSpecs(l:command)
-      endif
-    endfunction
-
-    function! RunNearestSpec()
-      if InSpecFile()
-        let l:command = "s " . " -l " . line(".") . " -f documentation " . @%
-        call SetLastSpecCommand(l:command)
-        call RunSpecs(l:command)
-      endif
-    endfunction
-
-    function! RunLastSpec()
-      if exists("t:last_spec_command")
-        call RunSpecs(t:last_spec_command)
-      endif
-    endfunction
-
-    function! InSpecFile()
-      return match(expand("%"), "_spec.rb$") != -1
-    endfunction
-
-    function! SetLastSpecCommand(command)
-      let t:last_spec_command = a:command
-    endfunction
-
-    function! RunSpecs(command)
-      if has('gui_running')
-        execute ":w"
-        execute "!". a:command
-      else
-        execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
-      endif
-    endfunction
+  " }}}
+  " Rspec.vim {{{
+    let g:rspec_command = "Dispatch zeus rspec {spec}"
   " }}}
   " Cucumber {{{
     function! RunCurrentFeatureFile()
