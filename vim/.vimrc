@@ -29,7 +29,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'sjl/splice.vim'
 Bundle 'sjl/vitality.vim'
-Bundle 'skalnik/vim-vroom'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-dispatch'
@@ -257,21 +256,6 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
-
-" find merge conflict markers
-nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-" unimpaired has [n ]n
-
-" Save file
-" command -nargs=0 -bar Update if &modified
-                           " \|    if empty(bufname('%'))
-                           " \|        browse confirm write
-                           " \|    else
-                           " \|        confirm write
-                           " \|    endif
-                           " \|endif
-" nnoremap <silent> <C-s> :<C-u>Update<CR>
-" inoremap <c-s> <c-o>:Update<CR>
 
 if has("gui_macvim") && has("gui_running")
   " Map command-[ and command-] to indenting or outdenting
@@ -575,7 +559,7 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e ~/.vimrc<cr>
+" nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e ~/.vimrc<cr>
 nnoremap <leader>eg <C-w>s<C-w>j<C-w>L:e ~/.gitconfig<cr>
 nnoremap <leader>ez <C-w>s<C-w>j<C-w>L:e ~/.zshrc<cr>
 
@@ -677,8 +661,8 @@ endif
     onoremap <silent> <Leader>F      :call EasyMotion#F(0, 1)<CR>
     vnoremap <silent> <Leader>F :<C-U>call EasyMotion#F(1, 1)<CR>
 
-    onoremap <silent> <Leader>t      :call EasyMotion#T(0, 0)<CR>
-    onoremap <silent> <Leader>T      :call EasyMotion#T(0, 1)<CR>
+    " onoremap <silent> <Leader>t      :call EasyMotion#T(0, 0)<CR>
+    " onoremap <silent> <Leader>T      :call EasyMotion#T(0, 1)<CR>
 
   " }}}
   " Shell {{{
@@ -824,10 +808,6 @@ endif
         execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
       endif
     endfunction
-  " }}}
-  " VRoom {{{
-    let g:vroom_use_binstubs = 1
-    let g:vroom_test_unit_command = 'm'
   " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
