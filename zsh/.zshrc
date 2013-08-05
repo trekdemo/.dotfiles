@@ -22,7 +22,7 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx git ruby rails rbenv brew pow powder github)
+plugins=(osx git ruby rails brew pow powder github)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
@@ -88,3 +88,4 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # Tmuxifier
 [[ -s "$HOME/.dotfiles/.tmuxifier/init.sh" ]] && source "$HOME/.dotfiles/.tmuxifier/init.sh"
+

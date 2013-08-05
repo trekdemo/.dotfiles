@@ -3,4 +3,4 @@ export POW_WORKERS=1
 export POW_DST_PORT=88
 export POW_DOMAINS=dev,test,rails
 export POW_EXT_DOMAINS=com,hu,ru,web.tr,pl
-export PATH="${HOME}/.rbenv/shims:${HOME}/.rbenv/bin:${PATH}"
+export PATH=$(rbenv root)/shims:$(rbenv root)/bin:$PATH
