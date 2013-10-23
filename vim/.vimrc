@@ -20,15 +20,11 @@ Bundle 'edsono/vim-matchit'
 Bundle 'justinmk/vim-gtfo'
 Bundle 'kana/vim-smartinput'
 Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'sjl/vitality.vim'
-Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-bundler'
-" Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-ragtag'
@@ -39,8 +35,12 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'benmills/vimux'
 Bundle 'jgdavey/vim-turbux'
+Bundle 'benmills/vimux'
+
+" Performance killers
+" Bundle 'scrooloose/syntastic'
+" Bundle 'majutsushi/tagbar'
 
 " Bundle 'garbas/vim-snipmate' " Need to learn the difference
 
@@ -167,8 +167,7 @@ let maplocalleader = "\\"
 
 " Leader mappings {{{
 nmap          <leader><leader> :!
-nnoremap      <leader>mk :!mkdir -p %%<CR>
-nnoremap      <leader>su :%s//gg<left><left><left>
+nnoremap      <leader>s :%s//gg<left><left><left>
 " Toggle wrap settings
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " Remove selected hightlight
@@ -374,13 +373,6 @@ augroup ft_ruby
     au BufRead,BufNewFile {Guardfile} set ft=ruby
     "improve autocomplete menu color
     highlight Pmenu ctermbg=238 gui=bold
-
-
-
-    au Filetype ruby nnoremap <buffer> <Leader>rt :call RunCurrentSpecFile()<CR>
-    au Filetype ruby nnoremap <buffer> <Leader>rs :call RunNearestSpec()<CR>
-    au Filetype ruby nnoremap <buffer> <Leader>l :call RunLastSpec()<CR>
-    au Filetype ruby nnoremap <buffer> <Leader>a :call RunAllSpecs()<CR>
 
 augroup END
 
@@ -698,58 +690,10 @@ endif
     cabbrev rcontroller Rcontroller
     cabbrev rmigration Rmigration
   " }}}
-  " Rspec.vim {{{
-    let g:rspec_command = 'call VimuxRunCommand("s {spec}")'
-  " }}}
-  " Cucumber {{{
-    function! RunCurrentFeatureFile()
-      if InFeatureFile()
-        let l:command = "cuc " . @%
-        call SetLastFeatureCommand(l:command)
-        call RunFeatures(l:command)
-      endif
-    endfunction
-
-    function! RunNearestFeature()
-      if InFeatureFile()
-        let l:command = "cuc " . " -l " . line(".") . " " . @%
-        call SetLastFeatureCommand(l:command)
-        call RunFeatures(l:command)
-      endif
-    endfunction
-
-    function! RunLastFeature()
-      if exists("t:last_feature_command")
-        call RunFeatures(t:last_feature_command)
-      endif
-    endfunction
-
-    function! InFeatureFile()
-      return match(expand("%"), ".feature$") != -1
-    endfunction
-
-    function! SetLastFeatureCommand(command)
-      let t:last_feature_command = a:command
-    endfunction
-
-    function! RunFeatures(command)
-      if has('gui_running')
-        execute ":w"
-        execute "!". a:command
-      else
-        execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
-      endif
-    endfunction
-  " }}}
-  " Linediff {{{
-    vnoremap <leader>l :Linediff<cr>
-    nnoremap <leader>L :LinediffReset<cr>
-  " }}}
-  " GitGutter {{{
-    let g:gitgutter_enabled = 0
-    let g:gitgutter_eager = 0
-    let g:gitgutter_diff_args = '-w'
-    nmap <leader>gg :GitGutterToggle<CR>
+  " Turbux {{{
+    let g:no_turbux_mappings = 1
+    map <leader>m <Plug>SendTestToTmux
+    map <leader>M <Plug>SendFocusedTestToTmux
   " }}}
   " Vimux {{{
     let g:VimuxUseNearestPane = 1
