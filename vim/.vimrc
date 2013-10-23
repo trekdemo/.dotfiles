@@ -191,6 +191,7 @@ nnoremap      <leader>z zMzvzz
 map           <Leader>ct :!ctags -R -f .tags *<CR>
 nmap          <leader>b :TagbarToggle<CR>
 map           <leader>rd :call RangerChooser()<CR>
+map           <leader>d :Ex %%<CR>
 " }}}
 
 " Unfuck my screen
@@ -692,6 +693,7 @@ endif
   " }}}
   " Turbux {{{
     let g:no_turbux_mappings = 1
+    let g:turbux_command_prefix = 'clear;'
     map <leader>m <Plug>SendTestToTmux
     map <leader>M <Plug>SendFocusedTestToTmux
   " }}}
@@ -699,7 +701,8 @@ endif
     let g:VimuxUseNearestPane = 1
     map <LocalLeader>vc :VimuxCloseRunner<CR>
     map <LocalLeader>vp :VimuxPromptCommand<CR>
-    map <LocalLeader>vl :VimuxRunLastCommand<CR>
+    map <LocalLeader>vr :VimuxRunCommand("")<left><left>
+    map <Leader>l :VimuxRunLastCommand<CR>
   " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{

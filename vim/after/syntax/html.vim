@@ -21,5 +21,3 @@ syn keyword htmlArg contained contenteditable contextmenu draggable hidden item
 syn keyword htmlArg contained itemprop list subject spellcheck
 " this doesn't work because default syntax file alredy define a 'data' attribute
 syn match htmlArg "\<\(data-[\-a-zA-Z0-9_]\+\)=" contained
-
-syn include @htmlCss syntax/css/css3-mediaqueries.vim
