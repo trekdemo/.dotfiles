@@ -2,14 +2,15 @@
 #
 # Run specs with great speed and daring-do.
 #
+clear
 
 if [ -S .zeus.sock ]; then
   zeus rspec "$@"
 else
   if [ -f .bin/rspec ]; then
-    rspec "$@"
+    rspec "$@" -d
   else
-    bundle exec rspec "$@"
+    bundle exec rspec "$@" -d
   fi
 fi
 

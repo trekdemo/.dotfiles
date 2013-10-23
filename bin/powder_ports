@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+home_dir = Pathname(File.expand_path('~'))
+port_mappings = Dir[home_dir.join('.pow/*')].select { |f| File.file?(f) }
+dir_port_list = port_mappings.map do |file|
+  [
+    File.read(file).to_i,
+    File.basename(file) << '.dev'
+  ]
+end
+dir_port_list.sort_by!(&:first)
+
+dir_port_list.each do |port, domain|
+  puts port.to_s.rjust(6) << ' => ' << domain
+end

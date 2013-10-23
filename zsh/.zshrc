@@ -34,6 +34,7 @@ export PATH=/usr/local/bin:$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=".git/safe/../../bin:$PATH"
+export PATH="~/.cabal/bin:$PATH"
 export FLEX_HOME=/usr/local/Cellar/flex_sdk/4.6.0.23201
 export ANDROID_SDK=$HOME/Applications/eclipse/android-sdk-macosx/
 export PATH=$FLEX_HOME/bin:$PATH
@@ -85,6 +86,7 @@ bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export LANG=en_US.UTF-8
 
 # Tmuxifier
 [[ -s "$HOME/.dotfiles/.tmuxifier/init.sh" ]] && source "$HOME/.dotfiles/.tmuxifier/init.sh"

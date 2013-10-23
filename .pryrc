@@ -22,9 +22,9 @@ class Hash
     Hash[Array.toy(n).zip(Array.toy(n){|c| (96+(c+1)).chr})]
   end
 end
-Pry.commands.alias_command 'c', 'continue'
-Pry.commands.alias_command 's', 'step'
-Pry.commands.alias_command 'n', 'next'
+# Pry.commands.alias_command 'c', 'continue'
+# Pry.commands.alias_command 's', 'step'
+# Pry.commands.alias_command 'n', 'next'
 
 # loading rails configuration if it is running as a rails console
 #load File.dirname(__FILE__) + '/.railsrc' if defined?(Rails) && Rails.env

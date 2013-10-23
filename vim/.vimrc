@@ -13,25 +13,22 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-Bundle 'AndrewRadev/linediff.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bling/vim-airline'
-Bundle 'croaky/vim-colors-github'
 Bundle 'danro/rename.vim'
 Bundle 'edsono/vim-matchit'
+Bundle 'justinmk/vim-gtfo'
 Bundle 'kana/vim-smartinput'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
-Bundle 'sjl/splice.vim'
 Bundle 'sjl/vitality.vim'
+Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-dispatch'
+" Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-ragtag'
@@ -40,9 +37,10 @@ Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'thoughtbot/vim-rspec'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'benmills/vimux'
+Bundle 'jgdavey/vim-turbux'
 
 " Bundle 'garbas/vim-snipmate' " Need to learn the difference
 
@@ -75,14 +73,17 @@ set ruler                               " Show line and column number
 set showbreak=↪
 set list                                " Show invisible characters
 set listchars=tab:·\ ,trail:·,eol:¬,extends:❯,precedes:❮
-set fillchars+=diff:⣿,vert:│
+" iTerm2 is currently slow as ball at rendering the nice unicode lines, so for
+" now I'll just use ascii pipes.  They're ugly but at least I won't want to kill
+" myself when trying to move around a file.
+set fillchars=diff:⣿,vert:│
+set fillchars=diff:⣿,vert:\|
 set nohidden                            " Modified buffers can't be hidden
 set splitright                          " New split window on the right
 set splitbelow                          " New split window on the bottom
 set virtualedit+=block
-set completeopt=longest,menuone,preview " Better Completion
-" set complete=.,w,b,u,t,i
-set complete=.,b,u,t
+set complete=.,w,b,u,t                  " Better Completion
+set completeopt=longest,menuone,preview
 set diffopt+=iwhite                     " Ignore whitespace on diffs
 set backspace=indent,eol,start          " Make backspace behave in a sane manner.
 set foldenable                          " Use folds"
@@ -100,8 +101,8 @@ set notimeout
 set ttimeout
 set timeoutlen=50
 set tags=./.tags,.tags
-set wildmenu                                        "show list for autocomplete
-set wildmode=longest:list,full                      "priority for tab completion
+set wildmenu                              "show list for autocomplete
+set wildmode=list:longest                 "priority for tab completion
 set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
   " Backups {{{
 
@@ -139,13 +140,10 @@ set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
 syntax enable                           " Switch syntax highlighting on
 set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
+
 set background=dark
 colorscheme hybrid
 let g:airline_theme='badwolf'
-" colorscheme cake16
-" let g:airline_theme='solarized2'
-" colorscheme github
-" let g:airline_theme='solarized'
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -164,8 +162,36 @@ endif
 
 let mapleader = ","
 let maplocalleader = "\\"
-nmap <leader><leader> :!
 
+" }}}
+
+" Leader mappings {{{
+nmap          <leader><leader> :!
+nnoremap      <leader>mk :!mkdir -p %%<CR>
+nnoremap      <leader>su :%s//gg<left><left><left>
+" Toggle wrap settings
+nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
+" Remove selected hightlight
+noremap       <leader><space> :noh<cr>:call clearmatches()<cr>
+" Easier linewise reselection
+nnoremap      <leader>v V`]
+" Adjust viewports to the same size
+map           <Leader>= <C-w>=
+" GUndo
+nmap <silent> <leader>u :GundoToggle<CR>
+map           <leader>ew :e %%
+map           <leader>es :sp %%
+map           <leader>ev :vsp %%
+map           <leader>et :tabe %%
+map           <leader>ef :Ex %%<CR>
+map           <leader>tn :tabnext<cr>
+map           <leader>tp :tabprevious<cr>
+" Use ,z to "focus" the current fold.
+nnoremap      <leader>z zMzvzz
+" Regenerate ctags
+map           <Leader>ct :!ctags -R -f .tags *<CR>
+nmap          <leader>b :TagbarToggle<CR>
+map           <leader>rd :call RangerChooser()<CR>
 " }}}
 
 " Unfuck my screen
@@ -183,22 +209,14 @@ inoremap <c-]> <c-x><c-]>
 nnoremap <C-e> 4<C-e>
 nnoremap <C-y> 4<C-y>
 
-" Pow restart
-map <silent> <leader>pr :!touch tmp/restart.txt<cr><cr>
-
 " Change case
 " nnoremap <C-u> gUiw
 inoremap <C-u> <esc>gUiwea
-
-" Substitute
-nnoremap <leader>s :%s/
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-" Remove selected hightlight
-noremap <leader><space> :noh<cr>:call clearmatches()<cr>
 nnoremap <cr> zvzz
 
 " Move in screen lines
@@ -211,16 +229,6 @@ vnoremap k gk
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 
-
-" GUndo
-nmap <silent> <leader>u :GundoToggle<CR>
-
-" Formatting, TextMate-style
-nnoremap Q gqip
-vnoremap Q gq
-
-" Easier linewise reselection
-nnoremap <leader>v V`]
 " Move between windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -231,8 +239,6 @@ nnoremap <S-C-left> 5<c-w>>
 nnoremap <S-C-right> 5<c-w><
 nnoremap <S-C-up> 5<c-w>+
 nnoremap <S-C-down> 5<c-w>-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
 " Keep search matches in the middle of the window and pulse the line when moving
 " to them.
 nnoremap n nzzzv
@@ -247,16 +253,10 @@ nnoremap g, g,zz
 noremap H ^
 noremap L g_
 
-" Toggle wrap settings
-nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
 
 if has("gui_macvim") && has("gui_running")
   " Map command-[ and command-] to indenting or outdenting
@@ -315,30 +315,6 @@ else
   map <S-Insert> <MiddleMouse>
   map! <S-Insert> <MiddleMouse>
 
-  " Map Control-# to switch tabs
-  map  <C-0> 0gt
-  imap <C-0> <Esc>0gt
-  map  <C-1> 1gt
-  imap <C-1> <Esc>1gt
-  map  <C-2> 2gt
-  imap <C-2> <Esc>2gt
-  map  <C-3> 3gt
-  imap <C-3> <Esc>3gt
-  map  <C-4> 4gt
-  imap <C-4> <Esc>4gt
-  map  <C-5> 5gt
-  imap <C-5> <Esc>5gt
-  map  <C-6> 6gt
-  imap <C-6> <Esc>6gt
-  map  <C-7> 7gt
-  imap <C-7> <Esc>7gt
-  map  <C-8> 8gt
-  imap <C-8> <Esc>8gt
-  map  <C-9> 9gt
-  imap <C-9> <Esc>9gt
-
-  map <leader>tn :tabnext<cr>
-  map <leader>tp :tabprevious<cr>
 endif
 " }}}
 " Folding ----------------------------------------------------------------- {{{
@@ -350,8 +326,6 @@ vnoremap <Space> za
 " cursor happens to be.
 nnoremap zO zCzO
 
-" Use ,z to "focus" the current fold.
-nnoremap <leader>z zMzvzz
 
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window. Protect against
@@ -403,21 +377,11 @@ augroup ft_ruby
 
 
 
-    au Filetype ruby nnoremap <buffer> <Leader>t :call RunCurrentSpecFile()<CR>
-    au Filetype ruby nnoremap <buffer> <Leader>s :call RunNearestSpec()<CR>
+    au Filetype ruby nnoremap <buffer> <Leader>rt :call RunCurrentSpecFile()<CR>
+    au Filetype ruby nnoremap <buffer> <Leader>rs :call RunNearestSpec()<CR>
     au Filetype ruby nnoremap <buffer> <Leader>l :call RunLastSpec()<CR>
     au Filetype ruby nnoremap <buffer> <Leader>a :call RunAllSpecs()<CR>
 
-augroup END
-
-" }}}
-" Cucumber {{{
-
-augroup ft_cucumber
-    au!
-    au Filetype cucumber nnoremap <buffer> <Leader>ts :call RunCurrentFeatureFile()<CR>
-    au Filetype cucumber nnoremap <buffer> <Leader>s :call RunNearestFeature()<CR>
-    au Filetype cucumber nnoremap <buffer> <Leader>l :call RunLastFeature()<CR>
 augroup END
 
 " }}}
@@ -462,19 +426,6 @@ augroup ft_css
 
     " Use <leader>S to sort properties.
     au BufNewFile,BufRead *.less,*.css,*.scss nnoremap <buffer> <localleader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
-
-    " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
-    " positioned inside of them AND the following code doesn't get unfolded.
-    au BufNewFile,BufRead *.less,*.css,*.scss inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
-augroup END
-
-" }}}
-" PHP {{{
-
-augroup ft_php
-    au!
-    au Filetype php setlocal foldmethod=marker
-    au Filetype php setlocal foldmarker={,}
 augroup END
 
 " }}}
@@ -516,16 +467,16 @@ augroup END
     autocmd Filetype java setlocal omnifunc=javacomplete#Complete
   augroup END
 " }}}
-" CoffeeScript {{{
-  augroup ft_coffee
-    au!
-    au Filetype coffee setlocal foldmethod=indent
-  augroup END
-" }}}
 " HTML {{{
   augroup ft_html
     au!
     au Filetype html,eruby,erb set ts=2 sts=2 sw=2 et
+  augroup END
+" }}}
+" Markdown {{{
+  augroup ft_markdown
+    au!
+    au Filetype markdown nnoremap <leader>p :silent !open -a Marked.app '%:p'<cr>
   augroup END
 " }}}
 
@@ -560,13 +511,6 @@ augroup END
    " }}}
 
 " }}}
-" Quick editing ----------------------------------------------------------- {{{
-
-" nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e ~/.vimrc<cr>
-nnoremap <leader>eg <C-w>s<C-w>j<C-w>L:e ~/.gitconfig<cr>
-nnoremap <leader>ez <C-w>s<C-w>j<C-w>L:e ~/.zshrc<cr>
-
-" }}}
 " Searching and movement -------------------------------------------------- {{{
 
 " Use sane regexes.
@@ -585,6 +529,51 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
 endif
+
+  " Qdo {{{
+    command! -nargs=0 -bar Qargs execute 'args ' . s:QuickfixFilenames()
+
+    " Contributed by "ib."
+    " http://stackoverflow.com/questions/5686206/search-replace-using-quickfix-list-in-vim#comment8286582_5686810
+    command! -nargs=1 -complete=command -bang Qdo call s:Qdo(<q-bang>, <q-args>)
+
+    function! s:Qdo(bang, command)
+      if exists('w:quickfix_title')
+        let in_quickfix_window = 1
+        cclose
+      else
+        let in_quickfix_window = 0
+      endif
+
+      arglocal
+      exe 'args '.s:QuickfixFilenames()
+      exe 'argdo'.a:bang.' '.a:command
+      argglobal
+
+      if in_quickfix_window
+        copen
+      endif
+    endfunction
+
+    function! s:QuickfixFilenames()
+      " Building a hash ensures we get each buffer only once
+      let buffer_numbers = {}
+      for quickfix_item in getqflist()
+        let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+      endfor
+      return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+    endfunction
+  " }}}
+  " Ranger {{{
+    fun! RangerChooser()
+        exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
+        if filereadable('/tmp/chosenfile')
+            exec 'edit ' . system('cat /tmp/chosenfile')
+            call system('rm /tmp/chosenfile')
+        endif
+        redraw!
+    endfun
+  " }}}
 
 
 " }}}
@@ -607,9 +596,6 @@ endif
           \ 'v' : 'object',
           \ }
         \ }
-    " let g:tagbar_type_javascript = {
-        " \ 'ctagsbin' : '/usr/local/bin/jsctags'
-      " \ }
     let g:tagbar_type_ruby = {
         \ 'kinds' : [
           \ 'm:modules',
@@ -627,9 +613,6 @@ endif
           \ ],
       \ 'sort' : 0,
       \ }
-    " Regenerate ctags
-    map <Leader>ct :!ctags -R -f .tags *<CR>
-    nmap <leader>b :TagbarToggle<CR>
 
   " }}}
   " Ctrl-P {{{
@@ -647,6 +630,7 @@ endif
     \ }
     if executable('ag')
       let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+      " let g:ctrlp_user_command = 'mdfind kind:file -onlyin . %s'
     else
       let g:ctrlp_user_command =
         \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
@@ -667,24 +651,6 @@ endif
     " onoremap <silent> <Leader>t      :call EasyMotion#T(0, 0)<CR>
     " onoremap <silent> <Leader>T      :call EasyMotion#T(0, 1)<CR>
 
-  " }}}
-  " Shell {{{
-    function! s:ExecuteInShell(command) " {{{
-        let command = join(map(split(a:command), 'expand(v:val)'))
-        let winnr = bufwinnr('^' . command . '$')
-        silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(command) : winnr . 'wincmd w'
-        setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
-        echo 'Execute ' . command . '...'
-        silent! execute 'silent %!'. command
-        silent! redraw
-        silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-        silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
-        silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
-        silent! execute 'AnsiEsc'
-        echo 'Shell command ' . command . ' executed.'
-    endfunction " }}}
-    command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-    nnoremap <leader>! :Shell<space>
   " }}}
   " Fugitive {{{
 
@@ -733,7 +699,7 @@ endif
     cabbrev rmigration Rmigration
   " }}}
   " Rspec.vim {{{
-    let g:rspec_command = "Dispatch zeus rspec {spec}"
+    let g:rspec_command = 'call VimuxRunCommand("s {spec}")'
   " }}}
   " Cucumber {{{
     function! RunCurrentFeatureFile()
@@ -774,6 +740,22 @@ endif
         execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
       endif
     endfunction
+  " }}}
+  " Linediff {{{
+    vnoremap <leader>l :Linediff<cr>
+    nnoremap <leader>L :LinediffReset<cr>
+  " }}}
+  " GitGutter {{{
+    let g:gitgutter_enabled = 0
+    let g:gitgutter_eager = 0
+    let g:gitgutter_diff_args = '-w'
+    nmap <leader>gg :GitGutterToggle<CR>
+  " }}}
+  " Vimux {{{
+    let g:VimuxUseNearestPane = 1
+    map <LocalLeader>vc :VimuxCloseRunner<CR>
+    map <LocalLeader>vp :VimuxPromptCommand<CR>
+    map <LocalLeader>vl :VimuxRunLastCommand<CR>
   " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
