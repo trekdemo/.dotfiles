@@ -1,2 +1,2 @@
 export PATH="$HOME/.bundle/binstubs:$PATH"
-eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash)"

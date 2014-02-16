@@ -89,6 +89,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export LANG=en_US.UTF-8
 
 # Tmuxifier
-TMUXIFIER_LAYOUT_PATH="/Users/trek/.dotfiles/tmuxifier_layouts"
+export TMUXIFIER_LAYOUT_PATH="/Users/trek/.dotfiles/tmuxifier_layouts"
 [[ -s "$HOME/.dotfiles/.tmuxifier/init.sh" ]] && source "$HOME/.dotfiles/.tmuxifier/init.sh"
 

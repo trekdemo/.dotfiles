@@ -8,6 +8,7 @@ custom_plan.rb
 zeus.json
 
 .env
+.gitver
 
 .DS_Store
 .AppleDouble
