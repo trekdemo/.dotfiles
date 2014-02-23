@@ -7,7 +7,7 @@ gems.tags
 custom_plan.rb
 zeus.json
 
-.env
+.env.development
 .gitver
 
 .DS_Store
