@@ -111,6 +111,7 @@ Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'dag/vim-fish'
 Bundle 'danro/rename.vim'
 Bundle 'edsono/vim-matchit'
+" Bundle 'gcmt/wildfire.vim'
 Bundle 'ivalkeen/vim-ctrlp-tjump'
 Bundle 'jasoncodes/ctrlp-modified.vim'
 Bundle 'jgdavey/vim-turbux'
@@ -138,6 +139,8 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 
 " Performance killers
 " Bundle 'scrooloose/syntastic'
@@ -233,7 +236,9 @@ inoremap <C-u> <esc>gUiwea
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-nnoremap <cr> zvzz
+" nnoremap <cr> zvzz
+map <C-s> <esc>:w<CR>
+imap <C-s> <esc>:w<CR>a
 
 " Move in screen lines
 nnoremap j gj
@@ -275,6 +280,10 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" Quickly diffing to panes
+nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>do :windo diffoff<CR>
 
 " Map command-[ and command-] to indenting or outdenting
 " while keeping the original selection in visual mode
@@ -640,6 +649,10 @@ endif
     " let g:vitality_fix_cursor = 0
     let g:vitality_fix_focus = 0
     let g:vitality_always_assume_iterm = 1
+  " }}}
+  " Wildfire {{{
+    let g:wildfire_fuel_map = "<ENTER>"  " This selects the next closest text object.
+    let g:wildfire_water_map = "<BS>"  " This selects the previous closest text object.
   " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{

@@ -28,6 +28,16 @@ alias bl="bundle list"
 alias bp="bundle package"
 alias bu="bundle update"
 
+
+# RAILS aliases
+alias devlog='tail -f log/development.log'
+alias prodlog='tail -f log/production.log'
+alias testlog='tail -f log/test.log'
+
+alias -g RED='RAILS_ENV=development'
+alias -g REP='RAILS_ENV=production'
+alias -g RET='RAILS_ENV=test'
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
