@@ -27,11 +27,11 @@ function cuts; cut -d' ' $argv; end
 function week; date +%V; end
 
 # Bundle
-function be; bundle exec; end
-function bi; bundle install; end
-function bl; bundle list; end
-function bp; bundle package; end
-function bu; bundle update; end
+function be; bundle exec $argv; end
+function bi; bundle instal $argvl; end
+function bl; bundle lis $argvt; end
+function bp; bundle packag $argve; end
+function bu; bundle update $argv; end
 
 # Rails
 function devlog; tail -f log/development.log; end

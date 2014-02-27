@@ -3,6 +3,7 @@ prepend_to_path "/usr/local/bin"
 prepend_to_path "/usr/local/sbin"
 prepend_to_path "/usr/local/share/npm/bin"
 prepend_to_path "$HOME/.rbenv/shims"
+prepend_to_path "$HOME/.rbenv/bin"
 prepend_to_path "$HOME/bin"
 prepend_to_path ".git/safe/../../bin"
 
@@ -16,15 +17,16 @@ set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
 set -gx CDPATH ~/dev $CDPATH
 
+# Tmuxifier
+set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.dotfiles/tmuxifier_layouts"
+eval (tmuxifier init -)
+
 # Aliases
-if test -s ~/.config/fish/aliases.fish
-  source ~/.config/fish/aliases.fish
-end
+test -s ~/.config/fish/aliases.fish; and source ~/.config/fish/aliases.fish
 make_completion g "git"
 make_completion b "bundle"
 
+
 # Rubby
-if test -s /usr/local/bin/rbenv
-  /usr/local/bin/rbenv rehash 2>/dev/null
-end
+test -s /usr/local/bin/rbenv; and /usr/local/bin/rbenv rehash 2>/dev/null
 
