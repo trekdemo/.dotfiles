@@ -27,11 +27,12 @@ function cuts; cut -d' ' $argv; end
 function week; date +%V; end
 
 # Bundle
-function be; bundle exec $argv; end
-function bi; bundle instal $argvl; end
-function bl; bundle lis $argvt; end
-function bp; bundle packag $argve; end
-function bu; bundle update $argv; end
+function be; bundle exec     $argv; end
+function bi; bundle install  $argv; end
+function bl; bundle list     $argv; end
+function bp; bundle package  $argv; end
+function bu; bundle update   $argv; end
+function bo; bundle open     $argv; end
 
 # Rails
 function devlog; tail -f log/development.log; end
@@ -74,4 +75,14 @@ function psql-connect-development --description 'Connects to development databas
 end
 function psql-connect-test --description 'Connects to test database'
 	psql `basename $PWD`_test
+end
+
+# Foreman
+
+function fos -d 'foreman start'
+  if test -z Procfile.local
+    foreman start --env='.env.development,.env' -f Procfile.local
+  else
+    foreman start --env='.env.development,.env'
+  end
 end

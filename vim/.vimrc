@@ -104,6 +104,8 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
 " Bundles ----------------------------------------------------------------- {{{
 Bundle 'gmarik/vundle'
 
+Bundle "ekalinin/Dockerfile.vim"
+Bundle 'SirVer/ultisnips'
 Bundle 'b4winckler/vim-objc'
 Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline'
@@ -111,7 +113,7 @@ Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'dag/vim-fish'
 Bundle 'danro/rename.vim'
 Bundle 'edsono/vim-matchit'
-" Bundle 'gcmt/wildfire.vim'
+Bundle 'honza/vim-snippets'
 Bundle 'ivalkeen/vim-ctrlp-tjump'
 Bundle 'jasoncodes/ctrlp-modified.vim'
 Bundle 'jgdavey/vim-turbux'
@@ -123,11 +125,14 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'rizzatti/dash.vim'
+Bundle 'rizzatti/funcoo.vim'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'sjl/vitality.vim'
 Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-ragtag'
@@ -139,8 +144,6 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
 
 " Performance killers
 " Bundle 'scrooloose/syntastic'
@@ -283,6 +286,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Quickly diffing to panes
 nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>du :windo diffupdate<CR>
 nnoremap <leader>do :windo diffoff<CR>
 
 " Map command-[ and command-] to indenting or outdenting
@@ -586,7 +590,6 @@ endif
 
     cabbrev git Git
     nnoremap <leader>gd :Gdiff<cr>
-    nnoremap <leader>gp :Git push<cr>
     nnoremap <leader>gs :Gstatus<cr>
     nnoremap <leader>gw :Gwrite<cr>
     nnoremap <leader>ga :Gadd<cr>
@@ -595,9 +598,14 @@ endif
     nnoremap <leader>gco :Gcheckout<cr>
     nnoremap <leader>gci :Gcommit<cr>
     nnoremap <leader>gr :Gremove<cr>
-    nnoremap <leader>gl !git lg -25<cr>
+    " nnoremap <leader>gl !git lg -25<cr>
+    nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
     nnoremap <leader>gx :Git dx<cr>
     nnoremap <silent> <leader>gt :Git dt<cr>
+
+    " nnoremap <leader>gp :Git push<cr>
+    nnoremap <leader>gps :Dispatch! git push<CR>
+    nnoremap <leader>gpl :Dispatch! git pull<CR>
 
     augroup ft_fugitive
         au!
@@ -606,14 +614,9 @@ endif
 
 " }}}
   " NERDCommenter mappings {{{
-  let NERDSpaceDelims = 1
-  if has("gui_macvim") && has("gui_running")
-    map <D-/> <plug>NERDCommenterToggle<CR>
-    imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
-  else
+    let NERDSpaceDelims = 1
     map <leader>/ <plug>NERDCommenterToggle<CR>
     imap <leader>/ <Esc><plug>NERDCommenterToggle<CR>i
-  endif
   " }}}
   " The Silver Searcher {{{
     map <leader>F :Ag!<space>
@@ -627,6 +630,7 @@ endif
     cabbrev rmigration Rmigration
   " }}}
   " Turbux {{{
+    let g:turbux_runner = 'vimux'
     let g:no_turbux_mappings = 1
     let g:turbux_command_prefix = 'clear;'
     map <leader>m <Plug>SendTestToTmux
@@ -653,6 +657,21 @@ endif
   " Wildfire {{{
     let g:wildfire_fuel_map = "<ENTER>"  " This selects the next closest text object.
     let g:wildfire_water_map = "<BS>"  " This selects the previous closest text object.
+  " }}}
+  " Dash {{{
+    nmap <leader>dd :Dash<space>
+    nmap <silent> <leader>D <Plug>DashSearch
+    let s:keywords_map = {
+      \ 'ruby'       : 'ruby ruby2 rails',
+      \ 'javascript' : 'javascript backbone',
+      \ 'python'     : 'python2',
+      \ 'java'       : 'java7'
+      \ }
+  " }}}
+  " UtilSnips {{{
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
   " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
