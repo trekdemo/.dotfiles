@@ -1,0 +1,108 @@
+[user]
+  name = Gergő Sulymosi
+  email = gergo.sulymosi@gmail.com
+[color]
+  ui = auto
+[core]
+  editor = 'vim'
+  excludesfile = /Users/trek/.gitignore-global
+  autocrlf = input
+  quotepath = false
+
+
+[diff]
+  tool = vimdiff
+  algorithm = histogram
+[multidiff]
+  tool = vd -f
+
+[diff "excel"]
+  textconv=xls2csv
+
+[difftool]
+  prompt = false
+[mergetool "mvimdiff"]
+  cmd="mvim -d -g -c 'wincmd J'  $MERGED $LOCAL $BASE $REMOTE"
+  keepbackup=false
+  trustExitCode = true
+
+[alias]
+  # reset
+  unstage = reset HEAD              # remove files from index (tracking)
+  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
+  filelog = log -u                  # show changes to a file
+  mt = mergetool                    # fire up the merge tool
+
+  # diff
+  d = diff                          # diff unstaged changes
+  ds = diff --stat                  # diff unstaged changes
+  dc = diff --cached                # diff staged changes
+  dx = !git diff | gitx
+  last = diff HEAD^                 # diff last committed change
+  conflicts = diff --name-only --diff-filter=U
+
+  # stash
+  st = stash
+  stp = stash pop
+
+  # log
+  l = log --graph --date=short
+  lg = log --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -30
+  lga = log --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -16 --all
+
+  l   = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
+  ll  = log     --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
+  gl  = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(by %an)%Creset%C(yellow bold)%d%Creset%n'
+  gll = log     --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(%cr by %an)%Creset%C(yellow bold)%d%Creset%n'
+
+  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  changelog = log --pretty=format:\" * %s\"
+  shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+  yesterday = !git l --author `git config user.email` --since yesterday --before today
+  today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+  who = shortlog -n -s --no-merges
+  tags = tag -l
+
+  # commit
+  c = commit --verbose
+  cm = commit -m
+  ca = commit --amend -C HEAD
+  wip = commit -m 'WIP'
+
+  a = add
+  aa= !git add -u && git add . && git status -s
+
+  # remotes
+  fall = fetch --all -p
+
+  b = branch
+  branches = branch -a -v
+  # deletemerged = '!git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+  s = status -s
+  p = push
+  f = fetch
+  co = checkout
+  cob = checkout -b
+  corb = "!f() { git fetch --all; git checkout -b $1 origin/$1; }; f"
+  dt = difftool
+  dtc = difftool --cached
+  up = pull --rebase
+  # up = !git remote update -p; git merge --ff-only @{u}
+  remotes = remote -v
+  wc = whatchanged -p --abbrev-commit --pretty=medium
+  ctags = !.git/hooks/ctags
+[heroku]
+  account = personal
+[tig]
+  show-date = relative
+  author-width = 8
+  show-rev-graph = yes
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[push]
+  default = upstream
+[init]
+  templatedir = ~/.git_template
+[pull]
+	ff = only
