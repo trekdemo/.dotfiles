@@ -1,6 +1,6 @@
 # casks
-install brew-cask
 tap phinze/cask
+install brew-cask
 
 # Cask apps
 cask install google-chrome
@@ -31,13 +31,13 @@ install icu4c
 install irssi
 install libxml2
 install macvim
-install neovim
+# install neovim
 install memcached
 install mongodb
 install mysql
 install node
 install openssl
-install openssl-osx-ca
+# install openssl-osx-ca
 install phantomjs
 install postgresql
 install rabbitmq
@@ -47,7 +47,7 @@ install siege
 install sqlite
 install the_silver_searcher
 install tig
-install tmate
+# install tmate
 install tmux
 install watch
 install wget
