@@ -104,7 +104,6 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
 " Bundles ----------------------------------------------------------------- {{{
 Bundle 'gmarik/vundle'
 
-Bundle "ekalinin/Dockerfile.vim"
 Bundle 'SirVer/ultisnips'
 Bundle 'b4winckler/vim-objc'
 Bundle 'benmills/vimux'
@@ -113,17 +112,16 @@ Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'dag/vim-fish'
 Bundle 'danro/rename.vim'
 Bundle 'edsono/vim-matchit'
+Bundle 'godlygeek/tabular'
 Bundle 'honza/vim-snippets'
 Bundle 'ivalkeen/vim-ctrlp-tjump'
 Bundle 'jasoncodes/ctrlp-modified.vim'
 Bundle 'jgdavey/vim-turbux'
-Bundle 'junegunn/vim-easy-align'
 Bundle 'justinmk/vim-gtfo'
 Bundle 'justinmk/vim-sneak'
 Bundle 'kana/vim-smartinput'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'marijnh/tern_for_vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/funcoo.vim'
@@ -156,6 +154,7 @@ set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
 
 set background=dark
+" let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
 let g:airline_theme='badwolf'
 
@@ -369,6 +368,8 @@ augroup ft_ruby
     au FileType ruby,eruby let g:rubycomplete_rails = 1
     au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
     au BufRead,BufNewFile {Guardfile} set ft=ruby
+    au BufRead,BufNewFile {Vagrantfile} set ft=ruby
+    au BufRead,BufNewFile {Capfile} set ft=ruby
     "improve autocomplete menu color
     highlight Pmenu ctermbg=238 gui=bold
 
@@ -510,52 +511,6 @@ if executable('ag')
   set grepformat=%f:%l:%c:%m
 endif
 
-  " Qdo {{{
-    command! -nargs=0 -bar Qargs execute 'args ' . s:QuickfixFilenames()
-
-    " Contributed by "ib."
-    " http://stackoverflow.com/questions/5686206/search-replace-using-quickfix-list-in-vim#comment8286582_5686810
-    command! -nargs=1 -complete=command -bang Qdo call s:Qdo(<q-bang>, <q-args>)
-
-    function! s:Qdo(bang, command)
-      if exists('w:quickfix_title')
-        let in_quickfix_window = 1
-        cclose
-      else
-        let in_quickfix_window = 0
-      endif
-
-      arglocal
-      exe 'args '.s:QuickfixFilenames()
-      exe 'argdo'.a:bang.' '.a:command
-      argglobal
-
-      if in_quickfix_window
-        copen
-      endif
-    endfunction
-
-    function! s:QuickfixFilenames()
-      " Building a hash ensures we get each buffer only once
-      let buffer_numbers = {}
-      for quickfix_item in getqflist()
-        let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
-      endfor
-      return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
-    endfunction
-  " }}}
-  " Ranger {{{
-    fun! RangerChooser()
-        exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
-        if filereadable('/tmp/chosenfile')
-            exec 'edit ' . system('cat /tmp/chosenfile')
-            call system('rm /tmp/chosenfile')
-        endif
-        redraw!
-    endfun
-  " }}}
-
-
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
   " Airline {{{
@@ -587,7 +542,6 @@ endif
     map <Leader>gM :CtrlPBranch<CR>
   " }}}
   " Fugitive {{{
-
     cabbrev git Git
     nnoremap <leader>gd :Gdiff<cr>
     nnoremap <leader>gs :Gstatus<cr>
@@ -654,10 +608,6 @@ endif
     let g:vitality_fix_focus = 0
     let g:vitality_always_assume_iterm = 1
   " }}}
-  " Wildfire {{{
-    let g:wildfire_fuel_map = "<ENTER>"  " This selects the next closest text object.
-    let g:wildfire_water_map = "<BS>"  " This selects the previous closest text object.
-  " }}}
   " Dash {{{
     nmap <leader>dd :Dash<space>
     nmap <silent> <leader>D <Plug>DashSearch
@@ -672,6 +622,16 @@ endif
     let g:UltiSnipsExpandTrigger="<tab>"
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  " }}}
+  " Tabular {{{
+    if exists(":Tabularize")
+      nmap <Leader>a= :Tabularize /=<CR>
+      vmap <Leader>a= :Tabularize /=<CR>
+      nmap <Leader>a: :Tabularize /:\zs<CR>
+      vmap <Leader>a: :Tabularize /:\zs<CR>
+      nmap <Leader>a> :Tabularize /=><CR>
+      vmap <Leader>a> :Tabularize /=><CR>
+    endif
   " }}}
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
