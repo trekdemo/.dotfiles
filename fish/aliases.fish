@@ -86,3 +86,7 @@ function fos -d 'foreman start'
     foreman start --env='.env.development,.env'
   end
 end
+
+function mongo.start -d 'Start mongodb daemon'
+  mongod --config /usr/local/etc/mongod.conf
+end

@@ -142,6 +142,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'rodjek/vim-puppet'
 
 " Performance killers
 " Bundle 'scrooloose/syntastic'
@@ -458,6 +459,18 @@ augroup END
     au!
     au BufNewFile,BufRead *.fish setlocal filetype=fish
     au FileType fish             setlocal foldmethod=expr
+  augroup END
+" }}}
+" Puppet {{{
+  augroup ft_puppet
+    au!
+    au BufNewFile,BufRead *.pp setlocal filetype=puppet
+  augroup END
+" }}}
+" Vagrant {{{
+  augroup ft_vagrant
+    au!
+    au BufNewFile,BufRead Vagrantfile setlocal filetype=ruby
   augroup END
 " }}}
 
