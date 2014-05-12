@@ -14,7 +14,7 @@ set -gx RUBYOPT rubygems
 set -gx NODE_PATH "/usr/local/lib/node_modules"
 set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
-set -gx CDPATH ~/dev $CDPATH
+set -gx CDPATH ./ ~/dev $CDPATH
 set -gx DOCKER_HOST 'tcp://localhost:4243'
 
 # Tmuxifier

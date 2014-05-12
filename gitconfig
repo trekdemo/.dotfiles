@@ -103,6 +103,6 @@
 [push]
   default = upstream
 [init]
-  templatedir = ~/.git_template
+  templatedir = ~/.git_templates
 [pull]
 	ff = only

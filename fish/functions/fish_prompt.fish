@@ -1,3 +1,7 @@
+function _git_branch_name
+  echo (git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
+end
+
 function fish_prompt
 
   set -l cyan (set_color -o cyan)
