@@ -7,10 +7,9 @@ session_root "~/dev/digital_natives/datahub/deployment/"
 if initialize_session 'dh_deployment'; then
 
   # Create a new window inline within session layout definition.
-  new_window "vim"
-    run_cmd "vim"
-  new_window "console"
-  new_window "tmp"
+  new_window "one"
+  new_window "two"
+  new_window "three"
 
   # Select the default active window on session creation.
   select_window 0
