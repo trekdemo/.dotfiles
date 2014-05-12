@@ -81,9 +81,9 @@ end
 
 function fos -d 'foreman start'
   if test -z Procfile.local
-    foreman start --env='.env.development,.env' -f Procfile.local
+    foreman start -f Procfile.local
   else
-    foreman start --env='.env.development,.env'
+    foreman start
   end
 end
 
