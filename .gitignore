@@ -3,3 +3,4 @@ vim/tmp
 vim/bundle
 fish/fish_history
 fish/fishd.*
+vim/.netrwhist
