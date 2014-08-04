@@ -250,6 +250,9 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+" Tabularize
+vnoremap <leader>t= :Tabularize /=<CR>
+
 " Move up/down in insert mode
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
