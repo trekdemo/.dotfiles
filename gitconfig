@@ -87,7 +87,7 @@
   corb = "!f() { git fetch --all; git checkout -b $1 origin/$1; }; f"
   dt = difftool
   dtc = difftool --cached
-  up = pull --rebase
+  ; up = pull --rebase
   # up = !git remote update -p; git merge --ff-only @{u}
   remotes = remote -v
   wc = whatchanged -p --abbrev-commit --pretty=medium
