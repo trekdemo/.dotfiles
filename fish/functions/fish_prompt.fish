@@ -2,16 +2,23 @@ function _git_branch_name
   echo (git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
 end
 
+function pwdn
+  pwd | awk -F\/ '{print $(NF-1),$(NF)}' | sed 's/ /\\//'
+end
+
 function fish_prompt
 
   set -l cyan (set_color -o cyan)
   set -l yellow (set_color -o yellow)
   set -l red (set_color -o red)
   set -l blue (set_color -o blue)
+  set -l cyan (set_color cyan)
+  set -l green (set_color -o green)
+  set -l black (set_color -o black)
   set -l normal (set_color normal)
 
   set -l arrow "$red➜ "
-  set -l cwd $cyan(basename (prompt_pwd))
+  set -l cwd $cyan(pwdn)
 
   if [ (_git_branch_name) ]
     set -l git_branch $red(_git_branch_name)

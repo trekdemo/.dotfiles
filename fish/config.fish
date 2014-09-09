@@ -1,6 +1,6 @@
 # ENV variables
-prepend_to_path "/usr/local/share/npm/bin"
 prepend_to_path "/usr/local/bin"
+prepend_to_path "/usr/local/share/npm/bin"
 prepend_to_path "/usr/local/sbin"
 prepend_to_path "$HOME/.rbenv/shims"
 prepend_to_path "$HOME/bin"
@@ -16,6 +16,7 @@ set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
 set -gx CDPATH ./ ~/dev $CDPATH
 set -gx DOCKER_HOST 'tcp://localhost:4243'
+set -gx JAVA_HOME (/usr/libexec/java_home)
 
 # Tmuxifier
 set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.dotfiles/tmuxifier_layouts"

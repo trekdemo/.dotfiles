@@ -37,7 +37,8 @@ set autowrite
 set ruler                               " Show line and column number
 set showbreak=↪
 set list                                " Show invisible characters
-set listchars=tab:·\ ,trail:·,eol:¬,extends:❯,precedes:❮
+" set listchars=tab:·\ ,trail:·,eol:¬,extends:❯,precedes:❮
+set listchars=tab:·\ ,trail:·,extends:❯,precedes:❮
 " iTerm2 is currently slow as ball at rendering the nice unicode lines, so for
 " now I'll just use ascii pipes.  They're ugly but at least I won't want to kill
 " myself when trying to move around a file.
@@ -113,6 +114,7 @@ Bundle 'dag/vim-fish'
 Bundle 'danro/rename.vim'
 Bundle 'edsono/vim-matchit'
 Bundle 'elixir-lang/vim-elixir'
+Bundle 'endel/vim-github-colorscheme'
 Bundle 'godlygeek/tabular'
 Bundle 'honza/vim-snippets'
 Bundle 'ivalkeen/vim-ctrlp-tjump'
@@ -127,6 +129,7 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rking/ag.vim'
+Bundle 'rodjek/vim-puppet'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'sjl/vitality.vim'
@@ -143,7 +146,6 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'rodjek/vim-puppet'
 
 " Performance killers
 " Bundle 'scrooloose/syntastic'
@@ -158,6 +160,10 @@ set synmaxcol=240                       " Hightlight only the first n chars
 set background=dark
 " let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
+
+" set background=light
+" colorscheme github
+
 let g:airline_theme='badwolf'
 
 " Highlight VCS conflict markers
