@@ -4,7 +4,9 @@ prepend_to_path "/usr/local/share/npm/bin"
 prepend_to_path "/usr/local/sbin"
 prepend_to_path "$HOME/.rbenv/shims"
 prepend_to_path "$HOME/bin"
-prepend_to_path ".git/safe/../../bin"
+# TODO find out why
+# prepend_to_path ".git/safe/../../bin"
+set -gx PATH ".git/safe/../../bin" $PATH
 
 set BROWSER open
 set -gx fish_greeting ''
