@@ -471,6 +471,12 @@ augroup END
     au FileType fish             setlocal foldmethod=expr
   augroup END
 " }}}
+" Coffee {{{
+  augroup ft_coffee
+    au!
+    au BufNewFile,BufRead *.coffee setlocal filetype=coffee
+  augroup END
+" }}}
 " Puppet {{{
   augroup ft_puppet
     au!
@@ -597,6 +603,7 @@ endif
   " }}}
   " The Silver Searcher {{{
     map <leader>F :Ag!<space>
+    map <leader>A :Ag "FIXME\|TODO"<CR>
   " }}}
   " Rails {{{
     cabbrev rake Rake
