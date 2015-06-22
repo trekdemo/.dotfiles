@@ -18,7 +18,7 @@ function fish_prompt
   set -l normal (set_color normal)
 
   set -l arrow "$red➜ "
-  set -l cwd $cyan(pwdn)
+  set -l cwd $black(pwdn)
 
   if [ (_git_branch_name) ]
     set -l git_branch $red(_git_branch_name)

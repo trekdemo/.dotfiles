@@ -8,6 +8,7 @@ function es;          vim ~/.ssh/config; end
 # Shortcuts
 function g;           git $argv; end
 function b;           bundle $argv; end
+function dc;          docker-compose $argv; end
 function o;           open $argv; end
 function oo;          open .; end
 function :q;          exit; end

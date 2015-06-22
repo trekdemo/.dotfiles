@@ -2,6 +2,7 @@ tags
 .tags
 gems.tags
 .bundle/
+node_modules/
 
 # Zeus
 custom_plan.rb
@@ -24,3 +25,4 @@ Icon
 .Trashes
 
 .rspec-local
+Procfile.local

@@ -103,53 +103,49 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
   " }}}
 " }}}
 " Bundles ----------------------------------------------------------------- {{{
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'SirVer/ultisnips'
-Bundle 'b4winckler/vim-objc'
-Bundle 'benmills/vimux'
-Bundle 'bling/vim-airline'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'dag/vim-fish'
-Bundle 'danro/rename.vim'
-Bundle 'edsono/vim-matchit'
-Bundle 'elixir-lang/vim-elixir'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'godlygeek/tabular'
-Bundle 'honza/vim-snippets'
-Bundle 'ivalkeen/vim-ctrlp-tjump'
-Bundle 'jasoncodes/ctrlp-modified.vim'
-Bundle 'jgdavey/vim-turbux'
-Bundle 'justinmk/vim-gtfo'
-Bundle 'justinmk/vim-sneak'
-Bundle 'kana/vim-smartinput'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'kien/ctrlp.vim'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'rizzatti/dash.vim'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rking/ag.vim'
-Bundle 'rodjek/vim-puppet'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'sjl/gundo.vim'
-Bundle 'sjl/vitality.vim'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-ragtag'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rbenv'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-vinegar'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'w0ng/vim-hybrid'
-
-" Performance killers
-" Bundle 'scrooloose/syntastic'
-" Bundle 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'amdt/vim-niji'
+Plugin 'benmills/vimux'
+Plugin 'bling/vim-airline'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'dag/vim-fish'
+Plugin 'danro/rename.vim'
+Plugin 'edsono/vim-matchit'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'godlygeek/tabular'
+Plugin 'guns/vim-clojure-static'
+Plugin 'ivalkeen/vim-ctrlp-tjump'
+Plugin 'jasoncodes/ctrlp-modified.vim'
+Plugin 'jgdavey/vim-blockle'
+Plugin 'jgdavey/vim-turbux'
+Plugin 'justinmk/vim-gtfo'
+Plugin 'justinmk/vim-sneak'
+Plugin 'kana/vim-smartinput'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'rking/ag.vim'
+Plugin 'sjl/gundo.vim'
+Plugin 'sjl/vitality.vim'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-classpath'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rbenv'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/paredit.vim'
 " }}}
 " Color scheme ------------------------------------------------------------ {{{
 
@@ -157,18 +153,10 @@ syntax enable                           " Switch syntax highlighting on
 set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
 
-set background=dark
-" let g:hybrid_use_iTerm_colors = 1
-colorscheme hybrid
+colorscheme github
+let g:airline_theme='sol'
+hi SignColumn   ctermfg=246 ctermbg=15 guifg=#959595 guibg=#ECECEC gui=bold cterm=bold
 
-" set background=light
-" colorscheme github
-
-let g:airline_theme='badwolf'
-
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-match ErrorMsg '\s\+$'
 
 " }}}
 " Mappings ---------------------------------------------------------------- {{{
@@ -205,8 +193,6 @@ map           <leader>es :sp %%
 map           <leader>ev :vsp %%
 map           <leader>et :tabe %%
 map           <leader>ef :Ex %%<CR>
-" map           <leader>tn :tabnext<cr>
-" map           <leader>tp :tabprevious<cr>
 " tab navigation
 nnoremap <TAB> gt
 nnoremap <S-TAB> gT
@@ -288,7 +274,7 @@ noremap H ^
 noremap L g_
 
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
@@ -298,20 +284,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nnoremap <leader>dt :windo diffthis<CR>
 nnoremap <leader>du :windo diffupdate<CR>
 nnoremap <leader>do :windo diffoff<CR>
-
-" Map command-[ and command-] to indenting or outdenting
-" while keeping the original selection in visual mode
-vmap <M-]> >gv
-vmap <M-[> <gv
-
-nmap <M-]> >>
-nmap <M-[> <<
-
-omap <M-]> >>
-omap <M-[> <<
-
-imap <M-]> <Esc>>>i
-imap <M-[> <Esc><<i
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -435,8 +407,7 @@ augroup END
 
 augroup ft_haml
     au!
-    au Filetype haml setlocal foldlevelstart=999
-    au Filetype haml setlocal foldmethod=indent
+    au Filetype haml setlocal foldmethod=indent nofoldenable
 augroup END
 
 " }}}
@@ -444,12 +415,6 @@ augroup END
   augroup ft_javascript
     au!
     au Filetype javascript setlocal foldmethod=marker foldmarker={,}
-  augroup END
-" }}}
-" Java {{{
-  augroup ft_java
-    au!
-    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
   augroup END
 " }}}
 " HTML {{{
@@ -461,7 +426,7 @@ augroup END
 " Markdown {{{
   augroup ft_markdown
     au!
-    au Filetype markdown nnoremap <leader>p :silent !open -a Marked.app '%:p'<cr>
+    au Filetype markdown nnoremap <leader>p :silent !open -a Marked\ 2.app '%:p'<cr>
   augroup END
 " }}}
 " Fish {{{
@@ -474,13 +439,8 @@ augroup END
 " Coffee {{{
   augroup ft_coffee
     au!
-    au BufNewFile,BufRead *.coffee setlocal filetype=coffee
-  augroup END
-" }}}
-" Puppet {{{
-  augroup ft_puppet
-    au!
-    au BufNewFile,BufRead *.pp setlocal filetype=puppet
+    autocmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
+    autocmd BufNewFile,BufRead *.coffee setlocal foldmethod=indent nofoldenable
   augroup END
 " }}}
 " Vagrant {{{
@@ -596,10 +556,9 @@ endif
     augroup END
 
 " }}}
-  " NERDCommenter mappings {{{
-    let NERDSpaceDelims = 1
-    map <leader>/ <plug>NERDCommenterToggle<CR>
-    imap <leader>/ <Esc><plug>NERDCommenterToggle<CR>i
+  " commentary.vim {{{
+    map <leader>/ gcc
+    imap <leader>/ gc
   " }}}
   " The Silver Searcher {{{
     map <leader>F :Ag!<space>
@@ -620,9 +579,6 @@ endif
     map <leader>m <Plug>SendTestToTmux
     map <leader>M <Plug>SendFocusedTestToTmux
   " }}}
-  " Sneak {{{
-    " let g:sneak#streak = 1
-  " }}}
   " Vimux {{{
     let g:VimuxUseNearestPane = 1
     map <LocalLeader>vc :VimuxCloseRunner<CR>
@@ -638,21 +594,6 @@ endif
     let g:vitality_fix_focus = 0
     let g:vitality_always_assume_iterm = 1
   " }}}
-  " Dash {{{
-    nmap <leader>dd :Dash<space>
-    nmap <silent> <leader>D <Plug>DashSearch
-    let s:keywords_map = {
-      \ 'ruby'       : 'ruby ruby2 rails',
-      \ 'javascript' : 'javascript backbone',
-      \ 'python'     : 'python2',
-      \ 'java'       : 'java7'
-      \ }
-  " }}}
-  " UtilSnips {{{
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-  " }}}
   " Tabular {{{
     if exists(":Tabularize")
       nmap <Leader>a= :Tabularize /=<CR>
@@ -664,56 +605,3 @@ endif
     endif
   " }}}
 " }}}
-" Environments (GUI/Console) ---------------------------------------------- {{{
-
-if has('gui_running') " {{{
-  set guifont=Inconsolata-dz\ for\ Powerline:h12
-
-  " Remove all the UI cruft
-  set go-=T
-  set go-=l
-  set go-=L
-  set go-=r
-  set go-=R
-
-  highlight SpellBad term=underline gui=undercurl guisp=Orange
-
-
-  " Different cursors for different modes.
-  set guicursor=n-c:block-Cursor-blinkon0
-  set guicursor+=v:block-vCursor-blinkon0
-  "set guicursor+=i-ci:ver20-iCursor
-
-  if has("gui_macvim") "{{{
-    " Full screen means FULL screen
-    set fuoptions=maxvert,maxhorz
-
-    " Use the normal HIG movements, except for M-Up/Down
-    let macvim_skip_cmd_opt_movement = 1
-    no   <D-Left>       <Home>
-    no!  <D-Left>       <Home>
-    no   <M-Left>       <C-Left>
-    no!  <M-Left>       <C-Left>
-
-    no   <D-Right>      <End>
-    no!  <D-Right>      <End>
-    no   <M-Right>      <C-Right>
-    no!  <M-Right>      <C-Right>
-
-    no   <D-Up>         <C-Home>
-    ino  <D-Up>         <C-Home>
-    imap <M-Up>         <C-o>{
-
-    no   <D-Down>       <C-End>
-    ino  <D-Down>       <C-End>
-    imap <M-Down>       <C-o>}
-
-    imap <M-BS>         <C-w>
-    inoremap <D-BS>     <esc>my0c`y
-  else
-    " Non-MacVim GUI, like Gvim
-  end " }}}
-endif " }}}
-
-" }}}
-
