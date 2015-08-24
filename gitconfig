@@ -13,11 +13,6 @@
 [diff]
   tool = vimdiff
   algorithm = histogram
-[multidiff]
-  tool = vd -f
-
-[diff "excel"]
-  textconv=xls2csv
 
 [difftool]
   prompt = false
@@ -106,8 +101,6 @@
   templatedir = ~/.git_templates
 [pull]
   ff = only
-[remote "origin"]
-  fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 [filter "lfs"]
   clean = git lfs clean %f
   smudge = git lfs smudge %f
