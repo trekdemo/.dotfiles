@@ -4,4 +4,6 @@ vim/bundle
 fish/fish_history
 fish/fishd.*
 vim/.netrwhist
+xconfig/nvim/.netrwhist
+xconfig/nvim/plugged
 Procfile.local
