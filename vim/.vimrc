@@ -67,7 +67,7 @@ set ttimeout
 set timeoutlen=50
 " set tags+=./.tags,.tags
 set wildmenu                              "show list for autocomplete
-set wildmode=list:longest                 "priority for tab completion
+set wildmode=full                 "priority for tab completion
 set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
 set mouse=a
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
@@ -82,31 +82,11 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
   set noswapfile                          " It's 2012, Vim.
 
   " }}}
-  " Spelling {{{
-    try
-      lang en_us
-    catch
-    endtry
-
-    " Spelling highlights. Use underline in term to prevent cursorline highlights
-    " from interfering
-    if !has("gui_running")
-      hi clear SpellBad
-      hi SpellBad cterm=underline ctermfg=red
-      hi clear SpellCap
-      hi SpellCap cterm=underline ctermfg=blue
-      hi clear SpellLocal
-      hi SpellLocal cterm=underline ctermfg=blue
-      hi clear SpellRare
-      hi SpellRare cterm=underline ctermfg=blue
-    endif
-  " }}}
 " }}}
 " Bundles ----------------------------------------------------------------- {{{
 Plugin 'gmarik/vundle'
 
 Plugin 'airblade/vim-gitgutter'
-Plugin 'amdt/vim-niji'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
