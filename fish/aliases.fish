@@ -1,5 +1,6 @@
 # Quick edits
 function ef;          vim ~/.config/fish/config.fish; end
+function efa;          vim ~/.config/fish/aliases.fish; end
 function ev;          vim ~/.vimrc; end
 function eg;          vim ~/.gitconfig; end
 function et;          vim ~/.tmux.conf; end
@@ -9,6 +10,7 @@ function es;          vim ~/.ssh/config; end
 function g;           git $argv; end
 function b;           bundle $argv; end
 function dc;          docker-compose $argv; end
+function dm;          docker-machine $argv; end
 function o;           open $argv; end
 function oo;          open .; end
 function :q;          exit; end
@@ -27,6 +29,19 @@ function currentwifi; networksetup -getairportnetwork en0; end
 function cuts; cut -d' ' $argv; end
 function week; date +%V; end
 
+function rspec
+  if [ -f ./docker-compose.yml ]
+    echo "Running docker-compose run web bundle exec rspec $argv"
+    docker-compose run web bundle exec rspec $argv
+  else if [ -f ./bin/rspec ]
+    echo "Running bin/rspec $argv"
+    ./bin/rspec $argv
+  else
+    echo "Running bundle exec rspec $argv"
+    bundle exec rspec $argv
+  end
+
+end
 # Bundle
 function be; bundle exec     $argv; end
 function bi; bundle install  $argv; end
@@ -90,4 +105,10 @@ end
 
 function mongo.start -d 'Start mongodb daemon'
   mongod --config /usr/local/etc/mongod.conf
+end
+
+function gist
+  set -l command (which gist)" --copy --open --shorten $argv"
+  echo $command
+  eval $command
 end

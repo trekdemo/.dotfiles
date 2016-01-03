@@ -1,0 +1,1 @@
+/Users/trek/.fzf/shell/key-bindings.fish
