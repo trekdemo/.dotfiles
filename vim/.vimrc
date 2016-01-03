@@ -34,6 +34,7 @@ set noerrorbells                        " No noise.
 set lazyredraw
 set autoread                            " Reload file if it's modified outside
 set autowrite
+set autoindent
 set ruler                               " Show line and column number
 set showbreak=↪
 set list                                " Show invisible characters
@@ -88,14 +89,13 @@ Plugin 'gmarik/vundle'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
-Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'dag/vim-fish'
 Plugin 'danro/rename.vim'
 Plugin 'edsono/vim-matchit'
 Plugin 'endel/vim-github-colorscheme'
 Plugin 'godlygeek/tabular'
-Plugin 'guns/vim-clojure-static'
 Plugin 'ivalkeen/vim-ctrlp-tjump'
 Plugin 'jasoncodes/ctrlp-modified.vim'
 Plugin 'jgdavey/vim-blockle'
@@ -110,13 +110,10 @@ Plugin 'rking/ag.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'sjl/vitality.vim'
 Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rbenv'
@@ -125,7 +122,19 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'vim-scripts/paredit.vim'
+Plugin 'mtth/scratch.vim'
+Plugin 'roman/golden-ratio'
+Plugin 'sjl/badwolf'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'NLKNguyen/papercolor-theme'
+
+" Clojure
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
+Plugin 'kovisoft/paredit'
+Plugin 'losingkeys/vim-niji'
 " }}}
 " Color scheme ------------------------------------------------------------ {{{
 
@@ -133,9 +142,9 @@ syntax enable                           " Switch syntax highlighting on
 set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
 
-colorscheme github
-let g:airline_theme='sol'
-hi SignColumn   ctermfg=246 ctermbg=15 guifg=#959595 guibg=#ECECEC gui=bold cterm=bold
+set background=light
+colorscheme PaperColor
+let g:lightline = { 'colorscheme': 'PaperColor' }
 
 
 " }}}
@@ -158,7 +167,7 @@ let maplocalleader = "\\"
 nmap          <leader><leader> :!
 nnoremap      <leader>s :%s//gg<left><left><left>
 " Toggle wrap settings
-nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
+nmap          <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " Remove selected hightlight
 noremap       <leader><space> :noh<cr>:call clearmatches()<cr>
 " Easier linewise reselection
@@ -482,9 +491,6 @@ endif
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
-  " Airline {{{
-    let g:airline_powerline_fonts=0
-  " }}}
   " Ctrl-P {{{
     let g:ctrlp_root_markers = ['.ruby-version', '.git']
     let g:ctrlp_working_path_mode = 'ra'
