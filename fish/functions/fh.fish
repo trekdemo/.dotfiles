@@ -1,3 +1,4 @@
+# Find more here: https://github.com/atweiden/fzf-extras/blob/master/fzf-extras.sh
 function fh -d "Seach in history with fzf"
   history |\
     fzf --tiebreak=index --header="history" -q (commandline -b) |\
