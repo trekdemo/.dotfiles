@@ -124,7 +124,6 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'mtth/scratch.vim'
 Plugin 'roman/golden-ratio'
-Plugin 'sjl/badwolf'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'NLKNguyen/papercolor-theme'
 
@@ -142,7 +141,6 @@ syntax enable                           " Switch syntax highlighting on
 set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
 
-set background=light
 colorscheme PaperColor
 let g:lightline = { 'colorscheme': 'PaperColor' }
 
