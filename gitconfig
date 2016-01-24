@@ -10,6 +10,12 @@
   quotepath = false
 	pager = bash -lc 'diff-highlight | diff-so-fancy | less -r'
 
+[color "diff-highlight"]
+  oldNormal = "red bold"
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
+
 
 [diff]
   tool = vimdiff
@@ -19,14 +25,10 @@
   # Set correct email per project
   whoami = !echo $(git config --get user.name) '<'$(git config --get user.email)'>'
 
-  my =   !git config user.email $(bash -i -c 'my-email')   && git whoami
-  work = !git config user.email $(bash -i -c 'work-email') && git whoami
-
   # reset
   unstage = reset HEAD              # remove files from index (tracking)
   uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
   filelog = log -u                  # show changes to a file
-  mt = mergetool                    # fire up the merge tool
   moff = merge --no-ff
 
   # diff
@@ -48,8 +50,6 @@
 
   l   = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
   ll  = log     --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
-  gl  = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(by %an)%Creset%C(yellow bold)%d%Creset%n'
-  gll = log     --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(%cr by %an)%Creset%C(yellow bold)%d%Creset%n'
 
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
@@ -57,7 +57,7 @@
   shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
   yesterday = !git l --author `git config user.email` --since yesterday --before today
   today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
-  who = shortlog -n -s --no-merges
+  collaborators = shortlog -n -s --no-merges
   tags = tag -l
   ; undeployed = !git fetch --multiple production origin && git log production/master..origin/master
 
@@ -71,12 +71,12 @@
   aa= !git add -u && git add . && git status -s
 
   # remotes
-  fall = fetch --all -p
+  fall = fetch --all --prune
 
   b = branch
   branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
   # deletemerged = '!git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
-  s = status -s
+  s = status --short --branch
   p = push
   f = fetch
   co = checkout
@@ -87,6 +87,11 @@
   remotes = remote -v
   wc = whatchanged -p --abbrev-commit --pretty=medium
   ctags = !.git/hooks/ctags
+
+  pr = !hub pull-request
+  list-aliases = "!git config -l | grep alias | cut -c 7-"
+  la = "!git list-aliases"
+  ls-ignored = ls-files --exclude-standard --ignored --others
 [heroku]
   account = personal
 [tig]

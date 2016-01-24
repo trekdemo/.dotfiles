@@ -7,7 +7,7 @@
 set nocompatible                        " I'm using vim not vi
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 filetype plugin indent on
@@ -39,7 +39,8 @@ set ruler                               " Show line and column number
 set showbreak=↪
 set list                                " Show invisible characters
 " set listchars=tab:·\ ,trail:·,eol:¬,extends:❯,precedes:❮
-set listchars=tab:·\ ,trail:·,extends:❯,precedes:❮
+" set listchars=tab:·\ ,trail:·,extends:❯,precedes:❮
+set listchars=tab:·\ ,trail:·
 " iTerm2 is currently slow as ball at rendering the nice unicode lines, so for
 " now I'll just use ascii pipes.  They're ugly but at least I won't want to kill
 " myself when trying to move around a file.
@@ -55,7 +56,7 @@ set backspace=indent,eol,start          " Make backspace behave in a sane manner
 set foldenable                          " Use folds"
 set foldmethod=syntax
 set foldlevel=999999
-set foldlevelstart=2
+set foldlevelstart=10
 set title
 set shiftround
 set tabstop=2
@@ -87,6 +88,7 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
 " Bundles ----------------------------------------------------------------- {{{
 Plugin 'gmarik/vundle'
 
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
 Plugin 'itchyny/lightline.vim'
@@ -105,6 +107,7 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'kana/vim-smartinput'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
+Plugin 'ngmy/vim-rubocop'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'rking/ag.vim'
 Plugin 'sjl/gundo.vim'
@@ -218,6 +221,9 @@ inoremap <C-u> <esc>gUiwea
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+
+" Format json in the buffer
+nmap =j :%!python -m json.tool<CR>
 
 " nnoremap <cr> zvzz
 map <C-s> <esc>:w<CR>

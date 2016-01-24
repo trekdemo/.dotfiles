@@ -9,6 +9,8 @@
 set -gx PATH "/usr/local/bin" $PATH
 set -gx PATH "/usr/local/share/npm/bin" $PATH
 set -gx PATH "/usr/local/sbin" $PATH
+set -gx PATH "$HOME/.tmuxifier/bin" $PATH
+set -gx PATH "$HOME/google-cloud-sdk/bin" $PATH
 set -gx PATH "$HOME/.rbenv/shims" $PATH
 set -gx PATH "$HOME/bin" $PATH
 set -gx PATH ".git/safe/../../bin" $PATH
@@ -22,10 +24,10 @@ set -gx NODE_PATH "/usr/local/lib/node_modules"
 set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
 set -gx CDPATH ./ ~/dev $CDPATH
-set -gx JAVA_HOME (/usr/libexec/java_home)
+# set -gx JAVA_HOME (/usr/libexec/java_home)
 
 # Setup boot2docker
-boot2docker shellinit | source
+docker-machine env | source
 
 # Tmuxifier
 set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.dotfiles/tmuxifier_layouts"
@@ -39,3 +41,6 @@ make_completion dc "docker-compose"
 
 # Rubby
 test -s /usr/local/bin/rbenv; and /usr/local/bin/rbenv rehash 2>/dev/null
+
+# virtual env wrappers for Python
+eval (python -m virtualfish)

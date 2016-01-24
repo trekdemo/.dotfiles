@@ -26,3 +26,4 @@ Icon
 
 .rspec-local
 Procfile.local
+data/data.sql

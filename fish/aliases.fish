@@ -24,9 +24,7 @@ function ....;  cd ../../..; end
 function .....; cd ../../../..; end
 
 # Utilities
-function collapse; sed -e 's/  */ /g' $argv; end
 function currentwifi; networksetup -getairportnetwork en0; end
-function cuts; cut -d' ' $argv; end
 function week; date +%V; end
 
 function rspec
