@@ -18,7 +18,7 @@ function fish_prompt
   set -l normal (set_color normal)
 
   set -l arrow "$red➜ "
-  set -l cwd $yellow(pwdn)
+  set -l cwd $normal(pwdn)
 
   # Virtual fish prompt
   if set -q VIRTUAL_ENV
