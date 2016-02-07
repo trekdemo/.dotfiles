@@ -6,5 +6,6 @@ fish/fishd.*
 vim/.netrwhist
 xconfig/nvim/.netrwhist
 xconfig/nvim/plugged
+xconfig/gcloud
 xconfig/hub
 Procfile.local
