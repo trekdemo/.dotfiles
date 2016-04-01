@@ -30,6 +30,7 @@
   uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
   filelog = log -u                  # show changes to a file
   moff = merge --no-ff
+  unchanged = update-index --assume-unchanged
 
   # diff
   d = diff                          # diff unstaged changes

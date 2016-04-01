@@ -126,7 +126,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'mtth/scratch.vim'
-Plugin 'roman/golden-ratio'
+" Plugin 'roman/golden-ratio'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'NLKNguyen/papercolor-theme'
 
@@ -145,7 +145,13 @@ set t_Co=256                            " User 256 colors
 set synmaxcol=240                       " Hightlight only the first n chars
 
 colorscheme PaperColor
-let g:lightline = { 'colorscheme': 'PaperColor' }
+let g:lightline = {
+  \   'colorscheme': 'PaperColor',
+  \   'component_function': { 'filename': 'LightLineFilename' }
+  \ }
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 
 " }}}
@@ -571,10 +577,22 @@ endif
   " }}}
   " Vimux {{{
     let g:VimuxUseNearestPane = 1
-    map <LocalLeader>vc :VimuxCloseRunner<CR>
     map <LocalLeader>vp :VimuxPromptCommand<CR>
     map <LocalLeader>vr :VimuxRunCommand("")<left><left>
+    map <LocalLeader>vc :VimuxCloseRunner<CR>
+    map <LocalLeader>vz :VimuxZoomRunner<CR>
+    map <LocalLeader>vi :VimuxInspectRunner<CR>
     map <Leader>l :VimuxRunLastCommand<CR>
+
+    function! VimuxSlime()
+      call VimuxSendText(@v)
+      call VimuxSendKeys("Enter")
+    endfunction
+
+    " If text is selected, save it in the v buffer and send that buffer it to tmux
+    vmap <LocalLeader>vs "vy :call VimuxSlime()<CR>
+    " Select current paragraph and send it to tmux
+    nmap <LocalLeader>vs vip<LocalLeader>vs<CR>
   " }}}
   " ObjC {{{
     let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'

@@ -18,7 +18,7 @@ set -gx PATH ".git/safe/../../bin" $PATH
 set BROWSER open
 set -gx fish_greeting ''
 set -gx EDITOR vim
-set -gx COMMAND_MODE unix2003
+# set -gx COMMAND_MODE unix2003
 set -gx RUBYOPT rubygems
 set -gx NODE_PATH "/usr/local/lib/node_modules"
 set -gx VIM_BINARY "/usr/bin/vim"
