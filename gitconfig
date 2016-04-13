@@ -4,11 +4,24 @@
 [color]
   ui = auto
 [core]
-  editor = 'vim'
-  excludesfile = /Users/trek/.gitignore-global
+  editor = 'nvim'
+  excludesfile = ~/.gitignore-global
   autocrlf = input
   quotepath = false
-  pager = bash -lc 'diff-highlight | diff-so-fancy | less -r'
+  # pager = bash -lc 'diff-highlight | diff-so-fancy | less -r'
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  ignorecase = true
+  precomposeunicode = true
+
+[branch]
+autosetuprebase = always
+
+[branch "master"]
+remote = origin
+merge = refs/heads/master
 
 [color "diff-highlight"]
   oldNormal = "red bold"
@@ -96,7 +109,7 @@
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [push]
-  default = upstream
+  default = simple
 [init]
   templatedir = ~/.git_templates
 [pull]
@@ -105,3 +118,7 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge --skip %f
   required = true
+[credential "https://github.com"]
+	username = trekdemo
+[credential]
+	helper = osxkeychain

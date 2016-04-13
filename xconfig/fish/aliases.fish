@@ -1,7 +1,7 @@
 # Quick edits
 function ef;          vim ~/.config/fish/config.fish; end
-function efa;          vim ~/.config/fish/aliases.fish; end
-function ev;          vim ~/.vimrc; end
+function efa;         vim ~/.config/fish/aliases.fish; end
+function ev;          vim ~/.config/nvim/init.vim; end
 function eg;          vim ~/.gitconfig; end
 function et;          vim ~/.tmux.conf; end
 function es;          vim ~/.ssh/config; end
@@ -14,8 +14,8 @@ function dm;          docker-machine $argv; end
 function o;           open $argv; end
 function oo;          open .; end
 function :q;          exit; end
-function v;           nvim -v $argv; end
-function vim;         nvim -v $argv; end
+function v;           nvim $argv; end
+function vim;         nvim $argv; end
 
 # Directories
 function ..;    cd ..; end
