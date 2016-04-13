@@ -14,8 +14,8 @@ function dm;          docker-machine $argv; end
 function o;           open $argv; end
 function oo;          open .; end
 function :q;          exit; end
-function v;           mvim -v $argv; end
-function vim;         mvim -v $argv; end
+function v;           nvim -v $argv; end
+function vim;         nvim -v $argv; end
 
 # Directories
 function ..;    cd ..; end

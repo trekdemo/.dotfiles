@@ -1,8 +1,8 @@
 vim/tmp
 .DS_Store
 vim/bundle
-fish/fish_history
-fish/fishd.*
+xconfig/fish/fish_history
+xconfig/fish/fishd.*
 vim/.netrwhist
 xconfig/nvim/.netrwhist
 xconfig/nvim/plugged
