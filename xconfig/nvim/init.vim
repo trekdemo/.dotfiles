@@ -5,8 +5,13 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'mkarmona/materialbox'
 
+" Plug 'kassio/neoterm'
+" Plug 'hkupty/nvimux'
+" let g:nvimux_prefix='<C-a>'
+" let g:nvimux_toggle_direction = 'botright'
+
 " Group dependencies, vim-snippets depends on ultisnips
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -23,6 +28,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'jgdavey/vim-turbux'
@@ -104,7 +110,7 @@ nnoremap <TAB> gt
 nnoremap <S-TAB> gT
 
 " Use ,z to "focus" the current fold.
-nnoremap      <leader>z zMzvzz
+nnoremap <leader>z zMzvzz
 
 " tab openning and closing
 map <leader>tc :tabclose<CR>
@@ -143,8 +149,8 @@ vmap <C-k> [egv
 vmap <C-j> ]egv
 
 " Scroll faster
-nnoremap <C-e> 4<C-e>
-nnoremap <C-y> 4<C-y>
+nnoremap <C-e> 5<C-e>
+nnoremap <C-y> 5<C-y>
 
 " Change case
 " nnoremap <C-u> gUiw
@@ -154,37 +160,40 @@ inoremap <C-u> <esc>gUiwea
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
+" tnoremap <Esc> <C-\><C-n>
+
 " =[ Fugitive ]=================================================================
-  cabbrev git Git
-  nnoremap <leader>gd :Gdiff<cr>
-  nnoremap <leader>gs :Gstatus<cr>
-  nnoremap <leader>gw :Gwrite<cr>
-  nnoremap <leader>ga :Gadd<cr>
-  nnoremap <leader>ge :Gedit<cr>
-  nnoremap <leader>gb :Gblame<cr>
-  nnoremap <leader>gco :Gcheckout<cr>
-  nnoremap <leader>gci :Gcommit<cr>
-  nnoremap <leader>gr :Gremove<cr>
-  nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+cabbrev git Git
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>ga :Gadd<cr>
+nnoremap <leader>ge :Gedit<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gco :Gcheckout<cr>
+nnoremap <leader>gci :Gcommit<cr>
+nnoremap <leader>gr :Gremove<cr>
+nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 
-  " nnoremap <leader>gp :Git push<cr>
-  nnoremap <leader>gps :Dispatch! git push<CR>
-  nnoremap <leader>gpl :Dispatch! git pull<CR>
+" nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gpl :Dispatch! git pull<CR>
 
-  augroup ft_fugitive
-      au!
-      au BufNewFile,BufRead .git/index setlocal nolist spell
-  augroup END
+augroup ft_fugitive
+    au!
+    au BufNewFile,BufRead .git/index setlocal nolist spell
+augroup END
 
 " =[ commentary.vim ]===========================================================
-  map <leader>/ gcc
-  imap <leader>/ gc
+map <leader>/ gcc
+imap <leader>/ gc
 
 " =[ FZF ]======================================================================
 map <C-p> :FZF<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)

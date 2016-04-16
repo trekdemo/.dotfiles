@@ -31,7 +31,7 @@ docker-machine env | source
 
 # Tmuxifier
 set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.dotfiles/tmuxifier_layouts"
-tmuxifier init - | source
+# tmuxifier init - | source
 
 # Aliases
 test -s ~/.config/fish/aliases.fish; and source ~/.config/fish/aliases.fish
@@ -44,3 +44,7 @@ test -s /usr/local/bin/rbenv; and /usr/local/bin/rbenv rehash 2>/dev/null
 
 # virtual env wrappers for Python
 eval (python -m virtualfish)
+
+set -gx CW_LOGIN "g_sulymosi"
+set -gx CW_NAME  "g_sulymosi"
+set -gx CW_EMAIL "g.sulymosi@catawiki.nl"
