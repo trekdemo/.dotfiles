@@ -38,6 +38,7 @@ merge = refs/heads/master
   textconv = stat
 
 [alias]
+  up = '!git fetch && git rebase --autostash FETCH_HEAD'
   # reset
   unstage = reset HEAD              # remove files from index (tracking)
   uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state

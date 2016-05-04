@@ -1,17 +1,22 @@
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 " =[ Plugins ]==================================================================
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'mkarmona/materialbox'
 
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+
 " Plug 'kassio/neoterm'
-" Plug 'hkupty/nvimux'
-" let g:nvimux_prefix='<C-a>'
-" let g:nvimux_toggle_direction = 'botright'
 
 " Group dependencies, vim-snippets depends on ultisnips
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -53,7 +58,15 @@ call plug#end()
 
 " =[ Settings ]=================================================================
 colorscheme PaperColor
-let g:lightline = { 'colorscheme': 'PaperColor' }
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ 'component_function': {
+      \   'filename': 'LightLineFilename'
+      \ }
+      \ }
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 set clipboard+=unnamedplus
 set nowrap                              " Do not wrap long lines
@@ -77,6 +90,10 @@ set fillchars=diff:⣿,vert:\|
 " Allow to move the cursor everywhere, not just existing text
 set virtualedit+=block
 set completeopt=longest,menuone,preview
+set foldenable
+set foldmethod=syntax
+set foldlevel=999999
+set foldlevelstart=10
 
 " =[ Mappings ]================================================================
 if &term =~ '^screen'
@@ -109,8 +126,18 @@ map <Leader>= <C-w>=
 nnoremap <TAB> gt
 nnoremap <S-TAB> gT
 
-" Use ,z to "focus" the current fold.
-nnoremap <leader>z zMzvzz
+" Window resizing
+nnoremap <S-C-left> 5<c-w>>
+nnoremap <S-C-right> 5<c-w><
+nnoremap <S-C-up> 5<c-w>+
+nnoremap <S-C-down> 5<c-w>-
+
+
+" Don't move on *
+nnoremap * *N
+" Keep search matches in the middle of the window and pulse the line when moving to them.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " tab openning and closing
 map <leader>tc :tabclose<CR>
@@ -162,6 +189,57 @@ cnoremap <c-e> <end>
 
 " tnoremap <Esc> <C-\><C-n>
 
+" Folding ======================================================================
+" Use ,z to "focus" the current fold.
+nnoremap <leader>z zMzvzz
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+nnoremap zO zCzO
+
+
+" Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window. Protect against
+" screwing up folding when switching between windows.
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 7 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+
+" via: http://rails-bestpractices.com/posts/60-remove-trailing-whitespace
+" Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
+
 " =[ Fugitive ]=================================================================
 cabbrev git Git
 nnoremap <leader>gd :Gdiff<cr>
@@ -194,6 +272,33 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
+" =[ The Silver Searcher ]======================================================
+  map <leader>F :Ag!<space>
+  map <leader>A :Ag "FIXME\|TODO"<CR>
+
+" =[ Rails ]====================================================================
+  cabbrev rake Rake
+  cabbrev rails Rails
+  cabbrev bundle Bundle
+  cabbrev rmodel Rmodel
+  cabbrev rcontroller Rcontroller
+  cabbrev rmigration Rmigration
+
+" =[ Turbux ]===================================================================
+  let g:turbux_runner = 'vimux'
+  let g:no_turbux_mappings = 1
+  let g:turbux_command_prefix = 'clear;'
+  map <leader>m <Plug>SendTestToTmux
+  map <leader>M <Plug>SendFocusedTestToTmux
+
+" =[ Vimux ]====================================================================
+  let g:VimuxUseNearestPane = 1
+  map <LocalLeader>vp :VimuxPromptCommand<CR>
+  map <LocalLeader>vr :VimuxRunCommand("")<left><left>
+  map <LocalLeader>vc :VimuxCloseRunner<CR>
+  map <LocalLeader>vz :VimuxZoomRunner<CR>
+  map <LocalLeader>vi :VimuxInspectRunner<CR>
+  map <Leader>l :VimuxRunLastCommand<CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -201,3 +306,7 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" = [ deoplete ] ==============================================================
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources = {}

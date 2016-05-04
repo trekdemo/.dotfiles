@@ -28,18 +28,9 @@ function currentwifi; networksetup -getairportnetwork en0; end
 function week; date +%V; end
 
 function rspec
-  if [ -f ./docker-compose.yml ]
-    echo "Running docker-compose run web bundle exec rspec $argv"
-    docker-compose run web bundle exec rspec $argv
-  else if [ -f ./bin/rspec ]
-    echo "Running bin/rspec $argv"
-    ./bin/rspec $argv
-  else
-    echo "Running bundle exec rspec $argv"
-    bundle exec rspec $argv
-  end
-
+  bundle exec rspec $argv
 end
+
 # Bundle
 function be; bundle exec     $argv; end
 function bi; bundle install  $argv; end

@@ -1,1 +1,1 @@
-/Users/trek/.fzf/shell/key-bindings.fish
+/Users/gergosulymosi/.fzf/shell/key-bindings.fish
