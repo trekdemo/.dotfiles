@@ -1,4 +1,4 @@
-function bundle
+function bundle --wraps "bundle"
   if test -f ./docker-compose.yml
     echo "docker-compose run --rm web bundle $argv"
     docker-compose run --rm web bundle $argv

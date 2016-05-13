@@ -26,6 +26,7 @@ Plug 'tpope/vim-classpath',     { 'for': 'clojure' }
 Plug 'losingkeys/vim-niji',     { 'for': 'clojure' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
+Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 
 Plug 'kana/vim-smartinput'
 Plug 'plasticboy/vim-markdown'
@@ -239,6 +240,16 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
+
+" =[ Spell checking ]===========================================================
+" Set spellfile to location that is guaranteed to exist
+set spellfile=$HOME/.dotfiles/vim/vim-spell-en.utf-8.add
+
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
+
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 " =[ Fugitive ]=================================================================
 cabbrev git Git

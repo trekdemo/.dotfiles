@@ -27,10 +27,6 @@ function .....; cd ../../../..; end
 function currentwifi; networksetup -getairportnetwork en0; end
 function week; date +%V; end
 
-function rspec
-  bundle exec rspec $argv
-end
-
 # Bundle
 function be; bundle exec     $argv; end
 function bi; bundle install  $argv; end
@@ -40,9 +36,8 @@ function bu; bundle update   $argv; end
 function bo; bundle open     $argv; end
 
 # Rails
-function devlog; tail -f log/development.log; end
-function prodlog; tail -f log/production.log; end
-function testlog; tail -f log/test.log; end
+function devlog  --wraps tail; tail -f log/development.log; end
+function testlog --wraps tail; tail -f log/test.log; end
 function rrg; rake routes | grep $argv; end
 
 # Networking
