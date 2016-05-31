@@ -27,9 +27,11 @@ Plug 'losingkeys/vim-niji',     { 'for': 'clojure' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
+Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 
 Plug 'kana/vim-smartinput'
 Plug 'plasticboy/vim-markdown'
+Plug 'wannesm/wmgraphviz.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -42,10 +44,12 @@ Plug 'jgdavey/vim-turbux'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-repeat'
 
 Plug 'justinmk/vim-gtfo'
 Plug 'justinmk/vim-sneak'
@@ -250,6 +254,8 @@ set complete+=kspell
 
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
+" Toggle spell checking with \s
+nnoremap <silent> <localleader>s :setlocal spell!<CR>
 
 " =[ Fugitive ]=================================================================
 cabbrev git Git
@@ -272,6 +278,10 @@ augroup ft_fugitive
     au!
     au BufNewFile,BufRead .git/index setlocal nolist spell
 augroup END
+
+" = [ GitGutter ] ==============================================================
+nnoremap <localleader>gd :GitGutterLineHighlightsToggle<cr>
+
 
 " =[ commentary.vim ]===========================================================
 map <leader>/ gcc
@@ -318,6 +328,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" = [ deoplete ] ==============================================================
+" = [ deoplete ] ===============================================================
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
+
