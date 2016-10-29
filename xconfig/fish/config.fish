@@ -7,13 +7,11 @@
   # TODO find out why
   # prepend_to_path ".git/safe/../../bin"
 set -gx PATH "/usr/local/bin" $PATH
-set -gx PATH "/usr/local/share/npm/bin" $PATH
 set -gx PATH "/usr/local/sbin" $PATH
-set -gx PATH "$HOME/.tmuxifier/bin" $PATH
-set -gx PATH "$HOME/google-cloud-sdk/bin" $PATH
-set -gx PATH "$HOME/.rbenv/shims" $PATH
 set -gx PATH "$HOME/bin" $PATH
 set -gx PATH ".git/safe/../../bin" $PATH
+set -gx GOPATH "$HOME/projects/go"
+set -gx PATH "$GOPATH/bin" $PATH
 
 set BROWSER open
 set -gx fish_greeting ''
@@ -23,7 +21,7 @@ set -gx RUBYOPT rubygems
 set -gx NODE_PATH "/usr/local/lib/node_modules"
 set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
-set -gx CDPATH ./ ~/dev $CDPATH
+set -gx CDPATH ./ ~/projects $CDPATH
 # set -gx JAVA_HOME (/usr/libexec/java_home)
 
 # Setup boot2docker
@@ -39,12 +37,11 @@ make_completion g "git"
 make_completion b "bundle"
 make_completion dc "docker-compose"
 
-# Rubby
-test -s /usr/local/bin/rbenv; and /usr/local/bin/rbenv rehash 2>/dev/null
-
 # virtual env wrappers for Python
-eval (python -m virtualfish)
+# eval (python -m virtualfish)
 
 set -gx CW_LOGIN "g_sulymosi"
 set -gx CW_NAME  "g_sulymosi"
 set -gx CW_EMAIL "g.sulymosi@catawiki.nl"
+
+# test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish

@@ -21,9 +21,9 @@ function fish_prompt
   set -l cwd $normal(pwdn)
 
   # Virtual fish prompt
-  if set -q VIRTUAL_ENV
-      echo -n -s (set_color -b blue white) "vf(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
-  end
+  # if set -q VIRTUAL_ENV
+  #     echo -n -s (set_color -b blue white) "vf(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+  # end
 
   if [ (_git_branch_name) ]
     set -l git_branch $red(_git_branch_name)

@@ -1,4 +1,8 @@
+" Set the path to python3
 let g:python3_host_prog = '/usr/local/bin/python3'
+
+" Don't use fish as the default shell
+set shell=/bin/bash
 
 " =[ Plugins ]==================================================================
 function! DoRemote(arg)
@@ -10,10 +14,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'mkarmona/materialbox'
-
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-
-" Plug 'kassio/neoterm'
 
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -28,10 +28,18 @@ Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
+Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
+Plug 'fatih/vim-go',            { 'for': 'go' }
+Plug 'garyburd/go-explorer',    { 'for': 'go' }
 
+Plug 'neomake/neomake'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
 Plug 'plasticboy/vim-markdown'
 Plug 'wannesm/wmgraphviz.vim'
+
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') } |
+  Plug 'zchee/deoplete-go', { 'for': 'go' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -243,7 +251,8 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
-autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
+" autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre * StripTrailingWhitespaces
 
 " =[ Spell checking ]===========================================================
 " Set spellfile to location that is guaranteed to exist
@@ -293,34 +302,6 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-" =[ The Silver Searcher ]======================================================
-  map <leader>F :Ag!<space>
-  map <leader>A :Ag "FIXME\|TODO"<CR>
-
-" =[ Rails ]====================================================================
-  cabbrev rake Rake
-  cabbrev rails Rails
-  cabbrev bundle Bundle
-  cabbrev rmodel Rmodel
-  cabbrev rcontroller Rcontroller
-  cabbrev rmigration Rmigration
-
-" =[ Turbux ]===================================================================
-  let g:turbux_runner = 'vimux'
-  let g:no_turbux_mappings = 1
-  let g:turbux_command_prefix = 'clear;'
-  map <leader>m <Plug>SendTestToTmux
-  map <leader>M <Plug>SendFocusedTestToTmux
-
-" =[ Vimux ]====================================================================
-  let g:VimuxUseNearestPane = 1
-  map <LocalLeader>vp :VimuxPromptCommand<CR>
-  map <LocalLeader>vr :VimuxRunCommand("")<left><left>
-  map <LocalLeader>vc :VimuxCloseRunner<CR>
-  map <LocalLeader>vz :VimuxZoomRunner<CR>
-  map <LocalLeader>vi :VimuxInspectRunner<CR>
-  map <Leader>l :VimuxRunLastCommand<CR>
-
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
@@ -328,7 +309,55 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
+" =[ The Silver Searcher ]======================================================
+map <leader>F :Ag!<space>
+map <leader>A :Ag "FIXME\|TODO"<CR>
+
+" =[ Rails ]====================================================================
+cabbrev rake Rake
+cabbrev rails Rails
+cabbrev bundle Bundle
+cabbrev rmodel Rmodel
+cabbrev rcontroller Rcontroller
+cabbrev rmigration Rmigration
+
+" =[ Turbux ]===================================================================
+let g:turbux_runner = 'vimux'
+let g:no_turbux_mappings = 1
+let g:turbux_command_prefix = 'clear;'
+map <leader>m <Plug>SendTestToTmux
+map <leader>M <Plug>SendFocusedTestToTmux
+
+" =[ Vimux ]====================================================================
+let g:VimuxUseNearestPane = 1
+map <LocalLeader>vp :VimuxPromptCommand<CR>
+map <LocalLeader>vr :VimuxRunCommand("")<left><left>
+map <LocalLeader>vc :VimuxCloseRunner<CR>
+map <LocalLeader>vz :VimuxZoomRunner<CR>
+map <LocalLeader>vi :VimuxInspectRunner<CR>
+map <Leader>l :VimuxRunLastCommand<CR>
+
+
 " = [ deoplete ] ===============================================================
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
 
+" = [ vim-go ] =================================================================
+let g:go_fmt_command = "goimports"
+
+" turn highlighting on
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+" Open go doc in vertical window, horizontal, or tab
+au Filetype     go nnoremap <leader>m :GoTest <CR>
+au Filetype     go nnoremap <leader>r :GoRun <CR>
+au Filetype     go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+
+" = [NeoMake ] =================================================================
+" Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
+let g:neomake_ruby_enabled_makers = []
+au! BufWritePost * Neomake
