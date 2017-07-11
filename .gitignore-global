@@ -28,3 +28,4 @@ Icon
 Procfile.local
 data/data.sql
 .DS_Store
+.tern-port

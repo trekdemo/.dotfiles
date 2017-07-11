@@ -8,7 +8,6 @@
   excludesfile = ~/.gitignore-global
   autocrlf = input
   quotepath = false
-  # pager = bash -lc 'diff-highlight | diff-so-fancy | less -r'
   repositoryformatversion = 0
   filemode = true
   bare = false
@@ -16,12 +15,22 @@
   ignorecase = true
   precomposeunicode = true
 
+[merge]
+  ff = only
+  # I pretty much never mean to do a real merge, since I use a rebase workflow.
+  # Note: this global option applies to all merges, including those done during a git pull
+  # https://git-scm.com/docs/git-config#git-config-mergeff
+
+  conflictstyle = diff3
+  # Standard diff is two sets of final changes. This introduces the original text before each side's changes.
+  # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
+
 [branch]
-autosetuprebase = always
+  autosetuprebase = always
 
 [branch "master"]
-remote = origin
-merge = refs/heads/master
+  remote = origin
+  merge = refs/heads/master
 
 [color "diff-highlight"]
   oldNormal = "red bold"
@@ -30,9 +39,16 @@ merge = refs/heads/master
   newHighlight = "green bold 22"
 
 
+# A nice little github-like colorful, split diff right in the console.
+# via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
 [diff]
-  tool = vimdiff
-  algorithm = histogram
+  tool = icdiff
+  # tool = vimdiff
+  # algorithm = histogram
+[difftool]
+  prompt = false
+[difftool "icdiff"]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
 
 [diff "filestat"]
   textconv = stat

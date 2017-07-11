@@ -31,23 +31,31 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go' }
 Plug 'garyburd/go-explorer',    { 'for': 'go' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'roman/golden-ratio'
 
-Plug 'neomake/neomake'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
-Plug 'plasticboy/vim-markdown'
-Plug 'wannesm/wmgraphviz.vim'
 
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') } |
-  Plug 'zchee/deoplete-go', { 'for': 'go' }
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
 Plug 'christoomey/vim-tmux-navigator'
+
+" Running tests
+" https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
 Plug 'benmills/vimux'
+Plug 'tpope/vim-dispatch' |
+  Plug 'radenling/vim-dispatch-neovim'
 Plug 'jgdavey/vim-turbux'
+
+" File checkkers/linters
+Plug 'neomake/neomake'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -291,7 +299,6 @@ augroup END
 " = [ GitGutter ] ==============================================================
 nnoremap <localleader>gd :GitGutterLineHighlightsToggle<cr>
 
-
 " =[ commentary.vim ]===========================================================
 map <leader>/ gcc
 imap <leader>/ gc
@@ -322,13 +329,16 @@ cabbrev rcontroller Rcontroller
 cabbrev rmigration Rmigration
 
 " =[ Turbux ]===================================================================
+" Turbo Ruby testing with tmux
 let g:turbux_runner = 'vimux'
+" let g:turbux_runner = 'dispatch'
 let g:no_turbux_mappings = 1
 let g:turbux_command_prefix = 'clear;'
 map <leader>m <Plug>SendTestToTmux
 map <leader>M <Plug>SendFocusedTestToTmux
 
 " =[ Vimux ]====================================================================
+" Helps to interact with tmux
 let g:VimuxUseNearestPane = 1
 map <LocalLeader>vp :VimuxPromptCommand<CR>
 map <LocalLeader>vr :VimuxRunCommand("")<left><left>
@@ -340,7 +350,11 @@ map <Leader>l :VimuxRunLastCommand<CR>
 
 " = [ deoplete ] ===============================================================
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources = {}
+let g:deoplete#max_list = 25
+let g:deoplete#ignore_sources = {}
+" let g:deoplete#ignore_sources._ = ['member', 'tag']
+let g:deoplete#sources#go#align_class = 1
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " = [ vim-go ] =================================================================
 let g:go_fmt_command = "goimports"
@@ -361,3 +375,13 @@ au Filetype     go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
 let g:neomake_ruby_enabled_makers = []
 au! BufWritePost * Neomake
+
+" = [GoldenRatio] ==============================================================
+" Turn the plugin off by default
+let g:golden_ratio_autocommand = 0
+
+" = [VimR] =====================================================================
+if has("gui_vimr")
+" VimR specific settings like
+"   color xyz
+endif
