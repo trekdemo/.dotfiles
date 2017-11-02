@@ -1,5 +1,7 @@
 " Set the path to python3
 let g:python3_host_prog = '/usr/local/bin/python3'
+" Skip the check of neovim module
+let g:python3_host_skip_check = 1
 
 " Don't use fish as the default shell
 set shell=/bin/bash
@@ -28,6 +30,7 @@ Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
+Plug 'tpope/vim-rhubarb'
 Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go' }
 Plug 'garyburd/go-explorer',    { 'for': 'go' }
@@ -38,9 +41,9 @@ Plug 'roman/golden-ratio'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
 
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': 'javascript' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -50,12 +53,12 @@ Plug 'christoomey/vim-tmux-navigator'
 " Running tests
 " https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
 Plug 'benmills/vimux'
-Plug 'tpope/vim-dispatch' |
-  Plug 'radenling/vim-dispatch-neovim'
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'jgdavey/vim-turbux'
 
 " File checkkers/linters
-Plug 'neomake/neomake'
+Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -110,7 +113,7 @@ set listchars=tab:·\ ,trail:·,eol:¬,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:\|
 " Allow to move the cursor everywhere, not just existing text
 set virtualedit+=block
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone,preview,noselect
 set foldenable
 set foldmethod=syntax
 set foldlevel=999999
@@ -165,6 +168,7 @@ map <leader>tc :tabclose<CR>
 map <leader>tn :tabnew<CR>
 map <leader>to :tabonly<CR>
 map <leader>o :only<CR>
+map <leader>pc :q<CR>
 
 " Quick filename completion
 inoremap <c-f> <c-x><c-f>
@@ -208,7 +212,31 @@ inoremap <C-u> <esc>gUiwea
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-" tnoremap <Esc> <C-\><C-n>
+" Terminal Settings ============================================================
+" Use Esc to get back to normal mode in term
+tnoremap <leader><Esc> <C-\><C-n>
+
+" Window navigation function
+" Make ctrl-h/j/k/l move between windows and auto-insert in terminals
+func! s:mapMoveToWindowInDirection(direction)
+    func! s:maybeInsertMode(direction)
+        stopinsert
+        execute "wincmd" a:direction
+
+        if &buftype == 'terminal'
+            startinsert!
+        endif
+    endfunc
+
+    execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
+                \ "<C-\\><C-n>"
+                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+    execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
+                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+endfunc
+for dir in ["h", "j", "l", "k"]
+    call s:mapMoveToWindowInDirection(dir)
+endfor
 
 " Folding ======================================================================
 " Use ,z to "focus" the current fold.
@@ -308,6 +336,7 @@ map <C-p> :FZF<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+map <leader>b :Buffers <CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -319,6 +348,16 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " =[ The Silver Searcher ]======================================================
 map <leader>F :Ag!<space>
 map <leader>A :Ag "FIXME\|TODO"<CR>
+
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Overwrite the Ag command in FZF.vim
+  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  " bind \ (backward slash) to grep shortcut
+  nnoremap \ :Ag<SPACE>
+endif
 
 " =[ Rails ]====================================================================
 cabbrev rake Rake
@@ -350,10 +389,11 @@ map <Leader>l :VimuxRunLastCommand<CR>
 
 " = [ deoplete ] ===============================================================
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 25
-let g:deoplete#ignore_sources = {}
+" let g:deoplete#max_list = 25
+" let g:deoplete#ignore_sources = {}
 " let g:deoplete#ignore_sources._ = ['member', 'tag']
-let g:deoplete#sources#go#align_class = 1
+" let g:deoplete#sources#go#align_class = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " = [ vim-go ] =================================================================
@@ -367,21 +407,31 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 " Open go doc in vertical window, horizontal, or tab
-au Filetype     go nnoremap <leader>m :GoTest <CR>
-au Filetype     go nnoremap <leader>r :GoRun <CR>
-au Filetype     go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+autocmd Filetype go nmap <leader>m  <Plug>(go-test)
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
 
 " = [NeoMake ] =================================================================
+au! BufWritePost * Neomake
+
 " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
 let g:neomake_ruby_enabled_makers = []
-au! BufWritePost * Neomake
+let g:neomake_javascript_eslint_maker = {
+\ 'args': ['--env', 'es6', '-f', 'compact'],
+\ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,%W%f: line %l\, col %c\, Warning - %m'
+\ }
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_json_enabled_makers = ['jsonlint']
 
 " = [GoldenRatio] ==============================================================
 " Turn the plugin off by default
 let g:golden_ratio_autocommand = 0
+" Try to follow conventions from vim-unimpaired
+nnoremap [og :GoldenRatioToggle <CR>
+nnoremap ]og :GoldenRatioToggle <CR>
 
 " = [VimR] =====================================================================
 if has("gui_vimr")
 " VimR specific settings like
-"   color xyz
+  color PaperColor
 endif

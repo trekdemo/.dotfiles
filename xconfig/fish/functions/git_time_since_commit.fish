@@ -10,10 +10,6 @@ function _git_commit_exists
   test (git log ^&1 | grep --count "^fatal") -eq 0
 end
 
-function _git_is_dirty
-  test (git status -s --ignore-submodules=dirty ^/dev/null | wc -l) -gt 0
-end
-
 function git_time_since_commit
   not _git_initialized_repo; and return
   not _git_commit_exists;    and return
@@ -28,7 +24,7 @@ function git_time_since_commit
   set -l sub_hours   (math "$hours % 24")
   set -l sub_minutes (math "$minutes % 60")
 
-  if _git_is_dirty
+  if git_is_dirty
     if test $minutes -gt 30
       set _color (set_color -o red)
     else if test $minutes -gt 10

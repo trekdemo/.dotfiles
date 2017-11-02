@@ -11,7 +11,10 @@ set -gx PATH "/usr/local/sbin" $PATH
 set -gx PATH "$HOME/bin" $PATH
 set -gx PATH ".git/safe/../../bin" $PATH
 set -gx GOPATH "$HOME/projects/go"
+set -gx GOROOT "/usr/local/opt/go/libexec"
+set -gx PATH "$GOROOT/bin" $PATH
 set -gx PATH "$GOPATH/bin" $PATH
+set -gx TERM "xterm-256color"
 
 set BROWSER open
 set -gx fish_greeting ''
@@ -24,13 +27,6 @@ set -gx MVIM_BINARY "/usr/local/bin/mvim"
 set -gx CDPATH ./ ~/projects $CDPATH
 # set -gx JAVA_HOME (/usr/libexec/java_home)
 
-# Setup boot2docker
-docker-machine env | source
-
-# Tmuxifier
-set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.dotfiles/tmuxifier_layouts"
-# tmuxifier init - | source
-
 # Aliases
 test -s ~/.config/fish/aliases.fish; and source ~/.config/fish/aliases.fish
 make_completion g "git"
@@ -40,8 +36,7 @@ make_completion dc "docker-compose"
 # virtual env wrappers for Python
 # eval (python -m virtualfish)
 
-set -gx CW_LOGIN "g_sulymosi"
-set -gx CW_NAME  "g_sulymosi"
-set -gx CW_EMAIL "g.sulymosi@catawiki.nl"
-
-# test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+# BEGIN ANSIBLE MANAGED BLOCK
+source ~/.cw/env.sh
+# END ANSIBLE MANAGED BLOCK
+status --is-interactive; and source (rbenv init -|psub)
