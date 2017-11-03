@@ -81,7 +81,15 @@ Plug 'danro/rename.vim'
 call plug#end()
 
 " =[ Settings ]=================================================================
+set langmenu=en_US.UTF-8    " sets the language of the menu
+
+if strftime("%H") >= 8 && strftime("%H") < 18
+  set background=light
+else
+  set background=dark
+endif
 colorscheme PaperColor
+
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
       \ 'component_function': {
@@ -91,6 +99,7 @@ let g:lightline = {
 function! LightLineFilename()
   return expand('%')
 endfunction
+
 
 set clipboard+=unnamedplus
 set nowrap                              " Do not wrap long lines
