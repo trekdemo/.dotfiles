@@ -1,1 +1,0 @@
-/Users/gergosulymosi/.fzf/shell/key-bindings.fish

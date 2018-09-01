@@ -27,6 +27,7 @@ set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
 set -gx CDPATH ./ ~/projects $CDPATH
 set -gx CDPATH ./ ~/projects/go/ $CDPATH
+
 # set -gx JAVA_HOME (/usr/libexec/java_home)
 
 # Aliases

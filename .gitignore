@@ -12,4 +12,5 @@ xconfig/gcloud
 xconfig/hub
 xconfig/configstore
 xconfig/heroku
+xconfig/fish/conf.d/secrets.fish
 Procfile.local
