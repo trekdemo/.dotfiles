@@ -10,4 +10,6 @@ xconfig/nvim/autoload/plug.vi*
 xconfig/nvim/.init.vim-rplugin~
 xconfig/gcloud
 xconfig/hub
+xconfig/configstore
+xconfig/heroku
 Procfile.local

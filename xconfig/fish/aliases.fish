@@ -35,11 +35,6 @@ function bp; bundle package  $argv; end
 function bu; bundle update   $argv; end
 function bo; bundle open     $argv; end
 
-# Rails
-function devlog  --wraps tail; tail -f log/development.log; end
-function testlog --wraps tail; tail -f log/test.log; end
-function rrg; rake routes | grep $argv; end
-
 # Networking
 function hosts; sudo $EDITOR /etc/hosts; end
 function ip; dig +short myip.opendns.com @resolver1.opendns.com; end
@@ -65,31 +60,6 @@ function ll6; tree --dirsfirst -ChFupDaL 6 $argv; end
 
 function l;  l1 $argv; end
 function ll; ll1 $argv; end
-
-# PostgreSQL
-function psql-connect
-	psql-connect-development;
-end
-function psql-connect-development --description 'Connects to development database'
-	psql `basename $PWD`_development
-end
-function psql-connect-test --description 'Connects to test database'
-	psql `basename $PWD`_test
-end
-
-# Foreman
-
-function fos -d 'foreman start'
-  if test -z Procfile.local
-    foreman start -f Procfile.local
-  else
-    foreman start
-  end
-end
-
-function mongo.start -d 'Start mongodb daemon'
-  mongod --config /usr/local/etc/mongod.conf
-end
 
 function gist
   set -l command (which gist)" --copy --open --shorten $argv"

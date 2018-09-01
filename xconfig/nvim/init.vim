@@ -32,18 +32,28 @@ Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'tpope/vim-rhubarb'
 Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
-Plug 'fatih/vim-go',            { 'for': 'go' }
+Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
+" Plug 'fatih/vim-go',            { 'for': 'go', 'do' : 'vim +GoUpdateBinaries +qall && gometalinter --install --update' }
 Plug 'garyburd/go-explorer',    { 'for': 'go' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'roman/golden-ratio'
 
+Plug 'junegunn/goyo.vim'
+
+Plug 'kana/vim-operator-user'
+Plug 'haya14busa/vim-operator-flashy'
+
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
+Plug 'dag/vim-fish'
+Plug 'kevinhui/vim-docker-tools'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': 'javascript' }
+  Plug 'fishbullet/deoplete-ruby'
+  Plug 'ponko2/deoplete-fish'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -83,11 +93,12 @@ call plug#end()
 " =[ Settings ]=================================================================
 set langmenu=en_US.UTF-8    " sets the language of the menu
 
-if strftime("%H") >= 8 && strftime("%H") < 18
-  set background=light
-else
+" if strftime("%H") >= 10 && strftime("%H") < 16
+  " set background=light
+" else
   set background=dark
-endif
+" endif
+set cursorline
 colorscheme PaperColor
 
 let g:lightline = {
@@ -122,11 +133,13 @@ set listchars=tab:·\ ,trail:·,eol:¬,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:\|
 " Allow to move the cursor everywhere, not just existing text
 set virtualedit+=block
-set completeopt=longest,menuone,preview,noselect
 set foldenable
 set foldmethod=syntax
 set foldlevel=999999
 set foldlevelstart=10
+" Completion pop-up
+set completeopt=longest,menuone,preview,noselect
+set pumheight=10
 
 " =[ Mappings ]================================================================
 if &term =~ '^screen'
@@ -299,6 +312,11 @@ command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 " autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre * StripTrailingWhitespaces
 
+" Open diary
+" function Diary()
+"   :tabe ~/Documents/Diary
+" endfunction
+
 " =[ Spell checking ]===========================================================
 " Set spellfile to location that is guaranteed to exist
 set spellfile=$HOME/.dotfiles/vim/vim-spell-en.utf-8.add
@@ -381,7 +399,7 @@ cabbrev rmigration Rmigration
 let g:turbux_runner = 'vimux'
 " let g:turbux_runner = 'dispatch'
 let g:no_turbux_mappings = 1
-let g:turbux_command_prefix = 'clear;'
+let g:turbux_command_prefix = 'clear; bundle exec'
 map <leader>m <Plug>SendTestToTmux
 map <leader>M <Plug>SendFocusedTestToTmux
 
@@ -395,10 +413,14 @@ map <LocalLeader>vz :VimuxZoomRunner<CR>
 map <LocalLeader>vi :VimuxInspectRunner<CR>
 map <Leader>l :VimuxRunLastCommand<CR>
 
+" =[ UtilSnip ]=================================================================
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " = [ deoplete ] ===============================================================
 let g:deoplete#enable_at_startup = 1
-" let g:deoplete#max_list = 25
+let g:deoplete#max_list = 50
 " let g:deoplete#ignore_sources = {}
 " let g:deoplete#ignore_sources._ = ['member', 'tag']
 " let g:deoplete#sources#go#align_class = 1
@@ -439,8 +461,6 @@ let g:golden_ratio_autocommand = 0
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
 
-" = [VimR] =====================================================================
-if has("gui_vimr")
-" VimR specific settings like
-  color PaperColor
-endif
+" = [operator-flashy] ==========================================================
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$

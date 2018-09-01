@@ -7,24 +7,26 @@
   # TODO find out why
   # prepend_to_path ".git/safe/../../bin"
 set -gx PATH "/usr/local/bin" $PATH
-set -gx PATH "/usr/local/sbin" $PATH
 set -gx PATH "$HOME/bin" $PATH
 set -gx PATH ".git/safe/../../bin" $PATH
+set -gx PATH "$HOME/.cargo/bin" $PATH
 set -gx GOPATH "$HOME/projects/go"
 set -gx GOROOT "/usr/local/opt/go/libexec"
 set -gx PATH "$GOROOT/bin" $PATH
 set -gx PATH "$GOPATH/bin" $PATH
-set -gx TERM "xterm-256color"
+# set -gx TERM "xterm-256color"
+set -gx LANG en_US.utf-8
+set -gx LC_ALL en_US.utf-8
 
 set BROWSER open
 set -gx fish_greeting ''
 set -gx EDITOR vim
-# set -gx COMMAND_MODE unix2003
 set -gx RUBYOPT rubygems
 set -gx NODE_PATH "/usr/local/lib/node_modules"
 set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
 set -gx CDPATH ./ ~/projects $CDPATH
+set -gx CDPATH ./ ~/projects/go/ $CDPATH
 # set -gx JAVA_HOME (/usr/libexec/java_home)
 
 # Aliases

@@ -1,5 +1,5 @@
 [user]
-  name = Gergő Sulymosi
+  name = Gergő Sulymosi
   email = gergo.sulymosi@gmail.com
 [color]
   ui = auto
@@ -57,6 +57,7 @@
   filelog = log -u                  # show changes to a file
   moff = merge --no-ff
   unchanged = update-index --assume-unchanged
+  message = log --format=%B -n 1
 
   # diff
   d = diff                          # diff unstaged changes
@@ -72,16 +73,11 @@
 
   # log
   l = log --graph --date=short
-  # l   = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
   lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -30
-  lga = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -16 --all
 
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
   changelog = log --pretty=format:\" * %s\"
-  shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
-  yesterday = !git l --author `git config user.email` --since yesterday --before today
-  today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
   collaborators = shortlog -n -s --no-merges
   tags = tag -l
   ; undeployed = !git fetch --multiple production origin && git log production/master..origin/master
@@ -135,3 +131,5 @@
 	username = trekdemo
 [credential]
 	helper = osxkeychain
+[commit]
+	template = /Users/gergosulymosi/.gitmessage
