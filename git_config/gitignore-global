@@ -4,10 +4,6 @@ gems.tags
 .bundle/
 node_modules/
 
-# Zeus
-custom_plan.rb
-zeus.json
-
 .env.development
 .gitver
 
@@ -26,6 +22,5 @@ Icon
 
 .rspec-local
 Procfile.local
-data/data.sql
 .DS_Store
 .tern-port

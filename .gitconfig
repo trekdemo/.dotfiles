@@ -5,7 +5,7 @@
   ui = auto
 [core]
   editor = 'nvim'
-  excludesfile = ~/.gitignore-global
+  excludesfile = ~/.dotfiles/git_config/gitignore-global
   autocrlf = input
   quotepath = false
   repositoryformatversion = 0
@@ -34,23 +34,10 @@
   newNormal = "green bold"
   newHighlight = "green bold 22"
 
-
-# A nice little github-like colorful, split diff right in the console.
-# via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
-[diff]
-  tool = icdiff
-  # tool = vimdiff
-  # algorithm = histogram
-[difftool]
-  prompt = false
-[difftool "icdiff"]
-  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
-
 [diff "filestat"]
   textconv = stat
 
 [alias]
-  up = "!f() { git fetch; git rebase --autostash FETCH_HEAD; }; f"
   # reset
   unstage = reset HEAD              # remove files from index (tracking)
   uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
@@ -63,7 +50,6 @@
   d = diff                          # diff unstaged changes
   ds = diff --stat                  # diff unstaged changes
   dc = diff --cached                # diff staged changes
-  dx = !git diff | gitx
   last = diff HEAD^                 # diff last committed change
   conflicts = diff --name-only --diff-filter=U
 
@@ -120,7 +106,7 @@
 [push]
   default = simple
 [init]
-  templatedir = ~/.git_templates
+  templatedir = ~/.dotfiles/git_config/git_templates
 [pull]
   ff = only
 [filter "lfs"]
@@ -132,4 +118,4 @@
 [credential]
 	helper = osxkeychain
 [commit]
-	template = /Users/gergosulymosi/.gitmessage
+	template = ~/.dotfiles/git_config/gitmessage
