@@ -10,11 +10,11 @@ set -gx PATH "/usr/local/bin" $PATH
 set -gx PATH "$HOME/bin" $PATH
 set -gx PATH ".git/safe/../../bin" $PATH
 set -gx PATH "$HOME/.cargo/bin" $PATH
-set -gx GOPATH "$HOME/projects/go"
-set -gx GOROOT "/usr/local/opt/go/libexec"
 set -gx PATH "$GOROOT/bin" $PATH
 set -gx PATH "$GOPATH/bin" $PATH
 set -gx PATH "$HOME/.rbenv/bin" $PATH
+set -gx GOPATH "$HOME/projects/go"
+set -gx GOROOT "/usr/local/opt/go/libexec"
 # set -gx TERM "xterm-256color"
 set -gx LANG en_US.utf-8
 set -gx LC_ALL en_US.utf-8

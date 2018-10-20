@@ -66,6 +66,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y git
+  SHELL
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
     git clone https://github.com/trekdemo/.dotfiles.git ~/.dotfiles
     ~/.dotfiles/init-environment.sh
   SHELL

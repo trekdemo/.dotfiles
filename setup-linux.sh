@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# sudo apt-get update
-# sudo apt-get upgrade -y
-# 
-# sudo apt-get install -y git
-# sudo apt-get install -y build-essential
+sudo apt-get update
+sudo apt-get upgrade -y
+
+sudo apt-get install -y git
+sudo apt-get install -y build-essential
 
 current_user=`whoami`
 sudo apt-get install ruby-build -y
 # Install rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-pushd ~/.rbenv 
+pushd ~/.rbenv
 src/configure && make -C src
 popd
 
