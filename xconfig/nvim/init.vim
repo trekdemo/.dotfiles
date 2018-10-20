@@ -17,6 +17,9 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'mkarmona/materialbox'
 
+" Plug 'kassio/neoterm'
+" https://github.com/cyansprite/Extract
+
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -28,15 +31,20 @@ Plug 'tpope/vim-classpath',     { 'for': 'clojure' }
 Plug 'losingkeys/vim-niji',     { 'for': 'clojure' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
+Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
-Plug 'tpope/vim-rhubarb'
 Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 " Plug 'fatih/vim-go',            { 'for': 'go', 'do' : 'vim +GoUpdateBinaries +qall && gometalinter --install --update' }
 Plug 'garyburd/go-explorer',    { 'for': 'go' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'ternjs/tern_for_vim',     { 'for': 'javascript' }
+
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
 Plug 'roman/golden-ratio'
 
 Plug 'junegunn/goyo.vim'
@@ -60,26 +68,28 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux'
 
 " Running tests
 " https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
 Plug 'benmills/vimux'
-Plug 'tpope/vim-dispatch'
-Plug 'radenling/vim-dispatch-neovim'
+" Plug 'tpope/vim-dispatch'
+" Plug 'radenling/vim-dispatch-neovim'
 Plug 'jgdavey/vim-turbux'
 
 " File checkkers/linters
 Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
 
 Plug 'justinmk/vim-gtfo'
 Plug 'justinmk/vim-sneak'
@@ -213,16 +223,6 @@ nnoremap <leader>dt :windo diffthis<CR>
 nnoremap <leader>du :windo diffupdate<CR>
 nnoremap <leader>do :windo diffoff<CR>
 
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-vmap <C-k> [egv
-vmap <C-j> ]egv
-
 " Scroll faster
 nnoremap <C-e> 5<C-e>
 nnoremap <C-y> 5<C-y>
@@ -271,7 +271,7 @@ vnoremap <Space> za
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
 nnoremap zO zCzO
-
+autocmd FileType haml setlocal foldmethod=indent
 
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window. Protect against
@@ -325,6 +325,8 @@ set spellfile=$HOME/.dotfiles/vim/vim-spell-en.utf-8.add
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
+autocmd QuickFixCmdPost *grep* cwindow
+
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
 " Toggle spell checking with \s
@@ -365,6 +367,8 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 map <leader>b :Buffers <CR>
+map <leader>c :Commands <CR>
+map <leader>ta :Tags <CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -374,23 +378,20 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " =[ The Silver Searcher ]======================================================
-map <leader>F :Ag!<space>
-map <leader>A :Ag "FIXME\|TODO"<CR>
-
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Overwrite the Ag command in FZF.vim
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  " bind \ (backward slash) to grep shortcut
-  nnoremap \ :Ag<SPACE>
 endif
+
+map <leader>A :grep "FIXME\|TODO"<CR>
+nmap <leader>F :grep <C-r><C-w><CR>
 
 " =[ Rails ]====================================================================
 cabbrev rake Rake
 cabbrev rails Rails
-cabbrev bundle Bundle
 cabbrev rmodel Rmodel
 cabbrev rcontroller Rcontroller
 cabbrev rmigration Rmigration
@@ -405,14 +406,22 @@ map <leader>m <Plug>SendTestToTmux
 map <leader>M <Plug>SendFocusedTestToTmux
 
 " =[ Vimux ]====================================================================
+function! VimuxSlime()
+  call VimuxSendKeys("q C-u")
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
 " Helps to interact with tmux
 let g:VimuxUseNearestPane = 1
-map <LocalLeader>vp :VimuxPromptCommand<CR>
-map <LocalLeader>vr :VimuxRunCommand("")<left><left>
-map <LocalLeader>vc :VimuxCloseRunner<CR>
-map <LocalLeader>vz :VimuxZoomRunner<CR>
-map <LocalLeader>vi :VimuxInspectRunner<CR>
-map <Leader>l :VimuxRunLastCommand<CR>
+nmap <LocalLeader>vp :VimuxPromptCommand<CR>
+nmap <LocalLeader>vr :VimuxRunCommand("")<left><left>
+nmap <LocalLeader>vc :VimuxCloseRunner<CR>
+nmap <LocalLeader>vz :VimuxZoomRunner<CR>
+nmap <LocalLeader>vi :VimuxInspectRunner<CR>
+vmap <LocalLeader>vs "vy :call VimuxSlime()<CR>
+nmap <LocalLeader>vs vip<LocalLeader>vs<CR>
+nmap <Leader>l :VimuxRunLastCommand<CR>
 
 " =[ UtilSnip ]=================================================================
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -427,6 +436,17 @@ let g:deoplete#max_list = 50
 " let g:deoplete#sources#go#align_class = 1
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
+" TernJS
+" Whether to include the types of the completions in the result data. Default: 0
+let g:tern#command = '/usr/local/bin/tern'
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
+
+" Typescript
+let g:nvim_typescript#default_mappings = 1
+" let g:nvim_typescript#signature_complete = 1
 
 " = [ vim-go ] =================================================================
 let g:go_fmt_command = "goimports"
@@ -465,3 +485,8 @@ nnoremap ]og :GoldenRatioToggle <CR>
 " = [operator-flashy] ==========================================================
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
+
+
+" = [Useful snippets] ==========================================================
+iabbrev bpry require 'pry'; binding.pry;
+autocmd FileType help nnoremap q :q<cr>
