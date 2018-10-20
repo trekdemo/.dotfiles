@@ -21,7 +21,7 @@ ln -snf ~/.dotfiles/.tmux.conf      ~/.tmux.conf
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
-  ./setup-linux.sh
+  ~/.dotfiles/setup-linux.sh
 elif [[ "$unamestr" == 'Darwin' ]]; then
-  ./setup-macos.sh
+  ~/.dotfiles/setup-macos.sh
 fi
