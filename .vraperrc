@@ -1,7 +1,0 @@
-set smartcase
-set scrolljump=4
-set textwidth=80
-
-nmap H ^
-nmap L $
-nnoremap * *<c-o>
