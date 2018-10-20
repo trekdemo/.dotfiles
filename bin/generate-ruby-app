@@ -1,0 +1,58 @@
+#!/bin/bash
+
+PROJECT_NAME=$(basename $(pwd))
+echo $PROJECT_NAME
+
+echo 'Creating Gemfile...'
+cat > Gemfile <<EOL
+source "https://rubygems.org"
+
+gem "rails"
+EOL
+echo 'Creating Gemfile.lock...'
+touch Gemfile.lock
+
+echo 'Creating Dockerfile...'
+cat > Dockerfile <<EOL
+FROM ruby:2.3.0
+WORKDIR /usr/src/app
+ADD Gemfile /usr/src/app/Gemfile
+ADD Gemfile.lock /usr/src/app/Gemfile.lock
+ENV BUNDLE_PATH /bundle
+RUN bundle install
+ADD . /usr/src/app
+EOL
+
+echo 'Creating docker-compose.yml...'
+cat > docker-compose.yml <<EOL
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cw-translations_development
+      MYSQL_USER: cw-translations
+      MYSQL_PASSWORD: password
+
+  web:
+    build: .
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: mysql2://cw-translations:password@db/cw-translations_development
+      TEST_DATABASE_URL: mysql2://cw-translations:password@mysql/cw-translations_test
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes_from:
+      - bundle
+
+  bundle:
+    image: busybox
+    volumes:
+      - /bundle
+EOL

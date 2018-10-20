@@ -16,7 +16,6 @@ ln -snf ~/.dotfiles/.gitignore-global ~/.gitignore
 ln -snf ~/.dotfiles/git_templates/    ~/.git_templates
 ln -snf ~/.dotfiles/.agignore         ~/.agignore
 ln -snf ~/.dotfiles/.ctags            ~/.ctags
-ln -snf ~/.dotfiles/.tmuxifier        ~/.tmuxifier
 
 
 # Install http://brew.sh

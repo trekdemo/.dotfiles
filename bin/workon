@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-export TMUXIFIER_SESSION_DIR=$1
-tmuxifier load-session rails

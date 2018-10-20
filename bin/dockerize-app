@@ -1,0 +1,31 @@
+#!/bin/bash
+
+PROJECT_NAME=$(basename $(pwd))
+echo $PROJECT_NAME
+
+echo 'Creating Dockerfile...'
+cat > Dockerfile <<EOL
+FROM ruby:2.3.0
+WORKDIR /usr/src/app
+ADD Gemfile /usr/src/app/Gemfile
+ADD Gemfile.lock /usr/src/app/Gemfile.lock
+RUN bundle install
+ADD . /usr/src/app
+EOL
+
+echo 'Creating docker-compose.yml...'
+cat > docker-compose.yml <<EOL
+version: '2'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - bundler_cache:/usr/local/bundle
+    command: ruby -v
+
+volumes:
+  bundler_cache:
+    driver: local
+EOL
+
