@@ -1,1 +1,1 @@
-/home/vagrant/.local/share/omf/themes/default/fish_prompt.fish
+/home/vagrant/.local/share/omf/themes/bobthefish/fish_prompt.fish

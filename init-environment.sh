@@ -8,6 +8,11 @@ if ! [ -L ~/.config ]; then
   ln -snf ~/.dotfiles/xconfig ~/.config
 fi
 
+if ! [ -L ~/.tmux_config ]; then
+  echo "Symlink ~/.tmux_config"
+  ln -snf ~/.dotfiles/tmux_config ~/.tmux_config
+fi
+
 echo "Linking common settings"
 ln -snf ~/.dotfiles/.agignore       ~/.agignore
 ln -snf ~/.dotfiles/.ctags          ~/.ctags

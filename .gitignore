@@ -16,3 +16,5 @@
 /xconfig/yarn/global
 /Procfile.local
 /.vagrant
+/tmux_config/plugins
+/tmux_config/resurrect
