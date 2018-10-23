@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Build the image unless if does not exists.
+NAME="dev-shell"
+IMAGE_NAME_VERSION="$NAME:latest"
+if [[ "$(docker images -q $IMAGE_NAME_VERSION 2> /dev/null)" == "" ]]; then
+  docker build -t $IMAGE_NAME_VERSION .
+fi
+
+# - Able to SSH to the host
+docker run \
+  -it \
+  --rm \
+  --net=host \
+  --volume $HOME/.ssh:/root/.ssh:ro \
+  --volume $HOME/projects:/root/projects \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  --workdir /root/projects \
+  --privileged \
+  --name "devshell" \
+  $IMAGE_NAME_VERSION
