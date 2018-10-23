@@ -1,0 +1,3 @@
+#!/bin/sh
+
+stow dev executables git tmux xdg_config

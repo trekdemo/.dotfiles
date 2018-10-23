@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby -w0
+
+require 'shellwords'
+
+path = ARGV[0].to_s
+exit 1 unless File.directory?(path)
+
+dir_name = File.basename(File.expand_path(path))
+
+first_image =
+  Dir
+  .glob(File.join(path, '*.JPG'))
+  .sort_by { |f| File.new(f).ctime }
+  .reverse
+  .first
+start_number = first_image.scan(/\w(\d+).jpg$/i)[0][0].to_i
+
+command = <<-EOS
+  ffmpeg \\
+    -r 10 \\
+    -start_number #{start_number} \\
+    -i #{Shellwords.escape(File.join(path, 'G0%6d.JPG'))} \\
+    -s 1920x1440 \\
+    -pix_fmt yuv420p \\
+    #{Shellwords.escape(dir_name)}.mp4
+EOS
+puts command
+system command
