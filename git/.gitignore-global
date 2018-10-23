@@ -1,0 +1,26 @@
+tags
+.tags
+gems.tags
+.bundle/
+node_modules/
+
+.env.development
+.gitver
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+.rspec-local
+Procfile.local
+.DS_Store
+.tern-port

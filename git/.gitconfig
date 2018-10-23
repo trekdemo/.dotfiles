@@ -1,0 +1,119 @@
+[user]
+  name = Gergő Sulymosi
+  email = gergo.sulymosi@gmail.com
+[color]
+  ui = auto
+[core]
+  editor = 'nvim'
+  excludesfile = ~/.gitignore-global
+  autocrlf = input
+  quotepath = false
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  ignorecase = true
+  precomposeunicode = true
+
+[merge]
+  ff = only
+  # I pretty much never mean to do a real merge, since I use a rebase workflow.
+  # Note: this global option applies to all merges, including those done during a git pull
+  # https://git-scm.com/docs/git-config#git-config-mergeff
+
+[branch]
+  autosetuprebase = always
+
+[branch "master"]
+  remote = origin
+  merge = refs/heads/master
+
+[color "diff-highlight"]
+  oldNormal = "red bold"
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
+
+[diff "filestat"]
+  textconv = stat
+
+[alias]
+  # reset
+  unstage = reset HEAD              # remove files from index (tracking)
+  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
+  filelog = log -u                  # show changes to a file
+  moff = merge --no-ff
+  unchanged = update-index --assume-unchanged
+  message = log --format=%B -n 1
+
+  # diff
+  d = diff                          # diff unstaged changes
+  ds = diff --stat                  # diff unstaged changes
+  dc = diff --cached                # diff staged changes
+  last = diff HEAD^                 # diff last committed change
+  conflicts = diff --name-only --diff-filter=U
+
+  # stash
+  st = stash
+  stp = stash pop
+
+  # log
+  l = log --graph --date=short
+  lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -30
+
+  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  changelog = log --pretty=format:\" * %s\"
+  collaborators = shortlog -n -s --no-merges
+  tags = tag -l
+  ; undeployed = !git fetch --multiple production origin && git log production/master..origin/master
+
+  # commit
+  c = commit --verbose
+  cm = commit -m
+  ca = commit --amend -C HEAD
+  wip = commit -m 'WIP [skip ci]'
+
+  aa= !git add -u && git add . && git status -s
+
+  # remotes
+  fall = fetch --all --prune
+
+  b = branch
+  branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
+  # deletemerged = '!git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+  s = status --short --branch
+  p = push
+  f = fetch
+  co = checkout
+  cob = checkout -b
+  corb = "!f() { git fetch --all; git checkout -b $1 origin/$1; }; f"
+  dt = difftool
+  dtc = difftool --cached
+  remotes = remote -v
+  wc = whatchanged -p --abbrev-commit --pretty=medium
+  ctags = !.git/hooks/ctags
+
+  pr = !hub pull-request -o
+  list-aliases = "!git config -l | grep alias | cut -c 7-"
+  la = "!git list-aliases"
+  ls-ignored = ls-files --exclude-standard --ignored --others
+[heroku]
+  account = personal
+[tig]
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[push]
+  default = simple
+[init]
+  templatedir = ~/.git_templates
+[pull]
+  ff = only
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge --skip %f
+  required = true
+[credential "https://github.com"]
+	username = trekdemo
+[commit]
+	template = ~/.gitmessage
