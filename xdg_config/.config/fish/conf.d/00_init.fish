@@ -24,23 +24,15 @@ set -gx fish_greeting ''
 set -gx EDITOR vim
 set -gx RUBYOPT rubygems
 set -gx NODE_PATH "/usr/local/lib/node_modules"
-set -gx VIM_BINARY "/usr/bin/vim"
 set -gx MVIM_BINARY "/usr/local/bin/mvim"
 set -gx CDPATH ./ ~/projects $CDPATH
-set -gx CDPATH ./ ~/projects/go/ $CDPATH
-
-# set -gx JAVA_HOME (/usr/libexec/java_home)
-
-# Aliases
-test -s ~/.config/fish/aliases.fish; and source ~/.config/fish/aliases.fish
-# make_completion g "git"
-# make_completion b "bundle"
-# make_completion dc "docker-compose"
 
 # virtual env wrappers for Python
 # eval (python -m virtualfish)
 
 # BEGIN ANSIBLE MANAGED BLOCK
-source ~/.cw/env.sh
+test -e ~/.cw/env.sh; and source ~/.cw/env.sh
 # END ANSIBLE MANAGED BLOCK
-status --is-interactive; and source (rbenv init -|psub)
+if status --is-interactive; and type -q rbenv
+  source (rbenv init -| psub)
+end
