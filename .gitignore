@@ -19,3 +19,5 @@
 /.vagrant
 /tmux_config/plugins
 /tmux_config/resurrect
+/tmux/.tmux/resurrect/*
+/tmux/.tmux/plugins/tmux-*
