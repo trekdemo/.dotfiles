@@ -7,12 +7,18 @@ VOLUME /root/projects
 RUN apk update \
  && apk add --no-cache \
         automake autoconf ncurses-dev build-base bash curl util-linux htop \
-        fish stow neovim tmux git tig bash urlview \
+        fish stow neovim tmux git tig bash fzf urlview \
         ruby-dev ruby go nodejs npm python3-dev python3 python-dev python docker \
  && rm -f /tmp/* /etc/apk/cache/* \
  && python -m ensurepip --default-pip \
  && pip3 install --upgrade pip \
  && pip install --upgrade pip
+
+# Set timezone
+RUN apk add tzdata \
+ && cp /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime \
+ && echo "Europe/Amsterdam" > /etc/timezone \
+ && apk del tzdata
 
 # Dotfiles
 ADD . /root/.dotfiles
