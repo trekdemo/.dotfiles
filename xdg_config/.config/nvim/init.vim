@@ -1,10 +1,14 @@
-" Set the path to python3
-let g:python3_host_prog = '/usr/local/bin/python3'
-" Skip the check of neovim module
-let g:python3_host_skip_check = 1
+let uname = substitute(system('uname'), '\n', '', '')
 
-" Don't use fish as the default shell
-set shell=/bin/bash
+if uname == 'Darwin'
+  let g:python_host_prog = '/usr/local/bin/python'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+  set shell=/bin/bash
+elseif uname == 'Linux'
+  let g:python_host_prog = '/usr/bin/python'
+  let g:python3_host_prog = '/usr/bin/python3'
+  set shell=/bin/ash
+endif
 
 " =[ Plugins ]==================================================================
 function! DoRemote(arg)
