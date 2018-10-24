@@ -110,7 +110,11 @@ set langmenu=en_US.UTF-8    " sets the language of the menu
   set background=dark
 " endif
 set cursorline
-colorscheme PaperColor
+try
+  colorscheme PaperColor
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme default
+endtry
 
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
