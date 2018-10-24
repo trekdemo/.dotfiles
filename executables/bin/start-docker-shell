@@ -1,21 +1,35 @@
 #!/bin/bash
 
 # Build the image unless if does not exists.
-NAME="dev-shell"
-IMAGE_NAME_VERSION="$NAME:latest"
+CONTAINER_NAME="devshell"
+IMAGE_NAME_VERSION="dev-shell:latest"
+
 if [[ "$(docker images -q $IMAGE_NAME_VERSION 2> /dev/null)" == "" ]]; then
   docker build -t $IMAGE_NAME_VERSION .
 fi
 
-# - Able to SSH to the host
-docker run \
-  --interactive \
-  --tty \
-  --rm \
-  --net=host \
-  --volume $HOME/.ssh:/root/.ssh:ro \
-  --volume $HOME/projects:/root/projects \
-  --volume /var/run/docker.sock:/var/run/docker.sock \
-  --privileged \
-  --name "devshell" \
-  $IMAGE_NAME_VERSION
+
+if [ ! "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+  # If container is not running
+  if [ "$(docker ps -aq -f status="exited" -f name=$CONTAINER_NAME)" ]; then
+    # Cleanup exited container
+    echo "Removing exited container"
+    docker rm $CONTAINER_NAME
+  fi
+
+  echo "Starting $IMAGE_NAME_VERSION as $CONTAINER_NAME"
+  docker run \
+    --interactive \
+    --tty \
+    --rm \
+    --net=host \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    --volume $HOME/.ssh:/root/.ssh:ro \
+    --volume $HOME/projects:/root/projects \
+    --privileged \
+    --name $CONTAINER_NAME \
+    $IMAGE_NAME_VERSION
+else
+  echo "Container $CONTAINER_NAME is already running. Attaching..."
+  docker attach $CONTAINER_NAME
+fi
