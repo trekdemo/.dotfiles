@@ -16,7 +16,6 @@ docker run \
   --volume $HOME/.ssh:/root/.ssh:ro \
   --volume $HOME/projects:/root/projects \
   --volume /var/run/docker.sock:/var/run/docker.sock \
-  --workdir /root/projects \
   --privileged \
   --name "devshell" \
   $IMAGE_NAME_VERSION
