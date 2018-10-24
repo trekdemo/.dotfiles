@@ -1,13 +1,12 @@
-let uname = substitute(system('uname'), '\n', '', '')
+set shell=/bin/bash
 
+let uname = substitute(system('uname'), '\n', '', '')
 if uname == 'Darwin'
   let g:python_host_prog = '/usr/local/bin/python'
   let g:python3_host_prog = '/usr/local/bin/python3'
-  set shell=/bin/bash
 elseif uname == 'Linux'
   let g:python_host_prog = '/usr/bin/python'
   let g:python3_host_prog = '/usr/bin/python3'
-  set shell=/bin/ash
 endif
 
 " =[ Plugins ]==================================================================
@@ -66,8 +65,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'fishbullet/deoplete-ruby'
   Plug 'ponko2/deoplete-fish'
 
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug '/usr/local/opt/fzf'
+if uname == 'Darwin'
+  Plug '/usr/local/opt/fzf'
+elseif uname == 'Linux'
+  Plug 'junegunn/fzf'
+endif
 Plug 'junegunn/fzf.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
