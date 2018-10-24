@@ -6,8 +6,8 @@ VOLUME /root/projects
 # TODO: the silversearcher
 RUN apk update \
  && apk add --no-cache \
-        automake autoconf ncurses-dev build-base fish curl util-linux htop openssh \
-        stow neovim tmux git tig \
+        automake autoconf ncurses-dev build-base bash curl util-linux htop \
+        fish stow neovim tmux git tig bash urlview \
         ruby-dev ruby go nodejs npm python3-dev python3 python-dev python docker \
  && rm -f /tmp/* /etc/apk/cache/* \
  && python -m ensurepip --default-pip \
