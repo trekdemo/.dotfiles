@@ -6,6 +6,7 @@ test -d "$HOME/.rbenv"; and set -gx PATH "$HOME/.rbenv/bin" $PATH
 set -gx PATH ".git/safe/../../bin" $PATH
 set -gx LANG en_US.utf-8
 set -gx LC_ALL en_US.utf-8
+set -gx FZF_DEFAULT_COMMAND 'ag --hidden -g ""'
 
 test -q open; and set BROWSER open
 set -gx fish_greeting ''
