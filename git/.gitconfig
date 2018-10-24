@@ -14,6 +14,7 @@
   logallrefupdates = true
   ignorecase = true
   precomposeunicode = true
+	pager = more
 
 [merge]
   ff = only
