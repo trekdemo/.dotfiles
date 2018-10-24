@@ -16,23 +16,25 @@ alias v='nvim'
 alias vim='nvim'
 alias :q='exit'
 
-# Directories
-balias .. 'cd ..'
-balias ... 'cd ../..'
-balias .... 'cd ../../..'
+if type -q balias
+  # Directories
+  balias .. 'cd ..'
+  balias ... 'cd ../..'
+  balias .... 'cd ../../..'
 
-# Bundle
-balias be 'bundle exec'
-balias bi 'bundle install'
-balias bl 'bundle list'
-balias bp 'bundle package'
-balias bu 'bundle update'
-balias bo 'bundle open'
-balias ts 'tig status'
+  # Bundle
+  balias be 'bundle exec'
+  balias bi 'bundle install'
+  balias bl 'bundle list'
+  balias bp 'bundle package'
+  balias bu 'bundle update'
+  balias bo 'bundle open'
+  balias ts 'tig status'
 
-balias l 'tree --dirsfirst -ChFL 1'
-balias ll 'tree --dirsfirst -ChFupDaL 1'
-balias md 'mkdir -p'
+  balias l 'tree --dirsfirst -ChFL 1'
+  balias ll 'tree --dirsfirst -ChFupDaL 1'
+  balias md 'mkdir -p'
+end
 
 # Utilities
 function currentwifi; networksetup -getairportnetwork en0; end
