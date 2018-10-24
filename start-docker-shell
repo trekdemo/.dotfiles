@@ -9,7 +9,8 @@ fi
 
 # - Able to SSH to the host
 docker run \
-  -it \
+  --interactive \
+  --tty \
   --rm \
   --net=host \
   --volume $HOME/.ssh:/root/.ssh:ro \
