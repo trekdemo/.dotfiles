@@ -23,10 +23,7 @@ RUN apk add tzdata \
 
 # Dotfiles
 ADD . /root/.dotfiles
-# RUN git clone --depth 1 --branch use-stow https://github.com/trekdemo/.dotfiles.git $HOME/.dotfiles \
-RUN cd $HOME/.dotfiles \
- && git remote rm origin \
- && git remote add origin git@github.com:trekdemo/.dotfiles \
+RUN cd /root/.dotfiles \
  && make link
 
 # Install Fish
