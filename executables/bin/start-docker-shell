@@ -28,7 +28,8 @@ if [ ! "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
     --volume $HOME/projects:/root/projects \
     --privileged \
     --name $CONTAINER_NAME \
-    $IMAGE_NAME_VERSION
+    --entrypoint /usr/bin/tmux \
+    $IMAGE_NAME_VERSION new-session -s 'projects'
 else
   echo "Container $CONTAINER_NAME is already running. Attaching..."
   docker attach $CONTAINER_NAME
