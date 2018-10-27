@@ -17,6 +17,7 @@ endfunction
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mkarmona/materialbox'
 
@@ -116,7 +117,8 @@ set langmenu=en_US.UTF-8    " sets the language of the menu
 " endif
 set cursorline
 try
-  colorscheme PaperColor
+  colorscheme nord
+  let g:nord_italic = 1
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
