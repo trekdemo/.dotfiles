@@ -14,7 +14,6 @@
   logallrefupdates = true
   ignorecase = true
   precomposeunicode = true
-	pager = more
 
 [merge]
   ff = only
@@ -43,13 +42,11 @@
   unstage = reset HEAD              # remove files from index (tracking)
   uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
   filelog = log -u                  # show changes to a file
-  moff = merge --no-ff
   unchanged = update-index --assume-unchanged
   message = log --format=%B -n 1
 
   # diff
   d = diff                          # diff unstaged changes
-  ds = diff --stat                  # diff unstaged changes
   dc = diff --cached                # diff staged changes
   last = diff HEAD^                 # diff last committed change
   conflicts = diff --name-only --diff-filter=U
@@ -95,7 +92,6 @@
   wc = whatchanged -p --abbrev-commit --pretty=medium
   ctags = !.git/hooks/ctags
 
-  pr = !hub pull-request -o
   list-aliases = "!git config -l | grep alias | cut -c 7-"
   la = "!git list-aliases"
   ls-ignored = ls-files --exclude-standard --ignored --others
