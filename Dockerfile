@@ -7,7 +7,7 @@ VOLUME /root/projects
 RUN apk update \
  && apk add --no-cache \
         automake autoconf ncurses-dev build-base bash curl util-linux htop \
-        openssh \
+        openssh less \
         fish stow neovim tmux git tig bash fzf urlview the_silver_searcher \
         ruby-dev ruby go nodejs npm python3-dev python3 python-dev python docker \
  && rm -f /tmp/* /etc/apk/cache/* \
