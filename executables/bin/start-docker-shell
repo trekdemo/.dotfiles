@@ -4,15 +4,15 @@
 CONTAINER_NAME="devshell"
 IMAGE_NAME_VERSION="dev-shell:latest"
 
+# Build image if it does not exist already
 if [[ "$(docker images -q $IMAGE_NAME_VERSION 2> /dev/null)" == "" ]]; then
   docker build -t $IMAGE_NAME_VERSION .
 fi
 
-
+# If container is not running
 if [ ! "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
-  # If container is not running
+  # Cleanup exited container
   if [ "$(docker ps -aq -f status="exited" -f name=$CONTAINER_NAME)" ]; then
-    # Cleanup exited container
     echo "Removing exited container"
     docker rm $CONTAINER_NAME
   fi
