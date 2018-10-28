@@ -324,6 +324,18 @@ command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 " autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre * StripTrailingWhitespaces
 
+" Create directory if it does not exists
+function s:Mkdir()
+  let dir = expand('%:p:h')
+
+  if !isdirectory(dir)
+    call mkdir(dir, 'p')
+    echo 'Created non-existing directory: '.dir
+  endif
+endfunction
+
+autocmd BufWritePre * call s:Mkdir()
+
 " Open diary
 " function Diary()
 "   :tabe ~/Documents/Diary
