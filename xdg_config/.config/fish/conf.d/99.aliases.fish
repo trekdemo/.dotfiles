@@ -1,9 +1,9 @@
 # Quick edits
-function ef; nvim ~/.config/fish/conf.d; end
-function ev; nvim ~/.config/nvim/init.vim; end
-function eg; nvim ~/.gitconfig; end
-function et; nvim ~/.tmux.conf; end
-function es; nvim ~/.ssh/config; end
+function ef; $EDITOR ~/.config/fish/conf.d; end
+function ev; $EDITOR ~/.config/nvim/init.vim; end
+function eg; $EDITOR ~/.gitconfig; end
+function et; $EDITOR ~/.tmux.conf; end
+function es; $EDITOR ~/.ssh/config; end
 function eh; sudo $EDITOR /etc/hosts; end
 
 # Shortcuts

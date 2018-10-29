@@ -5,3 +5,13 @@ set -q XDG_DATA_HOME
 
 # Load Oh My Fish configuration.
 source $OMF_PATH/init.fish
+
+# virtual env wrappers for Python
+# eval (python -m virtualfish)
+if type -q rbenv
+  status --is-interactive; and source (rbenv init -|psub)
+end
+
+# BEGIN ANSIBLE MANAGED BLOCK
+test -e ~/.cw/env.sh; and source ~/.cw/env.sh
+# END ANSIBLE MANAGED BLOCK
