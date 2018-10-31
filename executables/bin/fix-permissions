@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# Usage fix-permission <user> [group]
+#
+
+USER=$1
+GROUP=${2:-$1}
+DIR=`pwd`
+VERBOSE=1
+
+if [ "$USER" = "" ]; then
+  echo "You have to provide a User name"
+  exit 1
+fi
+
+# while getopts ":a:" opt; do
+#   case $opt in
+#     -v|--verbose)
+#       VERBOSE=1
+#       ;;
+#   esac
+# done
+
+printInVerbose() {
+  if [ $VERBOSE -eq 1 ]; then
+    echo $@
+  fi
+}
+
+execute() {
+  printInVerbose $@
+  eval $@
+}
+
+execute "sudo chown --recursive $USER:$GROUP $DIR"
+execute "sudo chmod --recursive ug+rw $DIR"
