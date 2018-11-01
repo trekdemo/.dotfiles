@@ -75,6 +75,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'roxma/vim-tmux-clipboard'
 
 " Running tests
 " https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
