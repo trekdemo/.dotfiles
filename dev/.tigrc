@@ -21,4 +21,4 @@ set split-view-width = 75%
 # Number of lines to show around diff changes (diff)
 set diff-context = 6
 
-bind generic 9 !@bash -c "echo -n '%(commit)' | pbcopy"
+bind status P !git push origin

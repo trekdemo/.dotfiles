@@ -26,6 +26,7 @@ Plug 'mkarmona/materialbox'
 
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'roman/golden-ratio'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -43,14 +44,20 @@ Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 " Plug 'fatih/vim-go',            { 'for': 'go', 'do' : 'vim +GoUpdateBinaries +qall && gometalinter --install --update' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'ternjs/tern_for_vim',     { 'for': 'javascript' }
 
+" Typescript
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
 
-Plug 'roman/golden-ratio'
-
-Plug 'junegunn/goyo.vim'
+" Completion
+Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+  Plug 'fishbullet/deoplete-ruby'
+  Plug 'ponko2/deoplete-fish'
 
 Plug 'kana/vim-operator-user'
 Plug 'haya14busa/vim-operator-flashy'
@@ -60,11 +67,6 @@ Plug 'kana/vim-smartinput'
 Plug 'dag/vim-fish'
 Plug 'kevinhui/vim-docker-tools'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': 'javascript' }
-  Plug 'fishbullet/deoplete-ruby'
-  Plug 'ponko2/deoplete-fish'
 
 if uname == 'Darwin'
   Plug '/usr/local/opt/fzf'
@@ -109,6 +111,8 @@ Plug 'danro/rename.vim'
 call plug#end()
 
 " =[ Settings ]=================================================================
+set noshowmode
+set cmdheight=1
 set langmenu=en_US.UTF-8    " sets the language of the menu
 
 " if strftime("%H") >= 10 && strftime("%H") < 16
@@ -116,7 +120,7 @@ set langmenu=en_US.UTF-8    " sets the language of the menu
 " else
   set background=dark
 " endif
-set cursorline
+" set cursorline
 try
   colorscheme nord
   let g:nord_italic = 1
@@ -125,7 +129,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'nord',
       \ 'component_function': {
       \   'filename': 'LightLineFilename'
       \ }
@@ -160,9 +164,6 @@ set foldenable
 set foldmethod=syntax
 set foldlevel=999999
 set foldlevelstart=10
-" Completion pop-up
-set completeopt=longest,menuone,preview,noselect
-set pumheight=10
 
 " =[ Mappings ]================================================================
 if &term =~ '^screen'
@@ -326,7 +327,7 @@ command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre * StripTrailingWhitespaces
 
 " Create directory if it does not exists
-function s:Mkdir()
+function! s:Mkdir()
   let dir = expand('%:p:h')
 
   if !isdirectory(dir)
@@ -355,6 +356,16 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
 " Toggle spell checking with \s
 nnoremap <silent> <localleader>s :setlocal spell!<CR>
+
+" =[ Echodoc ]==================================================================
+let g:echodoc#enable_at_startup = 1
+" let g:echodoc#enable_force_overwrite = 1
+
+" =[ Prettier ]=================================================================
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.yaml,*.html PrettierAsync
 
 " =[ Fugitive ]=================================================================
 cabbrev git Git
@@ -453,24 +464,17 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " = [ deoplete ] ===============================================================
+set completeopt=longest,menuone,preview,noselect
+set pumheight=10
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_list = 50
-" let g:deoplete#ignore_sources = {}
-" let g:deoplete#ignore_sources._ = ['member', 'tag']
-" let g:deoplete#sources#go#align_class = 1
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
-" TernJS
-" Whether to include the types of the completions in the result data. Default: 0
-let g:tern#command = '/usr/local/bin/tern'
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#case_insensitive = 1
-
 " Typescript
 let g:nvim_typescript#default_mappings = 1
-" let g:nvim_typescript#signature_complete = 1
+" let g:nvim_typescript#type_info_on_hold = 1
 
 " = [ vim-go ] =================================================================
 let g:go_fmt_command = "goimports"
@@ -488,16 +492,14 @@ autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 
 " = [NeoMake ] =================================================================
-au! BufWritePost * Neomake
+" au! BufWritePost * Neomake
+call neomake#configure#automake('nrw', 1000)
+" let g:neomake_open_list = 1
+" let g:neomake_list_height = 5
 
 " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
 let g:neomake_ruby_enabled_makers = []
-let g:neomake_javascript_eslint_maker = {
-\ 'args': ['--env', 'es6', '-f', 'compact'],
-\ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,%W%f: line %l\, col %c\, Warning - %m'
-\ }
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_json_enabled_makers = ['jsonlint']
 
 " = [GoldenRatio] ==============================================================
 " Turn the plugin off by default
