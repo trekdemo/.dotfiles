@@ -49,9 +49,10 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
 
 " Completion
 Plug 'Shougo/echodoc.vim'
@@ -363,10 +364,9 @@ let g:echodoc#enable_at_startup = 1
 " let g:echodoc#enable_force_overwrite = 1
 
 " =[ Prettier ]=================================================================
-" when running at every change you may want to disable quickfix
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
-autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " =[ Fugitive ]=================================================================
 cabbrev git Git
