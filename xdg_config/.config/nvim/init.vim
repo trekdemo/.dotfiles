@@ -25,8 +25,6 @@ Plug 'mkarmona/materialbox'
 " Plug 'kassio/neoterm'
 " https://github.com/cyansprite/Extract
 
-" Group dependencies, vim-snippets depends on ultisnips
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'roman/golden-ratio'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
@@ -60,6 +58,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
   Plug 'fishbullet/deoplete-ruby'
   Plug 'ponko2/deoplete-fish'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 Plug 'kana/vim-operator-user'
 Plug 'haya14busa/vim-operator-flashy'
@@ -476,6 +476,27 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 " Typescript
 let g:nvim_typescript#default_mappings = 1
 " let g:nvim_typescript#type_info_on_hold = 1
+
+" = [ neosnippet ] =============================================================
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " = [ vim-go ] =================================================================
 let g:go_fmt_command = "goimports"
