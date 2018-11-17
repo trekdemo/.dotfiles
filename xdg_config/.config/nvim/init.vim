@@ -478,6 +478,7 @@ let g:nvim_typescript#default_mappings = 1
 " let g:nvim_typescript#type_info_on_hold = 1
 
 " = [ neosnippet ] =============================================================
+let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
