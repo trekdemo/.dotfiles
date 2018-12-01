@@ -19,9 +19,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
-" Plug 'kassio/neoterm'
-" https://github.com/cyansprite/Extract
-
 Plug 'roman/golden-ratio'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
@@ -37,7 +34,6 @@ Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
-" Plug 'fatih/vim-go',            { 'for': 'go', 'do' : 'vim +GoUpdateBinaries +qall && gometalinter --install --update' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
