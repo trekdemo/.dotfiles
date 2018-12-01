@@ -16,11 +16,8 @@ endfunction
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
-" Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'mkarmona/materialbox'
 
 " Plug 'kassio/neoterm'
 " https://github.com/cyansprite/Extract
