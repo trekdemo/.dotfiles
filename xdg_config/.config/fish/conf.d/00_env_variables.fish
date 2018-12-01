@@ -18,5 +18,7 @@ set -gx RUBYOPT rubygems
 set -gx NODE_PATH "/usr/local/lib/node_modules"
 set -gx CDPATH ./ ~/projects $CDPATH
 
+test -f ~/.local/env_vars.fish; and source ~/.local/env_vars.fish
+
 eval (ssh-agent -c)
 type -q rbenv; and eval (rbenv init -)
