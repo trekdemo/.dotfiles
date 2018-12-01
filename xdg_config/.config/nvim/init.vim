@@ -53,11 +53,11 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
 
 " Completion
-Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-  Plug 'fishbullet/deoplete-ruby'
-  Plug 'ponko2/deoplete-fish'
+" Plug 'Shougo/echodoc.vim'
+ " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+"   Plug 'fishbullet/deoplete-ruby'
+"   Plug 'ponko2/deoplete-fish'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
@@ -464,18 +464,18 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" = [ deoplete ] ===============================================================
-set completeopt=longest,menuone,preview,noselect
-set pumheight=10
+" " = [ deoplete ] ===============================================================
+" set completeopt=longest,menuone,preview,noselect
+" set pumheight=10
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 50
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#max_list = 50
+" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
-" Typescript
-let g:nvim_typescript#default_mappings = 1
-" let g:nvim_typescript#type_info_on_hold = 1
+" " Typescript
+" let g:nvim_typescript#default_mappings = 1
+" " let g:nvim_typescript#type_info_on_hold = 1
 
 " = [ neosnippet ] =============================================================
 let g:neosnippet#enable_completed_snippet = 1
