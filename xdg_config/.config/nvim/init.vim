@@ -46,13 +46,14 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
 
 " Completion
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Plug 'Shougo/echodoc.vim'
  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
@@ -89,7 +90,7 @@ Plug 'benmills/vimux'
 Plug 'jgdavey/vim-turbux'
 
 " File checkkers/linters
-Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
+" Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -131,11 +132,16 @@ catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename'
-      \ }
-      \ }
+    \ 'colorscheme': 'gruvbox',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \    'filename': 'LightLineFilename',
+    \    'cocstatus': 'coc#status'
+    \ }
+    \ }
 function! LightLineFilename()
   return expand('%')
 endfunction
@@ -514,15 +520,15 @@ autocmd Filetype go nmap <leader>m  <Plug>(go-test)
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 
-" = [NeoMake ] =================================================================
-" au! BufWritePost * Neomake
-call neomake#configure#automake('nrw', 1000)
-" let g:neomake_open_list = 1
-" let g:neomake_list_height = 5
+" " = [NeoMake ] =================================================================
+" " au! BufWritePost * Neomake
+" call neomake#configure#automake('nrw', 1000)
+" " let g:neomake_open_list = 1
+" " let g:neomake_list_height = 5
 
-" Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
-let g:neomake_ruby_enabled_makers = []
-let g:neomake_javascript_enabled_makers = ['eslint']
+" " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
+" let g:neomake_ruby_enabled_makers = []
+" let g:neomake_javascript_enabled_makers = ['eslint']
 
 " = [GoldenRatio] ==============================================================
 " Turn the plugin off by default
