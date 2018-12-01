@@ -19,3 +19,4 @@ set -gx NODE_PATH "/usr/local/lib/node_modules"
 set -gx CDPATH ./ ~/projects $CDPATH
 
 eval (ssh-agent -c)
+type -q rbenv; and eval (rbenv init -)
