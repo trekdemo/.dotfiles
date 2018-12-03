@@ -114,3 +114,5 @@
 	username = trekdemo
 [commit]
 	template = ~/.gitmessage
+[remote "origin"]
+	push = HEAD
