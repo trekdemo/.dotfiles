@@ -160,7 +160,7 @@ set expandtab
 set diffopt+=iwhite                     " Ignore whitespace on diffs
 set list                                " Show invisible characters
 set listchars=tab:·\ ,trail:·,eol:¬,extends:❯,precedes:❮
-set fillchars=diff:⣿,vert:\|
+set fillchars=diff:⣿,vert:│
 " Allow to move the cursor everywhere, not just existing text
 set virtualedit+=block
 set foldenable
