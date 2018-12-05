@@ -26,6 +26,7 @@ Plug 'mkarmona/materialbox'
 " https://github.com/cyansprite/Extract
 
 Plug 'roman/golden-ratio'
+Plug 'vimwiki/vimwiki'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -539,3 +540,6 @@ nmap Y <Plug>(operator-flashy)$
 " = [Useful snippets] ==========================================================
 iabbrev bpry require 'pry'; binding.pry;
 autocmd FileType help nnoremap q :q<cr>
+
+" = [VimWiki] ==================================================================
+autocmd FileType vimwiki set nonumber|set textwidth=70
