@@ -114,15 +114,12 @@ set noshowmode
 set cmdheight=1
 set langmenu=en_US.UTF-8    " sets the language of the menu
 
-" if strftime("%H") >= 10 && strftime("%H") < 16
-  " set background=light
-" else
-  set background=dark
-" endif
 " set cursorline
+
+set background=dark
 try
   colorscheme gruvbox
-  highlight Comment cterm=italic
+  let g:gruvbox_italic=1
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
