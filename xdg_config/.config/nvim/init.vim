@@ -16,14 +16,8 @@ endfunction
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
-" Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'mkarmona/materialbox'
-
-" Plug 'kassio/neoterm'
-" https://github.com/cyansprite/Extract
 
 Plug 'roman/golden-ratio'
 Plug 'vimwiki/vimwiki'
@@ -41,24 +35,26 @@ Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
-" Plug 'fatih/vim-go',            { 'for': 'go', 'do' : 'vim +GoUpdateBinaries +qall && gometalinter --install --update' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
 
 " Completion
-Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-  Plug 'fishbullet/deoplete-ruby'
-  Plug 'ponko2/deoplete-fish'
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'Shougo/echodoc.vim'
+ " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+"   Plug 'fishbullet/deoplete-ruby'
+"   Plug 'ponko2/deoplete-fish'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
@@ -90,7 +86,7 @@ Plug 'benmills/vimux'
 Plug 'jgdavey/vim-turbux'
 
 " File checkkers/linters
-Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
+" Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -126,17 +122,22 @@ set langmenu=en_US.UTF-8    " sets the language of the menu
 " set cursorline
 try
   colorscheme gruvbox
-  let g:nord_italic = 1
+  highlight Comment cterm=italic
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename'
-      \ }
-      \ }
+    \ 'colorscheme': 'gruvbox',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \    'filename': 'LightLineFilename',
+    \    'cocstatus': 'coc#status'
+    \ }
+    \ }
 function! LightLineFilename()
   return expand('%')
 endfunction
@@ -465,18 +466,18 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" = [ deoplete ] ===============================================================
-set completeopt=longest,menuone,preview,noselect
-set pumheight=10
+" " = [ deoplete ] ===============================================================
+" set completeopt=longest,menuone,preview,noselect
+" set pumheight=10
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 50
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#max_list = 50
+" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
-" Typescript
-let g:nvim_typescript#default_mappings = 1
-" let g:nvim_typescript#type_info_on_hold = 1
+" " Typescript
+" let g:nvim_typescript#default_mappings = 1
+" " let g:nvim_typescript#type_info_on_hold = 1
 
 " = [ neosnippet ] =============================================================
 let g:neosnippet#enable_completed_snippet = 1
@@ -515,15 +516,15 @@ autocmd Filetype go nmap <leader>m  <Plug>(go-test)
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 
-" = [NeoMake ] =================================================================
-" au! BufWritePost * Neomake
-call neomake#configure#automake('nrw', 1000)
-" let g:neomake_open_list = 1
-" let g:neomake_list_height = 5
+" " = [NeoMake ] =================================================================
+" " au! BufWritePost * Neomake
+" call neomake#configure#automake('nrw', 1000)
+" " let g:neomake_open_list = 1
+" " let g:neomake_list_height = 5
 
-" Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
-let g:neomake_ruby_enabled_makers = []
-let g:neomake_javascript_enabled_makers = ['eslint']
+" " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
+" let g:neomake_ruby_enabled_makers = []
+" let g:neomake_javascript_enabled_makers = ['eslint']
 
 " = [GoldenRatio] ==============================================================
 " Turn the plugin off by default
