@@ -1,6 +1,8 @@
 /.DS_Store
 /Procfile.local
 /tmux/.tmux/plugins/*
+/terminfo/.terminfo/*
+!/terminfo/.terminfo/src
 ^/tmux/.tmux/plugins/tpm
 /xdg_config/.config/configstore
 /xdg_config/.config/fish/conf.d/secrets.fish

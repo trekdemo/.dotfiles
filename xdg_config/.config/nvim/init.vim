@@ -121,7 +121,7 @@ set langmenu=en_US.UTF-8    " sets the language of the menu
 " set cursorline
 try
   colorscheme gruvbox
-  let g:nord_italic = 1
+  highlight Comment cterm=italic
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
