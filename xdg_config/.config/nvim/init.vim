@@ -249,84 +249,6 @@ inoremap <C-u> <esc>gUiwea
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-" Terminal Settings ============================================================
-" Use Esc to get back to normal mode in term
-tnoremap <leader><Esc> <C-\><C-n>
-
-" Window navigation function
-" Make ctrl-h/j/k/l move between windows and auto-insert in terminals
-func! s:mapMoveToWindowInDirection(direction)
-    func! s:maybeInsertMode(direction)
-        stopinsert
-        execute "wincmd" a:direction
-
-        if &buftype == 'terminal'
-            startinsert!
-        endif
-    endfunc
-
-    execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
-                \ "<C-\\><C-n>"
-                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
-    execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
-                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
-endfunc
-for dir in ["h", "j", "l", "k"]
-    call s:mapMoveToWindowInDirection(dir)
-endfor
-
-" Folding ======================================================================
-" Use ,z to "focus" the current fold.
-nnoremap <leader>z zMzvzz
-" Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-autocmd FileType haml setlocal foldmethod=indent
-
-" Don't screw up folds when inserting text that might affect them, until
-" leaving insert mode. Foldmethod is local to the window. Protect against
-" screwing up folding when switching between windows.
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-
-function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
-
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
-
-    let line = strpart(line, 0, windowwidth - 7 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . ' '
-endfunction " }}}
-set foldtext=MyFoldText()
-
-" via: http://rails-bestpractices.com/posts/60-remove-trailing-whitespace
-" Strip trailing whitespace
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
-" autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
-autocmd BufWritePre * StripTrailingWhitespaces
-
 " Create directory if it does not exists
 function! s:Mkdir()
   let dir = expand('%:p:h')
@@ -339,11 +261,6 @@ endfunction
 
 autocmd BufWritePre * call s:Mkdir()
 
-" Open diary
-" function Diary()
-"   :tabe ~/Documents/Diary
-" endfunction
-
 " =[ Spell checking ]===========================================================
 " Set spellfile to location that is guaranteed to exist
 set spellfile=$HOME/.dotfiles/vim/vim-spell-en.utf-8.add
@@ -354,13 +271,8 @@ set complete+=kspell
 autocmd QuickFixCmdPost *grep* cwindow
 
 autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd FileType gitcommit setlocal spell
 " Toggle spell checking with \s
 nnoremap <silent> <localleader>s :setlocal spell!<CR>
-
-" =[ Echodoc ]==================================================================
-let g:echodoc#enable_at_startup = 1
-" let g:echodoc#enable_force_overwrite = 1
 
 " =[ Prettier ]=================================================================
 let g:prettier#quickfix_enabled = 0
@@ -458,24 +370,6 @@ vmap <LocalLeader>vs "vy :call VimuxSlime()<CR>
 nmap <LocalLeader>vs vip<LocalLeader>vs<CR>
 nmap <Leader>l :VimuxRunLastCommand<CR>
 
-" =[ UtilSnip ]=================================================================
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" " = [ deoplete ] ===============================================================
-" set completeopt=longest,menuone,preview,noselect
-" set pumheight=10
-
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#max_list = 50
-" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-
-" " Typescript
-" let g:nvim_typescript#default_mappings = 1
-" " let g:nvim_typescript#type_info_on_hold = 1
-
 " = [ neosnippet ] =============================================================
 let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
@@ -495,7 +389,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=2 concealcursor=n
 endif
 
 " = [ vim-go ] =================================================================
@@ -538,6 +432,3 @@ nmap Y <Plug>(operator-flashy)$
 " = [Useful snippets] ==========================================================
 iabbrev bpry require 'pry'; binding.pry;
 autocmd FileType help nnoremap q :q<cr>
-
-" = [VimWiki] ==================================================================
-autocmd FileType vimwiki set nonumber|set textwidth=70
