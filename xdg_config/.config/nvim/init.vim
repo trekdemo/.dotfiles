@@ -162,6 +162,10 @@ set fillchars=diff:⣿,vert:│
 " Allow to move the cursor everywhere, not just existing text
 set virtualedit+=block
 
+if has('nvim-0.3.1')
+  set fillchars+=eob:\              " suppress ~ at EndOfBuffer
+endif
+
 " =[ Mappings ]================================================================
 if &term =~ '^screen'
   " tmux will send xterm-style keys when its xterm-keys option is on
