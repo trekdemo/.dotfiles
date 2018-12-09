@@ -10,10 +10,6 @@ elseif uname == 'Linux'
 endif
 
 " =[ Plugins ]==================================================================
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'morhetz/gruvbox'
