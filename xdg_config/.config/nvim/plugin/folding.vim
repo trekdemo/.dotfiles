@@ -1,5 +1,9 @@
 "Description:
 "-------------------------------------------------------------------------------
+set foldenable
+set foldmethod=syntax
+set foldlevel=999999
+set foldlevelstart=10
 
 " Use ,z to "focus" the current fold.
 nnoremap <leader>z zMzvzz
