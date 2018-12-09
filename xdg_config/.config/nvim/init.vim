@@ -124,6 +124,8 @@ set list                                " Show invisible characters not just exi
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│
 set fillchars+=eob:\                    " suppress ~ at EndOfBuffer
+set conceallevel=2 concealcursor=n      " Don't show hidden characters"
+set complete+=kspell
 
 " =[ Mappings ]=================================================================
 let mapleader = ","
@@ -192,11 +194,7 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
 " =[ Spell checking ]===========================================================
-" Set spellfile to location that is guaranteed to exist
-set spellfile=$HOME/.dotfiles/vim/vim-spell-en.utf-8.add
-
 " Autocomplete with dictionary words when spell check is on
-set complete+=kspell
 
 autocmd QuickFixCmdPost *grep* cwindow
 
@@ -248,6 +246,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 map <leader>A :grep "FIXME\|TODO"<CR>
 nmap <leader>F :grep! <C-r><C-w><CR>
 
+
 " =[ Rails ]====================================================================
 cabbrev rake Rake
 cabbrev rails Rails
@@ -258,7 +257,6 @@ cabbrev rmigration Rmigration
 " =[ Turbux ]===================================================================
 " Turbo Ruby testing with tmux
 let g:turbux_runner = 'vimux'
-" let g:turbux_runner = 'dispatch'
 let g:no_turbux_mappings = 1
 let g:turbux_command_prefix = 'clear; bundle exec'
 map <leader>m <Plug>SendTestToTmux
@@ -298,11 +296,6 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=n
-endif
 
 " = [ vim-go ] =================================================================
 let g:go_fmt_command = "goimports"
