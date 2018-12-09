@@ -244,17 +244,9 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" =[ The Silver Searcher ]======================================================
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Overwrite the Ag command in FZF.vim
-  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-endif
-
+" Quickly search
 map <leader>A :grep "FIXME\|TODO"<CR>
-nmap <leader>F :grep <C-r><C-w><CR>
+nmap <leader>F :grep! <C-r><C-w><CR>
 
 " =[ Rails ]====================================================================
 cabbrev rake Rake
