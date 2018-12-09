@@ -33,9 +33,10 @@ Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'dag/vim-fish',            { 'for': 'fish' }
 
 " Typescript
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 " Plug 'prettier/vim-prettier', {
@@ -47,7 +48,7 @@ Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Plug 'Shougo/echodoc.vim'
- " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 "   Plug 'fishbullet/deoplete-ruby'
 "   Plug 'ponko2/deoplete-fish'
@@ -59,9 +60,6 @@ Plug 'haya14busa/vim-operator-flashy'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
-Plug 'dag/vim-fish'
-Plug 'kevinhui/vim-docker-tools'
-
 
 if uname == 'Darwin'
   Plug '/usr/local/opt/fzf'
