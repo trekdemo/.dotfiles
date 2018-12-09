@@ -103,7 +103,7 @@ call plug#end()
 " =[ Settings ]=================================================================
 set noshowmode
 set cmdheight=1
-set langmenu=en_US.UTF-8    " sets the language of the menu
+set langmenu=en_US.UTF-8                " sets the language of the menu
 set nowrap                              " Do not wrap long lines
 set textwidth=80
 set colorcolumn=+1                      " Display margin at 81
@@ -119,17 +119,13 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set diffopt+=iwhite                     " Ignore whitespace on diffs
-set list                                " Show invisible characters
+set virtualedit+=block                  " Allow to move the cursor everywhere,
+set list                                " Show invisible characters not just existing text
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│
-" Allow to move the cursor everywhere, not just existing text
-set virtualedit+=block
+set fillchars+=eob:\                    " suppress ~ at EndOfBuffer
 
-if has('nvim-0.3.1')
-  set fillchars+=eob:\              " suppress ~ at EndOfBuffer
-endif
-
-" =[ Mappings ]================================================================
+" =[ Mappings ]=================================================================
 let mapleader = ","
 let maplocalleader = "\\"
 
@@ -140,13 +136,10 @@ nmap <leader><leader> :!
 nnoremap <leader>s :%s//gg<left><left><left>
 
 " Remove selected hightlight
-noremap <leader><space> :noh<cr>:call clearmatches()<cr>
+noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>
 
 " Easier linewise reselection
 nnoremap <leader>v V`]
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
 
 " tab navigation
 nnoremap <TAB> gt
@@ -157,7 +150,8 @@ nnoremap <S-C-left> 5<c-w>>
 nnoremap <S-C-right> 5<c-w><
 nnoremap <S-C-up> 5<c-w>+
 nnoremap <S-C-down> 5<c-w>-
-
+nnoremap <C-e> 5<C-e>
+nnoremap <C-y> 5<C-y>
 
 " Don't move on *
 nnoremap * *N
@@ -170,7 +164,6 @@ map <leader>tc :tabclose<CR>
 map <leader>tn :tabnew<CR>
 map <leader>to :tabonly<CR>
 map <leader>o :only<CR>
-map <leader>pc :q<CR>
 
 " Quick filename completion
 inoremap <c-f> <c-x><c-f>
@@ -182,7 +175,6 @@ nmap <silent> <leader>u :GundoToggle<CR>
 noremap H ^
 noremap L g_
 
-
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -192,12 +184,7 @@ nnoremap <leader>dt :windo diffthis<CR>
 nnoremap <leader>du :windo diffupdate<CR>
 nnoremap <leader>do :windo diffoff<CR>
 
-" Scroll faster
-nnoremap <C-e> 5<C-e>
-nnoremap <C-y> 5<C-y>
-
 " Change case
-" nnoremap <C-u> gUiw
 inoremap <C-u> <esc>gUiwea
 
 " Emacs bindings in command line mode
