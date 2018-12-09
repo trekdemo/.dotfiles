@@ -234,7 +234,6 @@ set complete+=kspell
 
 autocmd QuickFixCmdPost *grep* cwindow
 
-autocmd BufRead,BufNewFile *.md setlocal spell
 " Toggle spell checking with \s
 nnoremap <silent> <localleader>s :setlocal spell!<CR>
 
