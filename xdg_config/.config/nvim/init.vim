@@ -235,6 +235,7 @@ omap <leader><tab> <plug>(fzf-maps-o)
 map <leader>b :Buffers <CR>
 map <leader>c :Commands <CR>
 map <leader>ta :Tags <CR>
+map <leader>h :Helptags <CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
