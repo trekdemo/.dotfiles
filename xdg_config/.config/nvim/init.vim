@@ -80,7 +80,6 @@ Plug 'jgdavey/vim-turbux'
 " File checkkers/linters
 " Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
@@ -243,9 +242,6 @@ augroup ft_fugitive
     au!
     au BufNewFile,BufRead .git/index setlocal nolist spell
 augroup END
-
-" = [ GitGutter ] ==============================================================
-nnoremap <localleader>gd :GitGutterLineHighlightsToggle<cr>
 
 " =[ commentary.vim ]===========================================================
 map <leader>/ gcc
