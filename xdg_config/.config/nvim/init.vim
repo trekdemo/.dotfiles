@@ -213,9 +213,6 @@ set complete+=kspell
 
 autocmd QuickFixCmdPost *grep* cwindow
 
-" Toggle spell checking with \s
-nnoremap <silent> <localleader>s :setlocal spell!<CR>
-
 " =[ Prettier ]=================================================================
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
