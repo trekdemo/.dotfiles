@@ -70,7 +70,6 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'roxma/vim-tmux-clipboard'
 
 " Running tests
 " https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
@@ -107,7 +106,6 @@ call plug#end()
 set noshowmode
 set cmdheight=1
 set langmenu=en_US.UTF-8    " sets the language of the menu
-set clipboard+=unnamedplus
 set nowrap                              " Do not wrap long lines
 set textwidth=80
 set colorcolumn=+1                      " Display margin at 81
