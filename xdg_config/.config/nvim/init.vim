@@ -56,7 +56,6 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
 Plug 'kana/vim-operator-user'
-Plug 'haya14busa/vim-operator-flashy'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
@@ -388,11 +387,6 @@ let g:golden_ratio_autocommand = 0
 " Try to follow conventions from vim-unimpaired
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
-
-" = [operator-flashy] ==========================================================
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
-
 
 " = [Useful snippets] ==========================================================
 iabbrev bpry require 'pry'; binding.pry;
