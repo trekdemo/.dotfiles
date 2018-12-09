@@ -231,10 +231,6 @@ nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
 nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 
-" nnoremap <leader>gp :Git push<cr>
-nnoremap <leader>gps :Dispatch! git push<CR>
-nnoremap <leader>gpl :Dispatch! git pull<CR>
-
 augroup ft_fugitive
     au!
     au BufNewFile,BufRead .git/index setlocal nolist spell
