@@ -109,33 +109,6 @@ call plug#end()
 set noshowmode
 set cmdheight=1
 set langmenu=en_US.UTF-8    " sets the language of the menu
-
-" set cursorline
-
-set background=dark
-try
-  colorscheme gruvbox
-  let g:gruvbox_italic=1
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-endtry
-
-let g:lightline = {
-    \ 'colorscheme': 'gruvbox',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \    'filename': 'LightLineFilename',
-    \    'cocstatus': 'coc#status'
-    \ }
-    \ }
-function! LightLineFilename()
-  return expand('%')
-endfunction
-
-
 set clipboard+=unnamedplus
 set nowrap                              " Do not wrap long lines
 set textwidth=80
