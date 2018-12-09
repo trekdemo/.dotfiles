@@ -431,4 +431,3 @@ nmap Y <Plug>(operator-flashy)$
 
 " = [Useful snippets] ==========================================================
 iabbrev bpry require 'pry'; binding.pry;
-autocmd FileType help nnoremap q :q<cr>
