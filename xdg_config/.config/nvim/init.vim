@@ -238,7 +238,8 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Quickly search
-map <leader>A :grep "FIXME\|TODO"<CR>
+autocmd QuickFixCmdPost *grep* cwindow
+map <leader>A :grep! "FIXME\|TODO"<CR>
 nmap <leader>F :grep! <C-r><C-w><CR>
 
 
