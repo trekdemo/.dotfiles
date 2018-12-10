@@ -216,11 +216,6 @@ nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
 nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 
-augroup ft_fugitive
-    au!
-    au BufNewFile,BufRead .git/index setlocal nolist spell
-augroup END
-
 " =[ commentary.vim ]===========================================================
 map <leader>/ gcc
 imap <leader>/ gc
