@@ -193,10 +193,6 @@ inoremap <C-u> <esc>gUiwea
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-" =[ Spell checking ]===========================================================
-" Autocomplete with dictionary words when spell check is on
-
-autocmd QuickFixCmdPost *grep* cwindow
 
 " =[ Prettier ]=================================================================
 let g:prettier#quickfix_enabled = 0
@@ -216,9 +212,8 @@ nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
 nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 
-" =[ commentary.vim ]===========================================================
+" Comment out lines with Commentary
 map <leader>/ gcc
-imap <leader>/ gc
 
 " =[ FZF ]======================================================================
 map <C-p> :FZF<CR>
@@ -241,14 +236,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 autocmd QuickFixCmdPost *grep* cwindow
 map <leader>A :grep! "FIXME\|TODO"<CR>
 nmap <leader>F :grep! <C-r><C-w><CR>
-
-
-" =[ Rails ]====================================================================
-cabbrev rake Rake
-cabbrev rails Rails
-cabbrev rmodel Rmodel
-cabbrev rcontroller Rcontroller
-cabbrev rmigration Rmigration
 
 " =[ Turbux ]===================================================================
 " Turbo Ruby testing with tmux
