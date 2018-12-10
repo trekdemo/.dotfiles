@@ -302,11 +302,6 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" Open go doc in vertical window, horizontal, or tab
-autocmd Filetype go nmap <leader>m  <Plug>(go-test)
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-
 " " = [NeoMake ] =================================================================
 " " au! BufWritePost * Neomake
 " call neomake#configure#automake('nrw', 1000)
