@@ -1,7 +1,7 @@
 set background=dark
 try
-  colorscheme gruvbox
   let g:gruvbox_italic=1
+  colorscheme gruvbox
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
