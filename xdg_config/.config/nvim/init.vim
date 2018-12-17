@@ -126,6 +126,7 @@ set fillchars=diff:⣿,vert:│
 set fillchars+=eob:\                    " suppress ~ at EndOfBuffer
 set conceallevel=2 concealcursor=n      " Don't show hidden characters"
 set complete+=kspell
+set tags+=./.git/tags
 
 " =[ Mappings ]=================================================================
 let mapleader = ","
