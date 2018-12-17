@@ -10,7 +10,7 @@ let g:lightline = {
     \ 'colorscheme': 'gruvbox',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
     \ },
     \ 'component_function': {
     \    'filename': 'LightLineFilename',
