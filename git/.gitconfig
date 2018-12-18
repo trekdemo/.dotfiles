@@ -38,63 +38,33 @@
   textconv = stat
 
 [alias]
-  # reset
-  unstage = reset HEAD              # remove files from index (tracking)
-  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
-  filelog = log -u                  # show changes to a file
-  unchanged = update-index --assume-unchanged
-  message = log --format=%B -n 1
-
-  # diff
-  d = diff                          # diff unstaged changes
-  dc = diff --cached                # diff staged changes
-  last = diff HEAD^                 # diff last committed change
-  conflicts = diff --name-only --diff-filter=U
-
-  # stash
-  st = stash
-  stp = stash pop
-
-  # log
-  l = log --graph --date=short
-  lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -30
-
-  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
-  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
-  changelog = log --pretty=format:\" * %s\"
-  collaborators = shortlog -n -s --no-merges
-  tags = tag -l
-  ; undeployed = !git fetch --multiple production origin && git log production/master..origin/master
-
-  # commit
-  c = commit --verbose
-  cm = commit -m
-  ca = commit --amend -C HEAD
-  wip = commit -m 'WIP [skip ci]'
-
   aa= !git add -u && git add . && git status -s
-
-  # remotes
-  fall = fetch --all --prune
-
   b = branch
-  branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
-  # deletemerged = '!git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
-  s = status --short --branch
-  p = push
-  f = fetch
+  c = commit --verbose
+  ca = commit --amend -C HEAD
   co = checkout
   cob = checkout -b
   corb = "!f() { git fetch --all; git checkout -b $1 origin/$1; }; f"
-  dt = difftool
-  dtc = difftool --cached
-  remotes = remote -v
-  wc = whatchanged -p --abbrev-commit --pretty=medium
-  ctags = !.git/hooks/ctags
+  d = diff
+  f = fetch
+  fall = fetch --all --prune
+  lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -30
+  p = push
+  s = status --short --branch
 
+  branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
+  collaborators = shortlog -n -s --no-merges
+  ctags = !.git/hooks/ctags
   list-aliases = "!git config -l | grep alias | cut -c 7-"
-  la = "!git list-aliases"
   ls-ignored = ls-files --exclude-standard --ignored --others
+  message = log --format=%B -n 1
+  remotes = remote -v
+  staged = diff --cached            # diff staged changes
+  tags = tag -l
+  unchanged = update-index --assume-unchanged
+  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
+  unstage = reset                   # remove files from index (tracking)
+  wip = commit -m 'WIP [skip ci]'
 [heroku]
   account = personal
 [tig]
