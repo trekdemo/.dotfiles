@@ -17,6 +17,7 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'roman/golden-ratio'
 Plug 'vimwiki/vimwiki'
+Plug 'Shougo/context_filetype.vim'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
