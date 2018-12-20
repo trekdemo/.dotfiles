@@ -149,6 +149,10 @@ nnoremap <leader>v V`]
 nnoremap <TAB> gt
 nnoremap <S-TAB> gT
 
+" Save with simpler keystroke
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
+
 " Window resizing
 nnoremap <S-C-left> 5<c-w>>
 nnoremap <S-C-right> 5<c-w><
