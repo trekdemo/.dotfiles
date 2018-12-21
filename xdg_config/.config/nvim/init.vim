@@ -211,7 +211,8 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 " =[ Fugitive ]=================================================================
 cabbrev git Git
-nnoremap <leader>gd :Gdiff<cr>
+" Open file for diff in new tab and jump to the first change
+nnoremap <leader>gd <C-w>s<C-w>T:Gdiff<cr>zRgg]c
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>ga :Gadd<cr>
