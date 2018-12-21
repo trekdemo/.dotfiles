@@ -11,10 +11,15 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
 
 let g:lightline = {
     \ 'colorscheme': 'gruvbox',
+    \ 'component': {
+    \   'lineinfo': '%l:%v',
+    \ },
     \ 'active': {
-    \   'left': [ [ 'mode' ],
-    \             [ 'paste', 'spell' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \   'left': [ [ 'mode', 'paste', 'spell' ],
+    \             [ 'gitbranch' ],
+    \             [ 'readonly', 'filename', 'modified' ] ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'filetype' ] ]
     \ },
     \ 'component_function': {
     \    'filename': 'LightLineFilename',
