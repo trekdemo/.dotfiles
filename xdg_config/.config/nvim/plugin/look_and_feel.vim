@@ -12,22 +12,26 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
 let g:lightline = {
     \ 'colorscheme': 'gruvbox',
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
+    \   'left': [ [ 'mode' ],
+    \             [ 'paste', 'spell' ],
     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
     \ },
     \ 'component_function': {
     \    'filename': 'LightLineFilename',
-    \    'cocstatus': 'coc#status',
     \    'gitbranch': 'LightlineFugitive'
     \ }
     \ }
+
+" Component functions {{{
 function! LightLineFilename()
   return expand('%')
 endfunction
 
 function! LightlineFugitive()
-  if &ft !~? 'vimfiler' && exists('*fugitive#head')
-    return fugitive#head()
+  if exists('*fugitive#head')
+    let branch = fugitive#head()
+    return branch !=# '' ? ' '.branch : ''
   endif
   return ''
 endfunction
+" }}}
