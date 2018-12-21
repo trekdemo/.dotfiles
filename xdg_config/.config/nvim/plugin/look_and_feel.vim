@@ -8,6 +8,9 @@ endtry
 
 " Make it easier to to spot the current paren
 hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
+" Hilight the line number of the cursorline
+hi clear CursorLine
+hi CursorLineNr cterm=bold  ctermfg=Yellow
 
 let g:lightline = {
     \ 'colorscheme': 'gruvbox',
