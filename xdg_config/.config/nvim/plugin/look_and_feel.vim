@@ -6,6 +6,9 @@ catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
 
+" Make it easier to to spot the current paren
+hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
+
 let g:lightline = {
     \ 'colorscheme': 'gruvbox',
     \ 'active': {
