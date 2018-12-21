@@ -276,6 +276,7 @@ nmap <LocalLeader>vs vip<LocalLeader>vs<CR>
 nmap <Leader>l :VimuxRunLastCommand<CR>
 
 " = [ neosnippet ] =============================================================
+let g:neosnippet#snippets_directory = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/snippets/"
 let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
