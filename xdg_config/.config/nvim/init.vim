@@ -140,7 +140,7 @@ nmap <leader><leader> :!
 nnoremap <leader>s :%s//gg<left><left><left>
 
 " Remove selected hightlight
-noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>
+noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
 
 " Easier linewise reselection
 nnoremap <leader>v V`]
@@ -162,7 +162,7 @@ nnoremap <C-e> 5<C-e>
 nnoremap <C-y> 5<C-y>
 
 " Don't move on *
-nnoremap * *N
+nnoremap * *Nzzzv
 " Keep search matches in the middle of the window and pulse the line when moving to them.
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -182,6 +182,10 @@ nmap <silent> <leader>u :GundoToggle<CR>
 " Easier to type, and I never use the default behavior.
 noremap H ^
 noremap L g_
+
+" Go by visual lines (happens when lines are wrapped)
+nmap k gk
+nmap j gj
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
