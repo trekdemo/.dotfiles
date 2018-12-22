@@ -135,7 +135,7 @@ let mapleader = ","
 let maplocalleader = "\\"
 
 " Leader mappings {{{
-nmap <leader><leader> :!
+nnoremap <leader><leader> :!
 
 " Shorcut for quick substitution
 nnoremap <leader>s :%s//gg<left><left><left>
@@ -169,24 +169,24 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " tab openning and closing
-map <leader>tc :tabclose<CR>
-map <leader>tn :tabnew<CR>
-map <leader>to :tabonly<CR>
-map <leader>o :only<CR>
+noremap <leader>tc :tabclose<CR>
+noremap <leader>tn :tabnew<CR>
+noremap <leader>to :tabonly<CR>
+noremap <leader>o :only<CR>
 
 " Quick filename completion
 inoremap <c-f> <c-x><c-f>
 
 " Shortcut for Gundo
-nmap <silent> <leader>u :GundoToggle<CR>
+nnoremap <silent> <leader>u :GundoToggle<CR>
 
 " Easier to type, and I never use the default behavior.
-noremap H ^
-noremap L g_
+nnoremap H ^
+nnoremap L g_
 
 " Go by visual lines (happens when lines are wrapped)
-nmap k gk
-nmap j gj
+nnoremap k gk
+nnoremap j gj
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
@@ -225,37 +225,37 @@ nnoremap <leader>gr :Gremove<cr>
 nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 
 " Comment out lines with Commentary
-map <leader>/ gcc
+noremap <leader>/ gcc
 
 " =[ FZF ]======================================================================
-map <C-p> :FZF<CR>
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-map <leader>b :Buffers <CR>
-map <leader>c :Commands <CR>
-map <leader>ta :Tags <CR>
-map <leader>h :Helptags <CR>
+noremap <C-p> :FZF<CR>
+nnoremap <leader><tab> <plug>(fzf-maps-n)
+xnoremap <leader><tab> <plug>(fzf-maps-x)
+onoremap <leader><tab> <plug>(fzf-maps-o)
+noremap <leader>b :Buffers <CR>
+noremap <leader>c :Commands <CR>
+noremap <leader>ta :Tags <CR>
+noremap <leader>h :Helptags <CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Quickly search
 autocmd QuickFixCmdPost *grep* cwindow
-map <leader>A :grep! "FIXME\|TODO"<CR>
-nmap <leader>F :grep! <C-r><C-w><CR>
+nnoremap <leader>A :grep! "FIXME\|TODO"<CR>
+nnoremap <leader>F :grep! <C-r><C-w><CR>
 
 " =[ Turbux ]===================================================================
 " Turbo Ruby testing with tmux
 let g:turbux_runner = 'vimux'
 let g:no_turbux_mappings = 1
 let g:turbux_command_prefix = 'clear; bundle exec'
-map <leader>m <Plug>SendTestToTmux
-map <leader>M <Plug>SendFocusedTestToTmux
+noremap <leader>m <Plug>SendTestToTmux
+noremap <leader>M <Plug>SendFocusedTestToTmux
 
 " =[ Vimux ]====================================================================
 function! VimuxSlime()
@@ -266,23 +266,23 @@ endfunction
 
 " Helps to interact with tmux
 let g:VimuxUseNearestPane = 1
-nmap <LocalLeader>vp :VimuxPromptCommand<CR>
-nmap <LocalLeader>vr :VimuxRunCommand("")<left><left>
-nmap <LocalLeader>vc :VimuxCloseRunner<CR>
-nmap <LocalLeader>vz :VimuxZoomRunner<CR>
-nmap <LocalLeader>vi :VimuxInspectRunner<CR>
-vmap <LocalLeader>vs "vy :call VimuxSlime()<CR>
-nmap <LocalLeader>vs vip<LocalLeader>vs<CR>
-nmap <Leader>l :VimuxRunLastCommand<CR>
+nnoremap <LocalLeader>vp :VimuxPromptCommand<CR>
+nnoremap <LocalLeader>vr :VimuxRunCommand("")<left><left>
+nnoremap <LocalLeader>vc :VimuxCloseRunner<CR>
+nnoremap <LocalLeader>vz :VimuxZoomRunner<CR>
+nnoremap <LocalLeader>vi :VimuxInspectRunner<CR>
+vnoremap <LocalLeader>vs "vy :call VimuxSlime()<CR>
+nnoremap <LocalLeader>vs vip<LocalLeader>vs<CR>
+nnoremap <Leader>l :VimuxRunLastCommand<CR>
 
 " = [ neosnippet ] =============================================================
 let g:neosnippet#snippets_directory = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/snippets/"
 let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+inoremap <C-k>     <Plug>(neosnippet_expand_or_jump)
+snoremap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xnoremap <C-k>     <Plug>(neosnippet_expand_target)
 
 " = [ vim-go ] =================================================================
 let g:go_fmt_command = "goimports"
