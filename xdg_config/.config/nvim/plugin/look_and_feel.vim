@@ -10,6 +10,7 @@ endtry
 hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
 " Hilight the line number of the cursorline
 hi clear CursorLine
+hi clear CursorLineNr
 hi CursorLineNr cterm=bold  ctermfg=Yellow
 " Make the search highlights a bit less intrusive
 hi Search cterm=underline,bold ctermfg=Yellow
