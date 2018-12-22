@@ -30,7 +30,6 @@ Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
 Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
-Plug 'ngmy/vim-rubocop',        { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
