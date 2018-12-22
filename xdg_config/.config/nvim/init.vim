@@ -310,6 +310,3 @@ let g:golden_ratio_autocommand = 0
 " Try to follow conventions from vim-unimpaired
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
-
-" = [Useful snippets] ==========================================================
-iabbrev bpry require 'pry'; binding.pry;
