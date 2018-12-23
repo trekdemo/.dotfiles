@@ -306,7 +306,6 @@ endfunction
 " Helps to interact with tmux
 let g:VimuxUseNearestPane = 1
 nnoremap <LocalLeader>vp :VimuxPromptCommand<CR>
-nnoremap <LocalLeader>vr :VimuxRunCommand("")<left><left>
 nnoremap <LocalLeader>vc :VimuxCloseRunner<CR>
 nnoremap <LocalLeader>vz :VimuxZoomRunner<CR>
 nnoremap <LocalLeader>vi :VimuxInspectRunner<CR>
