@@ -129,6 +129,11 @@ set conceallevel=2 concealcursor=n      " Don't show hidden characters"
 set complete+=kspell
 set tags+=./.git/tags
 set cursorline
+set foldenable
+set foldmethod=syntax
+set foldlevel=999999
+set foldlevelstart=10
+set foldtext=folding#text()
 let mapleader = ","
 let maplocalleader = "\\"
 " }}}
@@ -205,6 +210,15 @@ nnoremap j gj
 inoremap <c-f> <c-x><c-f>
 " Upcase last word
 inoremap <C-u> <esc>gUiwea
+
+" Use ,z to "focus" the current fold.
+nnoremap <leader>z zMzvzz
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+nnoremap zO zCzO
 " }}}
 
 " Mappings: Command-line {{{
@@ -222,6 +236,15 @@ augroup custom_autocommands
   autocmd QuickFixCmdPost grep* cwindow
   autocmd QuickFixCmdPost lgrep* lwindow
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+augroup END
+
+augroup folding_autocommands
+  autocmd!
+  " Don't screw up folds when inserting text that might affect them, until leaving
+  " insert mode. Foldmethod is local to the window. Protect against screwing up
+  " folding when switching between windows.
+  autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+  autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 augroup END
 " }}}
 
