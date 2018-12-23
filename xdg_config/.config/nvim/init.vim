@@ -235,7 +235,7 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 " }}}
 
-" Autocommands {{{
+" Autocommands: General {{{
 " Open quickfix window when it's populated
 augroup custom_autocommands
   autocmd!
@@ -243,7 +243,9 @@ augroup custom_autocommands
   autocmd QuickFixCmdPost lgrep* lwindow
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 augroup END
+" }}}
 
+" Autocommands: Folding {{{
 augroup folding_autocommands
   autocmd!
   " Don't screw up folds when inserting text that might affect them, until leaving
@@ -252,6 +254,20 @@ augroup folding_autocommands
   autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
   autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 augroup END
+" }}}
+
+" Terminal {{{
+tnoremap <leader><Esc> <C-\><C-n>
+tnoremap <silent> <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
+tnoremap <silent> <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
+tnoremap <silent> <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
+tnoremap <silent> <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
+
+augroup TermExtra
+  autocmd!
+  autocmd BufEnter term://* setlocal nonumber
+  autocmd BufEnter term://* start!
+augroup end
 " }}}
 
 " Plugin: Prettier {{{
