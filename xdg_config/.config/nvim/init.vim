@@ -9,7 +9,7 @@ elseif uname == 'Linux'
   let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-" =[ Plugins ]==================================================================
+" Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'morhetz/gruvbox'
@@ -99,8 +99,9 @@ Plug 'danro/rename.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
+" }}}
 
-" =[ Settings ]=================================================================
+" Settings {{{
 set noshowmode
 set cmdheight=1
 set langmenu=en_US.UTF-8                " sets the language of the menu
@@ -128,22 +129,47 @@ set conceallevel=2 concealcursor=n      " Don't show hidden characters"
 set complete+=kspell
 set tags+=./.git/tags
 set cursorline
-
-" =[ Mappings ]=================================================================
 let mapleader = ","
 let maplocalleader = "\\"
+" }}}
 
-" Leader mappings {{{
+" Mappings: General {{{
+" Edit and source vimrc file
+nnoremap <leader>ve :vsplit $MYVIMRC<CR>
+nnoremap <leader>vs :source $MYVIMRC<cr>
+
 nnoremap <leader><leader> :!
 
 " Shorcut for quick substitution
 nnoremap <leader>s :%s//gg<left><left><left>
+vnoremap <leader>s :%s/<c-r>//gg<left><left><left>
 
 " Remove selected hightlight
 noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
 
 " Easier linewise reselection
 nnoremap <leader>v V`]
+
+" tab openning and closing
+noremap <leader>tc :tabclose<CR>
+noremap <leader>tn :tabnew<CR>
+noremap <leader>to :tabonly<CR>
+noremap <leader>o :only<CR>
+
+" Shortcut for Gundo
+nnoremap <silent> <leader>u :GundoToggle<CR>
+
+" Quickly diffing to panes
+nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>du :windo diffupdate<CR>
+nnoremap <leader>do :windo diffoff<CR>
+
+" Comment out lines with Commentary
+noremap <leader>/ gcc
+
+" Quickly search
+nnoremap <leader>A :grep! "FIXME\|TODO"<CR>
+nnoremap <leader>F :grep! <C-r><C-w><CR>
 
 " tab navigation
 nnoremap <TAB> gt
@@ -167,49 +193,44 @@ nnoremap * *Nzzzv
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" tab openning and closing
-noremap <leader>tc :tabclose<CR>
-noremap <leader>tn :tabnew<CR>
-noremap <leader>to :tabonly<CR>
-noremap <leader>o :only<CR>
-
-" Quick filename completion
-inoremap <c-f> <c-x><c-f>
-
-" Shortcut for Gundo
-nnoremap <silent> <leader>u :GundoToggle<CR>
-
 " Easier to type, and I never use the default behavior.
-nnoremap H ^
-nnoremap L g_
+noremap H ^
+noremap L g_
 
 " Go by visual lines (happens when lines are wrapped)
 nnoremap k gk
 nnoremap j gj
 
-" Some helpers to edit mode
-" http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" Quickly diffing to panes
-nnoremap <leader>dt :windo diffthis<CR>
-nnoremap <leader>du :windo diffupdate<CR>
-nnoremap <leader>do :windo diffoff<CR>
-
-" Change case
+" Quick filename completion
+inoremap <c-f> <c-x><c-f>
+" Upcase last word
 inoremap <C-u> <esc>gUiwea
+" }}}
 
+" Mappings: Command-line {{{
+" Some helpers to edit mode http://vimcasts.org/e/14
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+" }}}
 
+" Autocommands {{{
+" Open quickfix window when it's populated
+augroup custom_autocommands
+  autocmd!
+  autocmd QuickFixCmdPost grep* cwindow
+  autocmd QuickFixCmdPost lgrep* lwindow
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+augroup END
+" }}}
 
-" =[ Prettier ]=================================================================
+" Plugin: Prettier {{{
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+" }}}
 
-" =[ Fugitive ]=================================================================
+" Plugin: Fugitive {{{
 cabbrev git Git
 " Open file for diff in new tab and jump to the first change
 nnoremap <leader>gd <C-w>s<C-w>T:Gdiff<cr>zRgg]c
@@ -222,15 +243,14 @@ nnoremap <leader>gco :Gcheckout<cr>
 nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
 nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+" }}}
 
-" Comment out lines with Commentary
-noremap <leader>/ gcc
-
-" =[ FZF ]======================================================================
+" Plugin: FZF {{{
+cabbrev maps Maps
 noremap <C-p> :FZF<CR>
-nnoremap <leader><tab> <plug>(fzf-maps-n)
-xnoremap <leader><tab> <plug>(fzf-maps-x)
-onoremap <leader><tab> <plug>(fzf-maps-o)
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 noremap <leader>b :Buffers <CR>
 noremap <leader>c :Commands <CR>
 noremap <leader>ta :Tags <CR>
@@ -238,25 +258,22 @@ noremap <leader>h :Helptags <CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-inoremap <c-x><c-f> <plug>(fzf-complete-path)
-inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
-inoremap <c-x><c-l> <plug>(fzf-complete-line)
+imap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+" }}}
 
-" Quickly search
-autocmd QuickFixCmdPost *grep* cwindow
-nnoremap <leader>A :grep! "FIXME\|TODO"<CR>
-nnoremap <leader>F :grep! <C-r><C-w><CR>
-
-" =[ Turbux ]===================================================================
+" Plugin: Trubux {{{
 " Turbo Ruby testing with tmux
 let g:turbux_runner = 'vimux'
 let g:no_turbux_mappings = 1
 let g:turbux_command_prefix = 'clear; bundle exec'
 noremap <leader>m <Plug>SendTestToTmux
 noremap <leader>M <Plug>SendFocusedTestToTmux
+" }}}
 
-" =[ Vimux ]====================================================================
+" Plugin: Vimux {{{
 function! VimuxSlime()
   call VimuxSendKeys("q C-u")
   call VimuxSendText(@v)
@@ -273,8 +290,9 @@ nnoremap <LocalLeader>vi :VimuxInspectRunner<CR>
 vnoremap <LocalLeader>vs "vy :call VimuxSlime()<CR>
 nnoremap <LocalLeader>vs vip<LocalLeader>vs<CR>
 nnoremap <Leader>l :VimuxRunLastCommand<CR>
+" }}}
 
-" = [ neosnippet ] =============================================================
+" Plugin: neosnippet {{{
 let g:neosnippet#snippets_directory = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/snippets/"
 let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
@@ -282,8 +300,10 @@ let g:neosnippet#enable_completed_snippet = 1
 inoremap <C-k>     <Plug>(neosnippet_expand_or_jump)
 snoremap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xnoremap <C-k>     <Plug>(neosnippet_expand_target)
+cabbrev snipe NeoSnippetEdit
+" }}}
 
-" = [ vim-go ] =================================================================
+" Plugin: vim-go {{{
 let g:go_fmt_command = "goimports"
 
 " turn highlighting on
@@ -292,8 +312,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+" }}}
 
-" " = [NeoMake ] =================================================================
+" Plugin: NeoMake {{{
 " " au! BufWritePost * Neomake
 " call neomake#configure#automake('nrw', 1000)
 " " let g:neomake_open_list = 1
@@ -302,10 +323,12 @@ let g:go_highlight_build_constraints = 1
 " " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
 " let g:neomake_ruby_enabled_makers = []
 " let g:neomake_javascript_enabled_makers = ['eslint']
+" }}}
 
-" = [GoldenRatio] ==============================================================
+" Plugin: GoldenRatio {{{
 " Turn the plugin off by default
 let g:golden_ratio_autocommand = 0
 " Try to follow conventions from vim-unimpaired
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
+" }}}
