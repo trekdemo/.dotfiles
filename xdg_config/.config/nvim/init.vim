@@ -127,6 +127,19 @@ set foldmethod=syntax
 set foldlevel=999999
 set foldlevelstart=10
 set foldtext=folding#text()
+set clipboard+=unnamedplus
+let g:clipboard = {
+      \   'name': 'myClipboard',
+      \   'copy': {
+      \      '+': 'tmux load-buffer -',
+      \      '*': 'tmux load-buffer -',
+      \    },
+      \   'paste': {
+      \      '+': 'tmux save-buffer -',
+      \      '*': 'tmux save-buffer -',
+      \   },
+      \   'cache_enabled': 1,
+      \ }
 let mapleader = ","
 let maplocalleader = "\\"
 " }}}
