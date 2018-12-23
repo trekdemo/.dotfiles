@@ -8,4 +8,7 @@ function! s:Mkdir()
   endif
 endfunction
 
-autocmd BufWritePre * call s:Mkdir()
+augroup plugin_mkdir
+  autocmd!
+  autocmd BufWritePre * call s:Mkdir()
+augroup END
