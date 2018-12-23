@@ -177,12 +177,14 @@ nnoremap <leader>dt :windo diffthis<CR>
 nnoremap <leader>du :windo diffupdate<CR>
 nnoremap <leader>do :windo diffoff<CR>
 
-" Comment out lines with Commentary
-noremap <leader>/ gcc
+" Comment out lines with Commentarney
+nmap <leader>/ <Plug>CommentaryLine
+xmap <leader>/ <Plug>Commentary
+omap <leader>/ <Plug>Commentary
 
 " Quickly search
-nnoremap <leader>A :grep! "FIXME\|TODO"<CR>
-nnoremap <leader>F :grep! <C-r><C-w><CR>
+nnoremap <leader>A :lgrep! "FIXME\\|TODO"<CR>
+nnoremap <leader>F :lgrep! <C-r><C-w><CR>
 
 " tab navigation
 nnoremap <TAB> gt
