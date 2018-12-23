@@ -270,6 +270,12 @@ augroup TermExtra
 augroup end
 " }}}
 
+" Plugin: Eunuch {{{
+cabbrev rename Rename
+cabbrev move Move
+cabbrev mkdir Mkdir!
+" }}}
+
 " Plugin: Prettier {{{
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
