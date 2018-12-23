@@ -1,11 +1,3 @@
-set background=dark
-try
-  let g:gruvbox_italic=1
-  colorscheme gruvbox
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-endtry
-
 " Make it easier to to spot the current paren
 hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
 " Hilight the line number of the cursorline

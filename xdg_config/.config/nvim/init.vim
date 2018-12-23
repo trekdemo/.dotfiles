@@ -141,6 +141,9 @@ let g:clipboard = {
       \ }
 let mapleader = ","
 let maplocalleader = "\\"
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
 " }}}
 
 " Mappings: General {{{
