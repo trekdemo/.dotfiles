@@ -21,10 +21,6 @@ Plug 'Shougo/context_filetype.vim'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'tpope/vim-leiningen',     { 'for': 'clojure' }
-Plug 'tpope/vim-classpath',     { 'for': 'clojure' }
-Plug 'losingkeys/vim-niji',     { 'for': 'clojure' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
 Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
@@ -81,7 +77,6 @@ Plug 'jgdavey/vim-turbux'
 " Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-ragtag'
@@ -89,13 +84,11 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
 
 Plug 'justinmk/vim-gtfo'
 Plug 'justinmk/vim-sneak'
 Plug 'sjl/gundo.vim'
-Plug 'sjl/vitality.vim'
-
-Plug 'danro/rename.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
