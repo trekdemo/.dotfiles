@@ -12,5 +12,8 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
-" autocmd BufWritePre <buffer> call <SID>StripTrailingWhitespaces()
-autocmd BufWritePre * StripTrailingWhitespaces
+
+augroup plugin_whitespace
+  autocmd!
+  autocmd BufWritePre * StripTrailingWhitespaces
+augroup END
