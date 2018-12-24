@@ -50,8 +50,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
-Plug 'kana/vim-operator-user'
-
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
 
