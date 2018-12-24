@@ -33,14 +33,18 @@ Plug 'dag/vim-fish',            { 'for': 'fish' }
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'mhartington/nvim-typescript', {'for': 'typescript', 'do': './install.sh'}
 
-" Plug 'prettier/vim-prettier', {
-"   \ 'do': 'yarn install',
-"   \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
 
 " Completion
-" Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/echodoc.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
   Plug 'fishbullet/deoplete-ruby'
@@ -102,7 +106,7 @@ set number                              " Show linenumbers
 set scrolloff=5
 set sidescroll=1
 set sidescrolloff=10
-set nohidden                            " Modified buffers can't be hidden
+set hidden
 set splitright                          " New split window on the right
 set splitbelow                          " New split window on the bottom
 set tabstop=2
@@ -123,6 +127,8 @@ set foldmethod=syntax
 set foldlevel=999999
 set foldlevelstart=10
 set foldtext=folding#text()
+set completeopt=longest,menuone,preview,noselect
+set pumheight=10
 set clipboard+=unnamedplus
 let g:clipboard = {
       \   'name': 'myClipboard',
@@ -138,12 +144,12 @@ let g:clipboard = {
       \ }
 let mapleader = ","
 let maplocalleader = "\\"
-set background=dark
-let g:gruvbox_italic=1
-colorscheme gruvbox
 " }}}
 
 " Look & feel {{{
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
 " Make it easier to to spot the current paren
 hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
 " Hilight the line number of the cursorline
@@ -283,8 +289,7 @@ cnoremap <c-e> <end>
 augroup custom_autocommands
   autocmd!
   autocmd QuickFixCmdPost grep* cwindow
-  autocmd QuickFixCmdPost lgrep* lwindow
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+  autocmd QuickFixCmdPost l* lwindow
 augroup END
 " }}}
 
@@ -313,6 +318,43 @@ augroup TermExtra
 augroup end
 " }}}
 
+" Plugin: Deoplete {{{
+let g:deoplete#enable_at_startup = 1
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+" }}}
+
+" Plugin: LanguageClient {{{
+let g:LanguageClient_hoverPreview = 'Always'
+let g:LanguageClient_selectionUI = 'location-list'
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['tcp://127.0.0.1:7658'],
+    \ }
+let g:LanguageClient_rootMarkers = {
+    \ 'ruby': ['Gemfile', '.ruby-version'],
+    \ }
+
+function! LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
+    nnoremap <buffer> <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <buffer> <silent> <localleader>R :call LanguageClient_textDocument_references()()<CR>
+
+    setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+  endif
+endfunction
+
+augroup plugin_language_client
+  autocmd!
+  autocmd FileType * call LC_maps()
+  autocmd User LanguageClientStarted setlocal signcolumn=yes
+  autocmd User LanguageClientStopped setlocal signcolumn=auto
+augroup END
+" }}}
+
 " Plugin: Eunuch {{{
 cabbrev rename Rename
 cabbrev move Move
@@ -322,6 +364,11 @@ cabbrev mkdir Mkdir!
 " Plugin: Prettier {{{
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
+
+augroup custom_prettier
+  autocmd!
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+augroup END
 " }}}
 
 " Plugin: Fugitive {{{
