@@ -145,8 +145,7 @@ colorscheme gruvbox
 
 " Mappings: General {{{
 " Edit and source vimrc file
-nnoremap <leader>ve :vsplit $MYVIMRC<CR>
-nnoremap <leader>vs :source $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 
 nnoremap <leader><leader> :!
 
