@@ -395,10 +395,10 @@ noremap <C-p> :FZF<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-noremap <leader>b :Buffers <CR>
-noremap <leader>c :Commands <CR>
-noremap <leader>ta :Tags <CR>
-noremap <leader>h :Helptags <CR>
+noremap <leader>B :Buffers <CR>
+noremap <leader>C :Commands <CR>
+noremap <leader>T :Tags <CR>
+noremap <leader>H :Helptags <CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -432,7 +432,7 @@ nnoremap <LocalLeader>vz :VimuxZoomRunner<CR>
 nnoremap <LocalLeader>vi :VimuxInspectRunner<CR>
 vnoremap <LocalLeader>vs "vy :call VimuxSlime()<CR>
 nnoremap <LocalLeader>vs vip<LocalLeader>vs<CR>
-nnoremap <Leader>l :VimuxRunLastCommand<CR>
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " }}}
 
 " Plugin: neosnippet {{{
