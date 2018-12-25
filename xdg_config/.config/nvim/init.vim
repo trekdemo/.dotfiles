@@ -205,8 +205,8 @@ vnoremap <leader>s :%s/<c-r>//gg<left><left><left>
 " Remove selected hightlight
 noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
 
-" Easier linewise reselection
-nnoremap <leader>v V`]
+" Select last changed text (including pasted text)
+nnoremap gp `[v`]
 
 " tab openning and closing
 noremap <leader>tc :tabclose<CR>
