@@ -274,6 +274,9 @@ vnoremap <Space> za
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
 nnoremap zO zCzO
+
+nnoremap <leader>lo :lwindow<CR>
+nnoremap <leader>co :cwindow<CR>
 " }}}
 
 " Mappings: Command-line {{{
@@ -288,8 +291,8 @@ cnoremap <c-e> <end>
 " Open quickfix window when it's populated
 augroup custom_autocommands
   autocmd!
-  autocmd QuickFixCmdPost grep* cwindow
-  autocmd QuickFixCmdPost l* lwindow
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost    l* lwindow
 augroup END
 " }}}
 
