@@ -192,59 +192,8 @@ endfunction
 " }}}
 
 " Mappings: General {{{
-" Edit and source vimrc file
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-
-nnoremap <leader><leader> :!
-
-" Shorcut for quick substitution
-nnoremap <leader>s :%s//gg<left><left><left>
-vnoremap <leader>s :%s/<c-r>//gg<left><left><left>
-
-" Remove selected hightlight
-noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
-
 " Select last changed text (including pasted text)
 nnoremap gp `[v`]
-
-" tab openning and closing
-noremap <leader>tc :tabclose<CR>
-noremap <leader>tn :tabnew<CR>
-noremap <leader>to :tabonly<CR>
-noremap <leader>o :only<CR>
-
-" Shortcut for Gundo
-nnoremap <silent> <leader>u :GundoToggle<CR>
-
-" Quickly diffing to panes
-nnoremap <leader>dt :windo diffthis<CR>
-nnoremap <leader>du :windo diffupdate<CR>
-nnoremap <leader>do :windo diffoff<CR>
-
-" Comment out lines with Commentarney
-nmap <leader>/ <Plug>CommentaryLine
-xmap <leader>/ <Plug>Commentary
-omap <leader>/ <Plug>Commentary
-
-" Quickly search
-nnoremap <leader>A :lgrep! "FIXME\\|TODO"<CR>
-nnoremap <leader>F :lgrep! <C-r><C-w><CR>
-
-" tab navigation
-nnoremap <TAB> gt
-nnoremap <S-TAB> gT
-
-" Save with simpler keystroke
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <Esc>:w<CR>
-
-" Window resizing
-nnoremap <S-C-left> 5<c-w>>
-nnoremap <S-C-right> 5<c-w><
-nnoremap <S-C-up> 5<c-w>+
-nnoremap <S-C-down> 5<c-w>-
-nnoremap <C-e> 5<C-e>
-nnoremap <C-y> 5<C-y>
 
 " Don't move on *
 nnoremap * *Nzzzv
@@ -260,22 +209,75 @@ noremap L g_
 nnoremap k gk
 nnoremap j gj
 
+" Run commands
+nnoremap <leader><leader> :!
+
+" Edit and source vimrc file
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+
+" Open location-list and quickfix list
+nnoremap <leader>lo :lwindow<CR>
+nnoremap <leader>co :cwindow<CR>
+
+" Shorcut for quick substitution
+nnoremap <leader>s :%s//gg<left><left><left>
+vnoremap <leader>s :%s/<c-r>//gg<left><left><left>
+
+" Remove selected hightlight
+noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
+
+" tab openning and closing
+nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>to :tabonly<CR>
+nnoremap <leader>o :only<CR>
+
+" Shortcut for Gundo
+nnoremap <leader>u :GundoToggle<CR>
+
+" Quickly diffing to panes
+nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>du :windo diffupdate<CR>
+nnoremap <leader>do :windo diffoff<CR>
+
+" Comment out lines with Commentarney
+nmap <leader>/ <Plug>CommentaryLine
+xmap <leader>/ <Plug>Commentary
+omap <leader>/ <Plug>Commentary
+
+" Quickly search
+nnoremap <leader>A :lgrep! "FIXME\\|TODO"<CR>
+nnoremap <leader>F :lgrep! <C-r><C-w><CR>
+
+" Tab navigation
+nnoremap <TAB> gt
+nnoremap <S-TAB> gT
+
+" Save with simpler keystroke
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
+
+" Window resizing
+nnoremap <S-C-left> 5<c-w>>
+nnoremap <S-C-right> 5<c-w><
+nnoremap <S-C-up> 5<c-w>+
+nnoremap <S-C-down> 5<c-w>-
+
+" Scrolling
+nnoremap <C-e> 5<C-e>
+nnoremap <C-y> 5<C-y>
+
 " Quick filename completion
 inoremap <c-f> <c-x><c-f>
 " Upcase last word
 inoremap <C-u> <esc>gUiwea
+" }}}
 
+" Mappings: Folding {{{
 " Use ,z to "focus" the current fold.
-nnoremap <leader>z zMzvzz
+nnoremap zf zMzvzz
 " Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-
-nnoremap <leader>lo :lwindow<CR>
-nnoremap <leader>co :cwindow<CR>
+nnoremap zz zA
 " }}}
 
 " Mappings: Command-line {{{
@@ -393,7 +395,6 @@ nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 " }}}
 
 " Plugin: FZF {{{
-cabbrev maps Maps
 noremap <C-p> :FZF<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
