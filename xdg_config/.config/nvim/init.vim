@@ -105,7 +105,7 @@ set colorcolumn=+1                      " Display margin at 81
 set number                              " Show linenumbers
 set scrolloff=5
 set sidescroll=1
-set sidescrolloff=10
+set sidescrolloff=2
 set hidden                              " Edited files can be in hidden buffers
 set splitright                          " New split window on the right
 set splitbelow                          " New split window on the bottom
