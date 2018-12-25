@@ -123,7 +123,6 @@ set complete+=kspell
 set tags+=./.git/tags
 set cursorline
 set foldenable
-set foldmethod=syntax
 set foldlevel=999999
 set foldlevelstart=10
 set foldtext=folding#text()
