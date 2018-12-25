@@ -117,7 +117,7 @@ set diffopt+=iwhite                     " Ignore whitespace on diffs
 set virtualedit+=block                  " Allow to move the cursor everywhere,
 set list                                " Show invisible characters not just existing text
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
-set fillchars=diff:⣿,vert:│,eob:\
+set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob char
 set conceallevel=2 concealcursor=n      " Don't show hidden characters in normal mode
 set complete+=kspell
 set tags+=./.git/tags
