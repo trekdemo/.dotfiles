@@ -106,7 +106,7 @@ set number                              " Show linenumbers
 set scrolloff=5
 set sidescroll=1
 set sidescrolloff=10
-set hidden
+set hidden                              " Edited files can be in hidden buffers
 set splitright                          " New split window on the right
 set splitbelow                          " New split window on the bottom
 set tabstop=2
@@ -355,6 +355,10 @@ augroup plugin_language_client
   autocmd FileType * call LC_maps()
   autocmd User LanguageClientStarted setlocal signcolumn=yes
   autocmd User LanguageClientStopped setlocal signcolumn=auto
+
+  " Start Ruby LSP server (solargraph) in tmux pane
+  autocmd FileType ruby nnoremap <buffer> <localleader>tsg :call solargraph#startInTmux()<CR>:e<CR>
+  autocmd FileType ruby nnoremap <buffer> <localleader>ss :LanguageClientStop<CR>
 augroup END
 " }}}
 
