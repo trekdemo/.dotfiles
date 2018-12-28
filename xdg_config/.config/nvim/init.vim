@@ -418,8 +418,8 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 let g:turbux_runner = 'vimux'
 let g:no_turbux_mappings = 1
 let g:turbux_command_prefix = 'clear; bundle exec'
-noremap <leader>m <Plug>SendTestToTmux
-noremap <leader>M <Plug>SendFocusedTestToTmux
+nmap <leader>m <Plug>SendTestToTmux
+nmap <leader>M <Plug>SendFocusedTestToTmux
 " }}}
 
 " Plugin: Vimux {{{
@@ -431,12 +431,12 @@ endfunction
 
 " Helps to interact with tmux
 let g:VimuxUseNearestPane = 1
-nnoremap <LocalLeader>vp :VimuxPromptCommand<CR>
-nnoremap <LocalLeader>vc :VimuxCloseRunner<CR>
-nnoremap <LocalLeader>vz :VimuxZoomRunner<CR>
-nnoremap <LocalLeader>vi :VimuxInspectRunner<CR>
-vnoremap <LocalLeader>vs "vy :call VimuxSlime()<CR>
-nnoremap <LocalLeader>vs vip<LocalLeader>vs<CR>
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+nnoremap <Leader>vc :VimuxCloseRunner<CR>
+nnoremap <Leader>vz :VimuxZoomRunner<CR>
+nnoremap <Leader>vi :VimuxInspectRunner<CR>
+vnoremap <Leader>vs "vy :call VimuxSlime()<CR>
+nnoremap <Leader>vs vip<LocalLeader>vs<CR>
 nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " }}}
 
@@ -445,9 +445,9 @@ let g:neosnippet#snippets_directory = fnamemodify(expand("$MYVIMRC"), ":p:h") . 
 let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-inoremap <C-k>     <Plug>(neosnippet_expand_or_jump)
-snoremap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xnoremap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 cabbrev snipe NeoSnippetEdit
 " }}}
 
