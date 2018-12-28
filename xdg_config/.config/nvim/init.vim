@@ -179,6 +179,19 @@ let g:lightline = {
     \ }
     \ }
 
+let g:lightline.mode_map = {
+    \ 'n' : 'N',
+    \ 'i' : 'I',
+    \ 'R' : 'R',
+    \ 'v' : 'V',
+    \ 'V' : 'V-L',
+    \ "\<C-v>": 'V-B',
+    \ 'c' : 'C',
+    \ 's' : 'S',
+    \ 'S' : 'S-L',
+    \ "\<C-s>": 'S-B',
+    \ 't': 'T',
+    \ }
 " Component functions {{{
 function! LightLineFilename()
   return expand('%')
@@ -338,6 +351,9 @@ let g:LanguageClient_hoverPreview = 'Always'
 let g:LanguageClient_selectionUI = 'location-list'
 let g:LanguageClient_serverCommands = {
     \ 'ruby': ['tcp://127.0.0.1:7658'],
+    \ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
+    \ 'typescript': ['/usr/bin/javascript-typescript-stdio'],
+    \ 'typescript.tsx': ['/usr/bin/javascript-typescript-stdio'],
     \ }
 let g:LanguageClient_rootMarkers = {
     \ 'ruby': ['Gemfile', '.ruby-version'],
@@ -357,8 +373,8 @@ endfunction
 augroup plugin_language_client
   autocmd!
   autocmd FileType * call LC_maps()
-  autocmd User LanguageClientStarted setlocal signcolumn=yes
-  autocmd User LanguageClientStopped setlocal signcolumn=auto
+  autocmd User LanguageClientStarted echom '[LC] Started'
+  autocmd User LanguageClientStopped echom '[LC] Stopped'
 
   " Start Ruby LSP server (solargraph) in tmux pane
   autocmd FileType ruby nnoremap <buffer> <localleader>tsg :call solargraph#startInTmux()<CR>:e<CR>
