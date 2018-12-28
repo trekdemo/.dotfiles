@@ -65,8 +65,10 @@ elseif uname == 'Linux'
 endif
 Plug 'junegunn/fzf.vim'
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux'
+if exists('$TMUX')
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tmux-plugins/vim-tmux'
+endif
 
 " Running tests
 " https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
@@ -132,18 +134,20 @@ set foldtext=folding#text()
 set completeopt=longest,menuone,preview,noselect
 set pumheight=10
 set clipboard+=unnamedplus
-let g:clipboard = {
-      \   'name': 'myClipboard',
-      \   'copy': {
-      \      '+': 'tmux load-buffer -',
-      \      '*': 'tmux load-buffer -',
-      \    },
-      \   'paste': {
-      \      '+': 'tmux save-buffer -',
-      \      '*': 'tmux save-buffer -',
-      \   },
-      \   'cache_enabled': 1,
-      \ }
+if exists('$TMUX')
+  let g:clipboard = {
+        \   'name': 'myClipboard',
+        \   'copy': {
+        \      '+': 'tmux load-buffer -',
+        \      '*': 'tmux load-buffer -',
+        \    },
+        \   'paste': {
+        \      '+': 'tmux save-buffer -',
+        \      '*': 'tmux save-buffer -',
+        \   },
+        \   'cache_enabled': 1,
+        \ }
+endif
 let mapleader = ","
 let maplocalleader = "\\"
 " }}}
@@ -341,10 +345,17 @@ augroup END
 
 " Terminal {{{
 tnoremap <leader><Esc> <C-\><C-n>
-tnoremap <silent> <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
-tnoremap <silent> <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
-tnoremap <silent> <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
-tnoremap <silent> <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
+if exists('$TMUX')
+  tnoremap <silent> <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
+  tnoremap <silent> <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
+  tnoremap <silent> <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
+  tnoremap <silent> <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
+else
+  tnoremap <silent> <C-h> <C-\><C-n><C-w>h
+  tnoremap <silent> <C-j> <C-\><C-n><C-w>j
+  tnoremap <silent> <C-k> <C-\><C-n><C-w>k
+  tnoremap <silent> <C-l> <C-\><C-n><C-w>l
+endif
 
 augroup TermExtra
   autocmd!
