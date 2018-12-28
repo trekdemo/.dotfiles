@@ -293,7 +293,7 @@ inoremap <C-u> <esc>gUiwea
 " Use ,z to "focus" the current fold.
 nnoremap zf zMzvzz
 " Space to toggle folds.
-nnoremap zz zA
+nnoremap <Space> za
 " }}}
 
 " Mappings: Command-line {{{
