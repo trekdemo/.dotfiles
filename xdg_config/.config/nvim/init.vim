@@ -265,8 +265,8 @@ nnoremap <S-C-up> 5<c-w>+
 nnoremap <S-C-down> 5<c-w>-
 
 " Scrolling
-nnoremap <C-e> 5<C-e>
-nnoremap <C-y> 5<C-y>
+nnoremap <C-e> 2<C-y>
+nnoremap <C-d> 2<C-e>
 
 " Quick filename completion
 inoremap <c-f> <c-x><c-f>
