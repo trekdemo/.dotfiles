@@ -155,6 +155,8 @@ colorscheme gruvbox
 " Make it easier to to spot the current paren
 hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
 " Hilight the line number of the cursorline
+hi clear ColorColumn
+hi ColorColumn ctermbg=234 guibg=#1d2021
 hi clear CursorLine
 hi clear CursorLineNr
 hi CursorLineNr cterm=bold  ctermfg=Yellow
@@ -321,6 +323,17 @@ augroup folding_autocommands
   " folding when switching between windows.
   autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
   autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+augroup END
+" }}}
+
+" Autocommands: Focus {{{
+augroup focus_autocommands
+  autocmd!
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter *
+        \ set winhighlight= |
+        \ let &l:colorcolumn = ('+' . join(range(1,255), ',+'))
+  autocmd FocusLost,WinLeave *
+        \ set winhighlight=EndOfBuffer:ColorColumn,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn
 augroup END
 " }}}
 
