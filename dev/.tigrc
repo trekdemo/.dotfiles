@@ -21,4 +21,8 @@ set split-view-width = 75%
 # Number of lines to show around diff changes (diff)
 set diff-context = 6
 
+# Bindings
+# https://github.com/jonas/tig/wiki/Bindings
 bind status P !git push origin
+bind generic C !git commit --verbose
+bind generic K view-help
