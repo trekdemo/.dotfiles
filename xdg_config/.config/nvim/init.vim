@@ -18,6 +18,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'roman/golden-ratio'
 Plug 'vimwiki/vimwiki'
 Plug 'Shougo/context_filetype.vim'
+Plug 'mtth/scratch.vim'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -478,4 +479,9 @@ let g:golden_ratio_autocommand = 0
 " Try to follow conventions from vim-unimpaired
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
+" }}}
+"
+" Plugin: Scratch {{{
+let g:scratch_insert_autohide = 0
+let g:scratch_persistence_file = '/tmp/scratch.md'
 " }}}
