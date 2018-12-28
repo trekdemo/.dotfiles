@@ -157,6 +157,8 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
 " Hilight the line number of the cursorline
 hi clear ColorColumn
 hi ColorColumn ctermbg=234 guibg=#1d2021
+hi VertSplit ctermbg=234 guibg=#1d2021
+hi EndOfBuffer  ctermbg=234 guibg=#1d2021
 hi clear CursorLine
 hi clear CursorLineNr
 hi CursorLineNr cterm=bold  ctermfg=Yellow
@@ -333,7 +335,7 @@ augroup focus_autocommands
         \ set winhighlight= |
         \ let &l:colorcolumn = ('+' . join(range(1,255), ',+'))
   autocmd FocusLost,WinLeave *
-        \ set winhighlight=EndOfBuffer:ColorColumn,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn
+        \ set winhighlight=Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn
 augroup END
 " }}}
 
