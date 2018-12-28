@@ -379,6 +379,7 @@ augroup plugin_language_client
   " Start Ruby LSP server (solargraph) in tmux pane
   autocmd FileType ruby nnoremap <buffer> <localleader>tsg :call solargraph#startInTmux()<CR>:e<CR>
   autocmd FileType ruby nnoremap <buffer> <localleader>ss :LanguageClientStop<CR>
+  autocmd FileType ruby nnoremap <buffer> <localleader>ru :VimuxRunCommand('clear; bundle exec rubocop <C-r>%')<CR>
 augroup END
 " }}}
 
