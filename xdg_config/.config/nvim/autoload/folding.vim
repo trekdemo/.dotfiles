@@ -11,5 +11,5 @@ function! folding#text()
 
     let line = strpart(line, 0, windowwidth - 7 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount
 endfunction
