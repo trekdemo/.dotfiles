@@ -322,6 +322,8 @@ augroup custom_autocommands
   autocmd!
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost    l* lwindow
+
+  autocmd TermOpen * setlocal nonumber | startinsert
 augroup END
 " }}}
 
