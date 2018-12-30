@@ -19,6 +19,8 @@ Plug 'roman/golden-ratio'
 Plug 'vimwiki/vimwiki'
 Plug 'Shougo/context_filetype.vim'
 Plug 'mtth/scratch.vim'
+Plug 'junegunn/gv.vim' " Siple git log viewer
+" Plug 'gregsexton/gitv', {'on': ['Gitv']} " Full-blown gitk
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -444,7 +446,7 @@ nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gco :Gcheckout<cr>
 nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
-nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+noremap  <leader>gl :silent! GV<CR>
 " }}}
 
 " Plugin: FZF {{{
