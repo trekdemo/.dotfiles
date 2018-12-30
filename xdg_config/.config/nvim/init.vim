@@ -38,7 +38,9 @@ Plug 'mhartington/nvim-typescript', {'for': 'typescript', 'do': './install.sh'}
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'yaml', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss',
+  \         'json', 'graphql', 'markdown', 'yaml', 'html']
+  \ }
 
 " Completion
 Plug 'Shougo/echodoc.vim'
@@ -374,13 +376,18 @@ inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
 " Plugin: LanguageClient {{{
 let g:LanguageClient_hoverPreview = 'Always'
-let g:LanguageClient_selectionUI = 'location-list'
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['tcp://127.0.0.1:7658'],
-    \ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
-    \ 'typescript': ['/usr/bin/javascript-typescript-stdio'],
-    \ 'typescript.tsx': ['/usr/bin/javascript-typescript-stdio'],
-    \ }
+let g:LanguageClient_diagnosticsList = 'Location'
+let g:LanguageClient_serverCommands = {}
+
+let g:LanguageClient_serverCommands['ruby'] = ['tcp://127.0.0.1:7658']
+if executable('javascript-typescript-stdio')
+  let s:js=[exepath('javascript-typescript-stdio')]
+
+  let g:LanguageClient_serverCommands['javascript'] = s:js
+  let g:LanguageClient_serverCommands['typescript.tsx'] = s:js
+  let g:LanguageClient_serverCommands['typescript'] = s:js
+endif
+
 let g:LanguageClient_rootMarkers = {
     \ 'ruby': ['Gemfile', '.ruby-version'],
     \ }
