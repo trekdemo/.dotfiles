@@ -17,7 +17,7 @@ test -q open; and set BROWSER open
 set -gx EDITOR nvim
 set -gx RUBYOPT rubygems
 set -gx NODE_PATH "/usr/local/lib/node_modules"
-set -gx CDPATH ./ ~/projects $CDPATH
+test -d ~/projects; and set -gx CDPATH ./ ~/projects $CDPATH
 
 test -f ~/.local/env_vars.fish; and source ~/.local/env_vars.fish
 
