@@ -11,6 +11,7 @@ set -gx PATH ".git/safe/../../bin" $PATH
 set -gx PATH ".git/safe/../../node_modules/.bin/" $PATH
 
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden -g ""'
+set -gx FZF_DEFAULT_OPTS "--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 test -q open; and set BROWSER open
 set -gx EDITOR nvim
