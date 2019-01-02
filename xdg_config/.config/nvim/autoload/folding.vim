@@ -1,7 +1,7 @@
 function! folding#text()
     let line = getline(v:foldstart)
 
-    let nucolwidth = &fdc + &number * &numberwidth
+    let nucolwidth = &foldcolumn + &number * &numberwidth
     let windowwidth = winwidth(0) - nucolwidth - 3
     let foldedlinecount = v:foldend - v:foldstart
 
