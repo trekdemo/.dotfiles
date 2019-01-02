@@ -35,8 +35,8 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
 
 " Typescript
-Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
-Plug 'mhartington/nvim-typescript', {'for': 'typescript', 'do': './install.sh'}
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
+" Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'typescript.tsx'], 'do': './install.sh'}
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
