@@ -448,7 +448,9 @@ nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gco :Gcheckout<cr>
 nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
-noremap  <leader>gl :silent! GV<CR>
+noremap  <silent> <leader>gl :GV<CR>
+nnoremap <silent> <leader>dg :diffget<CR>
+nnoremap <silent> <leader>dp :diffput<CR>
 " }}}
 
 " Plugin: FZF {{{
