@@ -82,7 +82,7 @@ Plug 'benmills/vimux'
 Plug 'jgdavey/vim-turbux'
 
 " File checkkers/linters
-" Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
+Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -549,14 +549,13 @@ let g:go_highlight_build_constraints = 1
 " }}}
 
 " Plugin: NeoMake {{{
-" " au! BufWritePost * Neomake
-" call neomake#configure#automake('nrw', 1000)
-" " let g:neomake_open_list = 1
-" " let g:neomake_list_height = 5
+call neomake#configure#automake('rw', 750)
+" let g:neomake_open_list = 1
+" let g:neomake_list_height = 5
 
-" " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
-" let g:neomake_ruby_enabled_makers = []
-" let g:neomake_javascript_enabled_makers = ['eslint']
+" Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
+let g:neomake_ruby_enabled_makers = []
+let g:neomake_javascript_enabled_makers = ['eslint']
 " }}}
 
 " Plugin: GoldenRatio {{{
