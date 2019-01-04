@@ -24,4 +24,5 @@ Icon
 Procfile.local
 .DS_Store
 .tern-port
-.solargraph.yml
+/.solargraph.yml
+/bin/solargraph
