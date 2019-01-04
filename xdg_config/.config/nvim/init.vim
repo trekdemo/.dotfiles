@@ -22,7 +22,6 @@ Plug 'mtth/scratch.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer
 " Plug 'gregsexton/gitv', {'on': ['Gitv']} " Full-blown gitk
 
-Plug 'jtratner/vim-flavored-markdown'
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
@@ -567,17 +566,8 @@ let g:golden_ratio_autocommand = 0
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
 " }}}
-
-" Plugin: github-flavored-markdown {{{
-augroup ftplugin_markdown
-    au!
-    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-augroup END
-" }}}
-
+"
 " Plugin: Scratch {{{
 let g:scratch_insert_autohide = 0
-let g:scratch_height = 20
-let g:scratch_persistence_file = '~/scratch.md'
-let g:scratch_filetype = 'ghmarkdown'
+let g:scratch_persistence_file = '/tmp/scratch.md'
 " }}}
