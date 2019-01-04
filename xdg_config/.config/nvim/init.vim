@@ -569,5 +569,6 @@ nnoremap ]og :GoldenRatioToggle <CR>
 "
 " Plugin: Scratch {{{
 let g:scratch_insert_autohide = 0
-let g:scratch_persistence_file = '/tmp/scratch.md'
+let g:scratch_height = 20
+let g:scratch_persistence_file = '~/scratch.md'
 " }}}
