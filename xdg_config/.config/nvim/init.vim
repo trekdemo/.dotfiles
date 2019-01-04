@@ -247,9 +247,32 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>lo :lwindow<CR>
 nnoremap <leader>co :cwindow<CR>
 
+
+" Wrapping words/selections with (, [, {, ", ', ', ", }, ], )
+" Using vim-surround
+nmap <leader>( viwS(
+vmap <leader>( S(
+nmap <leader>) viwS)
+vmap <leader>) S)
+
+nmap <leader>[ viwS[
+vmap <leader>[ S[
+nmap <leader>] viwS]
+vmap <leader>] S]
+
+nmap <leader>{ viwS{
+vmap <leader>{ S{
+nmap <leader>} viwS}
+vmap <leader>} S}
+
+nmap <leader>" viwS"
+vmap <leader>" S"
+nmap <leader>' viwS'
+vmap <leader>' S'
+
 " Shorcut for quick substitution
-nnoremap <leader>s :%s//gg<left><left><left>
-vnoremap <leader>s :%s/<c-r>//gg<left><left><left>
+nnoremap <leader>s :%s//gc<left><left><left>
+vnoremap <leader>s :%s/<c-r>//gc<left><left><left>
 
 " Remove selected hightlight
 noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
@@ -380,10 +403,15 @@ inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
 " Plugin: LanguageClient {{{
 let g:LanguageClient_hoverPreview = 'Always'
-let g:LanguageClient_diagnosticsList = 'Location'
+let g:LanguageClient_diagnosticsList = 'Disabled'
 let g:LanguageClient_serverCommands = {}
 
-let g:LanguageClient_serverCommands['ruby'] = ['tcp://127.0.0.1:7658']
+if executable('solargraph')
+  " If I want to use solargraph I have to symlink it to the $PATH
+  " let g:LanguageClient_serverCommands['ruby'] = ['./bin/solargraph stdio']
+  let g:LanguageClient_serverCommands['ruby'] = ['tcp://127.0.0.1:7658']
+endif
+
 if executable('javascript-typescript-stdio')
   let s:js=[exepath('javascript-typescript-stdio')]
 
@@ -449,8 +477,8 @@ nnoremap <leader>gco :Gcheckout<cr>
 nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
 noremap  <silent> <leader>gl :GV<CR>
-nnoremap <silent> <leader>dg :diffget<CR>
-nnoremap <silent> <leader>dp :diffput<CR>
+noremap <silent> <leader>dg :diffget<CR>
+noremap <silent> <leader>dp :diffput<CR>
 " }}}
 
 " Plugin: FZF {{{
