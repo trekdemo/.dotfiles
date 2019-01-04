@@ -50,6 +50,7 @@
   fall = fetch --all --prune
   lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -30
   p = push
+  pf = push --force-with-lease
   s = status --short --branch
 
   branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
