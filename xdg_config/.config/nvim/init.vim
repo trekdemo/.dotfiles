@@ -406,22 +406,31 @@ inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
 " Plugin: LanguageClient {{{
 let g:LanguageClient_hoverPreview = 'Always'
+let g:LanguageClient_diagnosticsEnable = 1
 let g:LanguageClient_diagnosticsList = 'Disabled'
+let g:LanguageClient_selectionUI = 'fzf'
 let g:LanguageClient_serverCommands = {}
 
 if executable('solargraph')
   " If I want to use solargraph I have to symlink it to the $PATH
-  " let g:LanguageClient_serverCommands['ruby'] = ['./bin/solargraph stdio']
-  let g:LanguageClient_serverCommands['ruby'] = ['tcp://127.0.0.1:7658']
+  " let g:LanguageClient_serverCommands['ruby'] = ['tcp://127.0.0.1:7658']
+  let g:LanguageClient_serverCommands['ruby'] = [exepath('solargraph'), 'stdio']
 endif
 
-if executable('javascript-typescript-stdio')
-  let s:js=[exepath('javascript-typescript-stdio')]
+if executable('typescript-language-server')
+  let s:ts=[exepath('typescript-language-server'), '--stdio']
 
-  let g:LanguageClient_serverCommands['javascript'] = s:js
-  let g:LanguageClient_serverCommands['typescript.tsx'] = s:js
-  let g:LanguageClient_serverCommands['typescript'] = s:js
+  let g:LanguageClient_serverCommands['javascript'] = s:ts
+  let g:LanguageClient_serverCommands['typescript.tsx'] = s:ts
+  let g:LanguageClient_serverCommands['typescript'] = s:ts
 endif
+" if executable('javascript-typescript-stdio')
+"   let s:js=[exepath('javascript-typescript-stdio')]
+
+"   let g:LanguageClient_serverCommands['javascript'] = s:js
+"   let g:LanguageClient_serverCommands['typescript.tsx'] = s:js
+"   let g:LanguageClient_serverCommands['typescript'] = s:js
+" endif
 
 let g:LanguageClient_rootMarkers = {
     \ 'ruby': ['Gemfile', '.ruby-version'],
@@ -431,8 +440,8 @@ function! LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
     nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
     nnoremap <buffer> <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <buffer> <silent> <localleader>R :call LanguageClient_textDocument_references()()<CR>
+    nnoremap <buffer> <silent> <localleader>R :call LanguageClient_textDocument_references()<CR>
+    nnoremap <buffer> <silent> <localleader>C :call LanguageClient_contextMenu()<CR>
 
     setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
   endif
