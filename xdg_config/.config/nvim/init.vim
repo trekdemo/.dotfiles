@@ -561,7 +561,7 @@ let g:go_highlight_build_constraints = 1
 " }}}
 
 " Plugin: NeoMake {{{
-call neomake#configure#automake('rw', 750)
+call neomake#configure#automake('rw', 250)
 " let g:neomake_open_list = 1
 " let g:neomake_list_height = 5
 
