@@ -223,6 +223,9 @@ endfunction
 " Select last changed text (including pasted text)
 nnoremap gp `[v`]
 
+" Save and close the current buffer
+nnoremap zz :write\|bdelete<CR>
+
 " Don't move on *
 nnoremap * *Nzzzv
 " Keep search matches in the middle of the window and pulse the line when moving to them.
