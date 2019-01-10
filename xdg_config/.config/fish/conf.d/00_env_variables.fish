@@ -4,7 +4,6 @@ set -gx LC_ALL en_US.utf-8
 
 set -gx PATH "/usr/local/bin" $PATH
 test -d "$HOME/.cargo/bin"; and set -gx PATH "$HOME/.cargo/bin" $PATH
-test -d "$HOME/.rbenv/bin"; and set -gx PATH "$HOME/.rbenv/bin" $PATH
 test -d "$HOME/bin"; and set -gx PATH "$HOME/bin" $PATH
 test -d "$HOME/.local/bin"; and set -gx PATH "$HOME/.local/bin" $PATH
 set -gx PATH ".git/safe/../../bin" $PATH
