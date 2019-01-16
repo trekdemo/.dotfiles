@@ -577,9 +577,17 @@ let g:golden_ratio_autocommand = 0
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
 " }}}
-"
+
 " Plugin: Scratch {{{
 let g:scratch_insert_autohide = 0
 let g:scratch_height = 20
 let g:scratch_persistence_file = '~/scratch.md'
+" }}}
+
+" VimWiki {{{
+let g:vimwiki_list = [{
+      \   'path': '~/vimwiki/',
+      \   'syntax': 'markdown',
+      \   'ext': '.md'
+      \ }]
 " }}}
