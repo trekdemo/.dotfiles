@@ -41,7 +41,7 @@ Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss',
-  \         'json', 'graphql', 'markdown', 'yaml', 'html']
+  \         'json', 'graphql', 'yaml', 'html']
   \ }
 
 " Completion
@@ -472,7 +472,7 @@ let g:prettier#autoformat = 0
 
 augroup custom_prettier
   autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
 augroup END
 " }}}
 
