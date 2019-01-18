@@ -21,4 +21,3 @@ test -d ~/projects; and set -gx CDPATH ./ ~/projects $CDPATH
 test -f ~/.local/env_vars.fish; and source ~/.local/env_vars.fish
 
 eval (ssh-agent -c | grep -v echo)
-type -q rbenv; and eval (rbenv init -)

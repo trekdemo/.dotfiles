@@ -8,7 +8,7 @@ source $OMF_PATH/init.fish
 
 # virtual env wrappers for Python
 # eval (python -m virtualfish)
-if type -q rbenv
+if type --quiet rbenv
   status --is-interactive; and source (rbenv init -|psub)
 end
 
