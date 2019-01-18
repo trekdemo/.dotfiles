@@ -32,6 +32,7 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'reedes/vim-pencil',       { 'for': 'markdown' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
 
 " Typescript
@@ -127,7 +128,7 @@ set virtualedit+=block                  " Allow to move the cursor everywhere,
 set list                                " Show invisible characters not just existing text
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob char
-set conceallevel=2 concealcursor=n      " Don't show hidden characters in normal mode
+set conceallevel=3 concealcursor=c      " Don't show hidden characters in normal mode
 set complete+=kspell
 set tags+=./.git/tags
 set cursorline
@@ -179,7 +180,7 @@ let g:lightline = {
     \   'lineinfo': '%l:%v',
     \ },
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste', 'spell' ],
+    \   'left': [ [ 'mode', 'paste', 'spell', 'pencilmode' ],
     \             [ 'gitbranch' ],
     \             [ 'readonly', 'filename', 'modified' ] ],
     \   'right': [ [ 'lineinfo' ],
@@ -187,7 +188,8 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \    'filename': 'LightLineFilename',
-    \    'gitbranch': 'LightlineFugitive'
+    \    'gitbranch': 'LightlineFugitive',
+    \    'pencilmode': 'PencilMode'
     \ }
     \ }
 
@@ -590,4 +592,13 @@ let g:vimwiki_list = [{
       \   'syntax': 'markdown',
       \   'ext': '.md'
       \ }]
+" }}}
+
+" Plugin: Pencil {{{
+augroup pencil
+  autocmd!
+  autocmd FileType markdown call pencil#init({'wrap': 'hard', 'autoformat': 1})
+                        \ | setlocal noru nonu nornu
+  autocmd FileType text     call pencil#init()
+augroup END
 " }}}
