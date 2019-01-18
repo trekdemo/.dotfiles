@@ -128,7 +128,7 @@ set virtualedit+=block                  " Allow to move the cursor everywhere,
 set list                                " Show invisible characters not just existing text
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob char
-set conceallevel=3 concealcursor=c      " Don't show hidden characters in normal mode
+set conceallevel=3 concealcursor=nc     " Don't show hidden characters in normal mode
 set complete+=kspell
 set tags+=./.git/tags
 set cursorline
