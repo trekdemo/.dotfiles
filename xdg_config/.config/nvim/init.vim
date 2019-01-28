@@ -128,7 +128,7 @@ set virtualedit+=block                  " Allow to move the cursor everywhere,
 set list                                " Show invisible characters not just existing text
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob char
-set conceallevel=3 concealcursor=nc     " Don't show hidden characters in normal mode
+set conceallevel=2 concealcursor=nc     " Don't show hidden characters in normal mode
 set complete+=kspell
 set tags+=./.git/tags
 set cursorline
@@ -402,8 +402,8 @@ augroup end
 let g:deoplete#enable_at_startup = 1
 
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+imap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+imap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 " }}}
 
 " Plugin: LanguageClient {{{
@@ -592,6 +592,12 @@ let g:vimwiki_list = [{
       \   'syntax': 'markdown',
       \   'ext': '.md'
       \ }]
+
+augroup plugin_vimwiki
+  autocmd!
+  autocmd FileType vimwiki nnoremap <buffer> <leader>w<leader>p :VimwikiDiaryPrevDay<CR>
+  autocmd FileType vimwiki nnoremap <buffer> <leader>w<leader>n :VimwikiDiaryNextDay<CR>
+augroup END
 " }}}
 
 " Plugin: Pencil {{{
