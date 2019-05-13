@@ -1,8 +1,0 @@
-#!/usr/bin/fish
-
-function remote_username
-  basename (pwd) | sed -e 's/\-git//'
-end
-
-set -lx APP (remote_username)
-ssh "$APP@cw-dev"
