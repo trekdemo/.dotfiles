@@ -255,19 +255,19 @@ nnoremap <leader>co :cwindow<CR>
 
 " Wrapping words/selections with (, [, {, ", ', ', ", }, ], )
 " Using vim-surround
-nmap <leader>( viwS(
+nmap <leader>( viWS(
 vmap <leader>( S(
-nmap <leader>) viwS)
+nmap <leader>) viWS)
 vmap <leader>) S)
 
-nmap <leader>[ viwS[
+nmap <leader>[ viWS[
 vmap <leader>[ S[
-nmap <leader>] viwS]
+nmap <leader>] viWS]
 vmap <leader>] S]
 
-nmap <leader>{ viwS{
+nmap <leader>{ viWS{
 vmap <leader>{ S{
-nmap <leader>} viwS}
+nmap <leader>} viWS}
 vmap <leader>} S}
 
 nmap <leader>" viwS"
