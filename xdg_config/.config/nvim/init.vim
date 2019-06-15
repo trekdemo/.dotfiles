@@ -16,7 +16,6 @@ Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
 Plug 'roman/golden-ratio'
-Plug 'vimwiki/vimwiki'
 Plug 'Shougo/context_filetype.vim'
 Plug 'mtth/scratch.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer
@@ -585,20 +584,6 @@ nnoremap ]og :GoldenRatioToggle <CR>
 let g:scratch_insert_autohide = 0
 let g:scratch_height = 20
 let g:scratch_persistence_file = '~/scratch.md'
-" }}}
-
-" VimWiki {{{
-let g:vimwiki_list = [{
-      \   'path': '~/vimwiki/',
-      \   'syntax': 'markdown',
-      \   'ext': '.md'
-      \ }]
-
-augroup plugin_vimwiki
-  autocmd!
-  autocmd FileType vimwiki nnoremap <buffer> <leader>w<leader>p :VimwikiDiaryPrevDay<CR>
-  autocmd FileType vimwiki nnoremap <buffer> <leader>w<leader>n :VimwikiDiaryNextDay<CR>
-augroup END
 " }}}
 
 " Plugin: Pencil {{{
