@@ -16,6 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
 Plug 'roman/golden-ratio'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/context_filetype.vim'
 Plug 'mtth/scratch.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer
@@ -594,4 +595,11 @@ augroup pencil
   autocmd FileType markdown setlocal noru nonu nornu
   autocmd FileType text     call pencil#init()
 augroup END
+" }}}
+" Plugin: vim-indent-guides {{{
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+hi IndentGuidesOdd  ctermbg=234 guibg=#1d2021
+hi IndentGuidesEven ctermbg=234 guibg=#1d2021
 " }}}
