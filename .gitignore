@@ -8,6 +8,9 @@
 /xdg_config/.config/fish/conf.d/secrets.fish
 /xdg_config/.config/fish/fish_history
 /xdg_config/.config/fish/fishd.*
+/xdg_config/.config/fish/fisher-pkg/*
+!/xdg_config/.config/fish/fisher-pkg/fishfile
+/xdg_config/.config/fisher
 /xdg_config/.config/gcloud
 /xdg_config/.config/heroku
 /xdg_config/.config/hub
@@ -17,4 +20,3 @@
 /xdg_config/.config/nvim/plugged
 /xdg_config/.config/nvim/spell
 /xdg_config/.config/yarn/global
-/xdg_config/.config/coc/extensions/*.log
