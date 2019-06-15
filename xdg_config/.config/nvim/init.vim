@@ -169,8 +169,9 @@ hi ColorColumn ctermbg=234 guibg=#1d2021
 hi VertSplit ctermbg=234 guibg=#1d2021
 hi EndOfBuffer  ctermbg=234 guibg=#1d2021
 hi clear CursorLine
+hi CursorLine ctermbg=234 guibg=#1d2021
 hi clear CursorLineNr
-hi CursorLineNr cterm=bold  ctermfg=Yellow
+hi CursorLineNr cterm=bold ctermbg=234 ctermfg=Yellow guibg=#1d2021
 " Make the search highlights a bit less intrusive
 hi Search cterm=underline,bold ctermfg=Yellow
 
