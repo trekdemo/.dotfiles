@@ -5,7 +5,7 @@
 !/terminfo/.terminfo/src
 ^/tmux/.tmux/plugins/tpm
 /xdg_config/.config/configstore
-/xdg_config/.config/fish/conf.d/secrets.fish
+/xdg_config/.config/fish/fish_variables
 /xdg_config/.config/fish/fish_history
 /xdg_config/.config/fish/fishd.*
 /xdg_config/.config/fish/fisher-pkg/*
