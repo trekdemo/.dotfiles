@@ -1,0 +1,9 @@
+# Shortcuts
+alias g='git'
+alias b='bundle'
+alias dc='docker-compose'
+alias dm='docker-machine'
+alias o='open'
+alias v='nvim'
+alias vim='nvim'
+alias :q='exit'
