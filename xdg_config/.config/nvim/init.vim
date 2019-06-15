@@ -76,11 +76,11 @@ if exists('$TMUX')
 endif
 
 " Running tests
-" https://github.com/neovim/neovim/issues/2048#issuecomment-98307896
-Plug 'benmills/vimux'
-" Plug 'tpope/vim-dispatch'
-" Plug 'radenling/vim-dispatch-neovim'
-Plug 'jgdavey/vim-turbux'
+Plug 'janko/vim-test'
+" vim-test strategies
+  Plug 'benmills/vimux'
+  Plug 'tpope/vim-dispatch'
+
 
 " File checkkers/linters
 Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
@@ -514,13 +514,36 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 
-" Plugin: Trubux {{{
-" Turbo Ruby testing with tmux
-let g:turbux_runner = 'vimux'
-let g:no_turbux_mappings = 1
-let g:turbux_command_prefix = 'clear; bundle exec'
-nmap <leader>m <Plug>SendTestToTmux
-nmap <leader>M <Plug>SendFocusedTestToTmux
+" Plugin: vim-test {{{
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
+function! RunInBashTransform(cmd) abort
+  return "bash --login -c '".a:cmd."'"
+endfunction
+
+let g:test#custom_transformations = {
+  \ 'bash': function('RunInBashTransform'),
+  \ }
+let g:test#transformation = 'bash'
+let test#strategy = {
+  \ 'nearest': 'dispatch',
+  \ 'file':    'dispatch',
+  \ 'suite':   'dispatch',
+  \ }
+let test#ruby#rspec#options = '--format progress'
+" When Dispatch tries to recognize the compiler plugin it matches the command
+" with makeprg name. Some commands have prefixes that prevent the proper
+" matching.
+" }}}
+
+" Plugin: vim-dispatch {{{
+let g:dispatch_compilers = {
+  \ 'bash --login -c': ''
+  \ }
 " }}}
 
 " Plugin: Vimux {{{
