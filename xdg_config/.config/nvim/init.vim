@@ -459,7 +459,7 @@ augroup plugin_language_client
   " Start Ruby LSP server (solargraph) in tmux pane
   autocmd FileType ruby nnoremap <buffer> <localleader>tsg :call solargraph#startInTmux()<CR>:e<CR>
   autocmd FileType ruby nnoremap <buffer> <localleader>ss :LanguageClientStop<CR>
-  autocmd FileType ruby nnoremap <buffer> <localleader>ru :VimuxRunCommand('clear; bundle exec rubocop <C-r>%')<CR>
+  autocmd FileType ruby nnoremap <buffer> <localleader>ru :Dispatch rubocop<CR>
 augroup END
 " }}}
 
@@ -528,19 +528,19 @@ endfunction
 let g:test#custom_transformations = {
   \ 'bash': function('RunInBashTransform'),
   \ }
-let g:test#transformation = 'bash'
+" let g:test#transformation = 'bash'
 let test#strategy = {
   \ 'nearest': 'dispatch',
   \ 'file':    'dispatch',
   \ 'suite':   'dispatch',
   \ }
 let test#ruby#rspec#options = '--format progress'
-" When Dispatch tries to recognize the compiler plugin it matches the command
-" with makeprg name. Some commands have prefixes that prevent the proper
-" matching.
 " }}}
 
 " Plugin: vim-dispatch {{{
+" When Dispatch tries to recognize the compiler plugin it matches the command
+" with makeprg name. Some commands have prefixes that prevent the proper
+" matching.
 let g:dispatch_compilers = {
   \ 'bash --login -c ': '',
   \ }
@@ -592,7 +592,7 @@ call neomake#configure#automake('rw', 250)
 " let g:neomake_list_height = 5
 
 " Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
-let g:neomake_ruby_enabled_makers = []
+let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
 let g:neomake_javascript_enabled_makers = ['eslint']
 " }}}
 
