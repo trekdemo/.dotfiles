@@ -542,7 +542,7 @@ let test#ruby#rspec#options = '--format progress'
 
 " Plugin: vim-dispatch {{{
 let g:dispatch_compilers = {
-  \ 'bash --login -c': ''
+  \ 'bash --login -c ': '',
   \ }
 " }}}
 
