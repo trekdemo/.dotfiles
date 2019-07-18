@@ -86,6 +86,7 @@ Plug 'janko/vim-test'
 Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
 Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-ragtag'
