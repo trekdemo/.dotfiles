@@ -19,8 +19,8 @@ Plug 'roman/golden-ratio'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/context_filetype.vim'
 Plug 'mtth/scratch.vim'
-Plug 'junegunn/gv.vim' " Siple git log viewer
-" Plug 'gregsexton/gitv', {'on': ['Gitv']} " Full-blown gitk
+Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
+Plug 'fabi1cazenave/termopen.vim'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -626,4 +626,8 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 hi IndentGuidesOdd  ctermbg=234 guibg=#1d2021
 hi IndentGuidesEven ctermbg=234 guibg=#1d2021
+" }}}
+
+" Plugin: termopen {{{
+nmap <Leader>gt :call TermOpen('tig', 't')<CR>
 " }}}
