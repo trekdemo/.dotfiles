@@ -32,7 +32,6 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'reedes/vim-pencil',       { 'for': 'markdown' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
 
 " Typescript
@@ -182,7 +181,7 @@ let g:lightline = {
     \   'lineinfo': '%l:%v',
     \ },
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste', 'spell', 'pencilmode' ],
+    \   'left': [ [ 'mode', 'paste', 'spell' ],
     \             [ 'gitbranch' ],
     \             [ 'readonly', 'filename', 'modified' ] ],
     \   'right': [ [ 'lineinfo' ],
@@ -190,8 +189,7 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \    'filename': 'LightLineFilename',
-    \    'gitbranch': 'LightlineFugitive',
-    \    'pencilmode': 'PencilMode'
+    \    'gitbranch': 'LightlineFugitive'
     \ }
     \ }
 
@@ -611,15 +609,6 @@ let g:scratch_height = 20
 let g:scratch_persistence_file = '~/scratch.md'
 " }}}
 
-" Plugin: Pencil {{{
-augroup pencil
-  autocmd!
-  " autocmd FileType markdown call pencil#init({'wrap': 'hard', 'autoformat': 1})
-  "                       \ | setlocal noru nonu nornu
-  autocmd FileType markdown setlocal noru nonu nornu
-  autocmd FileType text     call pencil#init()
-augroup END
-" }}}
 " Plugin: vim-indent-guides {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
