@@ -12,7 +12,7 @@
   logallrefupdates = true
   ignorecase = true
   precomposeunicode = true
-  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+  pager = diff-highlight | less
 
 [color]
   ui = auto
