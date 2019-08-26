@@ -21,6 +21,7 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'mtth/scratch.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
+Plug 'junegunn/goyo.vim'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -619,4 +620,26 @@ hi IndentGuidesEven ctermbg=234 guibg=#1d2021
 
 " Plugin: termopen {{{
 nmap <Leader>gt :call TermOpen('tig', 't')<CR>
+" }}}
+
+" Plugin: Goyo {{{
+function! s:goyo_enter()
+  set nocursorline
+  call indent_guides#disable()
+  hi clear ColorColumn
+  hi clear VertSplit
+  hi clear EndOfBuffer
+endfunction
+
+function! s:goyo_leave()
+  set cursorline
+  call indent_guides#enable()
+  hi clear ColorColumn
+  hi ColorColumn ctermbg=234 guibg=#1d2021
+  hi VertSplit ctermbg=234 guibg=#1d2021
+  hi EndOfBuffer  ctermbg=234 guibg=#1d2021
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
