@@ -105,6 +105,7 @@ call plug#end()
 " }}}
 
 " Settings {{{
+set mouse=a
 set noshowmode
 set cmdheight=1
 set langmenu=en_US.UTF-8                " sets the language of the menu
