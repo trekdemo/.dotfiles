@@ -624,6 +624,7 @@ nmap <Leader>gt :call TermOpen('tig', 't')<CR>
 " }}}
 
 " Plugin: Goyo {{{
+let g:goyo_width = 100
 function! s:goyo_enter()
   set nocursorline
   call indent_guides#disable()
