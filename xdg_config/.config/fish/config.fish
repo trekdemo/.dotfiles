@@ -34,3 +34,7 @@ test -f ~/.local/env_vars.fish; and source ~/.local/env_vars.fish
 # The next line updates PATH for the Google Cloud SDK.
 test -f '/Users/gergosulymosi/Downloads/google-cloud-sdk/path.fish.inc'
   and source '/Users/gergosulymosi/Downloads/google-cloud-sdk/path.fish.inc'
+
+# Setup prompt
+# https://starship.rs/config/
+eval (starship init fish)
