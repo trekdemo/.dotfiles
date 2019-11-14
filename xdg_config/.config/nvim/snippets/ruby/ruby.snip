@@ -1,3 +1,11 @@
 snippet attr_reader
 alias ar
   attr_reader :${0:TARGET}
+
+snippet rubocop:disable
+alias rbd
+  # rubocop:disable ${0:TARGET}
+
+snippet rubocop:enable
+alias rbe
+  # rubocop:enable ${0:TARGET}
