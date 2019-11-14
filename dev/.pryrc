@@ -9,7 +9,11 @@ Pry.config.editor = "nvim"
 
 
 begin
-  Pry.commands.alias_command 'l=', 'whereami'
+  Pry.commands.alias_command 'w', 'whereami'
+  Pry::Commands.command(/^$/, "clear screen and show current place") do
+    _pry_.run_command '.clear'
+    _pry_.run_command 'whereami'
+  end
 rescue
 end
 
