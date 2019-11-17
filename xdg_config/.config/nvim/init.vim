@@ -22,6 +22,7 @@ Plug 'mtth/scratch.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -32,8 +33,12 @@ Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'rhysd/vim-gfm-syntax',    { 'for': 'markdown' }
+Plug 'junegunn/limelight.vim',  { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'davidoc/taskpaper.vim'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
@@ -53,12 +58,14 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-  Plug 'fishbullet/deoplete-ruby'
+  " Plug 'fishbullet/deoplete-ruby'
   Plug 'ponko2/deoplete-fish'
   Plug 'Shougo/neco-vim'
+  Plug 'fszymanski/deoplete-emoji'
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'violetyk/neosnippet-rails'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
@@ -132,7 +139,6 @@ set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob char
 set conceallevel=2 concealcursor=nc     " Don't show hidden characters in normal mode
 set complete+=kspell
-set tags+=./.git/tags
 set cursorline
 set foldenable
 set foldlevel=999999
@@ -352,6 +358,8 @@ augroup custom_autocommands
   autocmd!
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost    l* lwindow
+  " Open quickfix always on the bottom
+  autocmd FileType qf wincmd J
 
   autocmd TermOpen * setlocal nonumber | startinsert
 augroup END
@@ -402,6 +410,8 @@ augroup end
 
 " Plugin: Deoplete {{{
 let g:deoplete#enable_at_startup = 1
+" Insert the actual emoji
+call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 
 " <C-h>, <BS>: close popup and delete backword char.
 imap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
@@ -460,7 +470,7 @@ augroup plugin_language_client
   " Start Ruby LSP server (solargraph) in tmux pane
   autocmd FileType ruby nnoremap <buffer> <localleader>tsg :call solargraph#startInTmux()<CR>:e<CR>
   autocmd FileType ruby nnoremap <buffer> <localleader>ss :LanguageClientStop<CR>
-  autocmd FileType ruby nnoremap <buffer> <localleader>ru :Dispatch rubocop<CR>
+  autocmd FileType ruby nnoremap <buffer> <localleader>ru :Dispatch bundle exec rubocop<CR>
 augroup END
 " }}}
 
@@ -499,6 +509,13 @@ noremap <silent> <leader>dp :diffput<CR>
 
 " Plugin: FZF {{{
 noremap <C-p> :FZF<CR>
+noremap <C-n> :FZF --no-sort --inline-info ~/Documents/Notable/notes<CR>
+" noremap <C-n> :call fzf#run(fzf#wrap({
+"       \   'source': 'ls ~/Documents/Notable/notes'
+"       \ , 'sink': 'vsp'
+"       \ , 'dir': '~/Documents/Notable/notes'
+"       \ , 'down': '25%'
+"       \ }))<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
@@ -516,11 +533,17 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 
 " Plugin: vim-test {{{
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
+
+nmap t<C-n> :TestNearest<CR>
+nmap t<C-f> :TestFile<CR>
+nmap t<C-s> :TestSuite<CR>
+nmap t<S-n> :TestNearest -strategy=vimux<CR>
+nmap t<S-f> :TestFile -strategy=vimux<CR>
+nmap t<S-s> :TestSuite -strategy=vimux<CR>
+
+cabbrev svimux -strategy=vimux
 
 function! RunInBashTransform(cmd) abort
   return "bash --login -c '".a:cmd."'"
@@ -644,4 +667,31 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" }}}
+
+" Plugin: Markdown {{{
+let g:markdown_fenced_languages = ['yaml', 'ruby', 'json', 'sh', 'javascript']
+augroup markdown_settings
+  autocmd!
+  autocmd  FileType markdown setlocal wrap linebreak breakindent
+  autocmd  FileType markdown setlocal formatoptions=ln
+augroup END
+" }}}
+
+" Plugin: Limelight {{{
+" TODO: Fix the colors and soft wrapping
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
+" }}}
+
+" Plugin: Gutentags {{{
+let g:gutentags_ctags_exclude = ['vendor/*', 'tmp/*', 'log/*', 'coverage/*', 'doc/*']
 " }}}
