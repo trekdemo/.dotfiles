@@ -3,3 +3,5 @@ jethrokuan/fzf
 franciscolourenco/done
 oh-my-fish/plugin-rvm
 oh-my-fish/plugin-osx
+evanlucas/fish-kubectl-completions
+aliz-ai/google-cloud-sdk-fish-completion
