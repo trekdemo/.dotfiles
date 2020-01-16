@@ -1,0 +1,16 @@
+#!/bin/sh
+
+BASE=$1
+LOCAL=$2
+REMOTE=$3
+MERGED=$4
+echo
+echo "BASE=$BASE"
+echo "LOCAL=$LOCAL"
+echo "REMOTE=$REMOTE"
+echo "MERGED=$MERGED"
+echo "nvim -d $@ -c 'wincmd w' -c 'wincmd J'"
+echo
+
+nvim -d $@ -c 'wincmd w' -c 'wincmd J'
+

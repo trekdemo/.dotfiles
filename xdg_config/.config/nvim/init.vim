@@ -1,4 +1,5 @@
 set shell=/bin/bash
+let g:neoterm_shell='/usr/local/bin/fish'
 
 let uname = substitute(system('uname'), '\n', '', '')
 if uname == 'Darwin'
@@ -16,11 +17,11 @@ Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
 Plug 'roman/golden-ratio'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/context_filetype.vim'
 Plug 'mtth/scratch.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
+Plug 'kassio/neoterm'
 Plug 'junegunn/goyo.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
@@ -34,15 +35,14 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'rhysd/vim-gfm-syntax',    { 'for': 'markdown' }
 Plug 'junegunn/limelight.vim',  { 'for': 'markdown' }
+Plug 'slim-template/vim-slim',  { 'for': 'slim' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'davidoc/taskpaper.vim'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
-" Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'typescript.tsx'], 'do': './install.sh'}
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -58,7 +58,6 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-  " Plug 'fishbullet/deoplete-ruby'
   Plug 'ponko2/deoplete-fish'
   Plug 'Shougo/neco-vim'
   Plug 'fszymanski/deoplete-emoji'
@@ -87,6 +86,7 @@ Plug 'janko/vim-test'
 " vim-test strategies
   Plug 'benmills/vimux'
   Plug 'tpope/vim-dispatch'
+  Plug 'radenling/vim-dispatch-neovim'
 
 
 " File checkkers/linters
@@ -105,7 +105,6 @@ Plug 'tpope/vim-eunuch'
 
 Plug 'justinmk/vim-gtfo'
 Plug 'justinmk/vim-sneak'
-Plug 'sjl/gundo.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -124,6 +123,7 @@ set scrolloff=5
 set sidescroll=1
 set sidescrolloff=2
 set hidden                              " Edited files can be in hidden buffers
+" set bufhidden=hide
 set splitright                          " New split window on the right
 set splitbelow                          " New split window on the bottom
 set tabstop=2
@@ -296,9 +296,6 @@ nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>to :tabonly<CR>
 nnoremap <leader>o :only<CR>
 
-" Shortcut for Gundo
-nnoremap <leader>u :GundoToggle<CR>
-
 " Quickly diffing to panes
 nnoremap <leader>dt :windo diffthis<CR>
 nnoremap <leader>du :windo diffupdate<CR>
@@ -311,7 +308,7 @@ omap <leader>/ <Plug>Commentary
 
 " Quickly search
 nnoremap <leader>A :lgrep! "FIXME\\|TODO"<CR>
-nnoremap <leader>F :lgrep! <C-r><C-w><CR>
+nnoremap <leader>F :grep! <C-r><C-w><CR>
 
 " Tab navigation
 nnoremap <TAB> gt
@@ -360,8 +357,6 @@ augroup custom_autocommands
   autocmd QuickFixCmdPost    l* lwindow
   " Open quickfix always on the bottom
   autocmd FileType qf wincmd J
-
-  autocmd TermOpen * setlocal nonumber | startinsert
 augroup END
 " }}}
 
@@ -388,23 +383,13 @@ augroup END
 " }}}
 
 " Terminal {{{
-tnoremap <leader><Esc> <C-\><C-n>
-if exists('$TMUX')
-  tnoremap <silent> <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
-  tnoremap <silent> <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
-  tnoremap <silent> <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
-  tnoremap <silent> <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
-else
-  tnoremap <silent> <C-h> <C-\><C-n><C-w>h
-  tnoremap <silent> <C-j> <C-\><C-n><C-w>j
-  tnoremap <silent> <C-k> <C-\><C-n><C-w>k
-  tnoremap <silent> <C-l> <C-\><C-n><C-w>l
-endif
-
 augroup TermExtra
   autocmd!
-  autocmd BufEnter term://* setlocal nonumber
-  autocmd BufEnter term://* start!
+  autocmd TermOpen * setlocal nonumber
+  " autocmd BufEnter term://* setlocal nonumber
+  " autocmd BufEnter term://* start!
+  autocmd FileType neoterm tnoremap <silent> <buffer> <leader><Esc> <C-\><C-N>
+  autocmd FileType neoterm nmap <silent> <buffer> q :quit!<CR>
 augroup end
 " }}}
 
@@ -530,6 +515,40 @@ imap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
+
+  function! FloatingFZF()
+    let buf = nvim_create_buf(v:false, v:true)
+
+    " here be dragoons
+    let height = float2nr(&lines / 2)
+    let width = float2nr(&columns / 2)
+    let opts = {
+          \ 'relative': 'editor',
+          \ 'row': float2nr((&lines - height) / 2),
+          \ 'col': float2nr((&columns - width) / 2),
+          \ 'width': width,
+          \ 'height': height,
+          \ 'style': 'minimal'
+          \ }
+
+    let win = nvim_open_win(buf, v:true, opts)
+   " uncomment this if you want a normal background color for the fzf window
+    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+    " call setwinvar(win, '&winhl', 'NormalFloat:Pmenu')
+
+  " this is to remove all line numbers and so on from the window
+    setlocal
+          \ buftype=nofile
+          \ nobuflisted
+          \ bufhidden=hide
+  endfunction
+
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
+
 " }}}
 
 " Plugin: vim-test {{{
@@ -542,8 +561,6 @@ nmap t<C-s> :TestSuite<CR>
 nmap t<S-n> :TestNearest -strategy=vimux<CR>
 nmap t<S-f> :TestFile -strategy=vimux<CR>
 nmap t<S-s> :TestSuite -strategy=vimux<CR>
-
-cabbrev svimux -strategy=vimux
 
 function! RunInBashTransform(cmd) abort
   return "bash --login -c '".a:cmd."'"

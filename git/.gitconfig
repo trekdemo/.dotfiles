@@ -2,7 +2,6 @@
   name = Gergő Sulymosi
   email = gergo.sulymosi@gmail.com
 [core]
-  editor = 'nvim'
   excludesfile = ~/.gitignore-global
   autocrlf = input
   quotepath = false
@@ -30,10 +29,17 @@
   newHighlight = "green bold 22"
 
 [merge]
+  tool = nvimdiff
   ff = only
   # I pretty much never mean to do a real merge, since I use a rebase workflow.
   # Note: this global option applies to all merges, including those done during a git pull
   # https://git-scm.com/docs/git-config#git-config-mergeff
+
+[mergetool]
+  keepBackup = false
+
+[mergetool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [branch]
   autosetuprebase = always
@@ -87,9 +93,10 @@
 [pull]
   ff = only
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge --skip %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
   required = true
+	process = git-lfs filter-process
 [credential "https://github.com"]
 	username = trekdemo
 [commit]

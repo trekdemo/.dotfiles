@@ -10,8 +10,14 @@ end
 
 # ENV variables
 type -q open; and set -gx BROWSER open
-type -q nvim; and set -gx VISUAL nvim
+
+if test -z "$NVIM_LISTEN_ADDRESS"
+  set -gx VISUAL nvim
+else
+  set -gx VISUAL "nvr -cc split --remote-wait +'setlocal bufhidden=wipe'"
+end
 set -gx EDITOR $VISUAL
+
 set -gx TZ '/usr/share/zoneinfo/Europe/Amsterdam'
 set -gx LANG en_US.utf-8
 set -gx LC_ALL en_US.utf-8
