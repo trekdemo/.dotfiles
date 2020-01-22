@@ -20,11 +20,11 @@ if status --is-interactive
   abbr --add --global gfp 'git push --force-with-lease'
 
   # Quick edits
-  abbr --add --global ea $VISUAL ~/.config/fish/conf.d/aliases.fish
-  abbr --add --global ef $VISUAL ~/.config/fish/conf.d
-  abbr --add --global ev $VISUAL ~/.config/nvim/init.vim
-  abbr --add --global eg $VISUAL ~/.gitconfig
-  abbr --add --global et $VISUAL ~/.tmux.conf
-  abbr --add --global es $VISUAL ~/.ssh/config
+  abbr --add --global ea edit ~/.config/fish/conf.d/aliases.fish
+  abbr --add --global ef edit ~/.config/fish/conf.d
+  abbr --add --global ev edit ~/.config/nvim/init.vim
+  abbr --add --global eg edit ~/.gitconfig
+  abbr --add --global et edit ~/.tmux.conf
+  abbr --add --global es edit ~/.ssh/config
   abbr --add --global eh sudo $VISUAL /etc/hosts
 end
