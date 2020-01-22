@@ -386,7 +386,7 @@ augroup END
 " Terminal {{{
 augroup TermExtra
   autocmd!
-  autocmd TermOpen * setlocal nonumber
+  autocmd TermOpen * setlocal nonumber scrolloff=0
   " autocmd BufEnter term://* setlocal nonumber
   " autocmd BufEnter term://* start!
   autocmd FileType neoterm tnoremap <silent> <buffer> <leader><Esc> <C-\><C-N>
