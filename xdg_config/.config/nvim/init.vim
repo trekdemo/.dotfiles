@@ -166,6 +166,7 @@ let maplocalleader = "\\"
 " }}}
 
 " Look & feel {{{
+set termguicolors
 set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
