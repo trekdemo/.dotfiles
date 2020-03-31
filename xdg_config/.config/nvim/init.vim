@@ -1,24 +1,16 @@
 set shell=/bin/bash
 let g:neoterm_shell='/usr/local/bin/fish'
-
-let uname = substitute(system('uname'), '\n', '', '')
-if uname == 'Darwin'
-  let g:python_host_prog = '/usr/local/bin/python'
-  let g:python3_host_prog = '/usr/local/bin/python3'
-elseif uname == 'Linux'
-  let g:python_host_prog = '/usr/bin/python'
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
+let g:python3_host_prog = '/usr/bin/python3'
 
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'morhetz/gruvbox'
+Plug 'reedes/vim-colors-pencil'
 Plug 'itchyny/lightline.vim'
 
 Plug 'roman/golden-ratio'
 Plug 'Shougo/context_filetype.vim'
-Plug 'mtth/scratch.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
 Plug 'kassio/neoterm'
@@ -35,11 +27,9 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
+Plug 'chr4/nginx.vim'
 Plug 'rhysd/vim-gfm-syntax',    { 'for': 'markdown' }
-Plug 'junegunn/limelight.vim',  { 'for': 'markdown' }
-Plug 'slim-template/vim-slim',  { 'for': 'slim' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'davidoc/taskpaper.vim'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
@@ -69,6 +59,7 @@ Plug 'violetyk/neosnippet-rails'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
 
+let uname = substitute(system('uname'), '\n', '', '')
 if uname == 'Darwin'
   Plug '/usr/local/opt/fzf'
 elseif uname == 'Linux'
@@ -104,7 +95,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 
 Plug 'justinmk/vim-gtfo'
-Plug 'justinmk/vim-sneak'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -166,26 +156,10 @@ let maplocalleader = "\\"
 " }}}
 
 " Look & feel {{{
-set termguicolors
-set background=dark
-let g:gruvbox_italic=1
-colorscheme gruvbox
-" Make it easier to to spot the current paren
-hi MatchParen cterm=bold ctermbg=none ctermfg=yellow
-" Hilight the line number of the cursorline
-hi clear ColorColumn
-hi ColorColumn ctermbg=234 guibg=#1d2021
-hi VertSplit ctermbg=234 guibg=#1d2021
-hi EndOfBuffer  ctermbg=234 guibg=#1d2021
-hi clear CursorLine
-hi CursorLine ctermbg=234 guibg=#1d2021
-hi clear CursorLineNr
-hi CursorLineNr cterm=bold ctermbg=234 ctermfg=Yellow guibg=#1d2021
-" Make the search highlights a bit less intrusive
-hi Search cterm=underline,bold ctermfg=Yellow
+call colors#init()
 
 let g:lightline = {
-    \ 'colorscheme': 'gruvbox',
+    \ 'colorscheme': colors#lightlineTheme(),
     \ 'component': {
     \   'lineinfo': '%l:%v',
     \ },
@@ -261,7 +235,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>lo :lwindow<CR>
 nnoremap <leader>co :cwindow<CR>
 
-
 " Wrapping words/selections with (, [, {, ", ', ', ", }, ], )
 " Using vim-surround
 nmap <leader>( viWS(
@@ -291,11 +264,16 @@ vnoremap <leader>s :%s/<c-r>//gc<left><left><left>
 " Remove selected hightlight
 noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
 
-" tab openning and closing
+" Tab openning and closing
 nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>to :tabonly<CR>
 nnoremap <leader>o :only<CR>
+
+" Window splitting and closing
+nnoremap ss :split<CR>
+nnoremap sv :vsplit<CR>
+nnoremap sc :write<CR>:close<CR>
 
 " Quickly diffing to panes
 nnoremap <leader>dt :windo diffthis<CR>
@@ -320,10 +298,10 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
 " Window resizing
-nnoremap <S-C-left> 5<c-w>>
-nnoremap <S-C-right> 5<c-w><
-nnoremap <S-C-up> 5<c-w>+
-nnoremap <S-C-down> 5<c-w>-
+nnoremap <C-left> 5<c-w>>
+nnoremap <C-right> 5<c-w><
+nnoremap <C-up> 5<c-w>+
+nnoremap <C-down> 5<c-w>-
 
 " Scrolling
 nnoremap <C-e> 2<C-y>
@@ -358,6 +336,7 @@ augroup custom_autocommands
   autocmd QuickFixCmdPost    l* lwindow
   " Open quickfix always on the bottom
   autocmd FileType qf wincmd J
+  autocmd FileType qf setlocal wrap
 augroup END
 " }}}
 
@@ -383,16 +362,43 @@ augroup focus_autocommands
 augroup END
 " }}}
 
+" Plugin: termopen {{{
+nmap <Leader>gt :call TermOpen('tig', 't')<CR>
+nmap <Leader>r :call TermOpenRanger()<CR>
+" }}}
+
 " Terminal {{{
+let g:neoterm_default_mod = 'vertical'
+let g:neoterm_autojump = 1
+let g:neoterm_autoinsert = 0
+
 augroup TermExtra
   autocmd!
   autocmd TermOpen * setlocal nonumber scrolloff=0
-  " autocmd BufEnter term://* setlocal nonumber
-  " autocmd BufEnter term://* start!
-  autocmd FileType neoterm tnoremap <silent> <buffer> <leader><Esc> <C-\><C-N>
   autocmd FileType neoterm nmap <silent> <buffer> q :quit!<CR>
 augroup end
+
+
+" Use gx{text-object} in normal mode
+nmap gr <Plug>(neoterm-repl-send)
+" Send selected contents in visual mode.
+xmap gr <Plug>(neoterm-repl-send)
+
+" Toggle neoterm pane
+nmap <localleader>vv :Ttoggle<CR>
+tmap <localleader>vv <c-\><c-n>:Ttoggle<CR>
+
+" Mappings: Navigation {{{
+tnoremap <C-h> <C-\><C-n><C-w><C-h>
+tnoremap <C-j> <C-\><C-n><C-w><C-j>
+tnoremap <C-k> <C-\><C-n><C-w><C-k>
+" I use <C-l> too much to clear the terminal
+" tnoremap <C-l> <C-\><C-n><C-l>
+
+tnoremap <C-u> <C-\><C-n><C-u>
+tnoremap <C-d> <C-\><C-n><C-d>
 " }}}
+
 
 " Plugin: Deoplete {{{
 let g:deoplete#enable_at_startup = 1
@@ -454,7 +460,6 @@ augroup plugin_language_client
   autocmd User LanguageClientStopped echom '[LC] Stopped'
 
   " Start Ruby LSP server (solargraph) in tmux pane
-  autocmd FileType ruby nnoremap <buffer> <localleader>tsg :call solargraph#startInTmux()<CR>:e<CR>
   autocmd FileType ruby nnoremap <buffer> <localleader>ss :LanguageClientStop<CR>
   autocmd FileType ruby nnoremap <buffer> <localleader>ru :Dispatch bundle exec rubocop<CR>
 augroup END
@@ -488,26 +493,21 @@ nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gco :Gcheckout<cr>
 nnoremap <leader>gci :Gcommit<cr>
 nnoremap <leader>gr :Gremove<cr>
-noremap  <silent> <leader>gl :GV<CR>
+noremap <silent> <leader>gl :GV<CR>
 noremap <silent> <leader>dg :diffget<CR>
 noremap <silent> <leader>dp :diffput<CR>
 " }}}
 
 " Plugin: FZF {{{
 noremap <C-p> :FZF<CR>
-noremap <C-n> :FZF --no-sort --inline-info ~/Documents/Notable/notes<CR>
-" noremap <C-n> :call fzf#run(fzf#wrap({
-"       \   'source': 'ls ~/Documents/Notable/notes'
-"       \ , 'sink': 'vsp'
-"       \ , 'dir': '~/Documents/Notable/notes'
-"       \ , 'down': '25%'
-"       \ }))<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 noremap <leader>B :Buffers <CR>
+noremap <C-b> :Buffers <CR>
 noremap <leader>C :Commands <CR>
 noremap <leader>T :Tags <CR>
+noremap <localleader>t :BTags <CR>
 noremap <leader>H :Helptags <CR>
 
 " Insert mode completion
@@ -549,6 +549,54 @@ if has('nvim')
 
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 endif
+
+" ------------------------------------------------------------------------------
+function! s:align_lists(lists)
+  let maxes = {}
+  for list in a:lists
+    let i = 0
+    while i < len(list)
+      let maxes[i] = max([get(maxes, i, 0), len(list[i])])
+      let i += 1
+    endwhile
+  endfor
+  for list in a:lists
+    call map(list, "printf('%-'.maxes[v:key].'s', v:val)")
+  endfor
+  return a:lists
+endfunction
+
+function! s:btags_source()
+  let lines = map(split(system(printf(
+    \ 'ctags -f - --sort=no --excmd=number --language-force=%s %s',
+    \ &filetype, expand('%:S'))), "\n"),
+    \ 'split(v:val, "\t")')
+  if v:shell_error
+    throw 'failed to extract tags'
+  endif
+  return map(s:align_lists(lines), 'join(v:val, "\t")')
+endfunction
+
+function! s:btags_sink(line)
+  execute split(a:line, "\t")[2]
+endfunction
+
+function! s:btags()
+  try
+    call fzf#run({
+    \ 'source':  s:btags_source(),
+    \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+    \ 'right':    '30%',
+    \ 'sink':    function('s:btags_sink')})
+  catch
+    echohl WarningMsg
+    echom v:exception
+    echohl None
+  endtry
+endfunction
+
+command! BTags call s:btags()
+" ------------------------------------------------------------------------------
 
 " }}}
 
@@ -646,24 +694,6 @@ nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
 " }}}
 
-" Plugin: Scratch {{{
-let g:scratch_insert_autohide = 0
-let g:scratch_height = 20
-let g:scratch_persistence_file = '~/scratch.md'
-" }}}
-
-" Plugin: vim-indent-guides {{{
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-hi IndentGuidesOdd  ctermbg=234 guibg=#1d2021
-hi IndentGuidesEven ctermbg=234 guibg=#1d2021
-" }}}
-
-" Plugin: termopen {{{
-nmap <Leader>gt :call TermOpen('tig', 't')<CR>
-" }}}
-
 " Plugin: Goyo {{{
 let g:goyo_width = 100
 function! s:goyo_enter()
@@ -694,20 +724,6 @@ augroup markdown_settings
   autocmd  FileType markdown setlocal wrap linebreak breakindent
   autocmd  FileType markdown setlocal formatoptions=ln
 augroup END
-" }}}
-
-" Plugin: Limelight {{{
-" TODO: Fix the colors and soft wrapping
-" Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-
-" Color name (:help gui-colors) or RGB color
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
-
-" autocmd! User GoyoEnter Limelight
-" autocmd! User GoyoLeave Limelight!
 " }}}
 
 " Plugin: Gutentags {{{
