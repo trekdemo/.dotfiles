@@ -1,0 +1,13 @@
+#!/usr/local/bin/fish
+
+set --global --export COLOR_MODE 'dark'
+set --universal --export COLOR_MODE 'dark'
+tmux set-environment -g COLOR_MODE 'dark'
+tmux set -g window-style 'bg=#1d2021'
+tmux set -g window-active-style 'bg=black'
+
+alacritty-colorscheme --apply base16-gruvbox-dark-medium-256.yml
+
+for name in (nvr --serverlist | uniq)
+  nvr --servername "$name" --remote-send ':let $COLOR_MODE="dark"<CR>:call colors#init()<CR>'
+end

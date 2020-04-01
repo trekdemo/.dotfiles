@@ -1,13 +1,15 @@
 function! colors#isDark() abort
-  return !exists($DARK_MODE) || $DARK_MODE == 1
+  return $COLOR_MODE == 'dark'
 endfunction
 
 function! colors#init() abort
   set termguicolors " Enables 24-bit RGB color in the TUI
 
   if colors#isDark()
+    echom 'Switching to DARK mode...'
     call colors#switchToDark()
   else
+    echom 'Switching to LIGHT mode...'
     call colors#switchToLigth()
   endif
 endfunction

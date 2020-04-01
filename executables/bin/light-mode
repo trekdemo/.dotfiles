@@ -1,0 +1,13 @@
+#!/usr/local/bin/fish
+
+set --global --export COLOR_MODE 'light'
+set --universal --export COLOR_MODE 'light'
+tmux set-environment -g COLOR_MODE 'light'
+tmux set -g window-style 'bg=#d9d9d9'
+tmux set -g window-active-style 'bg=#ededed'
+
+alacritty-colorscheme --apply papercolor_light.yaml
+
+for name in (nvr --serverlist | uniq)
+  nvr --servername "$name" --remote-send ':let $COLOR_MODE="light"<CR>:call colors#init()<CR>'
+end
