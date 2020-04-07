@@ -1,4 +1,7 @@
 setlocal spell
+setlocal nonumber
+set breakindent
+set breakindentopt=shift:2
 
 " Highlight code blocks with different background color
 " Source: https://www.reddit.com/r/vim/comments/fob3sg/different_background_color_for_markdown_code
@@ -13,13 +16,13 @@ function! MarkdownBlocks()
     " Iterate through each line in the buffer
     for l:lnum in range(1, len(getline(1, "$")))
         " Detect the start fo a code block
-        if getline(l:lnum) =~ "^```.*$" || l:continue
+        if getline(l:lnum) =~ "^\s*```.*$" || l:continue
             " Continue placing signs, until the block stops
             let l:continue = 1
             " Place sign
             execute "sign place ".l:lnum." line=".l:lnum." name=codeblock file=".expand("%")
             " Stop placing signs
-            if getline(l:lnum) =~ "^```$"
+            if getline(l:lnum) =~ "^\s*```$"
                 let l:continue = 0
             endif
         endif
@@ -28,6 +31,6 @@ endfunction
 
 " Use signs to highlight code blocks
 " Set signs on loading the file, leaving insert mode, and after writing it
-autocmd InsertLeave *.md call MarkdownBlockse()
+autocmd InsertLeave *.md call MarkdownBlocks()
 autocmd BufEnter *.md call MarkdownBlocks()
 autocmd BufWritePost *.md call MarkdownBlocks()

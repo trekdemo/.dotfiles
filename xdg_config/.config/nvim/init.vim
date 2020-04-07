@@ -30,6 +30,7 @@ Plug 'dag/vim-fish',            { 'for': 'fish' }
 Plug 'ElmCast/elm-vim',         { 'for': 'elm' }
 Plug 'chr4/nginx.vim'
 Plug 'rhysd/vim-gfm-syntax',    { 'for': 'markdown' }
+Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " Typescript
@@ -699,7 +700,6 @@ nnoremap ]og :GoldenRatioToggle <CR>
 let g:goyo_width = 100
 function! s:goyo_enter()
   set nocursorline
-  call indent_guides#disable()
   hi clear ColorColumn
   hi clear VertSplit
   hi clear EndOfBuffer
@@ -707,7 +707,6 @@ endfunction
 
 function! s:goyo_leave()
   set cursorline
-  call indent_guides#enable()
   hi clear ColorColumn
   hi ColorColumn ctermbg=234 guibg=#1d2021
   hi VertSplit ctermbg=234 guibg=#1d2021
