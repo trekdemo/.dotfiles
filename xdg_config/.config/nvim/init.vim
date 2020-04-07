@@ -27,6 +27,7 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
+Plug 'ElmCast/elm-vim',         { 'for': 'elm' }
 Plug 'chr4/nginx.vim'
 Plug 'rhysd/vim-gfm-syntax',    { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
