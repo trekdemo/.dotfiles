@@ -103,3 +103,5 @@
 	template = ~/.gitmessage
 [remote "origin"]
 	push = HEAD
+[github]
+	user = trekdemo

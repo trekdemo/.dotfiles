@@ -1,14 +1,15 @@
-setlocal spell
-setlocal nonumber
+setlocal spell nonumber wrap linebreak breakindent formatoptions=ln
 set breakindent
 set breakindentopt=shift:2
 
+let g:markdown_fenced_languages = ['yaml', 'ruby', 'json', 'sh', 'javascript']
+
+nmap <buffer> <silent> <localleader>g :Goyo<cr>
+nmap <buffer> <silent> <localleader>p :MarkdownPreview<cr>
+
+
 " Highlight code blocks with different background color
 " Source: https://www.reddit.com/r/vim/comments/fob3sg/different_background_color_for_markdown_code
-setlocal signcolumn=no
-highlight markdownCodeBlockBG ctermbg=15 guibg=#1d2021
-sign define codeblock linehl=markdownCodeBlockBG
-
 function! MarkdownBlocks()
     let l:continue = 0
     execute "sign unplace * file=".expand("%")
@@ -29,8 +30,15 @@ function! MarkdownBlocks()
     endfor
 endfunction
 
-" Use signs to highlight code blocks
-" Set signs on loading the file, leaving insert mode, and after writing it
+if colors#isDark()
+  highlight markdownCodeBlockBG ctermbg=15 guibg=#1d2021
+else
+  highlight markdownCodeBlockBG guibg=#d9d9d9
+endif
+
+setlocal signcolumn=no
+sign define codeblock linehl=markdownCodeBlockBG
+
 autocmd InsertLeave *.md call MarkdownBlocks()
 autocmd BufEnter *.md call MarkdownBlocks()
 autocmd BufWritePost *.md call MarkdownBlocks()

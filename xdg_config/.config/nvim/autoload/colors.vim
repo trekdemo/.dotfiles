@@ -33,6 +33,7 @@ function! colors#switchToDark()
   " Give a slight highlight for buffer content
   hi clear ColorColumn
   hi ColorColumn ctermbg=234 guibg=#1d2021
+  hi SignColumn ctermbg=234 guibg=#1d2021
   hi VertSplit ctermbg=234 guibg=#1d2021
   hi EndOfBuffer  ctermbg=234 guibg=#1d2021
 

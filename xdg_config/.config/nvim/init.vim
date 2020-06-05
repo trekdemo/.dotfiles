@@ -14,8 +14,9 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
 Plug 'kassio/neoterm'
-Plug 'junegunn/goyo.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'godlygeek/tabular'
+Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
@@ -27,11 +28,12 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'dag/vim-fish',            { 'for': 'fish' }
-Plug 'ElmCast/elm-vim',         { 'for': 'elm' }
+Plug 'andys8/vim-elm-syntax',   { 'for': 'elm' }
+Plug 'vim-scripts/bash-support.vim'
 Plug 'chr4/nginx.vim'
-Plug 'rhysd/vim-gfm-syntax',    { 'for': 'markdown' }
-Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'junegunn/goyo.vim',            { 'for': 'markdown' }
+Plug 'gabrielelana/vim-markdown',    { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown', 'do': { -> mkdp#util#install() } }
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
@@ -95,6 +97,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-abolish'
 
 Plug 'justinmk/vim-gtfo'
 
@@ -111,6 +114,7 @@ set nowrap                              " Do not wrap long lines
 set textwidth=80
 set colorcolumn=+1                      " Display margin at 81
 set number                              " Show linenumbers
+set numberwidth=6
 set scrolloff=5
 set sidescroll=1
 set sidescrolloff=2
@@ -391,6 +395,13 @@ nmap <localleader>vv :Ttoggle<CR>
 tmap <localleader>vv <c-\><c-n>:Ttoggle<CR>
 
 " Mappings: Navigation {{{
+if !exists('$TMUX')
+  nnoremap <C-h> <C-w><C-h>
+  nnoremap <C-j> <C-w><C-j>
+  nnoremap <C-k> <C-w><C-k>
+  nnoremap <C-l> <C-w><C-l>
+endif
+
 tnoremap <C-h> <C-\><C-n><C-w><C-h>
 tnoremap <C-j> <C-\><C-n><C-w><C-j>
 tnoremap <C-k> <C-\><C-n><C-w><C-k>
@@ -419,29 +430,18 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 let g:LanguageClient_selectionUI = 'fzf'
 let g:LanguageClient_serverCommands = {}
 
-if executable('solargraph')
-  " If I want to use solargraph I have to symlink it to the $PATH
-  " let g:LanguageClient_serverCommands['ruby'] = ['tcp://127.0.0.1:7658']
-  let g:LanguageClient_serverCommands['ruby'] = [exepath('solargraph'), 'stdio']
-endif
-
-if executable('typescript-language-server')
-  let s:ts=[exepath('typescript-language-server'), '--stdio']
-
-  let g:LanguageClient_serverCommands['javascript'] = s:ts
-  let g:LanguageClient_serverCommands['typescript.tsx'] = s:ts
-  let g:LanguageClient_serverCommands['typescript'] = s:ts
-endif
-" if executable('javascript-typescript-stdio')
-"   let s:js=[exepath('javascript-typescript-stdio')]
-
-"   let g:LanguageClient_serverCommands['javascript'] = s:js
-"   let g:LanguageClient_serverCommands['typescript.tsx'] = s:js
-"   let g:LanguageClient_serverCommands['typescript'] = s:js
-" endif
+let g:LanguageClient_serverCommands = {
+    \ 'ruby':           [exepath('solargraph'), 'stdio'],
+    \ 'elm':            [exepath('elm-language-server')],
+    \ 'python':         ['/usr/local/bin/pyls'],
+    \ 'javascript':     [exepath('typescript-language-server'), '--stdio'],
+    \ 'javascript.tsx': [exepath('typescript-language-server'), '--stdio'],
+    \ 'typescript':     [exepath('typescript-language-server'), '--stdio'],
+    \ }
 
 let g:LanguageClient_rootMarkers = {
     \ 'ruby': ['Gemfile', '.ruby-version'],
+    \ 'elm':  ['elm.json'],
     \ }
 
 function! LC_maps()
@@ -715,15 +715,6 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-" }}}
-
-" Plugin: Markdown {{{
-let g:markdown_fenced_languages = ['yaml', 'ruby', 'json', 'sh', 'javascript']
-augroup markdown_settings
-  autocmd!
-  autocmd  FileType markdown setlocal wrap linebreak breakindent
-  autocmd  FileType markdown setlocal formatoptions=ln
-augroup END
 " }}}
 
 " Plugin: Gutentags {{{
