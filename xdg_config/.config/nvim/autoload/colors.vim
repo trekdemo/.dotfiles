@@ -1,5 +1,5 @@
 function! colors#isDark() abort
-  return $COLOR_MODE == 'dark'
+  return $COLOR_MODE != 'light'
 endfunction
 
 function! colors#init() abort
