@@ -50,6 +50,9 @@ test -f ~/.local/env_vars.fish; and source ~/.local/env_vars.fish
 test -f '/Users/gergosulymosi/Downloads/google-cloud-sdk/path.fish.inc'
   and source '/Users/gergosulymosi/Downloads/google-cloud-sdk/path.fish.inc'
 
+source /usr/local/share/chruby/chruby.fish
+source /usr/local/share/chruby/auto.fish
+
 # Setup prompt
 # https://starship.rs/config/
 eval (starship init fish)
