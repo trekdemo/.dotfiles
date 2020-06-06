@@ -1,21 +1,11 @@
 # Install config files
 
-  # Link config files into home directory
-  $ stow dev executables git tmux xdg_config terminfo
-
-  # Install vim-plug vim package manager
-  $ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  $ nvim +PlugInstall +qall!
+By running the `install.sh`.
 
 # Install italics - optional
 
   # Linux
-  $ tic -x ~/.terminfo ~/.terminfo/src/tmux.terminfo
-  $ tic -x ~/.terminfo ~/.terminfo/src/tmux-256color.terminfo
   $ tic -x ~/.terminfo ~/.terminfo/src/xterm-256color.terminfo
 
   # MacOS
-  $ tic -c ~/.terminfo ~/.terminfo/src/tmux.terminfo
-  $ tic -c ~/.terminfo ~/.terminfo/src/tmux-256color.terminfo
   $ tic -c ~/.terminfo ~/.terminfo/src/xterm-256color.terminfo
