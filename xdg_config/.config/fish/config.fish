@@ -52,6 +52,7 @@ test -f '/Users/gergosulymosi/Downloads/google-cloud-sdk/path.fish.inc'
 
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
+chruby 2.7.1
 
 # Setup prompt
 # https://starship.rs/config/
