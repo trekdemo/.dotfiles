@@ -18,6 +18,7 @@ brew 'ag'
 brew 'jq'
 brew 'yq'
 brew 'rsync'
+cask 'gpg-suite'
 
 # ------------------------------------------------------------------------------
 # Languages

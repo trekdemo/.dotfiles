@@ -1,6 +1,7 @@
 [user]
   name = Gergő Sulymosi
   email = gergo.sulymosi@gmail.com
+	signingkey = BC9B0444AE65E248
 [core]
   excludesfile = ~/.gitignore-global
   autocrlf = input
@@ -101,7 +102,10 @@
 	username = trekdemo
 [commit]
 	template = ~/.gitmessage
+	gpgsign = true
 [remote "origin"]
 	push = HEAD
 [github]
 	user = trekdemo
+[gpg]
+	program = /usr/local/bin/gpg
