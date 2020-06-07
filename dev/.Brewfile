@@ -24,6 +24,7 @@ brew 'rsync'
 # ------------------------------------------------------------------------------
 brew 'go'
 brew 'node'
+brew 'yarn'
 brew 'chruby'
 brew 'chruby-fish'
 brew 'ruby-install'
