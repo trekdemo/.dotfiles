@@ -294,6 +294,7 @@ nnoremap <leader>o :only<CR>
 nnoremap ss :split<CR>
 nnoremap sv :vsplit<CR>
 nnoremap sc :write<CR>:close<CR>
+nnoremap gF :e <cfile><cr>
 
 " Quickly diffing to panes
 nnoremap <leader>dt :windo diffthis<CR>
