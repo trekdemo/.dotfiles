@@ -6,6 +6,7 @@ node_modules/
 
 .env.development
 .gitver
+/.vim
 
 .DS_Store
 .AppleDouble
