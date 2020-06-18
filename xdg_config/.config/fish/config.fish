@@ -46,12 +46,15 @@ test -d ~/projects; and set -gx CDPATH ./ ~/projects $CDPATH
 # Load local variables
 test -f ~/.local/env_vars.fish; and source ~/.local/env_vars.fish
 
-# The next line updates PATH for the Google Cloud SDK.
-test -f '/Users/gergosulymosi/Downloads/google-cloud-sdk/path.fish.inc'
-  and source '/Users/gergosulymosi/Downloads/google-cloud-sdk/path.fish.inc'
 
-source /usr/local/share/chruby/chruby.fish
-source /usr/local/share/chruby/auto.fish
+if which brew > /dev/null
+  # The next line updates PATH for the Google Cloud SDK.
+  # /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+  source (brew --prefix)"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
+
+  source (brew --prefix)"/share/chruby/chruby.fish"
+  source (brew --prefix)"/share/chruby/auto.fish"
+end
 chruby 2.7.1
 
 # Setup prompt
