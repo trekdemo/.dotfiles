@@ -8,7 +8,7 @@ if !filereadable(autoload_plug_path)
 endif
 unlet autoload_plug_path
 
-set shell=$SHELL
+set shell=/bin/zsh
 let g:neoterm_shell='/usr/local/bin/fish'
 let g:python3_host_prog = '/usr/bin/python3'
 
