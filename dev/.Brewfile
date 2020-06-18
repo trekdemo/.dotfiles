@@ -19,6 +19,10 @@ brew 'jq'
 brew 'yq'
 brew 'rsync'
 cask 'gpg-suite'
+brew 'htop'
+brew 'httpie'
+brew 'imagemagick@6', link: true
+brew 'ranger'
 
 # ------------------------------------------------------------------------------
 # Languages
@@ -35,6 +39,7 @@ brew 'bats'
 # ------------------------------------------------------------------------------
 # Apps for work
 # ------------------------------------------------------------------------------
+brew 'derailed/k9s/k9s'
 cask 'google-cloud-sdk'
 # cask 'slack'
 # cask 'google-chrome'
