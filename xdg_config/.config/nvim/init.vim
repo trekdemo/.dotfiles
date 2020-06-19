@@ -428,34 +428,56 @@ tnoremap <C-d> <C-\><C-n><C-d>
 " }}}
 
 
+" Plugin: Echodoc {{{
+" Or, you could use neovim's floating text feature.
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+" To use a custom highlight for the float window,
+" change Pmenu to your highlight group
+highlight link EchoDocFloat Pmenu"
+
+" let g:echodoc#enable_at_startup = 1
+" " let g:echodoc#type = 'floating'
+" let g:echodoc#type = 'popup'
+" " To use a custom highlight for the popup window,
+" " change Pmenu to your highlight group
+" highlight link EchoDocPopup Pmenu
+" }}}
+
 " Plugin: Deoplete {{{
 let g:deoplete#enable_at_startup = 1
-" Insert the actual emoji
-call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 
 " <C-h>, <BS>: close popup and delete backword char.
 imap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 imap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+" Hide preview window after completion is done
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " }}}
 
 " Plugin: LanguageClient {{{
-let g:LanguageClient_hoverPreview = 'Always'
+let g:LanguageClient_hoverPreview = 'Auto'
+let g:LanguageClient_usePopupHover = 1
+let g:LanguageClient_completionPreferTextEdit = 1
 let g:LanguageClient_diagnosticsEnable = 1
+let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_diagnosticsList = 'Disabled'
 let g:LanguageClient_selectionUI = 'fzf'
-let g:LanguageClient_serverCommands = {}
-
 let g:LanguageClient_serverCommands = {
     \ 'ruby':           [exepath('solargraph'), 'stdio'],
+    \ 'yaml':           [exepath('yaml-language-server'), '--stdio'],
     \ 'elm':            [exepath('elm-language-server')],
     \ 'python':         ['/usr/local/bin/pyls'],
     \ 'javascript':     [exepath('typescript-language-server'), '--stdio'],
     \ 'javascript.tsx': [exepath('typescript-language-server'), '--stdio'],
     \ 'typescript':     [exepath('typescript-language-server'), '--stdio'],
     \ }
+" let g:LanguageClient_loggingLevel = 'DEBUG'
+" let g:LanguageClient_loggingFile = '/tmp/lang-server.log'
 
 let g:LanguageClient_rootMarkers = {
     \ 'ruby': ['Gemfile', '.ruby-version'],
+    \ 'yaml': ['.git/'],
     \ 'elm':  ['elm.json'],
     \ }
 
@@ -476,8 +498,6 @@ augroup plugin_language_client
   autocmd User LanguageClientStarted echom '[LC] Started'
   autocmd User LanguageClientStopped echom '[LC] Stopped'
 
-  " Start Ruby LSP server (solargraph) in tmux pane
-  autocmd FileType ruby nnoremap <buffer> <localleader>ss :LanguageClientStop<CR>
   autocmd FileType ruby nnoremap <buffer> <localleader>ru :Dispatch bundle exec rubocop<CR>
 augroup END
 " }}}
@@ -673,12 +693,15 @@ nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 
 " Plugin: neosnippet {{{
 let g:neosnippet#snippets_directory = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/snippets/"
-let g:neosnippet#enable_completed_snippet = 1
+" let g:neosnippet#enable_completed_snippet = 1
+let g:neosnippet#enable_complete_done = 1
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+xmap <C-k>     <Plug>(neosnippet_expand_or_jump)
+nmap <C-k>     <Plug>(neosnippet_expand_or_jump)
+autocmd InsertLeave * NeoSnippetClearMarkers
 cabbrev snipe NeoSnippetEdit
 " }}}
 
