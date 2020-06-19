@@ -55,17 +55,18 @@ Plug 'prettier/vim-prettier', {
   \ }
 
 " Completion
-Plug 'Shougo/echodoc.vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
   Plug 'ponko2/deoplete-fish'
   Plug 'Shougo/neco-vim'
   Plug 'fszymanski/deoplete-emoji'
 
+Plug 'ncm2/float-preview.nvim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'violetyk/neosnippet-rails'
@@ -453,6 +454,11 @@ imap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
 " Hide preview window after completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" }}}
+
+" Plugin: floating-preview.nvim {{{
+let g:float_preview#docked = 0
+set completeopt-=preview
 " }}}
 
 " Plugin: LanguageClient {{{
