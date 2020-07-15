@@ -27,6 +27,7 @@ Plug 'kassio/neoterm'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'godlygeek/tabular'
 Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'
+Plug 'rhysd/git-messenger.vim'
 
 Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
 Plug 'kovisoft/paredit',        { 'for': 'clojure' }
