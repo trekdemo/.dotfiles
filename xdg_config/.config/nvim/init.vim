@@ -149,6 +149,7 @@ set list                                " Show invisible characters not just exi
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob char
 set conceallevel=2 concealcursor=nc     " Don't show hidden characters in normal mode
+set inccommand=nosplit                  " Show substitution in realtime
 set complete+=kspell
 set cursorline
 set foldenable
