@@ -41,7 +41,7 @@ Plug 'dag/vim-fish',            { 'for': 'fish' }
 Plug 'andys8/vim-elm-syntax',   { 'for': 'elm' }
 Plug 'vim-scripts/bash-support.vim'
 Plug 'chr4/nginx.vim'
-Plug 'junegunn/goyo.vim',            { 'for': 'markdown' }
+Plug 'junegunn/goyo.vim',            { 'for': ['markdown', 'text'] }
 Plug 'gabrielelana/vim-markdown',    { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown', 'do': { -> mkdp#util#install() } }
 
