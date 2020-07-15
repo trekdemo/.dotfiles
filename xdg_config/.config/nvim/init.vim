@@ -458,12 +458,13 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " }}}
 
 " Plugin: floating-preview.nvim {{{
-let g:float_preview#docked = 0
 set completeopt-=preview
+let g:float_preview#docked = 0
+let g:float_preview#max_width = 30
 " }}}
 
 " Plugin: LanguageClient {{{
-let g:LanguageClient_hoverPreview = 'Auto'
+let g:LanguageClient_hoverPreview = 'Always'
 let g:LanguageClient_usePopupHover = 1
 let g:LanguageClient_completionPreferTextEdit = 1
 let g:LanguageClient_diagnosticsEnable = 1
