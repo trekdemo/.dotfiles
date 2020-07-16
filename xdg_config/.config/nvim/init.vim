@@ -144,7 +144,7 @@ set softtabstop=2
 set expandtab
 set ignorecase
 set smartcase
-set diffopt+=iwhite                     " Ignore whitespace on diffs
+set diffopt=filler,internal,algorithm:histogram,indent-heuristic,iwhite
 set virtualedit+=block                  " Allow to move the cursor everywhere,
 set list                                " Show invisible characters not just existing text
 set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
