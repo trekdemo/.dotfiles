@@ -411,6 +411,7 @@ xmap gr <Plug>(neoterm-repl-send)
 " Toggle neoterm pane
 nmap <localleader>vv :Ttoggle<CR>
 tmap <localleader>vv <c-\><c-n>:Ttoggle<CR>
+" }}}
 
 " Mappings: Navigation {{{
 if !exists('$TMUX')
@@ -429,7 +430,6 @@ tnoremap <C-k> <C-\><C-n><C-w><C-k>
 tnoremap <C-u> <C-\><C-n><C-u>
 tnoremap <C-d> <C-\><C-n><C-d>
 " }}}
-
 
 " Plugin: Echodoc {{{
 " Or, you could use neovim's floating text feature.
