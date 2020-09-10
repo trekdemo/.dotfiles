@@ -13,24 +13,24 @@ env:
   # TERM: xterm-256color
   TERM: alacritty
 
-  # Window decorations
-  #
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  #
-  # Values for `decorations` (macOS only):
-  #     - transparent: Title bar, transparent background and title bar buttons
-  #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: none
+# Window decorations
+#
+# Values for `decorations`:
+#     - full: Borders and title bar
+#     - none: Neither borders nor title bar
+#
+# Values for `decorations` (macOS only):
+#     - transparent: Title bar, transparent background and title bar buttons
+#     - buttonless: Title bar, transparent background, but no title bar buttons
+decorations: none
 
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  startup_mode: Windowed
+# Startup Mode (changes require restart)
+#
+# Values for `startup_mode`:
+#   - Windowed
+#   - Maximized
+#   - Fullscreen
+startup_mode: Windowed
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -159,7 +159,7 @@ colors:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
@@ -229,7 +229,8 @@ selection:
   save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
+window:
+  dynamic_title: true
 
 cursor:
   # Cursor style
