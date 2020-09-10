@@ -21,7 +21,7 @@ if status --is-interactive
 
   # Quick edits
   abbr --add --global ea edit ~/.config/fish/conf.d/aliases.fish
-  abbr --add --global ef edit ~/.config/fish/conf.d
+  abbr --add --global ef edit ~/.config/fish/config.fish
   abbr --add --global ev edit ~/.config/nvim/init.vim
   abbr --add --global eg edit ~/.gitconfig
   abbr --add --global et edit ~/.tmux.conf
