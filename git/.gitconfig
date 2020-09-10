@@ -109,3 +109,5 @@
 	user = trekdemo
 [gpg]
 	program = /usr/local/bin/gpg
+[credential]
+	helper = osxkeychain
