@@ -545,10 +545,14 @@ noremap <silent> <leader>dp :diffput<CR>
 " }}}
 
 " Plugin: FZF {{{
+let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
 noremap <C-p> :FZF<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+noremap <leader>B :Buffers <CR>
 noremap <leader>B :Buffers <CR>
 noremap <C-b> :Buffers <CR>
 noremap <leader>C :Commands <CR>
@@ -562,39 +566,6 @@ imap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
-if has('nvim')
-  let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
-
-  function! FloatingFZF()
-    let buf = nvim_create_buf(v:false, v:true)
-
-    " here be dragoons
-    let height = float2nr(&lines / 2)
-    let width = float2nr(&columns / 2)
-    let opts = {
-          \ 'relative': 'editor',
-          \ 'row': float2nr((&lines - height) / 2),
-          \ 'col': float2nr((&columns - width) / 2),
-          \ 'width': width,
-          \ 'height': height,
-          \ 'style': 'minimal'
-          \ }
-
-    let win = nvim_open_win(buf, v:true, opts)
-   " uncomment this if you want a normal background color for the fzf window
-    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-    " call setwinvar(win, '&winhl', 'NormalFloat:Pmenu')
-
-  " this is to remove all line numbers and so on from the window
-    setlocal
-          \ buftype=nofile
-          \ nobuflisted
-          \ bufhidden=hide
-  endfunction
-
-  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-endif
 
 " ------------------------------------------------------------------------------
 function! s:align_lists(lists)
