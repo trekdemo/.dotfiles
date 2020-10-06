@@ -6,6 +6,7 @@ if status --is-interactive
   abbr --add --global b bundle
   abbr --add --global be bundle exec
   abbr --add --global bu bundle update
+  abbr --add --global cc circleci
   abbr --add --global berc bundle exec rails console
   abbr --add --global o open
   abbr --add --global ts tig status
