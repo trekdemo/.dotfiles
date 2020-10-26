@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/usr/local/bin/alacritty \
+  --title Vimwiki \
+  --command /usr/local/bin/nvim +VimwikiIndex +Goyo
