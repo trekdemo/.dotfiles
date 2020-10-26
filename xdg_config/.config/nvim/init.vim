@@ -710,6 +710,8 @@ let g:golden_ratio_autocommand = 0
 " Try to follow conventions from vim-unimpaired
 nnoremap [og :GoldenRatioToggle <CR>
 nnoremap ]og :GoldenRatioToggle <CR>
+nnoremap [oc :set conceallevel=2 <CR>
+nnoremap ]oc :set conceallevel=0 <CR>
 " }}}
 
 " Plugin: Goyo {{{
