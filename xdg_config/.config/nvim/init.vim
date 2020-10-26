@@ -23,7 +23,6 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
 Plug 'kassio/neoterm'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'godlygeek/tabular'
 Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'
 Plug 'rhysd/git-messenger.vim'
@@ -734,6 +733,8 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
-" Plugin: Gutentags {{{
-let g:gutentags_ctags_exclude = ['vendor/*', 'tmp/*', 'log/*', 'coverage/*', 'doc/*']
+" Plugin: VimWiki {{{
+let g:vimwiki_list = [
+    \   {'path': '~/Documents/Notes/', 'syntax': 'markdown', 'ext': '.md'}
+    \ ]
 " }}}
