@@ -15,8 +15,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'morhetz/gruvbox'
-Plug 'reedes/vim-colors-pencil'
+Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
 
 Plug 'roman/golden-ratio'
