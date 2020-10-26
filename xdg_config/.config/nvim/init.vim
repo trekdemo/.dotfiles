@@ -24,33 +24,28 @@ Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
 Plug 'kassio/neoterm'
 Plug 'godlygeek/tabular'
-Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'
-Plug 'rhysd/git-messenger.vim'
 
-Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
-Plug 'kovisoft/paredit',        { 'for': 'clojure' }
+Plug 'sheerun/vim-polyglot'
+
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby' }
 Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
-Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'dag/vim-fish',            { 'for': 'fish' }
-Plug 'andys8/vim-elm-syntax',   { 'for': 'elm' }
+" Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Plug 'dag/vim-fish',            { 'for': 'fish' }
 Plug 'vim-scripts/bash-support.vim'
-Plug 'chr4/nginx.vim'
+" Plug 'chr4/nginx.vim'
 Plug 'junegunn/goyo.vim',            { 'for': ['markdown', 'text'] }
-Plug 'gabrielelana/vim-markdown',    { 'for': 'markdown' }
-Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown', 'do': { -> mkdp#util#install() } }
+" Plug 'gabrielelana/vim-markdown',    { 'for': 'markdown' }
+Plug 'vimwiki/vimwiki'
 
 " Typescript
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
-
+" Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss',
-  \         'json', 'graphql', 'yaml', 'html']
+  \         'json', 'graphql', 'yaml', 'html', 'markdown']
   \ }
 
 " Completion
@@ -80,6 +75,7 @@ elseif uname == 'Linux'
   Plug 'junegunn/fzf'
 endif
 Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 
 if exists('$TMUX')
   Plug 'christoomey/vim-tmux-navigator'
@@ -226,11 +222,12 @@ endfunction
 " }}}
 
 " Mappings: General {{{
-" Select last changed text (including pasted text)
-nnoremap gp `[v`]
-
-" Save and close the current buffer
-nnoremap zz :write\|bdelete<CR>
+" Keep the previous clipboard value
+vnoremap p "_dP
+" Paste without overwriting default register (doesn't work with other registers)
+xnoremap p pgvy
+" Alt + Backspace should delete the last word
+inoremap <A-BS> <C-W>
 
 " Don't move on *
 nnoremap * *Nzzzv
@@ -288,8 +285,6 @@ noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cle
 " Tab openning and closing
 nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>tn :tabnew<CR>
-nnoremap <leader>to :tabonly<CR>
-nnoremap <leader>o :only<CR>
 
 " Window splitting and closing
 nnoremap ss :split<CR>
@@ -314,10 +309,6 @@ nnoremap <leader>F :grep! <C-r><C-w><CR>
 " Tab navigation
 nnoremap <TAB> gt
 nnoremap <S-TAB> gT
-
-" Save with simpler keystroke
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <Esc>:w<CR>
 
 " Window resizing
 nnoremap <C-left> 5<c-w>>
@@ -534,9 +525,8 @@ nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>ga :Gadd<cr>
 nnoremap <leader>ge :Gedit<cr>
 nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>gco :Gcheckout<cr>
+nnoremap <leader>gco :GBranches<cr>
 nnoremap <leader>gci :Gcommit<cr>
-nnoremap <leader>gr :Gremove<cr>
 noremap <silent> <leader>gl :GV<CR>
 noremap <silent> <leader>dg :diffget<CR>
 noremap <silent> <leader>dp :diffput<CR>
@@ -546,7 +536,7 @@ noremap <silent> <leader>dp :diffput<CR>
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
-noremap <C-p> :FZF<CR>
+noremap <C-p> :GitFiles<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
@@ -564,55 +554,6 @@ imap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" ------------------------------------------------------------------------------
-function! s:align_lists(lists)
-  let maxes = {}
-  for list in a:lists
-    let i = 0
-    while i < len(list)
-      let maxes[i] = max([get(maxes, i, 0), len(list[i])])
-      let i += 1
-    endwhile
-  endfor
-  for list in a:lists
-    call map(list, "printf('%-'.maxes[v:key].'s', v:val)")
-  endfor
-  return a:lists
-endfunction
-
-function! s:btags_source()
-  let lines = map(split(system(printf(
-    \ 'ctags -f - --sort=no --excmd=number --language-force=%s %s',
-    \ &filetype, expand('%:S'))), "\n"),
-    \ 'split(v:val, "\t")')
-  if v:shell_error
-    throw 'failed to extract tags'
-  endif
-  return map(s:align_lists(lines), 'join(v:val, "\t")')
-endfunction
-
-function! s:btags_sink(line)
-  execute split(a:line, "\t")[2]
-endfunction
-
-function! s:btags()
-  try
-    call fzf#run({
-    \ 'source':  s:btags_source(),
-    \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
-    \ 'right':    '30%',
-    \ 'sink':    function('s:btags_sink')})
-  catch
-    echohl WarningMsg
-    echom v:exception
-    echohl None
-  endtry
-endfunction
-
-command! BTags call s:btags()
-" ------------------------------------------------------------------------------
-
 " }}}
 
 " Plugin: vim-test {{{
