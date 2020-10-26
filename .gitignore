@@ -21,3 +21,4 @@
 /xdg_config/.config/nvim/spell
 /xdg_config/.config/yarn/global
 /xdg_config/.config/telepresence
+/xdg_config/.config/gh/hosts.yml
