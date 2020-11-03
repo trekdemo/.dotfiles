@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'set'
+
+def with_filter(command)
+  io = IO.popen(command, 'r+')
+  begin
+    stdout, $stdout = $stdout, io
+    yield rescue nil
+  ensure
+    $stdout = stdout
+  end
+  io.close_write
+  io.readlines.map(&:chomp).first
+end
+
+projects = Dir[File.expand_path('~/projects/*')].map { |d| File.basename(d) }
+tmux_windows = Hash[
+  `/usr/local/bin/tmux list-windows -F '#I:#W'`
+    .split("\n")
+    .map { | line| line.split(':').reverse }
+]
+
+
+selected_project = with_filter('fzf') do
+  puts Set.new(tmux_windows.keys + projects).to_a.sort.join("\n")
+end
+
+window_id = tmux_windows[selected_project]
+if window_id
+  system("tmux select-window -t #{window_id}")
+else
+  system("tmux new-window -c ~/projects/#{selected_project} -n #{selected_project}")
+end
