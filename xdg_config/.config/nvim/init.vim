@@ -469,6 +469,8 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript':     [exepath('typescript-language-server'), '--stdio'],
     \ 'javascript.tsx': [exepath('typescript-language-server'), '--stdio'],
     \ 'typescript':     [exepath('typescript-language-server'), '--stdio'],
+    \ 'sh':             [exepath('bash-language-server'), 'start'],
+    \ 'c':              [exepath('ccls')],
     \ }
 " let g:LanguageClient_loggingLevel = 'DEBUG'
 " let g:LanguageClient_loggingFile = '/tmp/lang-server.log'
