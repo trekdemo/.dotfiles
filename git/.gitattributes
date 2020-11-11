@@ -2,3 +2,5 @@
 *.png diff=exif
 *.jpg diff=exif
 *.jpeg diff=exif
+*.rb diff=ruby
+*.rake diff=ruby
