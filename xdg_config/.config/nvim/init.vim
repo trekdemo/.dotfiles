@@ -31,23 +31,17 @@ Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
-" Plug 'fatih/vim-go',            { 'for': 'go', 'do': ':GoInstallBinaries' }
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-" Plug 'dag/vim-fish',            { 'for': 'fish' }
-Plug 'vim-scripts/bash-support.vim'
-" Plug 'chr4/nginx.vim'
 Plug 'junegunn/goyo.vim',            { 'for': ['markdown', 'text'] }
-" Plug 'gabrielelana/vim-markdown',    { 'for': 'markdown' }
 Plug 'vimwiki/vimwiki'
 
 " Typescript
-" Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescript.tsx'] }
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss',
   \         'json', 'graphql', 'yaml', 'html', 'markdown']
   \ }
 
+" Display *preview-window* as a floating window.
 Plug 'ncm2/float-preview.nvim'
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neosnippet.vim'
@@ -57,12 +51,7 @@ Plug 'violetyk/neosnippet-rails'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
 
-let uname = substitute(system('uname'), '\n', '', '')
-if uname == 'Darwin'
-  Plug '/usr/local/opt/fzf'
-elseif uname == 'Linux'
-  Plug 'junegunn/fzf'
-endif
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 
@@ -77,7 +66,6 @@ Plug 'janko/vim-test'
   Plug 'benmills/vimux'
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
-
 
 " File checkkers/linters
 Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
