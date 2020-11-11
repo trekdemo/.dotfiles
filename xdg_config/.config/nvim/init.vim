@@ -15,6 +15,9 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
 Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
 
@@ -128,7 +131,7 @@ set foldenable
 set foldlevel=999999
 set foldlevelstart=10
 set foldtext=folding#text()
-set completeopt=longest,menuone,preview,noselect
+set completeopt=longest,menuone,preview,noinsert,noselect
 set pumheight=10
 set clipboard+=unnamedplus
 if exists('$TMUX')
@@ -196,6 +199,31 @@ function! LightlineFugitive()
   return ''
 endfunction
 " }}}
+" }}}
+
+" Plugin: LSP {{{
+" Use completion-nvim in every buffer
+autocmd BufEnter * :lua require'completion'.on_attach()
+
+lua require'nvim_lsp'.bashls.setup { }
+lua require'nvim_lsp'.ccls.setup { }
+lua require'nvim_lsp'.dockerls.setup { }
+lua require'nvim_lsp'.gopls.setup { }
+lua require'nvim_lsp'.html.setup { }
+lua require'nvim_lsp'.jsonls.setup { }
+lua require'nvim_lsp'.solargraph.setup { }
+lua require'nvim_lsp'.vimls.setup { }
+lua require'nvim_lsp'.yamlls.setup { }
+
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 " }}}
 
 " Mappings: General {{{
@@ -370,9 +398,9 @@ augroup end
 
 
 " Use gx{text-object} in normal mode
-nmap gr <Plug>(neoterm-repl-send)
+" nmap gr <Plug>(neoterm-repl-send)
 " Send selected contents in visual mode.
-xmap gr <Plug>(neoterm-repl-send)
+" xmap gr <Plug>(neoterm-repl-send)
 
 " Toggle neoterm pane
 nmap <localleader>vv :Ttoggle<CR>
@@ -417,20 +445,6 @@ highlight link EchoDocFloat Pmenu"
 set completeopt-=preview
 let g:float_preview#docked = 0
 let g:float_preview#max_width = 30
-" }}}
-
-" Plugin: LSP {{{
-" let g:LanguageClient_serverCommands = {
-"     \ 'ruby':           [exepath('solargraph'), 'stdio'],
-"     \ 'yaml':           [exepath('yaml-language-server'), '--stdio'],
-"     \ 'elm':            [exepath('elm-language-server')],
-"     \ 'python':         ['/usr/local/bin/pyls'],
-"     \ 'javascript':     [exepath('typescript-language-server'), '--stdio'],
-"     \ 'javascript.tsx': [exepath('typescript-language-server'), '--stdio'],
-"     \ 'typescript':     [exepath('typescript-language-server'), '--stdio'],
-"     \ 'sh':             [exepath('bash-language-server'), 'start'],
-"     \ 'c':              [exepath('ccls')],
-"     \ }
 " }}}
 
 " Plugin: Eunuch {{{
