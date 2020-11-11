@@ -48,18 +48,7 @@ Plug 'prettier/vim-prettier', {
   \         'json', 'graphql', 'yaml', 'html', 'markdown']
   \ }
 
-" Completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'ponko2/deoplete-fish'
-  Plug 'Shougo/neco-vim'
-  Plug 'fszymanski/deoplete-emoji'
-
 Plug 'ncm2/float-preview.nvim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -436,70 +425,24 @@ highlight link EchoDocFloat Pmenu"
 " highlight link EchoDocPopup Pmenu
 " }}}
 
-" Plugin: Deoplete {{{
-let g:deoplete#enable_at_startup = 1
-
-" <C-h>, <BS>: close popup and delete backword char.
-imap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-imap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-" Hide preview window after completion is done
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-" }}}
-
 " Plugin: floating-preview.nvim {{{
 set completeopt-=preview
 let g:float_preview#docked = 0
 let g:float_preview#max_width = 30
 " }}}
 
-" Plugin: LanguageClient {{{
-let g:LanguageClient_hoverPreview = 'Always'
-let g:LanguageClient_usePopupHover = 1
-let g:LanguageClient_completionPreferTextEdit = 1
-let g:LanguageClient_diagnosticsEnable = 1
-let g:LanguageClient_loadSettings = 1
-let g:LanguageClient_diagnosticsList = 'Disabled'
-let g:LanguageClient_selectionUI = 'fzf'
-let g:LanguageClient_serverCommands = {
-    \ 'ruby':           [exepath('solargraph'), 'stdio'],
-    \ 'yaml':           [exepath('yaml-language-server'), '--stdio'],
-    \ 'elm':            [exepath('elm-language-server')],
-    \ 'python':         ['/usr/local/bin/pyls'],
-    \ 'javascript':     [exepath('typescript-language-server'), '--stdio'],
-    \ 'javascript.tsx': [exepath('typescript-language-server'), '--stdio'],
-    \ 'typescript':     [exepath('typescript-language-server'), '--stdio'],
-    \ 'sh':             [exepath('bash-language-server'), 'start'],
-    \ 'c':              [exepath('ccls')],
-    \ }
-" let g:LanguageClient_loggingLevel = 'DEBUG'
-" let g:LanguageClient_loggingFile = '/tmp/lang-server.log'
-
-let g:LanguageClient_rootMarkers = {
-    \ 'ruby': ['Gemfile', '.ruby-version'],
-    \ 'yaml': ['.git/'],
-    \ 'elm':  ['elm.json'],
-    \ }
-
-function! LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
-    nnoremap <buffer> <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> <localleader>R :call LanguageClient_textDocument_references()<CR>
-    nnoremap <buffer> <silent> <localleader>C :call LanguageClient_contextMenu()<CR>
-
-    setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-  endif
-endfunction
-
-augroup plugin_language_client
-  autocmd!
-  autocmd FileType * call LC_maps()
-  autocmd User LanguageClientStarted echom '[LC] Started'
-  autocmd User LanguageClientStopped echom '[LC] Stopped'
-
-  autocmd FileType ruby nnoremap <buffer> <localleader>ru :Dispatch bundle exec rubocop<CR>
-augroup END
+" Plugin: LSP {{{
+" let g:LanguageClient_serverCommands = {
+"     \ 'ruby':           [exepath('solargraph'), 'stdio'],
+"     \ 'yaml':           [exepath('yaml-language-server'), '--stdio'],
+"     \ 'elm':            [exepath('elm-language-server')],
+"     \ 'python':         ['/usr/local/bin/pyls'],
+"     \ 'javascript':     [exepath('typescript-language-server'), '--stdio'],
+"     \ 'javascript.tsx': [exepath('typescript-language-server'), '--stdio'],
+"     \ 'typescript':     [exepath('typescript-language-server'), '--stdio'],
+"     \ 'sh':             [exepath('bash-language-server'), 'start'],
+"     \ 'c':              [exepath('ccls')],
+"     \ }
 " }}}
 
 " Plugin: Eunuch {{{
