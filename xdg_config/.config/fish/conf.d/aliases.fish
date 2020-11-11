@@ -2,6 +2,10 @@
 alias vim='nvim'
 alias :q='exit'
 
+alias mv="mv -iv"
+alias cp="cp -riv"
+alias mkdir="mkdir -vp"
+
 if status --is-interactive
   abbr --add --global b bundle
   abbr --add --global be bundle exec
