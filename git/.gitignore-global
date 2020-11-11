@@ -27,3 +27,5 @@ Procfile.local
 .tern-port
 /.solargraph.yml
 /bin/solargraph
+/.ccls
+/.ccls-cache
