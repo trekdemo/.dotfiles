@@ -1,0 +1,12 @@
+#!/bin/bash
+
+pushd /tmp || { echo 'Failed to enter /tmp'; exit 1; }
+# Download latest
+echo "Downloading neovim nightly build"
+curl --silent --output "nvim-latest.tar.gz" -L "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz"
+
+tar -xzf "nvim-latest.tar.gz"
+rm -rf /usr/local/Cellar/neovim/nightly-prev
+mv -fv /usr/local/Cellar/neovim/nightly /usr/local/Cellar/neovim/nightly-prev
+mv -fv nvim-osx64 /usr/local/Cellar/neovim/nightly
+popd || exit
