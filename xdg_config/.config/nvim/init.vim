@@ -30,11 +30,12 @@ Plug 'godlygeek/tabular'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'vim-scripts/bash-support.vim'
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
 Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
-Plug 'junegunn/goyo.vim',            { 'for': ['markdown', 'text'] }
+Plug 'junegunn/goyo.vim',       { 'for': ['markdown', 'text'] }
 Plug 'vimwiki/vimwiki'
 
 " Typescript
