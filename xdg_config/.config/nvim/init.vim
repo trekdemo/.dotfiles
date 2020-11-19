@@ -200,31 +200,66 @@ function! LightlineFugitive()
   return ''
 endfunction
 " }}}
-" }}}
 
 " Plugin: LSP {{{
 " Use completion-nvim in every buffer
-autocmd BufEnter * :lua require'completion'.on_attach()
+" autocmd BufEnter * :lua require'completion'.on_attach()
+" Move it to lua/lsp_config.lua
+lua << EOF
+local map = function(type, key, value)
+	vim.fn.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
+end
 
-lua require'nvim_lsp'.bashls.setup { }
-lua require'nvim_lsp'.ccls.setup { }
-lua require'nvim_lsp'.dockerls.setup { }
-lua require'nvim_lsp'.gopls.setup { }
-lua require'nvim_lsp'.html.setup { }
-lua require'nvim_lsp'.jsonls.setup { }
-lua require'nvim_lsp'.solargraph.setup { }
-lua require'nvim_lsp'.vimls.setup { }
-lua require'nvim_lsp'.yamlls.setup { }
+local custom_attach = function(client)
+	print("LSP started.");
+  require'completion'.on_attach(client)
 
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+  map('n', '1gD'  , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+  map('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>')
+  map('n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+  map('n', 'K'    , '<cmd>lua vim.lsp.buf.hover()<CR>')
+  map('n', 'g0'   , '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+  map('n', 'gD'   , '<cmd>lua vim.lsp.buf.implementation()<CR>')
+	map('n', 'gi'   , '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  map('n', 'gW'   , '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+  map('n', 'gd'   , '<cmd>lua vim.lsp.buf.declaration()<CR>')
+  map('n', 'gr'   , '<cmd>lua vim.lsp.buf.references()<CR>')
+
+	map('n','<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+	map('n','<leader>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
+	map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
+	map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+	map('n','<leader>ar','<cmd>lua vim.lsp.buf.rename()<CR>')
+	map('n','<leader>ee','<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
+end
+
+local lsp = require('lspconfig')
+
+lsp.bashls.setup { on_attach=custom_attach }
+lsp.ccls.setup { on_attach=custom_attach }
+lsp.dockerls.setup { on_attach=custom_attach }
+lsp.gopls.setup { on_attach=custom_attach }
+lsp.html.setup { on_attach=custom_attach }
+lsp.jsonls.setup { on_attach=custom_attach }
+lsp.solargraph.setup { on_attach=custom_attach }
+lsp.vimls.setup { on_attach=custom_attach }
+lsp.yamlls.setup { on_attach=custom_attach }
+lsp.sumneko_lua.setup {
+  on_attach=custom_attach,
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
+      completion = { keywordSnippet = "Disable", },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        }
+      }
+    }
+  }
+}
+EOF
 " }}}
 
 " Mappings: General {{{
@@ -570,17 +605,6 @@ xmap <C-k>     <Plug>(neosnippet_expand_or_jump)
 nmap <C-k>     <Plug>(neosnippet_expand_or_jump)
 autocmd InsertLeave * NeoSnippetClearMarkers
 cabbrev snipe NeoSnippetEdit
-" }}}
-
-" Plugin: vim-go {{{
-let g:go_fmt_command = "goimports"
-
-" turn highlighting on
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
 " }}}
 
 " Plugin: NeoMake {{{
