@@ -60,3 +60,4 @@ chruby 2.7.1
 # Setup prompt
 # https://starship.rs/config/
 eval (starship init fish)
+alias cw-mkdocs='docker run --rm -it -v (pwd)":/docs:rw" --publish 8000:8000 eu.gcr.io/cw-dev-platform-host-0001/mkdocs:latest'
