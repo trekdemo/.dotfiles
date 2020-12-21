@@ -1,3 +1,4 @@
+local hs = hs
 hs.window.animationDuration = 0
 
 local hotkey = require("hs.hotkey")
@@ -37,8 +38,8 @@ hotkey.bind(mash, "i", function()
 end)
 
 --- Reload configuration automatically
-function reloadConfig(files)
-  doReload = false
+local reloadConfig = function(files)
+  local doReload = false
   for _,file in pairs(files) do
     hs.alert.show(file)
     if file:sub(-4) == ".lua" then
