@@ -16,16 +16,18 @@ hotkey.bind(mash, "k",      function() tiling.cycle(-1) end)
 hotkey.bind(mash, "h",      function() tiling.adjustMainVertical(-0.05) end)
 hotkey.bind(mash, "l",      function() tiling.adjustMainVertical(0.05) end)
 hotkey.bind(mash, "n",      function() tiling.setPadding(0) end)
-hotkey.bind(mash, "p",      function() tiling.setPadding(25) end)
 hotkey.bind(mash, "=",      function() tiling.setMainVertical(0.5) end)
-hotkey.bind(mash, "v",      function() tiling.goToLayout("main-vertical-variable-with-padding") end)
+hotkey.bind(mash, "v",      function()
+  tiling.setPadding(25)
+  tiling.goToLayout("main-vertical-variable-with-padding")
+end)
 hotkey.bind(mash, "f",      function()
   tiling.setPadding(100)
   tiling.goToLayout("fullscreen-with-padding")
 end)
 -- Start up my Vimwiki and my Notes
 hotkey.bind(mash, "w", function() hs.task.new("~/bin/wiki", nil):start() end)
-hotkey.bind(mash, "m", function() hs.task.new("~/bin/notes", nil):start() end)
+hotkey.bind(mash, "d", function() hs.task.new("~/bin/diary", nil):start() end)
 
 hs.window.highlight.ui.overlay = true
 hs.window.highlight.ui.overlayColor = {0.2, 0.05, 0, 0.25}
