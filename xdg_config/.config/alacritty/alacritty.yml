@@ -212,7 +212,10 @@ selection:
 # Allow terminal applications to change Alacritty's window title.
 window:
   dynamic_title: true
-  decorations: none
+  decorations: None
+  padding:
+    x: 4
+    y: 4
 
 cursor:
   # Cursor style
