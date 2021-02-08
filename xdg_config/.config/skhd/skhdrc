@@ -1,0 +1,47 @@
+# vi:syntax=conf
+
+# Start up my Vimwiki and my Notes
+alt + shift - w : ~/bin/wiki
+alt + shift - d : ~/bin/diary
+alt + ctrl + cmd - a : open -n -a "Alacritty"
+alt + ctrl + cmd - b : open -n -a "Google Chrome"
+alt + shift + ctrl + cmd - a : open -a "Alacritty"
+alt + shift + ctrl + cmd - b : open -a "Google Chrome"
+alt + shift + ctrl + cmd - c : open -a "Calendar"
+alt + shift + ctrl + cmd - e : open -a "Mail"
+alt + shift + ctrl + cmd - m : open -a "Music"; yabai -m window --grid 8:8:1:1:6:6
+alt + shift + ctrl + cmd - s : open -a "Slack"
+
+# Moving between windows
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# Mowing the windows
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - l : yabai -m window --swap east
+
+# balance size of windows
+# shift + alt - = : yabai -m space --balance
+
+# toggle window split type
+alt - e : yabai -m window --toggle split
+
+# float / unfloat window and center on screen
+alt - t : yabai -m window --toggle float; yabai -m window --grid 8:8:1:1:6:6
+
+# Rotate the window tree clock-wise (options: 90, 180, 270 degree)
+alt - o : yabai -m space --rotate 270
+alt + shift - o : yabai -m space --rotate 90
+
+alt - return : yabai -m window --toggle zoom-parent
+
+# Move window to other space
+alt + shift - p : yabai -m window --space prev; yabai -m space --focus prev
+alt + shift - n : yabai -m window --space next; yabai -m space --focus next
+# create desktop
+alt + shift - c : yabai -m space --create; yabai -m space --focus next
+alt + shift - x : yabai -m space --destroy
