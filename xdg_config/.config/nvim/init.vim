@@ -17,9 +17,12 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'kevinhwang91/nvim-bqf'
 
 Plug 'roman/golden-ratio'
 Plug 'Shougo/context_filetype.vim'
@@ -30,13 +33,16 @@ Plug 'godlygeek/tabular'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'vim-scripts/bash-support.vim'
+Plug 'fatih/vim-go',            { 'for': 'go' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
+Plug 'junegunn/goyo.vim',       { 'for': ['markdown', 'text', 'help'] }
 Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
-Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
-Plug 'junegunn/goyo.vim',       { 'for': ['markdown', 'text'] }
+Plug 'tpope/vim-rails',         { 'for': 'ruby' }
+Plug 'vim-scripts/bash-support.vim'
 Plug 'vimwiki/vimwiki'
+" Plug 'tools-life/taskwiki' " Python # is misbehaving
+" Plug 'blindFS/vim-taskwarrior'
 
 " Typescript
 Plug 'prettier/vim-prettier', {
@@ -45,8 +51,7 @@ Plug 'prettier/vim-prettier', {
   \         'json', 'graphql', 'yaml', 'html', 'markdown']
   \ }
 
-" Display *preview-window* as a floating window.
-Plug 'ncm2/float-preview.nvim'
+Plug 'ncm2/float-preview.nvim' " Display *preview-window* as a floating window.
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -97,6 +102,7 @@ unlet plug_install
 " }}}
 
 " Settings {{{
+set spell
 set mouse=a
 set noshowmode
 set cmdheight=1
@@ -104,7 +110,7 @@ set langmenu=en_US.UTF-8                " sets the language of the menu
 set nowrap                              " Do not wrap long lines
 set textwidth=80
 set colorcolumn=+1                      " Display margin at 81
-set number                              " Show linenumbers
+set number                              " Show line numbers
 set numberwidth=6
 set scrolloff=5
 set sidescroll=1
@@ -132,7 +138,7 @@ set foldenable
 set foldlevel=999999
 set foldlevelstart=10
 set foldtext=folding#text()
-set completeopt=longest,menuone,preview,noinsert,noselect
+set completeopt=menuone,noinsert,noselect,preview
 set pumheight=10
 set clipboard+=unnamedplus
 if exists('$TMUX')
@@ -319,8 +325,8 @@ nnoremap <C-up> 5<c-w>+
 nnoremap <C-down> 5<c-w>-
 
 " Scrolling
-nnoremap <C-e> 2<C-y>
-nnoremap <C-d> 2<C-e>
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " Quick filename completion
 inoremap <c-f> <c-x><c-f>
@@ -347,11 +353,17 @@ cnoremap <c-e> <end>
 " Open quickfix window when it's populated
 augroup custom_autocommands
   autocmd!
+  autocmd VimResized * wincmd =
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost    l* lwindow
   " Open quickfix always on the bottom
   autocmd FileType qf wincmd J
   autocmd FileType qf setlocal wrap
+augroup END
+
+augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
 augroup END
 " }}}
 
@@ -456,7 +468,7 @@ let g:prettier#autoformat = 0
 
 augroup custom_prettier
   autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html,*.md PrettierAsync
 augroup END
 " }}}
 
@@ -481,6 +493,8 @@ let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 noremap <C-p> :GitFiles<CR>
+noremap <M-C-p> :Ag<CR>
+noremap <M-C-l> :Lines<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
@@ -494,8 +508,7 @@ noremap <leader>H :Helptags <CR>
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-imap <c-x><c-f> <plug>(fzf-complete-path)
+" imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
@@ -582,8 +595,8 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " Turn the plugin off by default
 let g:golden_ratio_autocommand = 0
 " Try to follow conventions from vim-unimpaired
-nnoremap [og :GoldenRatioToggle <CR>
-nnoremap ]og :GoldenRatioToggle <CR>
+nnoremap [og <Plug>(golden_ratio_toggle)
+nnoremap ]og <Plug>(golden_ratio_toggle)
 nnoremap [oc :set conceallevel=2 <CR>
 nnoremap ]oc :set conceallevel=0 <CR>
 " }}}
@@ -610,7 +623,18 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
 " Plugin: VimWiki {{{
+let g:vimwiki_auto_header = 1
+let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_filetypes = ['markdown']
 let g:vimwiki_list = [
-    \   {'path': '~/Documents/Notes/', 'syntax': 'markdown', 'ext': '.md'}
-    \ ]
+  \   {
+  \     'path': '~/Documents/Notes/',
+  \     'path_html': '~/Public/Wiki/',
+  \     'custom_wiki2html': '~/bin/wiki2html',
+  \     'syntax': 'markdown',
+  \     'ext': '.md',
+  \     'auto_diary_index': 1,
+  \     'auto_tags': 1
+  \   }
+  \ ]
 " }}}
