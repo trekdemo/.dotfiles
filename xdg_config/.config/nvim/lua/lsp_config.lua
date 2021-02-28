@@ -3,6 +3,7 @@ local map = function(type, key, value)
 	vim.fn.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
 end
 
+-- https://github.com/neovim/nvim-lspconfig
 local custom_attach = function(client)
 	print("LSP started.");
   require'completion'.on_attach(client)
@@ -35,7 +36,17 @@ lsp.html.setup { on_attach=custom_attach }
 lsp.jsonls.setup { on_attach=custom_attach }
 lsp.solargraph.setup { on_attach=custom_attach }
 lsp.vimls.setup { on_attach=custom_attach }
-lsp.yamlls.setup { on_attach=custom_attach }
+lsp.terraformls.setup { on_attach=custom_attach }
+lsp.yamlls.setup {
+  on_attach=custom_attach,
+  settings = {
+    yaml = {
+      hover = true,
+      completion = true,
+      validate = false,
+    }
+  },
+}
 lsp.sumneko_lua.setup {
   on_attach=custom_attach,
   settings = {
