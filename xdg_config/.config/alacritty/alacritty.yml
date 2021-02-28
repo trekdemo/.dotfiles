@@ -397,8 +397,8 @@ key_bindings:
   - { key: N,        mods: Command, action: SpawnNewInstance                 }
   - { key: T,        mods: Command, chars: "\x01\x63"                        }
   - { key: W,        mods: Command, chars: "\x01\x78"                        }
-  - { key: RBracket, mods: Command, chars: "\x01\x6e"                        }
-  - { key: LBracket, mods: Command, chars: "\x01\x70"                        }
+  - { key: RBracket, mods: Command|Shift, chars: "\x01\x6e"                        }
+  - { key: LBracket, mods: Command|Shift, chars: "\x01\x70"                        }
   - { key: T,        mods: Command, chars: "\x01\x63"                        }
   - { key: Paste,                   action: Paste                            }
   - { key: Copy,                    action: Copy                             }
