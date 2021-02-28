@@ -11,3 +11,7 @@ SDK
 backend
 fallbacks
 fallback
+dev
+Kubernetes
+io
+app
