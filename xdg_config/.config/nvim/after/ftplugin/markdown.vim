@@ -4,8 +4,9 @@ set breakindentopt=shift:2
 
 let g:markdown_fenced_languages = ['yaml', 'ruby', 'json', 'sh', 'javascript']
 
+nmap <buffer> <silent> - :Ex<cr>
 nmap <buffer> <silent> <localleader>g :Goyo<cr>
-nmap <buffer> <silent> <localleader>p :MarkdownPreview<cr>
+nmap <buffer> <silent> <localleader>p :!open -a 'Marked 2' '%'<cr>
 
 
 " Highlight code blocks with different background color
