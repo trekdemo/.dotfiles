@@ -246,6 +246,13 @@ live_config_reload: true
 #  program: /bin/bash
 #  args:
 #    - --login
+# Start tmux with a new instance
+shell:
+  program: /bin/sh
+  args:
+    - --login
+    - -c
+    - '[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}'
 
 # Startup directory
 #
