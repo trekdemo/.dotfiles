@@ -1,6 +1,6 @@
 local vim = vim
 local map = function(type, key, value)
-	vim.fn.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
+	vim.api.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
 end
 
 -- https://github.com/neovim/nvim-lspconfig
@@ -29,7 +29,7 @@ end
 local lsp = require('lspconfig')
 
 lsp.bashls.setup { on_attach=custom_attach }
-lsp.ccls.setup { on_attach=custom_attach }
+-- lsp.ccls.setup { on_attach=custom_attach }
 lsp.dockerls.setup { on_attach=custom_attach }
 lsp.gopls.setup { on_attach=custom_attach }
 lsp.html.setup { on_attach=custom_attach }
@@ -47,18 +47,18 @@ lsp.yamlls.setup {
     }
   },
 }
-lsp.sumneko_lua.setup {
-  on_attach=custom_attach,
-  settings = {
-    Lua = {
-      runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
-      completion = { keywordSnippet = "Disable", },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-        }
-      }
-    }
-  }
-}
+-- lsp.sumneko_lua.setup {
+--   on_attach=custom_attach,
+--   settings = {
+--     Lua = {
+--       runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
+--       completion = { keywordSnippet = "Disable", },
+--       workspace = {
+--         library = {
+--           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+--           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+--         }
+--       }
+--     }
+--   }
+-- }

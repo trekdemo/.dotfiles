@@ -37,6 +37,8 @@ brew 'chruby-fish'
 brew 'ruby-install'
 brew 'shellcheck'
 brew 'bats'
+tap 'hashicorp/tap'
+brew 'hashicorp/tap/terraform-ls'
 
 # ------------------------------------------------------------------------------
 # Apps for work
