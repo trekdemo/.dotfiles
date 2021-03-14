@@ -55,7 +55,7 @@ if which brew > /dev/null
   source (brew --prefix)"/share/chruby/chruby.fish"
   source (brew --prefix)"/share/chruby/auto.fish"
 end
-chruby 2.7.1
+chruby 2.7
 
 # Seutp helm completion
 if test -x helm
