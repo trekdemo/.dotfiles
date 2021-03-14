@@ -12,7 +12,7 @@
   logallrefupdates = true
   ignorecase = true
   precomposeunicode = true
-  pager = diff-highlight | less
+  pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
 
 [color]
   ui = auto
