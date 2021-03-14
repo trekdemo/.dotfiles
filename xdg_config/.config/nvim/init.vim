@@ -17,7 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
