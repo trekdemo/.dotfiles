@@ -26,6 +26,7 @@ if [[ -x /usr/local/bin/fish ]]; then
 fi
 
 # TODO: Install terminfo from alacritty
-# sudo tic -e alacritty,alacritty-direct alacritty.info
+curl https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info --output alacritty.inf --silent
+sudo tic -e alacritty,alacritty-direct alacritty.info
 
 # TODO: Install tpm as a git submodule

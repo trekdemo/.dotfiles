@@ -1,4 +1,5 @@
 /.DS_Store
+/alacritty.info
 /Procfile.local
 /tmux/.tmux/plugins/*
 /terminfo/.terminfo/*
