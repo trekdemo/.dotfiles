@@ -25,6 +25,7 @@ brew 'httpie'
 brew 'imagemagick@6', link: true
 brew 'ranger'
 brew 'vault'
+brew 'gh'
 
 # ------------------------------------------------------------------------------
 # Languages
