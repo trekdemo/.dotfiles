@@ -20,6 +20,7 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'gruvbox-community/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'kevinhwang91/nvim-bqf'
@@ -160,10 +161,31 @@ let maplocalleader = "\\"
 " }}}
 
 " Look & feel {{{
-call colors#init()
+augroup SwitchBackgroundColors
+    autocmd!
+    autocmd ColorSchemePre papercolor set background=light
+    autocmd ColorSchemePre gruvbox    set background=dark
+    autocmd ColorScheme    *          hi Normal guibg=NONE ctermbg=NONE
+                                  \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
+    autocmd ColorScheme    *          call s:lightline_update()
+augroup END
+function! s:lightline_update()
+  if !exists('g:loaded_lightline')
+    return
+  endif
+  try
+    let g:lightline.colorscheme = substitute(g:colors_name, '-', '_', 'g')
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+  catch
+  endtry
+endfunction
+
+source ~/.vimrc_background
 
 let g:lightline = {
-    \ 'colorscheme': colors#lightlineTheme(),
+    \ 'colorscheme': g:colors_name,
     \ 'component': {
     \   'lineinfo': '%l:%v',
     \ },
