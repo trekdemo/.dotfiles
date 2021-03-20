@@ -242,7 +242,6 @@ endfunction
 
 " Plugin: LSP {{{
 " Use completion-nvim in every buffer
-autocmd BufEnter * :lua require'completion'.on_attach()
 lua require 'lsp_config'
 let g:completion_enable_snippet = 'Neosnippet'
 let g:completion_auto_change_source = 1
