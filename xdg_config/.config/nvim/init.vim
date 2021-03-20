@@ -169,14 +169,15 @@ augroup SwitchBackgroundColors
 
   autocmd FocusLost,WinLeave *
                                 \   let &l:colorcolumn = ''
-                                \ | set nospell
                                 \ | hi Normal guibg=NONE ctermbg=NONE
-                                \ | syntax off
   autocmd BufEnter,FocusGained,VimEnter,WinEnter *
                                 \   let &l:colorcolumn = '+1'
-                                \ | set spell
                                 \ | hi Normal guibg=NONE ctermbg=NONE
-                                \ | syntax on
+
+  autocmd FocusLost *               syntax off
+                                \ | set nospell
+  autocmd FocusGained *             syntax on
+                                \ | set spell
                                 \ | call s:lightline_update()
 augroup END
 
