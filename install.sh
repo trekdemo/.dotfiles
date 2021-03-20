@@ -18,6 +18,9 @@ stow dev executables git tmux xdg_config terminfo
 # Install apps & commands via brew
 brew bundle install --global
 
+# Install necessary python modules
+pip3 install --user --requirement requirements.txt
+
 # Switch to fish shell
 if [[ -x /usr/local/bin/fish ]]; then
   sudo bash -c "echo '/usr/local/bin/fish' >> /etc/shells"

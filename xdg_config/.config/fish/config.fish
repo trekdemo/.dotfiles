@@ -35,6 +35,7 @@ test -d "$HOME/.local/bin"; and set -gx PATH "$HOME/.local/bin" $PATH
 test -d "$HOME/.cargo/bin"; and set -gx PATH "$HOME/.cargo/bin" $PATH
 test -d "$HOME/go/bin";     and set -gx PATH "$HOME/go/bin" $PATH
 test -d "$HOME/Library/Python/3.7/bin"; and set -gx PATH "$HOME/Library/Python/3.7/bin" $PATH
+test -d "$HOME/Library/Python/3.9/bin'"; and set -gx PATH "$HOME/Library/Python/3.9/bin" $PATH
 
 # Add project specific paths
 set -gx PATH ".git/safe/../../bin" $PATH
