@@ -160,13 +160,26 @@ let maplocalleader = "\\"
 
 " Look & feel {{{
 augroup SwitchBackgroundColors
-    autocmd!
-    autocmd ColorSchemePre papercolor set background=light
-    autocmd ColorSchemePre gruvbox    set background=dark
-    autocmd ColorScheme    *          hi Normal guibg=NONE ctermbg=NONE
-                                  \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
-    autocmd ColorScheme    *          call s:lightline_update()
+  autocmd!
+  autocmd ColorSchemePre papercolor set background=light
+  autocmd ColorSchemePre gruvbox    set background=dark
+  autocmd ColorScheme    *          call s:lightline_update()
+  autocmd ColorScheme    *          hi Normal guibg=NONE ctermbg=NONE
+                                \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
+
+  autocmd FocusLost,WinLeave *
+                                \   let &l:colorcolumn = ''
+                                \ | set nospell
+                                \ | hi Normal guibg=NONE ctermbg=NONE
+                                \ | syntax off
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter *
+                                \   let &l:colorcolumn = '+1'
+                                \ | set spell
+                                \ | hi Normal guibg=NONE ctermbg=NONE
+                                \ | syntax on
+                                \ | call s:lightline_update()
 augroup END
+
 function! s:lightline_update()
   if !exists('g:loaded_lightline')
     return
@@ -395,17 +408,6 @@ augroup folding_autocommands
   " folding when switching between windows.
   autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
   autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-augroup END
-" }}}
-
-" Autocommands: Focus {{{
-augroup focus_autocommands
-  autocmd!
-  autocmd BufEnter,FocusGained,VimEnter,WinEnter *
-        \ set winhighlight= |
-        \ let &l:colorcolumn = ('+' . join(range(1,255), ',+'))
-  autocmd FocusLost,WinLeave *
-        \ set winhighlight=Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn
 augroup END
 " }}}
 
