@@ -27,7 +27,7 @@ Plug 'kevinhwang91/nvim-bqf'
 
 Plug 'roman/golden-ratio'
 Plug 'Shougo/context_filetype.vim'
-Plug 'junegunn/gv.vim' " Siple git log viewer - <leader>gl
+Plug 'junegunn/gv.vim' " Simple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
 Plug 'kassio/neoterm'
 Plug 'godlygeek/tabular'
@@ -42,8 +42,6 @@ Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'vim-scripts/bash-support.vim'
 Plug 'vimwiki/vimwiki'
-" Plug 'tools-life/taskwiki' " Python # is misbehaving
-" Plug 'blindFS/vim-taskwarrior'
 
 " Typescript
 Plug 'prettier/vim-prettier', {
@@ -77,7 +75,7 @@ Plug 'janko/vim-test'
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
 
-" File checkkers/linters
+" File checkers/linters
 Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
 
 Plug 'tpope/vim-fugitive'
