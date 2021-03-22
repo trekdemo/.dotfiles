@@ -1,6 +1,7 @@
 # Shortcuts
 alias vim='nvim'
 alias :q='exit'
+alias tilt='/usr/local/bin/tilt'
 
 if status --is-interactive
   abbr --add --global o open
