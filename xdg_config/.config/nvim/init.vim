@@ -648,11 +648,12 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 let g:vimwiki_auto_header = 1
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_filetypes = ['markdown']
+  " \     'custom_wiki2html': '~/bin/wiki2html',
 let g:vimwiki_list = [
   \   {
   \     'path': '~/Documents/Notes/',
   \     'path_html': '~/Public/Wiki/',
-  \     'custom_wiki2html': '~/bin/wiki2html',
+  \     'custom_wiki2html': $HOME.'/.config/nvim/plugged/vimwiki/autoload/vimwiki/customwiki2html.sh',
   \     'syntax': 'markdown',
   \     'ext': '.md',
   \     'auto_diary_index': 1,
