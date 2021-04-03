@@ -31,7 +31,7 @@ function! MarkdownBlocks()
     endfor
 endfunction
 
-if colors#isDark()
+if l:colorscheme == 'gruvbox'
   highlight markdownCodeBlockBG ctermbg=15 guibg=#1d2021
 else
   highlight markdownCodeBlockBG guibg=#d9d9d9
