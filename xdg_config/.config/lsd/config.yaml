@@ -1,0 +1,13 @@
+# https://github.com/Peltoche/lsd#config-file-content
+# == Icons ==
+icons:
+  # When to use icons.
+  # When "classic" is set, this is set to "never".
+  # Possible values: always, auto, never
+  when: never
+  # Which icon theme to use.
+  # Possible values: fancy, unicode
+  theme: unicode
+  # Separator between icon and the name
+  # Default to 1 space
+  separator: " "

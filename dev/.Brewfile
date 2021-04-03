@@ -4,6 +4,7 @@
 brew 'stow'         # Organize software neatly under a single directory tree
 brew 'tmux'         # My choice of terminal multiplexer
 brew 'fish'         # Shell for the win
+brew 'lsd'
 brew 'starship'     # The cross-shell prompt for astronauts; https://starship.rs
 brew 'neovim', args: %w[HEAD]
 brew 'mobile-shell' # Mobile Shell (MOSH) is like SSH plus roaming and smart echo.
