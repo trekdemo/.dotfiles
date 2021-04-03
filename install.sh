@@ -21,15 +21,16 @@ brew bundle install --global
 # Install necessary python modules
 pip3 install --user --requirement requirements.txt
 
+# TODO: Install terminfo from Alacritty
+curl https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info --output alacritty.info --silent
+sudo tic -e alacritty,alacritty-direct alacritty.info
+rm alacritty.info
+
 # Switch to fish shell
 if [[ -x /usr/local/bin/fish ]]; then
   sudo bash -c "echo '/usr/local/bin/fish' >> /etc/shells"
   chsh -s /usr/local/bin/fish
   /usr/local/bin/fish -c 'fisher'
 fi
-
-# TODO: Install terminfo from alacritty
-curl https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info --output alacritty.inf --silent
-sudo tic -e alacritty,alacritty-direct alacritty.info
 
 # TODO: Install tpm as a git submodule
