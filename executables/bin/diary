@@ -1,5 +1,5 @@
 #!/bin/sh
 
-/usr/local/bin/alacritty \
+"$(brew --prefix)/bin/alacritty" \
   --title Vimwiki \
-  --command /usr/local/bin/nvim +VimwikiMakeDiaryNote +Goyo
+  --command "$(brew --prefix)/bin/nvim" +VimwikiMakeDiaryNote +Goyo
