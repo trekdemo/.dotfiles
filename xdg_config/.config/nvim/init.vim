@@ -9,7 +9,7 @@ endif
 unlet autoload_plug_path
 
 set shell=/bin/zsh
-let g:neoterm_shell='/usr/local/bin/fish'
+" let g:neoterm_shell='/usr/local/bin/fish'
 let g:python3_host_prog = '/usr/bin/python3'
 
 " Plugins {{{

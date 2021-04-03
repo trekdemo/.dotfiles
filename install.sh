@@ -26,11 +26,4 @@ curl https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritt
 sudo tic -e alacritty,alacritty-direct alacritty.info
 rm alacritty.info
 
-# Switch to fish shell
-if [[ -x /usr/local/bin/fish ]]; then
-  sudo bash -c "echo '/usr/local/bin/fish' >> /etc/shells"
-  chsh -s /usr/local/bin/fish
-  /usr/local/bin/fish -c 'fisher'
-fi
-
 # TODO: Install tpm as a git submodule
