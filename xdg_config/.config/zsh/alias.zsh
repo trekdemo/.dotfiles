@@ -1,4 +1,4 @@
-alias vim='nvim'
+alias vim="$VISUAL"
 alias :q='exit'
 alias tilt="$(brew --prefix)/bin/tilt"
 
