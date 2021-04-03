@@ -89,8 +89,6 @@
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [push]
   default = simple
-[init]
-  templatedir = ~/.git_templates
 [pull]
   ff = only
 [filter "lfs"]

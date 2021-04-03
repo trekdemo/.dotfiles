@@ -24,8 +24,8 @@ brew 'htop'
 brew 'httpie'
 brew 'imagemagick@6', link: true
 brew 'ranger'
-brew 'vault'
 brew 'gh'
+brew 'kubectx'
 
 # ------------------------------------------------------------------------------
 # Languages
@@ -36,10 +36,15 @@ brew 'yarn'
 brew 'chruby'
 brew 'chruby-fish'
 brew 'ruby-install'
-brew 'shellcheck'
+# brew 'shellcheck'
 brew 'bats'
-tap 'hashicorp/tap'
-brew 'hashicorp/tap/terraform-ls'
+
+# ------------------------------------------------------------------------------
+# HashiCorp
+# ------------------------------------------------------------------------------
+# tap 'hashicorp/tap'
+# brew 'hashicorp/tap/terraform-ls'
+# brew 'vault'
 
 # ------------------------------------------------------------------------------
 # Apps for work
@@ -49,9 +54,10 @@ cask 'google-cloud-sdk'
 # cask 'slack'
 # cask 'google-chrome'
 # cask 'viscosity'
-cask 'docker'
+# cask 'docker'
 cask 'alacritty'
 cask 'sequel-pro'
+cask 'rectangle'
 # mas 'Jira Cloud by Atlassian', id: 1475897096
 
 # ------------------------------------------------------------------------------
