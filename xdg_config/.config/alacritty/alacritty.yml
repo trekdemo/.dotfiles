@@ -225,7 +225,7 @@ live_config_reload: true
 #    - --login
 # Start tmux with a new instance
 shell:
-  program: /bin/sh
+  program: /bin/zsh
   args:
     - --login
     - -c

@@ -32,6 +32,10 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 BROWSER=open
+export TZ="/usr/share/zoneinfo/Europe/Amsterdam"
+export LANG="en_US.utf-8"
+export LC_ALL="en_US.utf-8"
+
 if [ -z "$NVIM_LISTEN_ADDRESS" ]; then
   export VISUAL=nvim
 else
