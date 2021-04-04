@@ -23,6 +23,7 @@ pip3 install --user --requirement requirements.txt
 
 # TODO: Install terminfo from Alacritty
 curl https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info --output alacritty.info --silent
+echo "Enter password for \`sudo tic -e alacritty,alacritty-direct alacritty.info\`"
 sudo tic -e alacritty,alacritty-direct alacritty.info
 rm alacritty.info
 
