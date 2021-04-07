@@ -1,0 +1,36 @@
+abbr vim="nvim"
+abbr :q="exit"
+abbr tilt='/usr/local/bin/abbr add o="open"'
+
+abbr add mv="mv -iv"
+abbr add cp="cp -riv"
+abbr add mkdir="mkdir -vp"
+abbr add cc="circleci"
+abbr add t="task"
+abbr add tsh="tasksh"
+# Ruby and friends
+abbr add b="bundle"
+abbr add be="bundle exec"
+abbr add bu="bundle update"
+abbr add berc="bundle exec rails console"
+# Docker, Kubernetes, ...
+abbr add k="kubectl"
+abbr add kx="kubectx"
+abbr add kn="kubens"
+abbr add d="docker"
+abbr add dc="docker-compose"
+abbr add ds="docker-sync"
+# Git and friends
+abbr add g="git"
+abbr add ts="tig status"
+abbr add gup="git fetch --all --prune; git pull --rebase"
+abbr add gfp="git push --force-with-lease"
+
+# Quick edits
+abbr add ea="edit ~/.config/fish/conf.d/aliases.fish"
+abbr add ef="edit ~/.config/fish/config.fish"
+abbr add ev="edit ~/.config/nvim/init.vim"
+abbr add eg="edit ~/.gitconfig"
+abbr add et="edit ~/.tmux.conf"
+abbr add es="edit ~/.ssh/config"
+abbr add eh="sudo $VISUAL /etc/hosts"

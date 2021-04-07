@@ -57,9 +57,10 @@ export PATH=".git/safe/../../node_modules/.bin/:$PATH"
 export PATH=".git/safe/../../bin:$PATH"
 
 # Load config files
-for rc in $(ls "$HOME/.config/zsh/"); do
-  if [ -f "$HOME/.config/zsh/$rc" ]; then
-    source "$HOME/.config/zsh/$rc"
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+for rc in $(ls "$HOME/.config/zsh/conf.d/"); do
+  if [ -f "$HOME/.config/zsh/conf.d/$rc" ]; then
+    source "$HOME/.config/zsh/conf.d/$rc"
   fi
 done
 
