@@ -15,6 +15,7 @@ abbr add bu="bundle update"
 abbr add berc="bundle exec rails console"
 # Docker, Kubernetes, ...
 abbr add k="kubectl"
+abbr add kk="k9s"
 abbr add kx="kubectx"
 abbr add kn="kubens"
 abbr add d="docker"
