@@ -10,3 +10,4 @@ pager:
 aliases:
     co: pr checkout
     show: pr view -w
+    clone: repo clone
