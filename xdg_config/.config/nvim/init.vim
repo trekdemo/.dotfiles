@@ -657,7 +657,9 @@ let g:vimwiki_list = [
   \     'syntax': 'markdown',
   \     'ext': '.md',
   \     'auto_diary_index': 1,
-  \     'auto_tags': 1
+  \     'auto_tags': 1,
+  \     'auto_toc': 1,
+  \     'links_space_char': '-'
   \   }
   \ ]
 " }}}
