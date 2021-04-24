@@ -383,7 +383,6 @@ key_bindings:
   - {key: W, mods: Command, chars: "\x01x"}
   - {key: RBracket, mods: Command|Shift, chars: "\x01n"}
   - {key: LBracket, mods: Command|Shift, chars: "\x01p"}
-  - {key: T, mods: Command, chars: "\x01c"}
   - {key: Paste, action: Paste}
   - {key: Copy, action: Copy}
   - {key: L, mods: Control, action: ClearLogNotice}
