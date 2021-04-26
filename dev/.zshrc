@@ -57,7 +57,6 @@ export PATH=".git/safe/../../node_modules/.bin/:$PATH"
 export PATH=".git/safe/../../bin:$PATH"
 
 # Load config files
-source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
 for rc in $(ls "$HOME/.config/zsh/conf.d/"); do
   if [ -f "$HOME/.config/zsh/conf.d/$rc" ]; then
     source "$HOME/.config/zsh/conf.d/$rc"
@@ -69,3 +68,5 @@ chruby 3
 # Setup prompt
 # https://starship.rs/config/
 eval "$(starship init zsh)"
+
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
