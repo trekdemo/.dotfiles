@@ -163,21 +163,14 @@ augroup SwitchBackgroundColors
   autocmd ColorSchemePre papercolor set background=light
   autocmd ColorSchemePre gruvbox    set background=dark
   autocmd ColorScheme    *          call s:lightline_update()
-  autocmd ColorScheme    *          hi Normal guibg=NONE ctermbg=NONE
+                                \ | hi Normal guibg=NONE ctermbg=NONE
                                 \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
 
-  autocmd FocusLost,WinLeave *
-                                \   let &l:colorcolumn = ''
-                                \ | hi Normal guibg=NONE ctermbg=NONE
+  autocmd FocusLost,WinLeave *      let &l:colorcolumn = ''
   autocmd BufEnter,FocusGained,VimEnter,WinEnter *
                                 \   let &l:colorcolumn = '+1'
-                                \ | hi Normal guibg=NONE ctermbg=NONE
+  autocmd FocusGained *             call s:lightline_update()
 
-  autocmd FocusLost *               syntax off
-                                \ | set nospell
-  autocmd FocusGained *             syntax on
-                                \ | set spell
-                                \ | call s:lightline_update()
 augroup END
 
 function! s:lightline_update()
