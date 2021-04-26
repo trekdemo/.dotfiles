@@ -139,20 +139,6 @@ set foldtext=folding#text()
 set completeopt=menuone,noinsert,noselect,preview
 set pumheight=10
 set clipboard+=unnamedplus
-if exists('$TMUX')
-  let g:clipboard = {
-        \   'name': 'myClipboard',
-        \   'copy': {
-        \      '+': 'tmux load-buffer -',
-        \      '*': 'tmux load-buffer -',
-        \    },
-        \   'paste': {
-        \      '+': 'tmux save-buffer -',
-        \      '*': 'tmux save-buffer -',
-        \   },
-        \   'cache_enabled': 1,
-        \ }
-endif
 let mapleader = ","
 let maplocalleader = "\\"
 " }}}
