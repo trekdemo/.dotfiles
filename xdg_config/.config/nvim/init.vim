@@ -139,7 +139,7 @@ set foldtext=folding#text()
 set completeopt=menuone,noinsert,noselect,preview
 set pumheight=10
 set clipboard+=unnamedplus
-let mapleader = ","
+let mapleader = "\ "
 let maplocalleader = "\\"
 " }}}
 
@@ -348,8 +348,6 @@ inoremap <C-u> <esc>gUiwea
 " Mappings: Folding {{{
 " Use ,z to "focus" the current fold.
 nnoremap zf zMzvzz
-" Space to toggle folds.
-nnoremap <Space> za
 " }}}
 
 " Mappings: Command-line {{{
