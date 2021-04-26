@@ -16,7 +16,7 @@ end
 
 projects = Dir[File.expand_path('~/projects/*')].map { |d| File.basename(d) }
 tmux_windows = Hash[
-  `/usr/local/bin/tmux list-windows -F '#I:#W'`
+  `tmux list-windows -F '#I:#W'`
     .split("\n")
     .map { | line| line.split(':').reverse }
 ]
