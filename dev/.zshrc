@@ -48,11 +48,8 @@ export EDITOR="$VISUAL"
 [ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/go/bin" ]     && export PATH="$HOME/go/bin:$PATH"
 # Add Python bin paths to the PATH
-for version in $(ls "$HOME/Library/Python"); do
-  if [ -d "$HOME//Library/Python/$version/bin" ]; then
-    export PATH="$HOME//Library/Python/$version/bin:$PATH"
-  fi
-done
+# $HOME/Library/Python/*/bin
+export PATH="$HOME/Library/Python/*/bin:$PATH"
 export PATH=".git/safe/../../node_modules/.bin/:$PATH"
 export PATH=".git/safe/../../bin:$PATH"
 
