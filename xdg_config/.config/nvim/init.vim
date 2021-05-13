@@ -242,6 +242,8 @@ let g:completion_chain_complete_list = {
 
 " Mappings: General {{{
 noremap <Leader>w <C-w>
+" Open project todoes/notes in tab
+nmap <localleader>d :tab drop tmp/gergo-todo.md<CR>
 " Keep the previous clipboard value
 vnoremap p "_dP
 " Paste without overwriting default register (doesn't work with other registers)
