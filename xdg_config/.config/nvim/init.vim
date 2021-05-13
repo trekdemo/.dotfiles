@@ -241,6 +241,7 @@ let g:completion_chain_complete_list = {
 " }}}
 
 " Mappings: General {{{
+noremap <Leader>w <C-w>
 " Keep the previous clipboard value
 vnoremap p "_dP
 " Paste without overwriting default register (doesn't work with other registers)
