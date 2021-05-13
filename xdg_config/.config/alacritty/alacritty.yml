@@ -26,11 +26,11 @@ font:
 
   # The normal (roman) font face to use.
   normal:
-    family: Fira Code
+    family: "FiraCode Nerd Font"
     style: Retina
 
   bold:
-    family: Fira Code
+    family: "FiraCode Nerd Font"
     style: Bold
 
   italic:

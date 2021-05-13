@@ -58,6 +58,8 @@ Plug 'violetyk/neosnippet-rails'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
 
+Plug 'kyazdani42/nvim-web-devicons'
+
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
