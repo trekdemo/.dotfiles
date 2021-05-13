@@ -58,6 +58,10 @@ Plug 'violetyk/neosnippet-rails'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
 
+" Setup telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 Plug '/usr/local/opt/fzf'
@@ -491,19 +495,28 @@ noremap <silent> <leader>dg :diffget<CR>
 noremap <silent> <leader>dp :diffput<CR>
 " }}}
 
+" Plugin: Telescope {{{
+cabbrev t Telescope
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fc <cmd>Telescope commands<cr>
+nnoremap <leader>fa <cmd>Telescope lsp_code_action<cr>
+nnoremap <leader>fg <cmd>Telescope git_status<cr>
+" }}}
+
 " Plugin: FZF {{{
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
-noremap <C-p> :GitFiles<CR>
+" noremap <C-p> :GitFiles<CR>
 noremap <M-C-p> :Ag<CR>
-noremap <M-C-l> :Lines<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-noremap <leader>B :Buffers <CR>
-noremap <leader>B :Buffers <CR>
-noremap <C-b> :Buffers <CR>
+" noremap <leader>B :Buffers <CR>
+" noremap <C-b> :Buffers <CR>
 noremap <leader>C :Commands <CR>
 noremap <leader>T :Tags <CR>
 noremap <localleader>t :BTags <CR>
