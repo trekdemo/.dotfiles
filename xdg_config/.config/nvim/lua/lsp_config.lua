@@ -37,6 +37,7 @@ lsp.jsonls.setup { on_attach=custom_attach }
 lsp.solargraph.setup { on_attach=custom_attach }
 lsp.vimls.setup { on_attach=custom_attach }
 lsp.terraformls.setup { on_attach=custom_attach }
+lsp.pyls.setup { on_attach=custom_attach }
 lsp.yamlls.setup {
   on_attach=custom_attach,
   settings = {
