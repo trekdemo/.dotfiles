@@ -229,7 +229,7 @@ endfunction
 " Use completion-nvim in every buffer
 lua require 'lsp_config'
 let g:completion_enable_snippet = 'Neosnippet'
-let g:completion_auto_change_source = 0
+let g:completion_auto_change_source = 1
 let g:completion_chain_complete_list = {
 	    \ 'default' : {
 	    \   'default': [
@@ -244,10 +244,14 @@ let g:completion_chain_complete_list = {
       \   ]
 	    \ }
 	    \}
+augroup CompletionTriggerCharacter
+    autocmd!
+    autocmd BufEnter * let g:completion_trigger_character = ['.']
+    autocmd BufEnter *.rb let g:completion_trigger_character = ['.', '::']
+augroup end
 " }}}
 
 " Mappings: General {{{
-noremap <Leader>w <C-w>
 " Open project todoes/notes in tab
 nmap <localleader>d :tab drop tmp/gergo-todo.md<CR>
 " Keep the previous clipboard value
