@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/completion-treesitter'
 
 Plug 'gruvbox-community/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
@@ -231,7 +232,7 @@ let g:completion_auto_change_source = 1
 let g:completion_chain_complete_list = {
 	    \ 'default' : {
 	    \   'default': [
-	    \       {'complete_items': ['lsp', 'snippet']},
+	    \       {'complete_items': ['ts', 'lsp', 'snippet']},
 	    \       {'complete_items': ['path'], 'triggered_only': ['/']},
 	    \       {'mode': '<c-p>'},
 	    \       {'mode': '<c-n>'}],
