@@ -80,9 +80,6 @@ Plug 'janko/vim-test'
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
 
-" File checkers/linters
-Plug 'neomake/neomake', { 'do': 'npm install -g eslint jsonlint' }
-
 Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
@@ -599,16 +596,6 @@ xmap <C-k>     <Plug>(neosnippet_expand_or_jump)
 nmap <C-k>     <Plug>(neosnippet_expand_or_jump)
 autocmd InsertLeave * NeoSnippetClearMarkers
 cabbrev snipe NeoSnippetEdit
-" }}}
-
-" Plugin: NeoMake {{{
-call neomake#configure#automake('rw', 250)
-" let g:neomake_open_list = 1
-" let g:neomake_list_height = 5
-
-" Defaults: ['mri', 'rubocop', 'reek', 'rubylint']
-let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
-let g:neomake_javascript_enabled_makers = ['eslint']
 " }}}
 
 " Plugin: GoldenRatio {{{
