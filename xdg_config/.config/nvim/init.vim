@@ -25,6 +25,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'kevinhwang91/nvim-bqf'
 
 Plug 'roman/golden-ratio'
+Plug 'folke/zen-mode.nvim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'junegunn/gv.vim' " Simple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
@@ -35,7 +36,6 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'fatih/vim-go',            { 'for': 'go' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
-Plug 'junegunn/goyo.vim',       { 'for': ['markdown', 'text', 'help'] }
 Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
 Plug 'tpope/vim-rails',         { 'for': 'ruby' }
@@ -608,25 +608,17 @@ nnoremap [oc :set conceallevel=2 <CR>
 nnoremap ]oc :set conceallevel=0 <CR>
 " }}}
 
-" Plugin: Goyo {{{
-let g:goyo_width = 100
-function! s:goyo_enter()
-  set nocursorline
-  hi clear ColorColumn
-  hi clear VertSplit
-  hi clear EndOfBuffer
-endfunction
-
-function! s:goyo_leave()
-  set cursorline
-  hi clear ColorColumn
-  hi ColorColumn ctermbg=234 guibg=#1d2021
-  hi VertSplit ctermbg=234 guibg=#1d2021
-  hi EndOfBuffer  ctermbg=234 guibg=#1d2021
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" Plugin: ZenMode {{{
+lua << EOF
+  require("zen-mode").setup {
+    window = {
+      height = 0.8, -- height of the Zen window
+    },
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
 " }}}
 
 " Plugin: VimWiki {{{
