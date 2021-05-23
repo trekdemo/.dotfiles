@@ -64,10 +64,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
-
 if exists('$TMUX')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tmux-plugins/vim-tmux'
@@ -505,29 +501,6 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fc <cmd>Telescope commands<cr>
 nnoremap <leader>fa <cmd>Telescope lsp_code_action<cr>
 nnoremap <leader>fg <cmd>Telescope git_status<cr>
-" }}}
-
-" Plugin: FZF {{{
-let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-
-" noremap <C-p> :GitFiles<CR>
-noremap <M-C-p> :Ag<CR>
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-" noremap <leader>B :Buffers <CR>
-" noremap <C-b> :Buffers <CR>
-noremap <leader>C :Commands <CR>
-noremap <leader>T :Tags <CR>
-noremap <localleader>t :BTags <CR>
-noremap <leader>H :Helptags <CR>
-
-" Insert mode completion
-" imap <c-x><c-k> <plug>(fzf-complete-word)
-" imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 
 " Plugin: vim-test {{{
