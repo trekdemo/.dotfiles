@@ -32,7 +32,7 @@ Plug 'fabi1cazenave/termopen.vim'
 Plug 'kassio/neoterm'
 Plug 'godlygeek/tabular'
 
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 Plug 'fatih/vim-go',            { 'for': 'go' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
