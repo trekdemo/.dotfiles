@@ -219,6 +219,11 @@ endfunction
 " }}}
 
 " Plugin: LSP {{{
+sign define LspDiagnosticsSignError text=ﱥ texthl=LspDiagnosticsSignError linehl= numhl=
+sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=
+
 " Use completion-nvim in every buffer
 lua require 'lsp_config'
 let g:completion_enable_snippet = 'Neosnippet'
