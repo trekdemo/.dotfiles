@@ -27,4 +27,5 @@ echo "Enter password for \`sudo tic -e alacritty,alacritty-direct alacritty.info
 sudo tic -e alacritty,alacritty-direct alacritty.info
 rm alacritty.info
 
-# TODO: Install tpm as a git submodule
+# Install tmp the plugin manager for tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
