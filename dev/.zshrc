@@ -65,5 +65,4 @@ chruby 3
 # Setup prompt
 # https://starship.rs/config/
 eval "$(starship init zsh)"
-
-source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+[ -d "/opt/homebrew/share/zsh-abbr" ] && source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
