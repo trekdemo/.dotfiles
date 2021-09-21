@@ -28,6 +28,7 @@ brew 'ranger'
 brew 'gh'
 brew 'kubectx'
 brew 'helm'
+brew 'olets/tap/zsh-abbr'
 
 # ------------------------------------------------------------------------------
 # Languages
