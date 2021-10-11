@@ -257,6 +257,8 @@ nmap <localleader>d :tab drop tmp/gergo-todo.md<CR>
 vnoremap p "_dP
 " Paste without overwriting default register (doesn't work with other registers)
 xnoremap p pgvy
+" Select the previously pasted text
+nnoremap gp `[v`]
 " Alt + Backspace should delete the last word
 inoremap <A-BS> <C-W>
 
