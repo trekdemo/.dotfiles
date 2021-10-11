@@ -23,3 +23,4 @@
 /xdg_config/.config/telepresence
 /xdg_config/.config/gh/hosts.yml
 /xdg_config/.config/gh/state.yml
+/xdg_config/.config/cliptic/*
