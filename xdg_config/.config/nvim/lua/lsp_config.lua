@@ -28,8 +28,9 @@ end
 
 local lsp = require('lspconfig')
 
+-- Here's the list of available LSP servers
+-- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 lsp.bashls.setup { on_attach=custom_attach }
--- lsp.ccls.setup { on_attach=custom_attach }
 lsp.dockerls.setup { on_attach=custom_attach }
 lsp.gopls.setup { on_attach=custom_attach }
 lsp.html.setup { on_attach=custom_attach }
@@ -37,7 +38,7 @@ lsp.jsonls.setup { on_attach=custom_attach }
 lsp.solargraph.setup { on_attach=custom_attach }
 lsp.vimls.setup { on_attach=custom_attach }
 lsp.terraformls.setup { on_attach=custom_attach }
-lsp.pyls.setup { on_attach=custom_attach }
+lsp.pylsp.setup { on_attach=custom_attach }
 lsp.yamlls.setup {
   on_attach=custom_attach,
   settings = {
