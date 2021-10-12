@@ -261,9 +261,14 @@ xnoremap p pgvy
 nnoremap gp `[v`]
 " Alt + Backspace should delete the last word
 inoremap <A-BS> <C-W>
+" Yank from cursor till the end of the line - Behave like all the other capital letters
+nnoremap Y y$
 
 " Don't move on *
 nnoremap * *Nzzzv
+" Don't move on J
+nnoremap J mzJ`z
+
 " Keep search matches in the middle of the window and pulse the line when moving to them.
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -272,12 +277,25 @@ nnoremap N Nzzzv
 noremap H ^
 noremap L g_
 
-" Go by visual lines (happens when lines are wrapped)
-nnoremap k gk
-nnoremap j gj
+" Have relative jumps in the jump list (bigger than 5)
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'gj'
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'gk'
 
-" Run commands
-nnoremap <leader><leader> :!
+" Undo breakpoints
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+inoremap ; ;<c-g>u
+inoremap [ [<c-g>u
+inoremap ] ]<c-g>u
+inoremap ( (<c-g>u
+inoremap ) )<c-g>u
+inoremap { {<c-g>u
+inoremap } }<c-g>u
+
+" Remove selected hightlight
+noremap <leader><leader> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
 
 " Edit and source vimrc file
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -308,12 +326,13 @@ vmap <leader>" S"
 nmap <leader>' viwS'
 vmap <leader>' S'
 
+" Move lines in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 " Shorcut for quick substitution
 nnoremap <leader>s :%s//gc<left><left><left>
 vnoremap <leader>s :%s/<c-r>//gc<left><left><left>
-
-" Remove selected hightlight
-noremap <leader><space> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
 
 " Tab openning and closing
 nnoremap <leader>tc :tabclose<CR>
