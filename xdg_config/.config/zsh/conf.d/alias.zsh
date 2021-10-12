@@ -34,12 +34,11 @@ alias gup="'git fetch --all --prune; git pull --rebase'"
 alias gfp="'git push --force-with-lease'"
 
 # Quick edits
-alias ea="edit ~/.config/fish/conf.d/aliases.fish"
-alias ef="edit ~/.config/fish/config.fish"
-alias ev="edit ~/.config/nvim/init.vim"
-alias eg="edit ~/.gitconfig"
-alias et="edit ~/.tmux.conf"
-alias es="edit ~/.ssh/config"
+alias ez="nvim ~/.config/zsh/"
+alias ev="nvim ~/.config/nvim/init.vim"
+alias eg="nvim ~/.gitconfig"
+alias et="nvim ~/.tmux.conf"
+alias es="nvim ~/.ssh/config"
 alias eh="sudo $VISUAL /etc/hosts"
 
 

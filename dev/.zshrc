@@ -66,3 +66,8 @@ chruby 3
 # https://starship.rs/config/
 eval "$(starship init zsh)"
 [ -d "/opt/homebrew/share/zsh-abbr" ] && source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+[ -d "/usr/local/share/zsh-abbr" ] && source /usr/local/share/zsh-abbr/zsh-abbr.zsh
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi
