@@ -345,10 +345,11 @@ nnoremap <C-down> 5<c-w>-
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" Quick filename completion
-inoremap <c-f> <c-x><c-f>
 " Upcase last word
 inoremap <C-u> <esc>gUiwea
+
+nnoremap [oc :set conceallevel=2 <CR>
+nnoremap ]oc :set conceallevel=0 <CR>
 " }}}
 
 " Mappings: Folding {{{
@@ -540,16 +541,6 @@ nnoremap <Leader>vi :VimuxInspectRunner<CR>
 vnoremap <Leader>vs "vy :call VimuxSlime()<CR>
 nnoremap <Leader>vs vip<LocalLeader>vs<CR>
 nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-" }}}
-
-" Plugin: GoldenRatio {{{
-" Turn the plugin off by default
-let g:golden_ratio_autocommand = 0
-" Try to follow conventions from vim-unimpaired
-nnoremap [og <Plug>(golden_ratio_toggle)
-nnoremap ]og <Plug>(golden_ratio_toggle)
-nnoremap [oc :set conceallevel=2 <CR>
-nnoremap ]oc :set conceallevel=0 <CR>
 " }}}
 
 " Plugin: VimWiki {{{
