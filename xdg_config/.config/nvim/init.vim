@@ -345,7 +345,7 @@ inoremap ) )<c-g>u
 inoremap { {<c-g>u
 inoremap } }<c-g>u
 
-" Remove selected hightlight
+" Remove selected highlight
 noremap <leader><leader> :nohlsearch<cr>:call clearmatches()<cr>:echo 'Search cleared'<CR>
 
 " Edit and source vimrc file
