@@ -234,6 +234,12 @@ sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl
 " }}}
 
 " Plugin: nvim-cmp {{{
+highlight link CmpItemAbbr Normal
+highlight link CmpItemAbbrDeprecated Error
+highlight link CmpItemAbbrMatchFuzzy MatchParen
+highlight link CmpItemKind GruvBoxFg2
+highlight link CmpItemMenu Comment
+
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -272,14 +278,14 @@ lua <<EOF
 
     formatting = {
       format = lspkind.cmp_format({
-        with_text = false,
+        with_text = true,
         menu = {
-          treesitter = "",
-          path = "",
-          spell = "暈",
-          buffer = "﬘",
-          nvim_lsp = "歷",
-          nvim_lua = "",
+          treesitter = "[tree]",
+          path = "[path]",
+          spell = "[spell]",
+          buffer = "[buf]",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[lua]",
         }
       }),
     },
