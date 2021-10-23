@@ -630,14 +630,6 @@ nnoremap <Leader>vs vip<LocalLeader>vs<CR>
 nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " }}}
 
-" Plugin: neosnippet {{{
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-
-snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-" }}}
-
 " Plugin: GoldenRatio {{{
 " Turn the plugin off by default
 let g:golden_ratio_autocommand = 0
