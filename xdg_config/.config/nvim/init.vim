@@ -59,7 +59,6 @@ Plug 'prettier/vim-prettier', {
   \ }
 
 Plug 'ncm2/float-preview.nvim' " Display *preview-window* as a floating window.
-Plug 'Shougo/echodoc.vim'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
@@ -438,22 +437,6 @@ tnoremap <C-k> <C-\><C-n><C-w><C-k>
 
 tnoremap <C-u> <C-\><C-n><C-u>
 tnoremap <C-d> <C-\><C-n><C-d>
-" }}}
-
-" Plugin: Echodoc {{{
-" Or, you could use neovim's floating text feature.
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-" To use a custom highlight for the float window,
-" change Pmenu to your highlight group
-highlight link EchoDocFloat Pmenu"
-
-" let g:echodoc#enable_at_startup = 1
-" " let g:echodoc#type = 'floating'
-" let g:echodoc#type = 'popup'
-" " To use a custom highlight for the popup window,
-" " change Pmenu to your highlight group
-" highlight link EchoDocPopup Pmenu
 " }}}
 
 " Plugin: floating-preview.nvim {{{
