@@ -262,54 +262,36 @@ lua <<EOF
       { name = 'nvim_lua' },
       { name = 'path' },
       { name = 'treesitter' },
-      { name = 'spell' },
+      { name = 'buffer', keyword_length = 4 },
+      { name = 'spell', keyword_length = 4 },
       -- { name = 'vsnip' }, -- For vsnip users.
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer', keyword_length = 4 },
     }),
 
     formatting = {
       format = lspkind.cmp_format({
         with_text = false,
         menu = {
-          buffer = "[buf]",
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[api]",
+          treesitter = "",
+          path = "",
+          spell = "暈",
+          buffer = "﬘",
+          nvim_lsp = "歷",
+          nvim_lua = "",
         }
       }),
     },
 
     experimental = {
+      native_menu = false,
       ghost_text = true,
     }
   })
 
-  -- Setp lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  local lsp = require'lspconfig'
-
-  lsp.bashls.setup { capabilities = capabilities }
-  lsp.dockerls.setup { capabilities = capabilities }
-  lsp.gopls.setup { capabilities = capabilities }
-  lsp.html.setup { capabilities = capabilities }
-  lsp.jsonls.setup { capabilities = capabilities }
-  lsp.solargraph.setup { capabilities = capabilities }
-  lsp.vimls.setup { capabilities = capabilities }
-  lsp.terraformls.setup { capabilities = capabilities }
-  lsp.pylsp.setup { capabilities = capabilities }
-  lsp.yamlls.setup {
-    capabilities = capabilities,
-    settings = {
-      yaml = {
-        hover = true,
-        completion = true,
-        validate = false,
-      }
-    },
-  }
+  -- Setup lspconfig.
+  require'lsp_config' -- lua/lsp_config.lua
 EOF
 " }}}
 

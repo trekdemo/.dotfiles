@@ -6,7 +6,6 @@ end
 -- https://github.com/neovim/nvim-lspconfig
 local custom_attach = function(client)
   print("LSP started.");
-  require'completion'.on_attach(client)
 
   map('n', '1gD'  , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
   map('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -27,20 +26,49 @@ local custom_attach = function(client)
 end
 
 local lsp = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Here's the list of available LSP servers
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-lsp.bashls.setup { on_attach=custom_attach }
-lsp.dockerls.setup { on_attach=custom_attach }
-lsp.gopls.setup { on_attach=custom_attach }
-lsp.html.setup { on_attach=custom_attach }
-lsp.jsonls.setup { on_attach=custom_attach }
-lsp.solargraph.setup { on_attach=custom_attach }
-lsp.vimls.setup { on_attach=custom_attach }
-lsp.terraformls.setup { on_attach=custom_attach }
-lsp.pylsp.setup { on_attach=custom_attach }
-lsp.yamlls.setup {
+lsp.bashls.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.dockerls.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.gopls.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.html.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.jsonls.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.solargraph.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.vimls.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.terraformls.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.pylsp.setup({
+  on_attach = custom_attach,
+  capabilities = capabilities,
+})
+lsp.yamlls.setup({
   on_attach=custom_attach,
+  capabilities = capabilities,
   settings = {
     yaml = {
       hover = true,
@@ -48,7 +76,7 @@ lsp.yamlls.setup {
       validate = false,
     }
   },
-}
+})
 -- lsp.sumneko_lua.setup {
 --   on_attach=custom_attach,
 --   settings = {
