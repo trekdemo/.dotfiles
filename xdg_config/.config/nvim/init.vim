@@ -135,7 +135,6 @@ set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob 
 set conceallevel=2 concealcursor=nc     " Don't show hidden characters in normal mode
 set inccommand=nosplit                  " Show substitution in realtime
 set complete+=kspell
-" set completeopt=menuone,noinsert,noselect,preview
 set completeopt=menu,menuone,noselect
 set cursorline
 set foldenable
@@ -551,19 +550,6 @@ nnoremap [og <Plug>(golden_ratio_toggle)
 nnoremap ]og <Plug>(golden_ratio_toggle)
 nnoremap [oc :set conceallevel=2 <CR>
 nnoremap ]oc :set conceallevel=0 <CR>
-" }}}
-
-" Plugin: ZenMode {{{
-lua << EOF
-  require("zen-mode").setup {
-    window = {
-      height = 0.8, -- height of the Zen window
-    },
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-EOF
 " }}}
 
 " Plugin: VimWiki {{{
