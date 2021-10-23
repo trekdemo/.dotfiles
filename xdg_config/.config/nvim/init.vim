@@ -58,9 +58,6 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'ncm2/float-preview.nvim' " Display *preview-window* as a floating window.
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'violetyk/neosnippet-rails'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
@@ -637,17 +634,7 @@ nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " }}}
 
 " Plugin: neosnippet {{{
-let g:neosnippet#snippets_directory = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/snippets/"
-" let g:neosnippet#enable_completed_snippet = 1
-let g:neosnippet#enable_complete_done = 1
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_or_jump)
-nmap <C-k>     <Plug>(neosnippet_expand_or_jump)
-autocmd InsertLeave * NeoSnippetClearMarkers
-cabbrev snipe NeoSnippetEdit
+" let g:...#snippets_directory = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/snippets/"
 " }}}
 
 " Plugin: GoldenRatio {{{
