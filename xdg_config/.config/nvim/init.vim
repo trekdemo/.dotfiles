@@ -33,7 +33,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'kevinhwang91/nvim-bqf'
 
-Plug 'roman/golden-ratio'
+Plug 'roman/golden-ratio', { 'on': ['GoldenRatioResize', 'GoldenRatioToggle'] }
 Plug 'folke/zen-mode.nvim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'junegunn/gv.vim' " Simple git log viewer - <leader>gl
