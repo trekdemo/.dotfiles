@@ -15,9 +15,15 @@ let g:python3_host_prog = '/usr/bin/python3'
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'f3fora/cmp-spell'
+Plug 'ray-x/cmp-treesitter'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'onsails/lspkind-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/completion-treesitter'
 
 Plug 'gruvbox-community/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
@@ -131,12 +137,13 @@ set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob 
 set conceallevel=2 concealcursor=nc     " Don't show hidden characters in normal mode
 set inccommand=nosplit                  " Show substitution in realtime
 set complete+=kspell
+" set completeopt=menuone,noinsert,noselect,preview
+set completeopt=menu,menuone,noselect
 set cursorline
 set foldenable
 set foldlevel=999999
 set foldlevelstart=10
 set foldtext=folding#text()
-set completeopt=menuone,noinsert,noselect,preview
 set pumheight=10
 set clipboard+=unnamedplus
 let mapleader = "\ "
@@ -224,30 +231,86 @@ sign define LspDiagnosticsSignError text=ﱥ texthl=LspDiagnosticsSignError line
 sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=
 sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
 sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=
+" }}}
 
-" Use completion-nvim in every buffer
-lua require 'lsp_config'
-let g:completion_enable_snippet = 'Neosnippet'
-let g:completion_auto_change_source = 1
-let g:completion_chain_complete_list = {
-	    \ 'default' : {
-	    \   'default': [
-	    \       {'complete_items': ['ts', 'lsp', 'snippet']},
-	    \       {'complete_items': ['path'], 'triggered_only': ['/']},
-	    \       {'mode': '<c-p>'},
-	    \       {'mode': '<c-n>'}],
-	    \   'comment': [
-	    \       {'complete_items': ['dict', 'spel', 'thes']},
-	    \       {'mode': '<c-p>'},
-	    \       {'mode': '<c-n>'},
-      \   ]
-	    \ }
-	    \}
-augroup CompletionTriggerCharacter
-    autocmd!
-    autocmd BufEnter * let g:completion_trigger_character = ['.']
-    autocmd BufEnter *.rb let g:completion_trigger_character = ['.', '::']
-augroup end
+" Plugin: nvim-cmp {{{
+lua <<EOF
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+  local lspkind = require'lspkind'
+
+  cmp.setup({
+    -- snippet = {
+    --   expand = function(args)
+    --     -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    --     -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    --     -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    --     -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+    --   end,
+    -- },
+    mapping = {
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<C-y>'] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'nvim_lua' },
+      { name = 'path' },
+      { name = 'treesitter' },
+      { name = 'spell' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer', keyword_length = 4 },
+    }),
+
+    formatting = {
+      format = lspkind.cmp_format({
+        with_text = false,
+        menu = {
+          buffer = "[buf]",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[api]",
+        }
+      }),
+    },
+
+    experimental = {
+      ghost_text = true,
+    }
+  })
+
+  -- Setp lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local lsp = require'lspconfig'
+
+  lsp.bashls.setup { capabilities = capabilities }
+  lsp.dockerls.setup { capabilities = capabilities }
+  lsp.gopls.setup { capabilities = capabilities }
+  lsp.html.setup { capabilities = capabilities }
+  lsp.jsonls.setup { capabilities = capabilities }
+  lsp.solargraph.setup { capabilities = capabilities }
+  lsp.vimls.setup { capabilities = capabilities }
+  lsp.terraformls.setup { capabilities = capabilities }
+  lsp.pylsp.setup { capabilities = capabilities }
+  lsp.yamlls.setup {
+    capabilities = capabilities,
+    settings = {
+      yaml = {
+        hover = true,
+        completion = true,
+        validate = false,
+      }
+    },
+  }
+EOF
 " }}}
 
 " Mappings: General {{{
