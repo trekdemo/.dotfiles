@@ -86,6 +86,9 @@ end
 local snippets = {}
 ls.snippets = snippets
 
+-- Loads snippets from https://github.com/rafamadriz/friendly-snippets
+-- The plugin is installed using the plugin manager
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Mappings
 vim.cmd [[
