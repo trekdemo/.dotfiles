@@ -84,6 +84,17 @@ end
 -- Examples:
 -- https://github.com/L3MON4D3/LuaSnip/blob/3dc04d379f82b7263b26565c74748ea68879b022/Examples/snippets.lua#L160
 local snippets = {}
+snippets.ruby = {
+  s({trig = 'aa', name = 'attr_accessor'}, {
+    t('attr_accessor :'), i(1, "attribute")
+  }),
+  s({trig = 'ar', name = 'attr_reader'}, {
+    t('attr_reader :'), i(1, "attribute")
+  }),
+  s({trig = 'aw', name = 'attr_writer'}, {
+    t('attr_writer :'), i(1, "attribute")
+  }),
+}
 ls.snippets = snippets
 
 -- Loads snippets from https://github.com/rafamadriz/friendly-snippets
