@@ -28,9 +28,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'gruvbox-community/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
-Plug 'justinmk/vim-sneak'
 Plug 'kevinhwang91/nvim-bqf'
 
 Plug 'roman/golden-ratio', { 'on': ['GoldenRatioResize', 'GoldenRatioToggle'] }
@@ -40,8 +38,6 @@ Plug 'junegunn/gv.vim' " Simple git log viewer - <leader>gl
 Plug 'fabi1cazenave/termopen.vim'
 Plug 'kassio/neoterm'
 Plug 'godlygeek/tabular'
-
-" Plug 'sheerun/vim-polyglot'
 
 Plug 'fatih/vim-go',            { 'for': 'go' }
 Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
