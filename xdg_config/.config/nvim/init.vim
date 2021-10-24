@@ -59,6 +59,7 @@ Plug 'ncm2/float-preview.nvim' " Display *preview-window* as a floating window.
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kana/vim-smartinput'
+Plug 'ggandor/lightspeed.nvim'
 
 " Setup telescope
 Plug 'nvim-lua/popup.nvim'
@@ -309,9 +310,7 @@ nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>tn :tabnew<CR>
 
 " Window splitting and closing
-nnoremap ss :split<CR>
-nnoremap sv :vsplit<CR>
-nnoremap sc :write<CR>:close<CR>
+nnoremap <C-v> :vsplit<CR>
 nnoremap gF :e <cfile><cr>
 
 " Quickly diffing to panes
