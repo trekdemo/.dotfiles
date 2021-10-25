@@ -145,34 +145,14 @@ let maplocalleader = "\\"
 " }}}
 
 " Look & feel {{{
-augroup SwitchBackgroundColors
-  autocmd!
-  autocmd ColorSchemePre papercolor set background=light
-  autocmd ColorSchemePre gruvbox    set background=dark
-  autocmd ColorScheme    *          call s:lightline_update()
-                                \ | hi Normal guibg=NONE ctermbg=NONE
-                                \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
-  autocmd FocusGained *             call s:lightline_update()
-
-augroup END
-
-function! s:lightline_update()
-  if !exists('g:loaded_lightline')
-    return
-  endif
-  try
-    let g:lightline.colorscheme = substitute(g:colors_name, '-', '_', 'g')
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
-  catch
-  endtry
-endfunction
-
-source ~/.vimrc_background
+set background=dark
+colorscheme gruvbox
+" Make the background transparent
+hi Normal      guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
 
 let g:lightline = {
-    \ 'colorscheme': g:colors_name,
+    \ 'colorscheme': 'gruvbox',
     \ 'component': {
     \   'lineinfo': '%l:%v',
     \ },
