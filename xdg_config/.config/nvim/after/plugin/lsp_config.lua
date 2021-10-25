@@ -1,4 +1,3 @@
-local vim = vim
 local map = function(type, key, value)
   vim.api.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
 end
@@ -77,21 +76,31 @@ lsp.yamlls.setup({
     }
   },
 })
--- lsp.sumneko_lua.setup {
---   on_attach=custom_attach,
---   settings = {
---     Lua = {
---       runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
---       completion = { keywordSnippet = "Disable", },
---       workspace = {
---         library = {
---           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
---           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
---         }
---       }
---     }
---   }
--- }
+
+local sumneko_root_path = vim.fn.stdpath('cache')..'/lua-language-server'
+local sumneko_binary = sumneko_root_path.."/bin/macOS/lua-language-server"
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+lsp.sumneko_lua.setup {
+  on_attach=custom_attach,
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
+      -- completion = { keywordSnippet = "Disable", },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        }
+      }
+    }
+  }
+}
 
 vim.cmd [[
   sign define LspDiagnosticsSignError text=ﱥ texthl=LspDiagnosticsSignError linehl= numhl=
