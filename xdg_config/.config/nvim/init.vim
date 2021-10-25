@@ -285,7 +285,8 @@ nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>tn :tabnew<CR>
 
 " Window splitting and closing
-nnoremap <C-v> :vsplit<CR>
+nnoremap <C-w>v :vsplit<CR>
+nnoremap <C-w>s :split<cr>
 nnoremap gF :e <cfile><cr>
 
 " Quickly diffing to panes
