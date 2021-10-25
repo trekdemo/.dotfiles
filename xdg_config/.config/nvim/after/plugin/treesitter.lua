@@ -1,12 +1,5 @@
 local list = require("nvim-treesitter.parsers").get_parser_configs()
 
--- :h nvim-treesitter-query-extensions
-local custom_captures = {
-  ["function.call"] = "LuaFunctionCall",
-  ["function.bracket"] = "Type",
-  ["namespace.type"] = "TSNamespaceType",
-}
-
 list.sql = {
   install_info = {
     url = "https://github.com/DerekStride/tree-sitter-sql",
@@ -16,13 +9,10 @@ list.sql = {
 }
 
 local _ = require("nvim-treesitter.configs").setup {
-  ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash" },
+  ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript" },
 
   highlight = {
     enable = true,
-    use_languagetree = false,
-    disable = { "json" },
-    custom_captures = custom_captures,
   },
 
   refactor = {
@@ -35,10 +25,6 @@ local _ = require("nvim-treesitter.configs").setup {
         -- mapping to rename reference under cursor
         smart_rename = "grr",
       },
-    },
-
-    navigation = {
-      enable = false,
     },
   },
 
