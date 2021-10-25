@@ -103,6 +103,9 @@ unlet plug_install
 
 " Settings {{{
 set spell
+set spelllang=en
+set spellsuggest=best,9
+
 set mouse=a
 set noshowmode
 set cmdheight=1
