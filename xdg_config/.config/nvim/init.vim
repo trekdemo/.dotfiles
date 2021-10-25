@@ -109,7 +109,6 @@ set cmdheight=1
 set langmenu=en_US.UTF-8                " sets the language of the menu
 set nowrap                              " Do not wrap long lines
 set textwidth=80
-set colorcolumn=+1                      " Display margin at 81
 set number                              " Show line numbers
 set numberwidth=6
 set scrolloff=5
@@ -153,10 +152,6 @@ augroup SwitchBackgroundColors
   autocmd ColorScheme    *          call s:lightline_update()
                                 \ | hi Normal guibg=NONE ctermbg=NONE
                                 \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
-
-  autocmd FocusLost,WinLeave *      let &l:colorcolumn = ''
-  autocmd BufEnter,FocusGained,VimEnter,WinEnter *
-                                \   let &l:colorcolumn = '+1'
   autocmd FocusGained *             call s:lightline_update()
 
 augroup END
