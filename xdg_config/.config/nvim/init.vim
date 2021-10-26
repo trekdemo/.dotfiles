@@ -102,7 +102,7 @@ unlet plug_install
 " }}}
 
 " Settings {{{
-set spell
+set nospell
 set spelllang=en
 set spellsuggest=best,9
 
