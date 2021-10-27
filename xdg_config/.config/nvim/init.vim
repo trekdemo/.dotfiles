@@ -28,7 +28,8 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 
-Plug 'gruvbox-community/gruvbox'
+Plug 'rktjmp/lush.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'kevinhwang91/nvim-bqf'
 
@@ -148,6 +149,7 @@ let maplocalleader = "\\"
 " }}}
 
 " Look & feel {{{
+set termguicolors
 set background=dark
 colorscheme gruvbox
 " Make the background transparent
