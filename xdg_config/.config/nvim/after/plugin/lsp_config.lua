@@ -92,6 +92,10 @@ lsp.sumneko_lua.setup {
     Lua = {
       runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
       -- completion = { keywordSnippet = "Disable", },
+      diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+      },
       workspace = {
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
