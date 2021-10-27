@@ -28,9 +28,9 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 
-Plug 'rktjmp/lush.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'itchyny/lightline.vim'
+  Plug 'rktjmp/lush.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'kevinhwang91/nvim-bqf'
 
 Plug 'roman/golden-ratio', { 'on': ['GoldenRatioResize', 'GoldenRatioToggle'] }
@@ -149,50 +149,6 @@ colorscheme gruvbox
 hi Normal      guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 
-let g:lightline = {
-    \ 'colorscheme': 'gruvbox',
-    \ 'component': {
-    \   'lineinfo': '%l:%v',
-    \ },
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste', 'spell' ],
-    \             [ 'gitbranch' ],
-    \             [ 'readonly', 'filename', 'modified' ] ],
-    \   'right': [ [ 'lineinfo' ],
-    \              [ 'filetype' ] ]
-    \ },
-    \ 'component_function': {
-    \    'filename': 'LightLineFilename',
-    \    'gitbranch': 'LightlineFugitive'
-    \ }
-    \ }
-
-let g:lightline.mode_map = {
-    \ 'n' : 'N',
-    \ 'i' : 'I',
-    \ 'R' : 'R',
-    \ 'v' : 'V',
-    \ 'V' : 'V-L',
-    \ "\<C-v>": 'V-B',
-    \ 'c' : 'C',
-    \ 's' : 'S',
-    \ 'S' : 'S-L',
-    \ "\<C-s>": 'S-B',
-    \ 't': 'T',
-    \ }
-" Component functions {{{
-function! LightLineFilename()
-  return expand('%')
-endfunction
-
-function! LightlineFugitive()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
-  endif
-  return ''
-endfunction
-" }}}
 
 " Mappings: General {{{
 " Open project todoes/notes in tab
