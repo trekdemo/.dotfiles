@@ -95,60 +95,11 @@ endif
 unlet plug_install
 " }}}
 
-" Settings {{{
-set nospell
-set spelllang=en
-set spellsuggest=best,9
-
-set mouse=a
-set noshowmode
-set cmdheight=1
-set langmenu=en_US.UTF-8                " sets the language of the menu
-set nowrap                              " Do not wrap long lines
-set textwidth=80
-set number                              " Show line numbers
-set numberwidth=6
-set scrolloff=5
-set sidescroll=1
-set sidescrolloff=2
-set hidden                              " Edited files can be in hidden buffers
-" set bufhidden=hide
-set splitright                          " New split window on the right
-set splitbelow                          " New split window on the bottom
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set ignorecase
-set smartcase
-set diffopt=filler,internal,algorithm:histogram,indent-heuristic,iwhite
-set virtualedit+=block                  " Allow to move the cursor everywhere,
-set list                                " Show invisible characters not just existing text
-set listchars=tab:⇥\ ,trail:·,extends:❯,precedes:❮
-set fillchars=diff:⣿,vert:│,eob:\       " Comment needed to allow empty eob char
-set conceallevel=2 concealcursor=nc     " Don't show hidden characters in normal mode
-set inccommand=nosplit                  " Show substitution in realtime
-set complete+=kspell
-set completeopt=menu,menuone,noselect
-set cursorline
-set foldenable
-set foldlevel=999999
-set foldlevelstart=10
-set foldtext=folding#text()
-set pumheight=10
-set clipboard+=unnamedplus
 let mapleader = "\ "
 let maplocalleader = "\\"
-" }}}
 
-" Look & feel {{{
-set termguicolors
-set background=dark
-colorscheme gruvbox
-" Make the background transparent
-hi Normal      guibg=NONE ctermbg=NONE
-hi EndOfBuffer guibg=NONE ctermbg=NONE
-
+lua require('options')
+lua require('color')
 
 " Mappings: General {{{
 " Open project todoes/notes in tab
