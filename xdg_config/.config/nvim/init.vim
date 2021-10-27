@@ -328,34 +328,6 @@ cabbrev move Move
 cabbrev mkdir Mkdir!
 " }}}
 
-" Plugin: Fugitive {{{
-cabbrev g Git
-" Open file for diff in new tab and jump to the first change
-nnoremap <leader>gd <C-w>s<C-w>T:Gdiff<cr>zRgg]c
-nnoremap <leader>gs :Git<cr>
-nnoremap <leader>gw :Gwrite<cr>
-nnoremap <leader>ga :Gadd<cr>
-nnoremap <leader>ge :Gedit<cr>
-nnoremap <leader>gb :Git blame<cr>
-nnoremap <leader>gco :GBranches<cr>
-nnoremap <leader>gci :Git commit<cr>
-noremap <silent> <leader>gl :GV<CR>
-noremap <silent> <leader>dg :diffget<CR>
-noremap <silent> <leader>dp :diffput<CR>
-" }}}
-
-" Plugin: Telescope {{{
-cabbrev t Telescope
-nnoremap <leader>fa <cmd>Telescope lsp_code_action<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fc <cmd>Telescope commands<cr>
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope git_status<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fm <cmd>Telescope keymaps<cr>
-nnoremap <leader>ft <cmd>Telescope treesitter<cr>
-" }}}
-
 " Plugin: vim-test {{{
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
@@ -390,24 +362,6 @@ let test#ruby#rspec#options = '--format progress'
 let g:dispatch_compilers = {
   \ 'bash --login -c ': '',
   \ }
-" }}}
-
-" Plugin: Vimux {{{
-function! VimuxSlime()
-  call VimuxSendKeys("q C-u")
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
-endfunction
-
-" Helps to interact with tmux
-let g:VimuxUseNearestPane = 1
-nnoremap <Leader>vp :VimuxPromptCommand<CR>
-nnoremap <Leader>vc :VimuxCloseRunner<CR>
-nnoremap <Leader>vz :VimuxZoomRunner<CR>
-nnoremap <Leader>vi :VimuxInspectRunner<CR>
-vnoremap <Leader>vs "vy :call VimuxSlime()<CR>
-nnoremap <Leader>vs vip<LocalLeader>vs<CR>
-nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " }}}
 
 " Plugin: VimWiki {{{
