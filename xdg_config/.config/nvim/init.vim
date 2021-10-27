@@ -49,13 +49,6 @@ Plug 'tpope/vim-rails',         { 'for': 'ruby' }
 Plug 'vim-scripts/bash-support.vim'
 Plug 'vimwiki/vimwiki'
 
-" Typescript
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss',
-  \         'json', 'graphql', 'yaml', 'html', 'markdown']
-  \ }
-
 Plug 'ncm2/float-preview.nvim' " Display *preview-window* as a floating window.
 
 Plug 'AndrewRadev/splitjoin.vim'
@@ -426,16 +419,6 @@ let g:float_preview#max_width = 30
 cabbrev rename Rename
 cabbrev move Move
 cabbrev mkdir Mkdir!
-" }}}
-
-" Plugin: Prettier {{{
-let g:prettier#quickfix_enabled = 0
-let g:prettier#autoformat = 0
-
-augroup custom_prettier
-  autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html,*.md PrettierAsync
-augroup END
 " }}}
 
 " Plugin: Fugitive {{{
