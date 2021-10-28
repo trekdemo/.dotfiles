@@ -55,7 +55,6 @@ return require('packer').startup(function(use)
   use { 'roman/golden-ratio', opt = true, cmd = { 'GoldenRatioResize', 'GoldenRatioToggle' } }
   use 'folke/zen-mode.nvim'
   use 'Shougo/context_filetype.vim'
-  use 'junegunn/gv.vim' -- Simple git log viewer - <leader>gl
   use 'fabi1cazenave/termopen.vim'
   use 'kassio/neoterm'
   use 'godlygeek/tabular'
