@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim', opt = true } }
+  use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -26,10 +26,12 @@ return require('packer').startup(function(use)
       'nvim-lua/popup.nvim',
       'kyazdani42/nvim-web-devicons'
     },
+    config = require('config/telescope').config,
   }
   use {
     'neovim/nvim-lspconfig',
     requires = { 'onsails/lspkind-nvim' },
+    config = require('config/nvim-lspconfig').config,
   }
   use {
     'hrsh7th/nvim-cmp',
@@ -40,20 +42,30 @@ return require('packer').startup(function(use)
       'ray-x/cmp-treesitter',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-nvim-lsp',
-    }
+    },
+    config = require('config/nvim-cmp').config,
   }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = require('config/treesitter').config,
+  }
   use {
     'L3MON4D3/LuaSnip',
     requires = {
       {'saadparwaiz1/cmp_luasnip'},
       {'rafamadriz/friendly-snippets'}
     },
+    config = require('config/LuaSnip').config,
   }
-  use 'nvim-lualine/lualine.nvim'
-  use 'kevinhwang91/nvim-bqf'
-  use { 'roman/golden-ratio', opt = true, cmd = { 'GoldenRatioResize', 'GoldenRatioToggle' } }
-  use 'folke/zen-mode.nvim'
+  use { 'nvim-lualine/lualine.nvim', config = require('config/lualine-nvim').config }
+  use { 'kevinhwang91/nvim-bqf', ft = 'qf' } -- Better quickfix window
+  use {
+    'roman/golden-ratio',
+    cmd = { 'GoldenRatioResize', 'GoldenRatioToggle' },
+    config = require('config/golden-ratio').config,
+  }
+  use { 'folke/zen-mode.nvim', config = require('config/zen-mode').config }
   use 'Shougo/context_filetype.vim'
   use 'fabi1cazenave/termopen.vim'
   use { 'kassio/neoterm', config = require('config/neoterm').config }
@@ -70,21 +82,21 @@ return require('packer').startup(function(use)
   use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
 
   use 'AndrewRadev/splitjoin.vim'
+
   use 'kana/vim-smartinput' -- Help with pairs of punctuations such as (), [], {}, '', "" and so on.
   use 'ggandor/lightspeed.nvim' -- Super-powers for the s, S, f, t operators
 
   use 'tmux-plugins/vim-tmux' -- Plugin for .tmux.conf ftplugin
-  if vim.env.TMUX then
-    use {
-      'alexghergh/nvim-tmux-navigation',
-      config = require('config/nvim-tmux-navigator').config,
-    }
-  end
+  use {
+    'alexghergh/nvim-tmux-navigation',
+    config = require('config/nvim-tmux-navigation').config,
+    disable = not vim.env.TMUX,
+  }
 
   use {
     'janko/vim-test',
     requires = {
-      'benmills/vimux',
+      { 'benmills/vimux', config = require('config/vimux').config },
       'tpope/vim-dispatch',
       'radenling/vim-dispatch-neovim',
     }

@@ -1,9 +1,9 @@
 local M = {}
 
-local options = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
-
 M.config = function()
+  local options = { noremap = true, silent = true }
+  local map = vim.api.nvim_set_keymap
+
   require'nvim-tmux-navigation'.setup {
     disable_when_zoomed = false -- Default: false
   }
