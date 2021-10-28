@@ -108,7 +108,11 @@ return require('packer').startup(function(use)
       'radenling/vim-dispatch-neovim',
     }
   }
-  use { 'tpope/vim-fugitive', requires = { 'tpope/vim-rhubarb' } }
+  use {
+    'tpope/vim-fugitive',
+    requires = { 'tpope/vim-rhubarb' },
+    config = require('config/fugitive').config,
+  }
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-ragtag'
