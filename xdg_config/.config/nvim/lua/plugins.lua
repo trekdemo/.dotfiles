@@ -64,7 +64,7 @@ return require('packer').startup(function(use)
   use { 'noprompt/vim-yardoc',     ft = { 'ruby' } }
   use { 'tpope/vim-bundler',       ft = { 'ruby' } }
   use { 'tpope/vim-rails',         ft = { 'ruby' } }
-  use 'vim-scripts/bash-support.vim'
+  use { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } }
   use 'vimwiki/vimwiki'
 
   use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
