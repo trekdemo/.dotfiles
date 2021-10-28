@@ -1,103 +1,12 @@
-let plug_install = 0
-let autoload_plug_path = stdpath('config') . '/autoload/plug.vim'
-if !filereadable(autoload_plug_path)
-    silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path .
-        \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-    execute 'source ' . fnameescape(autoload_plug_path)
-    let plug_install = 1
-endif
-unlet autoload_plug_path
-
 set shell=/bin/zsh
 let g:python3_host_prog = '/usr/bin/python3'
 
-" Plugins {{{
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'f3fora/cmp-spell'
-Plug 'ray-x/cmp-treesitter'
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'onsails/lspkind-nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'rafamadriz/friendly-snippets'
-
-Plug 'ellisonleao/gruvbox.nvim'
-  Plug 'rktjmp/lush.nvim'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kevinhwang91/nvim-bqf'
-
-Plug 'roman/golden-ratio', { 'on': ['GoldenRatioResize', 'GoldenRatioToggle'] }
-Plug 'folke/zen-mode.nvim'
-Plug 'Shougo/context_filetype.vim'
-Plug 'junegunn/gv.vim' " Simple git log viewer - <leader>gl
-Plug 'fabi1cazenave/termopen.vim'
-Plug 'kassio/neoterm'
-Plug 'godlygeek/tabular'
-
-Plug 'fatih/vim-go',            { 'for': 'go' }
-Plug 'jgdavey/vim-blockle',     { 'for': 'ruby' }
-Plug 'noprompt/vim-yardoc',     { 'for': 'ruby' }
-Plug 'tpope/vim-bundler',       { 'for': 'ruby' }
-Plug 'tpope/vim-rails',         { 'for': 'ruby' }
-Plug 'vim-scripts/bash-support.vim'
-Plug 'vimwiki/vimwiki'
-
-Plug 'ncm2/float-preview.nvim' " Display *preview-window* as a floating window.
-
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'kana/vim-smartinput'
-Plug 'ggandor/lightspeed.nvim'
-
-" Setup telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-
-if exists('$TMUX')
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'tmux-plugins/vim-tmux'
-endif
-
-" Running tests
-Plug 'janko/vim-test'
-" vim-test strategies
-  Plug 'benmills/vimux'
-  Plug 'tpope/vim-dispatch'
-  Plug 'radenling/vim-dispatch-neovim'
-
-Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-abolish'
-
-Plug 'justinmk/vim-gtfo'
-
-" Add plugins to &runtimepath
-call plug#end()
-if plug_install
-    PlugInstall --sync
-endif
-unlet plug_install
-" }}}
-
+" -- vim.g.mapleader = "<Space>"
 let mapleader = "\ "
+" -- vim.g.maplocalleader = "\\"
 let maplocalleader = "\\"
 
+lua require('plugins')
 lua require('options')
 lua require('color')
 
