@@ -207,24 +207,6 @@ nmap <localleader>vv :Ttoggle<CR>
 tmap <localleader>vv <c-\><c-n>:Ttoggle<CR>
 " }}}
 
-" Mappings: Navigation {{{
-if !exists('$TMUX')
-  nnoremap <C-h> <C-w><C-h>
-  nnoremap <C-j> <C-w><C-j>
-  nnoremap <C-k> <C-w><C-k>
-  nnoremap <C-l> <C-w><C-l>
-endif
-
-tnoremap <C-h> <C-\><C-n><C-w><C-h>
-tnoremap <C-j> <C-\><C-n><C-w><C-j>
-tnoremap <C-k> <C-\><C-n><C-w><C-k>
-" I use <C-l> too much to clear the terminal
-" tnoremap <C-l> <C-\><C-n><C-l>
-
-tnoremap <C-u> <C-\><C-n><C-u>
-tnoremap <C-d> <C-\><C-n><C-d>
-" }}}
-
 " Plugin: floating-preview.nvim {{{
 set completeopt-=preview
 let g:float_preview#docked = 0
