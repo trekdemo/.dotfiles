@@ -18,13 +18,12 @@ cmp.setup({
     }),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
+    { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
     { name = 'treesitter' },
-    { name = 'buffer', keyword_length = 4 },
-    { name = 'spell', keyword_length = 4 },
+    { name = 'buffer', keyword_length = 6 },
   }),
 
   formatting = {
