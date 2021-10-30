@@ -67,7 +67,6 @@ return require('packer').startup(function(use)
   }
   use { 'folke/zen-mode.nvim', config = require('config/zen-mode').config }
   use 'Shougo/context_filetype.vim'
-  use 'fabi1cazenave/termopen.vim'
   use { 'kassio/neoterm', config = require('config/neoterm').config }
   use 'godlygeek/tabular'
 

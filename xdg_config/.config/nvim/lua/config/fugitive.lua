@@ -12,7 +12,6 @@ M.config = function()
     nnoremap <leader>gb :Git blame<cr>
     nnoremap <leader>gco :GBranches<cr>
     nnoremap <leader>gci :Git commit<cr>
-    noremap <silent> <leader>gl :echom 'Use gt for tig'<CR>
     noremap <silent> <leader>dg :diffget<CR>
     noremap <silent> <leader>dp :diffput<CR>
   ]]

@@ -254,11 +254,6 @@ vim.cmd [[
   augroup END
   " }}}
 
-  " Plugin: termopen {{{
-  nmap <Leader>gt :call TermOpen('tig', 't')<CR>
-  nmap <Leader>r :call TermOpenRanger()<CR>
-  " }}}
-
   " Terminal {{{
   let g:neoterm_default_mod = 'vertical'
   let g:neoterm_autojump = 1
