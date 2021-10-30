@@ -66,7 +66,6 @@ return require('packer').startup(function(use)
     config = require('config/golden-ratio').config,
   }
   use { 'folke/zen-mode.nvim', config = require('config/zen-mode').config }
-  use 'Shougo/context_filetype.vim'
   use { 'kassio/neoterm', config = require('config/neoterm').config }
   use 'godlygeek/tabular'
 
