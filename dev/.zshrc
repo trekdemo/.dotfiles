@@ -65,8 +65,9 @@ chruby 3
 # Setup prompt
 # https://starship.rs/config/
 eval "$(starship init zsh)"
-[ -d "/opt/homebrew/share/zsh-abbr" ] && source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
-[ -d "/usr/local/share/zsh-abbr" ] && source /usr/local/share/zsh-abbr/zsh-abbr.zsh
+
+# Load abbreviations plugin
+[ -d "$(brew --prefix)/share/zsh-abbr" ] && source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
 
 
 # The next line updates PATH for the Google Cloud SDK.
