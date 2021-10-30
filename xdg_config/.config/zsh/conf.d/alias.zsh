@@ -35,7 +35,7 @@ alias gfp="'git push --force-with-lease'"
 
 # Quick edits
 alias ez="nvim ~/.config/zsh/"
-alias ev="nvim ~/.config/nvim/init.vim"
+alias ev="nvim ~/.config/nvim/init.lua"
 alias eg="nvim ~/.gitconfig"
 alias et="nvim ~/.tmux.conf"
 alias es="nvim ~/.ssh/config"
