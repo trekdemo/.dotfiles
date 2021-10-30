@@ -66,7 +66,11 @@ return require('packer').startup(function(use)
     config = require('config/golden-ratio').config,
   }
   use { 'folke/zen-mode.nvim', config = require('config/zen-mode').config }
-  use { 'kassio/neoterm', config = require('config/neoterm').config }
+  use {
+    'kassio/neoterm',
+    cmd = { 'Tnew', 'T', 'Texec', 'Topen', 'Ttoggle' },
+    config = require('config/neoterm').config,
+  }
   use 'godlygeek/tabular'
 
   use { 'fatih/vim-go',            ft = { 'go' } }
