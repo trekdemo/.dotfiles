@@ -20,6 +20,7 @@ vim.cmd [[
     " Transparent background
     autocmd ColorScheme gruvbox  hi Normal      guibg=NONE ctermbg=NONE
                              \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
+                             \ | hi VertSplit   guibg=NONE ctermbg=NONE
   augroup END
   colorscheme gruvbox
 ]]
