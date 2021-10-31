@@ -20,7 +20,6 @@ M.config = function ()
   local fmt = require("luasnip.extras.fmt").fmt
   local fmta = require("luasnip.extras.fmt").fmta
   local types = require("luasnip.util.types")
-  local conds = require("luasnip.extras.conditions")
 
   -- Every unspecified option will be set to the default.
   ls.config.set_config({
