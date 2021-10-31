@@ -14,23 +14,8 @@ M.config = function ()
   local _ = require("nvim-treesitter.configs").setup {
     ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript" },
 
-    highlight = {
-      enable = true,
-      -- additional_vim_regex_highlighting = true,
-    },
-
-    refactor = {
-      highlight_definitions = { enable = true },
-      highlight_current_scope = { enable = false },
-
-      smart_rename = {
-        enable = false,
-        keymaps = {
-          -- mapping to rename reference under cursor
-          smart_rename = "grr",
-        },
-      },
-    },
+    highlight = { enable = true },
+    indent = { enable = true },
 
     incremental_selection = {
       enable = true,
@@ -42,15 +27,7 @@ M.config = function ()
       },
     },
 
-    context_commentstring = {
-      enable = true,
-      config = {
-        ruby = "# %s",
-        c = "// %s",
-        lua = "-- %s",
-      },
-    },
-
+    -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     textobjects = {
       move = {
         enable = true,
