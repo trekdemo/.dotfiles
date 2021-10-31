@@ -39,10 +39,11 @@ opt.cmdheight = 1
 -- Text flow
 opt.wrap = false
 opt.textwidth = 80
+opt.expandtab = true
+opt.shiftround = true
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
-opt.expandtab = true
 
 -- Line numbers
 opt.number = true
