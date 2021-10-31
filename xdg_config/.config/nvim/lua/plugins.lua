@@ -58,14 +58,24 @@ return require('packer').startup(function(use)
     },
     config = require('config/LuaSnip').config,
   }
+  use({
+    "simrat39/symbols-outline.nvim",
+    cmd = { "SymbolsOutline" },
+  })
   use { 'nvim-lualine/lualine.nvim', config = require('config/lualine-nvim').config }
+
   use { 'kevinhwang91/nvim-bqf', ft = 'qf' } -- Better quickfix window
+
   use {
     'roman/golden-ratio',
     cmd = { 'GoldenRatioResize', 'GoldenRatioToggle' },
     config = require('config/golden-ratio').config,
   }
-  use { 'folke/zen-mode.nvim', config = require('config/zen-mode').config }
+  use {
+    'folke/zen-mode.nvim',
+    config = require('config/zen-mode').config,
+    requires = { { 'folke/twilight.nvim', config = [[require("twilight").setup()]] } },
+  }
   use {
     'kassio/neoterm',
     cmd = { 'Tnew', 'T', 'Texec', 'Topen', 'Ttoggle' },
