@@ -79,6 +79,8 @@ return require('packer').startup(function(use)
   }
   use {
     'folke/zen-mode.nvim',
+    cmd = 'ZenMode',
+    keys = { '<leader>z' },
     config = require('config/zen-mode').config,
     requires = { { 'folke/twilight.nvim', config = [[require("twilight").setup()]] } },
   }
