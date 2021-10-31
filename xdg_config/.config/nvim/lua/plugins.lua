@@ -85,7 +85,11 @@ return require('packer').startup(function(use)
 
   use 'AndrewRadev/splitjoin.vim'
 
-  use 'kana/vim-smartinput' -- Help with pairs of punctuations such as (), [], {}, '', "" and so on.
+  use {
+    'windwp/nvim-autopairs',
+    config = require('config/nvim-autopairs').config,
+    requires = { { 'hrsh7th/nvim-cmp', opt = true } }
+  }
   use 'ggandor/lightspeed.nvim' -- Super-powers for the s, S, f, t operators
 
   use 'tmux-plugins/vim-tmux' -- Plugin for .tmux.conf ftplugin
