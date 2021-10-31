@@ -30,7 +30,10 @@ return require('packer').startup(function(use)
   }
   use {
     'neovim/nvim-lspconfig',
-    requires = { 'onsails/lspkind-nvim' },
+    requires = {
+      { 'onsails/lspkind-nvim' },
+      { 'folke/lua-dev.nvim' },
+    },
     config = require('config/nvim-lspconfig').config,
   }
   use {
