@@ -87,10 +87,36 @@ M.config = function ()
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
 
+  local library = {}
+
+  local function add(lib)
+    for _, p in pairs(vim.fn.expand(lib, false, true)) do
+      p = vim.loop.fs_realpath(p)
+      library[p] = true
+    end
+  end
+
+  -- add runtime
+  add("$VIMRUNTIME")
+
+  -- add your config
+  add("~/.config/nvim")
+
+  -- add plugins
+  add(vim.fn.stdpath('data') .. "/site/pack/packer/opt/*")
+  add(vim.fn.stdpath('data') .. "/site/pack/packer/start/*")
+
   lsp.sumneko_lua.setup {
     on_attach=custom_attach,
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     capabilities = capabilities,
+    -- delete root from workspace to make sure we don't trigger duplicate warnings
+    on_new_config = function(config, root)
+      local libs = vim.tbl_deep_extend("force", {}, library)
+      libs[root] = nil
+      config.settings.Lua.workspace.library = libs
+      return config
+    end,
     settings = {
       Lua = {
         runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
@@ -100,10 +126,9 @@ M.config = function ()
             globals = {'vim'},
         },
         workspace = {
-          library = {
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-          }
+          library = library,
+          maxPreload = 2000,
+          preloadFileSize = 50000
         }
       }
     }
