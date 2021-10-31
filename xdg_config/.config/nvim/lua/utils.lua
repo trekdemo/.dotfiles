@@ -64,6 +64,9 @@ function M.smap(key, cmd, opts)
   return map("s", key, cmd, opts)
 end
 
+function M.noremap(key, cmd, opts)
+  return map("", key, cmd, opts, { noremap = true })
+end
 function M.nnoremap(key, cmd, opts)
   return map("n", key, cmd, opts, { noremap = true })
 end

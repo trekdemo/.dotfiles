@@ -130,12 +130,46 @@ return require('packer').startup(function(use)
     requires = { 'tpope/vim-rhubarb' },
     config = require('config/fugitive').config,
   }
-  use 'tpope/vim-surround'
+  use {
+    'tpope/vim-surround',
+    config = function ()
+      -- Wrapping words/selections with (, [, {, ", ', ', ", }, ], )
+      local util = require('utils')
+      util.nmap('<leader>(', 'viWS(')
+      util.vmap('<leader>(', 'S(')
+      util.nmap('<leader>)', 'viWS)')
+      util.vmap('<leader>)', 'S)')
+
+      util.nmap('<leader>[', 'viWS[')
+      util.vmap('<leader>[', 'S[')
+      util.nmap('<leader>]', 'viWS]')
+      util.vmap('<leader>]', 'S]')
+
+      util.nmap('<leader>{', 'viWS{')
+      util.vmap('<leader>{', 'S{')
+      util.nmap('<leader>}', 'viWS}')
+      util.vmap('<leader>}', 'S}')
+
+      util.nmap('<leader>"', 'viwS"')
+      util.vmap('<leader>"', 'S"')
+      util.nmap("<leader>'", "viwS'")
+      util.vmap("<leader>'", "S'")
+    end
+  }
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-ragtag'
   use 'tpope/vim-vinegar'
   use 'tpope/vim-repeat'
-  use 'tpope/vim-commentary'
+  use {
+    'tpope/vim-commentary',
+    config = function ()
+      local util = require('utils')
+      -- TODO: Switch to the gcc (default) mapping
+      util.nmap('<leader>/', '<Plug>CommentaryLine')
+      util.xmap('<leader>/', '<Plug>Commentary')
+      util.omap('<leader>/', '<Plug>Commentary')
+    end
+  }
   use 'tpope/vim-endwise'
   use 'tpope/vim-eunuch'
   use 'tpope/vim-abolish'
