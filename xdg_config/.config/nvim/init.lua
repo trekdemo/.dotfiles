@@ -70,6 +70,7 @@ opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.complete = table.concat(vim.opt.complete, "kspell")
 opt.completeopt = "menu,menuone,noselect"
 opt.pumheight = 10
+opt.pumblend = 10
 
 -- Settings
 opt.hidden = true -- Edited files can be in hidden buffers
