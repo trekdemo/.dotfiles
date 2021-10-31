@@ -40,11 +40,11 @@ o.cmdheight = 1
 
 -- Text flow
 wo.wrap = false
-bo.textwidth = 80
-bo.tabstop = 2
-bo.shiftwidth = 2
-bo.softtabstop = 2
-bo.expandtab = true
+o.textwidth = 80
+o.tabstop = 2
+o.shiftwidth = 2
+o.softtabstop = 2
+o.expandtab = true
 
 -- Line numbers
 wo.number = true
