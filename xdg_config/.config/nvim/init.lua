@@ -1,19 +1,17 @@
 local g = vim.g
-local o = vim.o
-local wo = vim.wo
-local bo = vim.bo
+local opt = vim.opt
 
-local t = require('utils').t
+local util = require('utils')
 
-g.mapleader = t"<Space>"
-g.maplocalleader = t"<Bslash>"
+g.mapleader = util.t"<Space>"
+g.maplocalleader = util.t"<Bslash>"
 
 -- Load and configure plugins
 require('plugins')
 
 -- Colorscheme
-o.termguicolors = true
-o.background = "dark"
+opt.termguicolors = true
+opt.background = "dark"
 vim.cmd [[
   augroup GruvboxCustomizations
     autocmd!
@@ -27,64 +25,64 @@ vim.cmd [[
 
 -- Spelling should be disabled by default
 -- when enabled use English and only the 9 best suggestions
-wo.spell = false
-bo.spelllang = "en"
-o.spellsuggest = "best,9"
+opt.spell = false
+opt.spelllang = "en"
+opt.spellsuggest = "best,9"
 
 -- Mouse
-o.mouse = "a"
+opt.mouse = "a"
 
 -- Command line behaviour
-o.showmode = false -- Don't display -- INSERT -- in status line
-o.cmdheight = 1
+opt.showmode = false -- Don't display -- INSERT -- in status line
+opt.cmdheight = 1
 
 -- Text flow
-wo.wrap = false
-o.textwidth = 80
-o.tabstop = 2
-o.shiftwidth = 2
-o.softtabstop = 2
-o.expandtab = true
+opt.wrap = false
+opt.textwidth = 80
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.expandtab = true
 
 -- Line numbers
-wo.number = true
-wo.numberwidth = 6
-wo.cursorline = true
+opt.number = true
+opt.numberwidth = 6
+opt.cursorline = true
 
 -- Scroll behaviour
-o.scrolloff = 5
-o.sidescroll = 1
-o.sidescrolloff = 2
+opt.scrolloff = 5
+opt.sidescroll = 1
+opt.sidescrolloff = 2
 
 -- Splits
-o.splitright = true -- New split window on the right
-o.splitbelow = true -- New split window on the bottom
+opt.splitright = true -- New split window on the right
+opt.splitbelow = true -- New split window on the bottom
 
 -- Folds
-wo.foldenable = true
-wo.foldlevel = 999999
-o.foldlevelstart = 10
-wo.foldtext = "folding#text()"
-wo.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldenable = true
+opt.foldlevel = 999999
+opt.foldlevelstart = 10
+opt.foldtext = "folding#text()"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Completion
-bo.complete = table.concat(vim.opt.complete, "kspell")
-o.completeopt = "menu,menuone,noselect"
-o.pumheight = 10
+opt.complete = table.concat(vim.opt.complete, "kspell")
+opt.completeopt = "menu,menuone,noselect"
+opt.pumheight = 10
 
 -- Settings
-o.hidden = true -- Edited files can be in hidden buffers
-o.ignorecase = true
-o.smartcase = true
-o.diffopt = "filler,internal,algorithm:histogram,indent-heuristic,iwhite"
-o.virtualedit = table.concat(vim.opt.virtualedit, "block") -- Allow to move the cursor everywhere,
-wo.list = true -- Show invisible characters not just existing text
-o.listchars = "tab:⇥ ,trail:·,extends:❯,precedes:❮"
-o.fillchars="diff:⣿,vert:│,eob: " -- Comment needed to allow empty eob char
-wo.conceallevel = 2
-wo.concealcursor = "nc" -- Don't show hidden characters in normal mode
-o.inccommand = "nosplit" -- Show substitution in realtime
-o.clipboard = table.concat(vim.opt.clipboard, "unnamedplus")
+opt.hidden = true -- Edited files can be in hidden buffers
+opt.ignorecase = true
+opt.smartcase = true
+opt.diffopt = "filler,internal,algorithm:histogram,indent-heuristic,iwhite"
+opt.virtualedit = table.concat(vim.opt.virtualedit, "block") -- Allow to move the cursor everywhere,
+opt.list = true -- Show invisible characters not just existing text
+opt.listchars = "tab:⇥ ,trail:·,extends:❯,precedes:❮"
+opt.fillchars="diff:⣿,vert:│,eob: " -- Comment needed to allow empty eob char
+opt.conceallevel = 2
+opt.concealcursor = "nc" -- Don't show hidden characters in normal mode
+opt.inccommand = "nosplit" -- Show substitution in realtime
+opt.clipboard = table.concat(vim.opt.clipboard, "unnamedplus")
 
 vim.cmd [[
   " Mappings: General {{{
