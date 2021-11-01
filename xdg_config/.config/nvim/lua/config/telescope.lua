@@ -16,6 +16,7 @@ M.config = function ()
     nnoremap <leader>fb <cmd>Telescope buffers<cr>
     nnoremap <leader>fc <cmd>Telescope commands<cr>
     nnoremap <leader>ff <cmd>Telescope find_files<cr>
+    nnoremap <leader>fv <cmd>Telescope find_files cwd=~/.config/nvim<cr>
     nnoremap <leader>fg <cmd>Telescope git_status<cr>
     nnoremap <leader>fh <cmd>Telescope help_tags<cr>
     nnoremap <leader>fm <cmd>Telescope keymaps<cr>
