@@ -1,6 +1,15 @@
 local M = {}
 
 M.config = function ()
+  require('telescope').setup({
+    defaults = {
+      layout_strategy = 'vertical',
+      layout_config = {
+        mirror = true,
+      }
+    }
+  })
+
   vim.cmd [[
     cabbrev t Telescope
     nnoremap <leader>fa <cmd>Telescope lsp_code_action<cr>
