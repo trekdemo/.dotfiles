@@ -4,7 +4,7 @@ function M.config ()
   local util = require('utils')
 
   -- https://github.com/neovim/nvim-lspconfig
-  local on_attach = function(_) -- param: client
+  local on_attach = function(_, bufnr) -- param: client
     util.nnoremap('1gD'       , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     util.nnoremap('<c-]>'     , '<cmd>lua vim.lsp.buf.definition()<CR>')
     util.nnoremap('<C-s>'     , '<cmd>lua vim.lsp.buf.signature_help()<CR>')
@@ -19,6 +19,8 @@ function M.config ()
     util.nnoremap('<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
     util.nnoremap('<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
     util.nnoremap('<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>')
+
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- TODO: Move this to treesitter config
     vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
