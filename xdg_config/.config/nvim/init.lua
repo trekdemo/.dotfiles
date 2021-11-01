@@ -130,7 +130,7 @@ util.inoremap('{', '{<c-g>u')
 util.inoremap('}', '}<c-g>u')
 
 -- Remove selected highlight
-util.noremap("<leader><leader>", ":nohlsearch<cr>:call clearmatches()")
+util.noremap("<leader><leader>", ":nohlsearch<cr>:call clearmatches()<CR>")
 
 -- Edit and source vimrc file
 util.nnoremap('<leader>ev', ':vsplit $MYVIMRC<CR>')
@@ -178,20 +178,29 @@ util.nnoremap('<C-S-down>', '5<c-w>-')
 util.nnoremap('<C-e>', '3<C-e>')
 util.nnoremap('<C-y>', '3<C-y>')
 
+-- Upcase last word
+util.inoremap('<C-u>', '<esc>gUiwea')
+
+util.nnoremap('[oc', ':set conceallevel=2 <CR>')
+util.nnoremap(']oc', ':set conceallevel=0 <CR>')
+
+-- Mappings: Folding {{{
+-- Use zf to "focus" the current fold.
+util.nnoremap('zf', 'zMzvzz')
+
 vim.cmd [[
-  " Mappings: General {{{
+  augroup folding_autocommands
+    autocmd!
+    " Don't screw up folds when inserting text that might affect them, until leaving
+    " insert mode. Foldmethod is local to the window. Protect against screwing up
+    " folding when switching between windows.
+    autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+    autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+  augroup END
+]]
+-- }}}
 
-  " Upcase last word
-  inoremap <C-u> <esc>gUiwea
-
-  nnoremap [oc :set conceallevel=2 <CR>
-  nnoremap ]oc :set conceallevel=0 <CR>
-  " }}}
-
-  " Mappings: Folding {{{
-  " Use ,z to "focus" the current fold.
-  nnoremap zf zMzvzz
-  " }}}
+vim.cmd [[
 
   " Mappings: Command-line {{{
   " Some helpers to edit mode http://vimcasts.org/e/14
@@ -216,17 +225,6 @@ vim.cmd [[
   augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
-  augroup END
-  " }}}
-
-  " Autocommands: Folding {{{
-  augroup folding_autocommands
-    autocmd!
-    " Don't screw up folds when inserting text that might affect them, until leaving
-    " insert mode. Foldmethod is local to the window. Protect against screwing up
-    " folding when switching between windows.
-    autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-    autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
   augroup END
   " }}}
 
