@@ -5,22 +5,25 @@ function M.config ()
 
   -- https://github.com/neovim/nvim-lspconfig
   local on_attach = function(_, bufnr) -- param: client
-    util.nnoremap('1gD'       , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+    util.nnoremap('gD'        , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     util.nnoremap('<c-]>'     , '<cmd>lua vim.lsp.buf.definition()<CR>')
     util.nnoremap('<C-s>'     , '<cmd>lua vim.lsp.buf.signature_help()<CR>')
     util.nnoremap('K'         , '<cmd>lua vim.lsp.buf.hover()<CR>')
     util.nnoremap('g0'        , '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-    util.nnoremap('gi'        , '<cmd>lua vim.lsp.buf.implementation()<CR>')
     util.nnoremap('gW'        , '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-    util.nnoremap('gd'        , '<cmd>lua vim.lsp.buf.declaration()<CR>')
     util.nnoremap('gr'        , '<cmd>lua vim.lsp.buf.references()<CR>')
-    util.nnoremap('<leader>=' , '<cmd>lua vim.lsp.buf.formatting()<CR>')
     util.nnoremap('<leader>af', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     util.nnoremap('<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
     util.nnoremap('<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
     util.nnoremap('<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    util.nnoremap('<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+    util.nnoremap('[d'        , '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+    util.nnoremap(']d'        , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_command [[
+      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+    ]]
 
     -- TODO: Move this to treesitter config
     vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
