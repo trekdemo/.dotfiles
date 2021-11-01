@@ -6,7 +6,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-vim.cmd [[packadd packer.nvim]]
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -55,6 +54,25 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     }
+  }
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      local util = require('utils')
+      util.nnoremap('<leader>xx', '<cmd>TroubleToggle<cr>')
+      util.nnoremap('<leader>xw', '<cmd>TroubleToggle lsp_workspace_diagnostics<cr>')
+      util.nnoremap('<leader>xd', '<cmd>TroubleToggle lsp_document_diagnostics<cr>')
+      util.nnoremap('<leader>xq', '<cmd>TroubleToggle quickfix<cr>')
+      util.nnoremap('<leader>xl', '<cmd>TroubleToggle loclist<cr>')
+      util.nnoremap('gR', '<cmd>TroubleToggle lsp_references<cr>')
+
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
   }
   use {
     'L3MON4D3/LuaSnip',
