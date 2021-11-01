@@ -5,22 +5,16 @@ local M = {}
 function M.config ()
   require("zen-mode").setup({
     window = {
-      height = 0.8, -- height of the Zen window
       width = 100,
       options = {
         signcolumn = 'no',
-        cursorline = false,
         number = false,
         relativenumber = false,
+        cursorline = false,
+        -- cursorcolumn = false, -- disable cursor column
+        -- foldcolumn = "0", -- disable fold column
+        -- list = false, -- disable whitespace characters
       }
-    },
-    plugin = {
-      options = {
-        enabled = true,
-        ruler = false, -- disables the ruler text in the cmd line area
-        showcmd = false, -- disables the command in the last line of the screen
-      },
-      tmux = { enable = true }
     },
     on_open = function ()
       vim.cmd [[hi! Twilight guibg=none ctermbg=none]]

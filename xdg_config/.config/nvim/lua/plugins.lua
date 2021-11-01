@@ -82,7 +82,14 @@ return require('packer').startup(function(use)
     cmd = 'ZenMode',
     keys = { '<leader>z' },
     config = require('config/zen-mode').config,
-    requires = { { 'folke/twilight.nvim', config = [[require("twilight").setup()]] } },
+    requires = {
+      {
+        'folke/twilight.nvim',
+        config = function ()
+          require("twilight").setup({ dimming = { alpha = 0.4 } })
+        end
+      }
+    },
   }
   use {
     'kassio/neoterm',
