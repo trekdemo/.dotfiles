@@ -18,7 +18,7 @@
 /xdg_config/.config/nvim/.init.vim-rplugin~
 /xdg_config/.config/nvim/.netrwhist
 /xdg_config/.config/nvim/autoload/plug.vi*
-/xdg_config/.config/nvim/plugged
+/xdg_config/.config/nvim/plugin/packer_compiled.lua
 /xdg_config/.config/yarn/global
 /xdg_config/.config/telepresence
 /xdg_config/.config/gh/hosts.yml
