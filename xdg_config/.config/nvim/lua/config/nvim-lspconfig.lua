@@ -20,6 +20,10 @@ function M.config ()
     util.nnoremap('<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
     util.nnoremap('<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
+    -- TODO: Move this to treesitter config
+    vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
+    vim.api.nvim_win_set_option(0, 'foldexpr', 'nvim_treesitter#foldexpr()')
+
     print("LSP started.");
   end
 

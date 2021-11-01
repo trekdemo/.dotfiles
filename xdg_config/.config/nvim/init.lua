@@ -63,8 +63,8 @@ opt.splitbelow = true -- New split window on the bottom
 opt.foldenable = true
 opt.foldlevel = 999999
 opt.foldlevelstart = 10
+opt.foldmethod = 'manual'
 opt.foldtext = "folding#text()"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Completion
 opt.complete = table.concat(vim.opt.complete, "kspell")
