@@ -21,7 +21,8 @@ opt.background = "dark"
 --                              \ | hi VertSplit   guibg=NONE ctermbg=NONE
 --   augroup END
 -- ]]
-vim.cmd [[colorscheme gruvbox]]
+vim.g.material_style = "darker"
+vim.cmd [[colorscheme material]]
 
 -- Spelling should be disabled by default
 -- when enabled use English and only the 9 best suggestions

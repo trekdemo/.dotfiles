@@ -5,6 +5,7 @@ local M = {}
 function M.config ()
   require("zen-mode").setup({
     window = {
+      backdrop = 1,
       width = 100,
       options = {
         signcolumn = 'no',
