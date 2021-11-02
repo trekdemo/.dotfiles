@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
       local util = require('utils')
       util.nnoremap('gb', ':BufferLinePick<CR>')
       util.nnoremap('bd', ':BufferLinePickClose<CR>')
+      util.nnoremap('bD', ':bdelete<CR>')
 
       require('bufferline').setup({
         numbers = 'buffer_id',
