@@ -25,8 +25,11 @@ Icon
 Procfile.local
 .DS_Store
 .tern-port
-/.solargraph.yml
-/bin/solargraph
 /.ccls
 /.ccls-cache
 telepresence.log
+# Solargraph configuration and helpers
+# https://solargraph.org/guides/rails
+/.solargraph.yml
+/bin/solargraph
+/config/definitions.rb
