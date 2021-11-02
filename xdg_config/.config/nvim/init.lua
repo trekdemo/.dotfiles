@@ -67,7 +67,7 @@ opt.foldmethod = 'manual'
 opt.foldtext = "folding#text()"
 
 -- Completion
-opt.complete = table.concat(vim.opt.complete, "kspell")
+opt.complete = ".,w,b,u,t,kspell"
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.pumheight = 10
 opt.pumblend = 10
@@ -77,14 +77,14 @@ opt.hidden = true -- Edited files can be in hidden buffers
 opt.ignorecase = true
 opt.smartcase = true
 opt.diffopt = "filler,internal,algorithm:histogram,indent-heuristic,iwhite"
-opt.virtualedit = table.concat(vim.opt.virtualedit, "block") -- Allow to move the cursor everywhere,
+opt.virtualedit = 'block' -- Allow to move the cursor everywhere,
 opt.list = true -- Show invisible characters not just existing text
 opt.listchars = "tab:⇥ ,trail:·,extends:❯,precedes:❮"
 opt.fillchars="diff:╱,vert:│,foldclose:,foldopen:,eob: " -- Comment needed to allow empty eob char
 opt.conceallevel = 2
 opt.concealcursor = "nc" -- Don't show hidden characters in normal mode
 opt.inccommand = "nosplit" -- Show substitution in realtime
-opt.clipboard = table.concat(vim.opt.clipboard, "unnamedplus")
+opt.clipboard = {'unnamed', "unnamedplus" }
 
 -- Keep the previous clipboard value
 util.vnoremap('p', '"_dp')
