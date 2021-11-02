@@ -27,7 +27,7 @@ font:
   # The normal (roman) font face to use.
   normal:
     family: "FiraCode Nerd Font"
-    style: Retina
+    style: Regular
 
   bold:
     family: "FiraCode Nerd Font"
@@ -169,8 +169,8 @@ window:
   dynamic_title: true
   decorations: None
   padding:
-    x: 4
-    y: 4
+    x: 2
+    y: 2
 
 cursor:
   # Cursor style
