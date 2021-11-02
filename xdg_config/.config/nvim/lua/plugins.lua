@@ -18,6 +18,22 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
+
+  use {
+    'akinsho/bufferline.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function ()
+      local util = require('utils')
+      util.nnoremap('gb', ':BufferLinePick<CR>')
+      util.nnoremap('bd', ':BufferLinePickClose<CR>')
+
+      require('bufferline').setup({
+        numbers = 'buffer_id',
+        diagnostics = 'nvim_lsp',
+      })
+    end
+  }
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
