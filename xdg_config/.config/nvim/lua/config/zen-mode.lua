@@ -17,7 +17,7 @@ function M.config ()
       }
     },
     on_open = function ()
-      vim.cmd [[hi! Twilight guibg=none ctermbg=none]]
+      -- vim.cmd [[hi! Twilight guibg=none ctermbg=none]]
     end,
   })
 

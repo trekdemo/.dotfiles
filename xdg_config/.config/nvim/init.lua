@@ -12,16 +12,16 @@ require('plugins')
 -- Colorscheme
 opt.termguicolors = true
 opt.background = "dark"
-vim.cmd [[
-  augroup GruvboxCustomizations
-    autocmd!
-    " Transparent background
-    autocmd ColorScheme gruvbox  hi Normal      guibg=NONE ctermbg=NONE
-                             \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
-                             \ | hi VertSplit   guibg=NONE ctermbg=NONE
-  augroup END
-  colorscheme gruvbox
-]]
+-- vim.cmd [[
+--   augroup GruvboxCustomizations
+--     autocmd!
+--     " Transparent background
+--     autocmd ColorScheme gruvbox  hi Normal      guibg=NONE ctermbg=NONE
+--                              \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
+--                              \ | hi VertSplit   guibg=NONE ctermbg=NONE
+--   augroup END
+-- ]]
+vim.cmd [[colorscheme gruvbox]]
 
 -- Spelling should be disabled by default
 -- when enabled use English and only the 9 best suggestions
