@@ -172,6 +172,18 @@ return require('packer').startup(function(use)
     config = require('config/fugitive').config,
   }
   use {
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('gitsigns').setup({
+        signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+        numhl      = true,  -- Toggle with `:Gitsigns toggle_numhl`
+        linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+      })
+    end
+  }
+  use {
     'tpope/vim-surround',
     config = function ()
       -- Wrapping words/selections with (, [, {, ", ', ', ", }, ], )
