@@ -29,8 +29,11 @@ return require('packer').startup(function(use)
       util.nnoremap('bD', ':bdelete<CR>')
 
       require('bufferline').setup({
-        numbers = 'buffer_id',
-        diagnostics = 'nvim_lsp',
+        options = {
+          max_name_length = 30,
+          show_close_icon = false,
+          sort_by = 'tabs',
+        }
       })
     end
   }
