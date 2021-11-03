@@ -17,19 +17,29 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
+  -- use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
+  -- vim.cmd [[
+  --   augroup GruvboxCustomizations
+  --     autocmd!
+  --     " Transparent background
+  --     autocmd ColorScheme gruvbox  hi Normal      guibg=NONE ctermbg=NONE
+  --                              \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
+  --                              \ | hi VertSplit   guibg=NONE ctermbg=NONE
+  --   augroup END
+  -- ]]
+  -- vim.cmd [[colorscheme gruvbox]]
   use {
     'marko-cerovac/material.nvim',
     config = function ()
       local nnoremap = require('utils').nnoremap
-      nnoremap('<leader>md', [[:lua require('material.functions').change_style('darker')<CR>]])
+      nnoremap('<leader>md', [[:lua require('material.functions').change_style('deep ocean')<CR>]])
       nnoremap('<leader>ml', [[:lua require('material.functions').change_style('lighter')<CR>]])
 
       require('material').setup({
         contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
         borders = true, -- Enable borders between verticaly split windows
 
-        popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
+        popup_menu = "light", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
 
         italics = {
           comments = true, -- Enable italic comments
@@ -40,11 +50,11 @@ return require('packer').startup(function(use)
         },
 
         contrast_windows = { -- Specify which windows get the contrasted (darker) background
-          "terminal", -- Darker terminal background
-          "packer", -- Darker packer background
-          "qf", -- Darker qf list background
-          "Outline", -- Darker qf list background
-          "Trouble", -- Darker qf list background
+          'help',
+          "terminal",
+          "packer",
+          "qf",
+          "OUTLINE",
         },
 
         text_contrast = {
@@ -60,6 +70,9 @@ return require('packer').startup(function(use)
 
         custom_highlights = {} -- Overwrite highlights with your own
       })
+
+      vim.g.material_style = "deep ocean"
+      vim.cmd [[colorscheme material]]
     end
   }
 
