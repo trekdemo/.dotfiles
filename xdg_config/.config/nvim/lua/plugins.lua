@@ -21,6 +21,10 @@ return require('packer').startup(function(use)
   use {
     'marko-cerovac/material.nvim',
     config = function ()
+      local nnoremap = require('utils').nnoremap
+      nnoremap('<leader>md', [[:lua require('material.functions').change_style('darker')<CR>]])
+      nnoremap('<leader>ml', [[:lua require('material.functions').change_style('lighter')<CR>]])
+
       require('material').setup({
         contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
         borders = true, -- Enable borders between verticaly split windows
@@ -38,11 +42,13 @@ return require('packer').startup(function(use)
         contrast_windows = { -- Specify which windows get the contrasted (darker) background
           "terminal", -- Darker terminal background
           "packer", -- Darker packer background
-          "qf" -- Darker qf list background
+          "qf", -- Darker qf list background
+          "Outline", -- Darker qf list background
+          "Trouble", -- Darker qf list background
         },
 
         text_contrast = {
-          lighter = false, -- Enable higher contrast text for lighter style
+          lighter = true, -- Enable higher contrast text for lighter style
           darker = true -- Enable higher contrast text for darker style
         },
 
@@ -71,7 +77,12 @@ return require('packer').startup(function(use)
           max_name_length = 30,
           show_close_icon = false,
           sort_by = 'tabs',
-        }
+        },
+        -- custom_filter = function(buf, _buf_nums)
+        --   return not vim.bo[buf].filetype == "help"
+        --   return not vim.bo[buf].filetype == "term"
+        --   return true
+        -- end,
       })
     end
   }
