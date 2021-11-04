@@ -120,6 +120,7 @@ return require('packer').startup(function(use)
     },
     config = require('config/telescope').config,
   }
+
   use {
     'neovim/nvim-lspconfig',
     requires = {
@@ -167,6 +168,7 @@ return require('packer').startup(function(use)
       }
     end
   }
+
   use {
     'L3MON4D3/LuaSnip',
     requires = {
@@ -175,6 +177,7 @@ return require('packer').startup(function(use)
     },
     config = require('config/LuaSnip').config,
   }
+
   use({
     "simrat39/symbols-outline.nvim",
     keys = { "<leader>ls" },
@@ -184,6 +187,7 @@ return require('packer').startup(function(use)
       util.nnoremap('<leader>ls', '<cmd>SymbolsOutline<cr>')
     end
   })
+
   use { 'nvim-lualine/lualine.nvim', config = require('config/lualine-nvim').config }
 
   use { 'kevinhwang91/nvim-bqf', ft = 'qf' } -- Better quickfix window
@@ -193,6 +197,7 @@ return require('packer').startup(function(use)
     cmd = { 'GoldenRatioResize', 'GoldenRatioToggle' },
     config = require('config/golden-ratio').config,
   }
+
   use {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
@@ -207,13 +212,14 @@ return require('packer').startup(function(use)
       }
     },
   }
+
   use {
     'kassio/neoterm',
     cmd = { 'Tnew', 'T', 'Texec', 'Topen', 'Ttoggle' },
     config = require('config/neoterm').config,
   }
-  use 'godlygeek/tabular'
 
+  use { 'godlygeek/tabular',       ft = { 'markdown' } }
   use { 'fatih/vim-go',            ft = { 'go' } }
   use { 'jgdavey/vim-blockle',     ft = { 'ruby' } }
   use { 'noprompt/vim-yardoc',     ft = { 'ruby' } }
@@ -231,13 +237,15 @@ return require('packer').startup(function(use)
     config = require('config/nvim-autopairs').config,
     requires = { { 'hrsh7th/nvim-cmp', opt = true } }
   }
+
   use 'ggandor/lightspeed.nvim' -- Super-powers for the s, S, f, t operators
 
   use 'tmux-plugins/vim-tmux' -- Plugin for .tmux.conf ftplugin
+
   use {
     'alexghergh/nvim-tmux-navigation',
     config = require('config/nvim-tmux-navigation').config,
-    disable = not vim.env.TMUX,
+    opt = not vim.env.TMUX,
   }
 
   use {
@@ -248,11 +256,13 @@ return require('packer').startup(function(use)
       'radenling/vim-dispatch-neovim',
     }
   }
+
   use {
     'tpope/vim-fugitive',
     requires = { 'tpope/vim-rhubarb' },
     config = require('config/fugitive').config,
   }
+
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -291,6 +301,7 @@ return require('packer').startup(function(use)
       util.vmap("<leader>'", "S'")
     end
   }
+
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-ragtag'
   use 'tpope/vim-vinegar'
