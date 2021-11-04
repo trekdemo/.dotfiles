@@ -101,6 +101,17 @@ return require('packer').startup(function(use)
   }
 
   use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function ()
+      require("indent_blankline").setup {
+        char = "│",
+        show_current_context = true,
+        buftype_exclude = { "terminal", "help" },
+      }
+    end
+  }
+
+  use {
     'nvim-telescope/telescope.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
