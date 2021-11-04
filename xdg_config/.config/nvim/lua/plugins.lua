@@ -311,9 +311,10 @@ return require('packer').startup(function(use)
     config = function ()
       local util = require('utils')
       -- TODO: Switch to the gcc (default) mapping
-      util.nmap('<leader>/', '<Plug>CommentaryLine')
-      util.xmap('<leader>/', '<Plug>Commentary')
-      util.omap('<leader>/', '<Plug>Commentary')
+      -- <C-/> is seen by vim as <C-_>
+      util.nmap('<C-_>', '<Plug>CommentaryLine')
+      util.xmap('<C-_>', '<Plug>Commentary')
+      util.omap('<C-_>', '<Plug>Commentary')
     end
   }
   use 'tpope/vim-endwise'
