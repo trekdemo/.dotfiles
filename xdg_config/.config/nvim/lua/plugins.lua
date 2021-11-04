@@ -147,8 +147,10 @@ return require('packer').startup(function(use)
     config = require('config/treesitter').config,
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'romgrk/nvim-treesitter-context',
     }
   }
+
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
