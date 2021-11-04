@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
   --   augroup END
   -- ]]
   -- vim.cmd [[colorscheme gruvbox]]
+
   use {
     'marko-cerovac/material.nvim',
     config = function ()
@@ -147,6 +148,7 @@ return require('packer').startup(function(use)
     config = require('config/treesitter').config,
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'RRethy/nvim-treesitter-textsubjects',
       'romgrk/nvim-treesitter-context',
     }
   }

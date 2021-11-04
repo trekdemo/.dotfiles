@@ -27,6 +27,15 @@ M.config = function ()
       },
     },
 
+    -- https://github.com/RRethy/nvim-treesitter-textsubjects#quick-start
+    textsubjects = {
+      enable = true,
+      keymaps = {
+        ['.'] = 'textsubjects-smart',
+        [';'] = 'textsubjects-container-outer',
+      }
+    },
+
     -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     textobjects = {
       move = {
