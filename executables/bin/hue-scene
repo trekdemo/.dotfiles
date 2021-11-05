@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+group="$1"
+options=$(hueadm scenes -j | jq -r "to_entries | .[] | {id: .key, name: .value.name, group: .value.group} | select(.group == \"$group\") | \"\(.name)\tscene=\(.id)\"")
+option=$(printf "$options\nOff\toff\n" | fzf --delimiter='\t' --with-nth=1 | cut -f2)
+
+if [[ -n "$option" ]]; then
+  hueadm group "$group" "$option" # &>/dev/null
+fi
