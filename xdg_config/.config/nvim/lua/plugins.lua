@@ -238,8 +238,8 @@ return require('packer').startup(function(use)
 
   use {
     'windwp/nvim-autopairs',
+    after = 'nvim-cmp',
     config = require('config/nvim-autopairs').config,
-    requires = { { 'hrsh7th/nvim-cmp', opt = true } }
   }
 
   use 'ggandor/lightspeed.nvim' -- Super-powers for the s, S, f, t operators
@@ -249,6 +249,7 @@ return require('packer').startup(function(use)
   use {
     'alexghergh/nvim-tmux-navigation',
     config = require('config/nvim-tmux-navigation').config,
+    keys = {'<C-h>', '<C-j>', '<C-k>', '<C-l>'},
     opt = not vim.env.TMUX,
   }
 
