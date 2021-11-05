@@ -205,9 +205,6 @@ vim.cmd [[
     autocmd VimResized * wincmd =
     autocmd QuickFixCmdPost [^l]* cwindow
     autocmd QuickFixCmdPost    l* lwindow
-    " Open quickfix always on the bottom
-    autocmd FileType qf wincmd J
-    autocmd FileType qf setlocal wrap
   augroup END
 
   augroup highlight_yank
