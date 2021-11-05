@@ -63,6 +63,9 @@ end
 function M.smap(key, cmd, opts)
   return map("s", key, cmd, opts)
 end
+function M.cmap(key, cmd, opts)
+  return map("c", key, cmd, opts)
+end
 
 function M.noremap(key, cmd, opts)
   return map("", key, cmd, opts, { noremap = true })
@@ -84,6 +87,9 @@ function M.onoremap(key, cmd, opts)
 end
 function M.snoremap(key, cmd, opts)
   return map("s", key, cmd, opts, { noremap = true })
+end
+function M.cnoremap(key, cmd, opts)
+  return map("c", key, cmd, opts, { noremap = true })
 end
 
 -- Allows keymaps in lua

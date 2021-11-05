@@ -188,18 +188,16 @@ vim.cmd [[
     autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
   augroup END
 ]]
--- }}}
+
+  -- " Mappings: Command-line {{{
+  -- " Some helpers to edit mode http://vimcasts.org/e/14
+  util.cnoremap('%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
+  -- " Emacs bindings in command line mode
+  util.cnoremap('<c-a>', '<home>')
+  util.cnoremap('<c-e>', '<end>')
+  -- " }}}
 
 vim.cmd [[
-
-  " Mappings: Command-line {{{
-  " Some helpers to edit mode http://vimcasts.org/e/14
-  cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-  " Emacs bindings in command line mode
-  cnoremap <c-a> <home>
-  cnoremap <c-e> <end>
-  " }}}
-
   " Autocommands: General {{{
   " Open quickfix window when it's populated
   augroup custom_autocommands
