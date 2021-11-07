@@ -17,16 +17,6 @@ M.config = function ()
     highlight = { enable = true },
     indent = { enable = true },
 
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
-      },
-    },
-
     -- https://github.com/RRethy/nvim-treesitter-textsubjects#quick-start
     textsubjects = {
       enable = true,
