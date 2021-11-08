@@ -79,6 +79,11 @@ return require('packer').startup(function(use)
   }
 
   use {
+    "luukvbaal/stabilize.nvim",
+    config = function() require("stabilize").setup() end,
+  }
+
+  use {
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function ()
