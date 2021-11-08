@@ -90,7 +90,6 @@ return require('packer').startup(function(use)
         options = {
           max_name_length = 30,
           show_close_icon = false,
-          sort_by = 'tabs',
         },
         -- custom_filter = function(buf, _buf_nums)
         --   return not vim.bo[buf].filetype == "help"

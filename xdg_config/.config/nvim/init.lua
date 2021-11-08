@@ -155,8 +155,8 @@ util.nnoremap('<leader>A', ':lgrep! "FIXME\\|TODO"<CR>')
 util.nnoremap('<leader>F', ':grep! <C-r><C-w><CR>')
 
 -- Tab navigation
-util.nnoremap('<TAB>', 'gt')
-util.nnoremap('<S-TAB>', 'gT')
+util.nnoremap('<TAB>', ':BufferLineCycleNext<CR>')
+util.nnoremap('<S-TAB>', ':BufferLineCyclePrev<CR>')
 
 -- Window resizing
 util.nnoremap('<C-S-left>', '5<c-w>>')
