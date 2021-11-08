@@ -43,8 +43,8 @@ return require('packer').startup(function(use)
         popup_menu = "light", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
 
         italics = {
-          comments = true, -- Enable italic comments
-          keywords = false, -- Enable italic keywords
+          comments = false, -- Enable italic comments
+          keywords = true, -- Enable italic keywords
           functions = true, -- Enable italic functions
           strings = false, -- Enable italic strings
           variables = false -- Enable italic variables

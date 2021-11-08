@@ -26,19 +26,19 @@ font:
 
   # The normal (roman) font face to use.
   normal:
-    family: "FiraCode Nerd Font"
+    family: "VictorMono Nerd Font"
     style: Regular
 
   bold:
-    family: "FiraCode Nerd Font"
+    family: "VictorMono Nerd Font"
     style: Bold
 
   italic:
-    family: "RobotoMono Nerd Font"
+    family: "VictorMono Nerd Font"
     style: Italic
 
   # Point size of the font
-  size: 13.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
