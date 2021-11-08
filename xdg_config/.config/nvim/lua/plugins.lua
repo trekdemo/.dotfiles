@@ -33,7 +33,8 @@ return require('packer').startup(function(use)
     'marko-cerovac/material.nvim',
     config = function ()
       local nnoremap = require('utils').nnoremap
-      nnoremap('<leader>md', [[:lua require('material.functions').change_style('deep ocean')<CR>]])
+      nnoremap('<leader>mt', [[:lua require('material.functions').toggle_style()<CR>]])
+      nnoremap('<leader>md', [[:lua require('material.functions').change_style('palenight')<CR>]])
       nnoremap('<leader>ml', [[:lua require('material.functions').change_style('lighter')<CR>]])
 
       require('material').setup({
@@ -43,9 +44,9 @@ return require('packer').startup(function(use)
         popup_menu = "light", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
 
         italics = {
-          comments = false, -- Enable italic comments
+          comments = true, -- Enable italic comments
           keywords = true, -- Enable italic keywords
-          functions = true, -- Enable italic functions
+          functions = false, -- Enable italic functions
           strings = false, -- Enable italic strings
           variables = false -- Enable italic variables
         },
@@ -72,7 +73,7 @@ return require('packer').startup(function(use)
         custom_highlights = {} -- Overwrite highlights with your own
       })
 
-      vim.g.material_style = "deep ocean"
+      vim.g.material_style = "palenight"
       vim.cmd [[colorscheme material]]
     end
   }
