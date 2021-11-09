@@ -211,8 +211,13 @@ return require('packer').startup(function(use)
     requires = {
       {
         'folke/twilight.nvim',
+        cmd = { 'Twilight', 'TwilightEnable', 'TwilightDisable' },
+        keys = { '<leader>tl' },
         config = function ()
           require("twilight").setup({ dimming = { alpha = 0.4 } })
+
+          local util = require('utils')
+          util.nnoremap('<leader>tl', '<cmd>Twilight<cr>')
         end
       }
     },
