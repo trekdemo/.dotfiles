@@ -53,10 +53,11 @@ return require('packer').startup(function(use)
 
         contrast_windows = { -- Specify which windows get the contrasted (darker) background
           'help',
-          "terminal",
-          "packer",
-          "qf",
-          "OUTLINE",
+          'terminal',
+          'packer',
+          'qf',
+          'OUTLINE',
+          'fugitive',
         },
 
         text_contrast = {
