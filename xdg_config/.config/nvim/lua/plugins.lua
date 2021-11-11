@@ -152,26 +152,6 @@ return require('packer').startup(function(use)
   }
 
   use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      local util = require('utils')
-      util.nnoremap('<leader>xx', '<cmd>TroubleToggle<cr>')
-      util.nnoremap('<leader>xw', '<cmd>TroubleToggle lsp_workspace_diagnostics<cr>')
-      util.nnoremap('<leader>xd', '<cmd>TroubleToggle lsp_document_diagnostics<cr>')
-      util.nnoremap('<leader>xq', '<cmd>TroubleToggle quickfix<cr>')
-      util.nnoremap('<leader>xl', '<cmd>TroubleToggle loclist<cr>')
-      util.nnoremap('gR', '<cmd>TroubleToggle lsp_references<cr>')
-
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
-  use {
     'L3MON4D3/LuaSnip',
     requires = {
       {'saadparwaiz1/cmp_luasnip'},
