@@ -84,19 +84,24 @@ return require('packer').startup(function(use)
     config = function ()
       local util = require('utils')
       util.nnoremap('gb', ':BufferLinePick<CR>')
-      util.nnoremap('bd', ':BufferLinePickClose<CR>')
-      util.nnoremap('bD', ':bdelete<CR>')
+      util.nnoremap('<leader>bd', ':BufferLinePickClose<CR>')
+      util.nnoremap('<leader>bD', ':bdelete<CR>')
 
       require('bufferline').setup({
         options = {
           max_name_length = 30,
           show_close_icon = false,
+          custom_filter = function(buf)
+            local ignored_ft = { 'help', 'fugitive', 'term', 'neoterm' }
+            for _, ft in ipairs(ignored_ft) do
+              if ft == vim.bo[buf].filetype then
+                return false
+              end
+            end
+
+            return true
+          end,
         },
-        -- custom_filter = function(buf, _buf_nums)
-        --   return not vim.bo[buf].filetype == "help"
-        --   return not vim.bo[buf].filetype == "term"
-        --   return true
-        -- end,
       })
     end
   }
