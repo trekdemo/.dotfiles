@@ -17,17 +17,14 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
-  -- vim.cmd [[
-  --   augroup GruvboxCustomizations
-  --     autocmd!
-  --     " Transparent background
-  --     autocmd ColorScheme gruvbox  hi Normal      guibg=NONE ctermbg=NONE
-  --                              \ | hi EndOfBuffer guibg=NONE ctermbg=NONE
-  --                              \ | hi VertSplit   guibg=NONE ctermbg=NONE
-  --   augroup END
-  -- ]]
-  -- vim.cmd [[colorscheme gruvbox]]
+  -- use { -- Super clean theme, it's a bit too dark for now
+  --   'wuelnerdotexe/vim-enfocado',
+  --   config = function ()
+  --     require('lualine').setup { options = { theme = 'enfocado' } }
+  --     vim.g.enfocado_style = "nature" -- Options: "nature", "neon"
+  --     vim.cmd [[colorscheme enfocado]]
+  --   end
+  -- }
 
   use {
     'marko-cerovac/material.nvim',
