@@ -17,17 +17,19 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- use { -- Super clean theme, it's a bit too dark for now
-  --   'wuelnerdotexe/vim-enfocado',
-  --   config = function ()
-  --     require('lualine').setup { options = { theme = 'enfocado' } }
-  --     vim.g.enfocado_style = "nature" -- Options: "nature", "neon"
-  --     vim.cmd [[colorscheme enfocado]]
-  --   end
-  -- }
+  use { -- Super clean theme, it's a bit too dark for now
+    'wuelnerdotexe/vim-enfocado',
+    event = 'VimEnter',
+    config = function ()
+      require('lualine').setup { options = { theme = 'enfocado' } }
+      vim.g.enfocado_style = "nature" -- Options: "nature", "neon"
+      vim.cmd [[colorscheme enfocado]]
+    end
+  }
 
   use {
     'marko-cerovac/material.nvim',
+    opt = true,
     config = function ()
       local nnoremap = require('utils').nnoremap
       nnoremap('<leader>mt', [[:lua require('material.functions').toggle_style()<CR>]])
