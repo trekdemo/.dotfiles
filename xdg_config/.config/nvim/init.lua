@@ -37,8 +37,9 @@ opt.softtabstop = 2
 
 -- Line numbers
 opt.number = true
+opt.relativenumber = true
 opt.numberwidth = 6
-opt.cursorline = true
+opt.cursorline = false
 
 -- Scroll behaviour
 opt.scrolloff = 5
