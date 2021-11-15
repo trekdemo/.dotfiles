@@ -31,6 +31,8 @@ return require('packer').startup(function(use)
     'marko-cerovac/material.nvim',
     opt = true,
     config = function ()
+      require('lualine').setup({ options = {theme = 'material-nvim'} })
+
       local nnoremap = require('utils').nnoremap
       nnoremap('<leader>mt', [[:lua require('material.functions').toggle_style()<CR>]])
       nnoremap('<leader>md', [[:lua require('material.functions').change_style('palenight')<CR>]])
@@ -179,7 +181,7 @@ return require('packer').startup(function(use)
     end
   })
 
-  use { 'nvim-lualine/lualine.nvim', config = require('config/lualine-nvim').config }
+  use { 'nvim-lualine/lualine.nvim' }
 
   use { 'kevinhwang91/nvim-bqf', ft = 'qf' } -- Better quickfix window
 
