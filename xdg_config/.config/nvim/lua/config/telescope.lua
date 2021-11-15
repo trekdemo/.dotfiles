@@ -1,12 +1,19 @@
 local M = {}
 
 M.config = function ()
+  local actions = require("telescope.actions")
   require('telescope').setup({
     defaults = {
       layout_strategy = 'vertical',
       layout_config = {
         mirror = true,
-      }
+      },
+      mappings = {
+        i = {
+          ["<esc>"] = actions.close,
+          ['<c-d>'] = actions.delete_buffer,
+        },
+      },
     }
   })
 
