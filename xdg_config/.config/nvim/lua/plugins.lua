@@ -60,6 +60,7 @@ return require('packer').startup(function(use)
           'qf',
           'OUTLINE',
           'fugitive',
+          'gitcommit',
           'ruby.rspec',
         },
 
