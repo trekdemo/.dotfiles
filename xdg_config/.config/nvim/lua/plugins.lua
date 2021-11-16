@@ -19,7 +19,7 @@ return require('packer').startup(function(use)
 
   use { -- Super clean theme, it's a bit too dark for now
     'wuelnerdotexe/vim-enfocado',
-    event = 'VimEnter',
+    opt = true,
     config = function ()
       require('lualine').setup { options = { theme = 'enfocado' } }
       vim.g.enfocado_style = "nature" -- Options: "nature", "neon"
@@ -29,7 +29,8 @@ return require('packer').startup(function(use)
 
   use {
     'marko-cerovac/material.nvim',
-    opt = true,
+    event = 'VimEnter',
+    module = 'material',
     config = function ()
       require('lualine').setup({ options = {theme = 'material-nvim'} })
 
