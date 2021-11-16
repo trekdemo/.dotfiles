@@ -6,6 +6,7 @@ function M.config ()
   require("zen-mode").setup({
     window = {
       backdrop = 1,
+      height = 0.9,
       width = 100,
       options = {
         signcolumn = 'no',
