@@ -12,7 +12,7 @@ M.config = function ()
   }
 
   local _ = require("nvim-treesitter.configs").setup {
-    ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript" },
+    ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript", "typescript" },
 
     highlight = { enable = true },
     indent = { enable = true },
