@@ -217,7 +217,7 @@ vim.cmd [[
   " Terminal {{{
   let g:neoterm_default_mod = 'botright'
   let g:neoterm_autojump = 1
-  let g:neoterm_autoinsert = 0
+  let g:neoterm_autoinsert = 1
 
   augroup TermExtra
     autocmd!
