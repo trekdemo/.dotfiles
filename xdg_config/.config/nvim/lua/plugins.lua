@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
         },
 
         contrast_windows = { -- Specify which windows get the contrasted (darker) background
+          'netrw',
           'help',
           'terminal',
           'packer',
