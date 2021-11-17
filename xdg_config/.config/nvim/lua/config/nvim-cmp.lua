@@ -60,8 +60,8 @@ M.config = function ()
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
-        { name = 'cmdline' }
-      })
+      { name = 'cmdline' }
+    })
   })
 
   vim.cmd [[

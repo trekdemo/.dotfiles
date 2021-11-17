@@ -16,7 +16,7 @@ opt.background = "dark"
 -- Spelling should be disabled by default
 -- when enabled use English and only the 9 best suggestions
 opt.spell = false
-opt.spelllang = "en,hu"
+opt.spelllang = "en"
 opt.spellsuggest = "best,9"
 
 -- Mouse
