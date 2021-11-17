@@ -2,7 +2,9 @@ local M = {}
 
 M.config = function ()
   -- https://github.com/windwp/nvim-autopairs
-  require('nvim-autopairs').setup({})
+  require('nvim-autopairs').setup({
+    disable_filetype = { 'TelescopePrompt', 'vim' },
+  })
   -- If you want insert `(` after select function or method item
   local cmp_autopairs = require('nvim-autopairs.completion.cmp')
   local cmp = require('cmp')

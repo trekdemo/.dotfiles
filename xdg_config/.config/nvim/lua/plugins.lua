@@ -15,7 +15,12 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+  use {
+    'wbthomason/packer.nvim',
+    -- 'lewis6991/impatient.nvim',
+    -- 'nathom/filetype.nvim',
+    'nvim-lua/plenary.nvim',
+  }
 
   use { -- Super clean theme, it's a bit too dark for now
     'wuelnerdotexe/vim-enfocado',
@@ -86,7 +91,7 @@ return require('packer').startup(function(use)
 
   use {
     'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function ()
       local util = require('utils')
       util.nnoremap('gb', ':BufferLinePick<CR>')
@@ -127,6 +132,7 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim',
+    event = 'BufWinEnter',
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-lua/popup.nvim',
@@ -140,20 +146,42 @@ return require('packer').startup(function(use)
     requires = {
       { 'onsails/lspkind-nvim' },
       { 'folke/lua-dev.nvim' },
+      {
+        'ray-x/lsp_signature.nvim',
+        config = function()
+          -- must happen after servers are set up
+          require('lsp_signature').setup({
+            bind = true, -- This is mandatory, otherwise border config won't get registered.
+            handler_opts = {
+              border = 'rounded',
+            },
+          })
+        end,
+        after = 'nvim-lspconfig',
+      },
     },
     config = require('config/nvim-lspconfig').config,
   }
+
+  use { 'onsails/lspkind-nvim', event = 'InsertEnter' }
+
   use {
     'hrsh7th/nvim-cmp',
     requires = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'f3fora/cmp-spell',
-      'ray-x/cmp-treesitter',
-      'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp',
+      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer', after = 'cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'cmp-buffer' },
+      { 'hrsh7th/cmp-path', after = 'cmp-nvim-lua' },
+      { 'ray-x/cmp-treesitter', after = 'cmp-path' },
+      {
+        'windwp/nvim-autopairs',
+        after = 'cmp-path',
+        config = require('config/nvim-autopairs').config,
+      },
     },
     config = require('config/nvim-cmp').config,
+    after = 'lspkind-nvim',
   }
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -168,10 +196,7 @@ return require('packer').startup(function(use)
 
   use {
     'L3MON4D3/LuaSnip',
-    requires = {
-      {'saadparwaiz1/cmp_luasnip'},
-      {'rafamadriz/friendly-snippets'}
-    },
+    requires = { 'rafamadriz/friendly-snippets' },
     config = require('config/LuaSnip').config,
   }
 
@@ -240,12 +265,6 @@ return require('packer').startup(function(use)
   use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
 
   use 'AndrewRadev/splitjoin.vim'
-
-  use {
-    'windwp/nvim-autopairs',
-    after = 'nvim-cmp',
-    config = require('config/nvim-autopairs').config,
-  }
 
   use 'ggandor/lightspeed.nvim' -- Super-powers for the s, S, f, t operators
 

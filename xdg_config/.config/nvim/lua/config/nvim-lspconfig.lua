@@ -35,7 +35,11 @@ function M.config ()
   local lsp = require('lspconfig')
   local options = {
     on_attach = on_attach,
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    -- Completion work without this advertisement, and it creates a loading
+    -- order problem
+    -- capabilities = require('cmp_nvim_lsp').update_capabilities(
+    --   vim.lsp.protocol.make_client_capabilities()
+    -- ),
   }
 
   -- Here's the list of available LSP servers

@@ -26,18 +26,13 @@ M.config = function ()
     history = true,
     -- Update more often, :h events for more info.
     updateevents = "TextChanged,TextChangedI",
-    ext_opts = {
-      [types.choiceNode] = {
-        active = {
-          virt_text = { { "choiceNode", "Comment" } },
-        },
-      },
-    },
-    -- treesitter-hl has 100, use something higher (default is 200).
-    ext_base_prio = 300,
-    -- minimal increase in priority.
-    ext_prio_increase = 1,
-    enable_autosnippets = true,
+    -- ext_opts = {
+    --   [types.choiceNode] = {
+    --     active = {
+    --       virt_text = { { "choiceNode", "Comment" } },
+    --     },
+    --   },
+    -- },
   })
 
   -- args is a table, where 1 is the text in Placeholder 1, 2 the text in
