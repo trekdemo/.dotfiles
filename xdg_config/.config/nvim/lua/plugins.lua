@@ -253,14 +253,15 @@ return require('packer').startup(function(use)
     config = require('config/neoterm').config,
   }
 
-  use { 'godlygeek/tabular',       ft = { 'markdown' } }
   use { 'fatih/vim-go',            ft = { 'go' } }
   use { 'jgdavey/vim-blockle',     ft = { 'ruby' } }
   use { 'noprompt/vim-yardoc',     ft = { 'ruby' } }
   use { 'tpope/vim-bundler',       ft = { 'ruby' } }
   use { 'tpope/vim-rails',         ft = { 'ruby' } }
   use { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } }
-  use 'vimwiki/vimwiki'
+  use { 'vimwiki/vimwiki' }
+  use { 'godlygeek/tabular',       ft = { 'markdown' } }
+  use { 'ferrine/md-img-paste.vim', ft = { 'markdown' } }
 
   use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
 
