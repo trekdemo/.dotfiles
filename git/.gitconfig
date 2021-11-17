@@ -77,10 +77,14 @@
   remotes = remote -v
   staged = diff --cached            # diff staged changes
   tags = tag -l
-  unchanged = update-index --assume-unchanged
   uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
   unstage = reset                   # remove files from index (tracking)
   wip = commit -m 'WIP [skip ci]'
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  unhide-all = update-index --really-refresh
+  hidden = !git ls-files -v | grep "^[[:lower:]]"
+  ignored = !git status -s --ignored | grep \"^!!\"
 [heroku]
   account = personal
 [tig]
@@ -108,3 +112,5 @@
 	program = gpg
 [credential]
 	helper = osxkeychain
+[init]
+	defaultBranch = main
