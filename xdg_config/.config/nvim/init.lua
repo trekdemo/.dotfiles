@@ -18,6 +18,9 @@ opt.background = "dark"
 opt.spell = false
 opt.spelllang = "en"
 opt.spellsuggest = "best,9"
+-- Jump to the next spelling mistake and show suggestions
+util.nmap(']s', ']sea<c-x>s', { silent = true })
+util.nmap('[s', '[sea<c-x>s', { silent = true })
 
 -- Mouse
 opt.mouse = "a"

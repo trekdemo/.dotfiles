@@ -175,7 +175,6 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-path', after = 'cmp-nvim-lua' },
       { 'ray-x/cmp-treesitter', after = 'cmp-path' },
       { 'hrsh7th/cmp-cmdline', after = 'cmp-treesitter' },
-      { 'f3fora/cmp-spell', after = 'nvim-cmp' },
       {
         'windwp/nvim-autopairs',
         after = 'cmp-path',
