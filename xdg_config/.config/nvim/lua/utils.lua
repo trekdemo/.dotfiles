@@ -11,6 +11,12 @@ end
 
 local M = {}
 
+function M.prequire(module)
+  local ok, err = pcall(require, module)
+  if not ok then return nil, err end
+  return err
+end
+
 M.functions = {}
 
 function M.execute(id)
