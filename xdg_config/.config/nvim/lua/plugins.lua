@@ -362,6 +362,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-abolish'
 
   use 'justinmk/vim-gtfo'
+  use 'tweekmonster/spellrotate.vim'
 end)
 
 vim.cmd([[

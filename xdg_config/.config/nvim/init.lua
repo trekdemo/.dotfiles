@@ -22,11 +22,6 @@ opt.background = "dark"
 opt.spell = false
 opt.spelllang = "en"
 opt.spellsuggest = "best,9"
--- Jump to the next spelling mistake and show suggestions
-
-local util = require('utils')
-util.nmap(']s', ']sea<c-x>s', { silent = true })
-util.nmap('[s', '[sea<c-x>s', { silent = true })
 
 -- Mouse
 opt.mouse = "a"
@@ -85,6 +80,8 @@ opt.conceallevel = 2
 opt.concealcursor = "nc" -- Don't show hidden characters in normal mode
 opt.inccommand = "nosplit" -- Show substitution in realtime
 opt.clipboard = {'unnamed', "unnamedplus" }
+
+local util = require('utils')
 
 -- Keep the previous clipboard value
 util.vnoremap('p', '"_dp')
