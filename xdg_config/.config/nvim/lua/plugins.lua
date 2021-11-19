@@ -22,16 +22,6 @@ return require('packer').startup(function(use)
     'nvim-lua/plenary.nvim',
   }
 
-  use { -- Super clean theme, it's a bit too dark for now
-    'wuelnerdotexe/vim-enfocado',
-    opt = true,
-    config = function ()
-      require('lualine').setup { options = { theme = 'enfocado' } }
-      vim.g.enfocado_style = "nature" -- Options: "nature", "neon"
-      vim.cmd [[colorscheme enfocado]]
-    end
-  }
-
   use {
     'marko-cerovac/material.nvim',
     event = 'VimEnter',
