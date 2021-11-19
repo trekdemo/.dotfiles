@@ -3,16 +3,15 @@ if require("geri.first_run")() then
   return
 end
 
-local g = vim.g
-local opt = vim.opt
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-local util = require('utils')
-
-g.mapleader = util.t"<Space>"
-g.maplocalleader = util.t"<Bslash>"
+require "geri.globals"
 
 -- Load and configure plugins
 require('plugins')
+
+local opt = vim.opt
 
 -- Colorscheme
 opt.termguicolors = true
@@ -24,6 +23,8 @@ opt.spell = false
 opt.spelllang = "en"
 opt.spellsuggest = "best,9"
 -- Jump to the next spelling mistake and show suggestions
+
+local util = require('utils')
 util.nmap(']s', ']sea<c-x>s', { silent = true })
 util.nmap('[s', '[sea<c-x>s', { silent = true })
 
@@ -312,3 +313,10 @@ vim.cmd [[
     \ ]
   " }}}
 ]]
+
+vim.cmd([[
+augroup InitLuaReload
+  autocmd!
+  autocmd BufWritePost init.lua source <afile>
+augroup end
+]])
