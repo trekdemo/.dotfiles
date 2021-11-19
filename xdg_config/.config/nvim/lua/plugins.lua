@@ -1,3 +1,5 @@
+RELOAD('geri.config')
+
 require('packer').startup(function(use)
   -- Packer can manage itself
   use {
@@ -112,7 +114,7 @@ require('packer').startup(function(use)
       'nvim-lua/popup.nvim',
       'kyazdani42/nvim-web-devicons'
     },
-    config = require('config/telescope').config,
+    config = require('geri/config/telescope').config,
   }
 
   use { 'onsails/lspkind-nvim' }
@@ -136,7 +138,7 @@ require('packer').startup(function(use)
         after = 'nvim-lspconfig',
       },
     },
-    config = require('config/nvim-lspconfig').config,
+    config = require('geri/config/nvim-lspconfig').config,
   }
 
   use {
@@ -152,16 +154,16 @@ require('packer').startup(function(use)
       {
         'windwp/nvim-autopairs',
         after = 'cmp-path',
-        config = require('config/nvim-autopairs').config,
+        config = require('geri/config/nvim-autopairs').config,
       },
     },
-    config = require('config/nvim-cmp').config,
+    config = require('geri/config/nvim-cmp').config,
     after = 'lspkind-nvim',
   }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = require('config/treesitter').config,
+    config = require('geri/config/treesitter').config,
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
@@ -172,7 +174,7 @@ require('packer').startup(function(use)
   use {
     'L3MON4D3/LuaSnip',
     requires = { 'rafamadriz/friendly-snippets' },
-    config = require('config/LuaSnip').config,
+    config = require('geri/config/LuaSnip').config,
   }
 
   use({
@@ -206,7 +208,7 @@ require('packer').startup(function(use)
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
     keys = { '<leader>z' },
-    config = require('config/zen-mode').config,
+    config = require('geri/config/zen-mode').config,
     requires = {
       {
         'folke/twilight.nvim',
@@ -225,7 +227,7 @@ require('packer').startup(function(use)
   use {
     'kassio/neoterm',
     cmd = { 'Tnew', 'T', 'Texec', 'Topen', 'Ttoggle' },
-    config = require('config/neoterm').config,
+    config = require('geri/config/neoterm').config,
   }
 
   use { 'fatih/vim-go',            ft = { 'go' } }
@@ -281,7 +283,7 @@ require('packer').startup(function(use)
 
   use {
     'alexghergh/nvim-tmux-navigation',
-    config = require('config/nvim-tmux-navigation').config,
+    config = require('geri/config/nvim-tmux-navigation').config,
     keys = {'<C-h>', '<C-j>', '<C-k>', '<C-l>'},
     opt = not vim.env.TMUX,
   }
@@ -289,7 +291,7 @@ require('packer').startup(function(use)
   use {
     'janko/vim-test',
     requires = {
-      { 'benmills/vimux', config = require('config/vimux').config },
+      { 'benmills/vimux', config = require('geri/config/vimux').config },
       'tpope/vim-dispatch',
       'radenling/vim-dispatch-neovim',
     }
@@ -298,7 +300,7 @@ require('packer').startup(function(use)
   use {
     'tpope/vim-fugitive',
     requires = { 'tpope/vim-rhubarb' },
-    config = require('config/fugitive').config,
+    config = require('geri/config/fugitive').config,
   }
 
   use {
