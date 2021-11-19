@@ -122,7 +122,6 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim',
-    event = 'BufWinEnter',
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-lua/popup.nvim',
@@ -255,7 +254,6 @@ return require('packer').startup(function(use)
   use { 'ferrine/md-img-paste.vim', ft = { 'markdown' } }
   use {
     "nvim-neorg/neorg",
-    after = "nvim-cmp",
     config = function()
       require('neorg').setup {
         -- Tell Neorg what modules to load
@@ -271,7 +269,7 @@ return require('packer').startup(function(use)
           ["core.norg.dirman"] = { -- Manage your directories with Neorg
             config = {
               workspaces = {
-                default = "~/neorg"
+                notes = "~/neorg"
               }
             }
           },
@@ -284,7 +282,7 @@ return require('packer').startup(function(use)
     end,
     requires = {
       "nvim-lua/plenary.nvim",
-      { "nvim-neorg/neorg-telescope", after = "telescope.nvim" },
+       "nvim-neorg/neorg-telescope",
     }
   }
 
