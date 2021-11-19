@@ -11,8 +11,16 @@ M.config = function ()
     },
   }
 
+  list.norg = {
+    install_info = {
+      url = "https://github.com/nvim-neorg/tree-sitter-norg",
+      files = { "src/parser.c", "src/scanner.cc" },
+      branch = "main"
+    },
+  }
+
   local _ = require("nvim-treesitter.configs").setup {
-    ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript", "typescript" },
+    ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript", "typescript", "norg" },
 
     highlight = { enable = true },
     indent = { enable = true },

@@ -28,6 +28,7 @@ M.config = function ()
     nnoremap <leader>fh <cmd>Telescope help_tags<cr>
     nnoremap <leader>fm <cmd>Telescope keymaps<cr>
     nnoremap <leader>ft <cmd>Telescope treesitter<cr>
+    nnoremap <leader>fo <cmd>lua require("neorg.modules.core.integrations.telescope.module").public.find_linkable()<cr>
   ]]
 end
 

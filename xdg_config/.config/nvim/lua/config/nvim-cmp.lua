@@ -25,6 +25,7 @@ M.config = function ()
       { name = 'luasnip' },
       { name = 'path' },
       { name = 'treesitter' },
+      { name = "neorg" },
       { name = 'buffer', keyword_length = 6 },
     }),
 
