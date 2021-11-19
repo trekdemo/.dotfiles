@@ -18,7 +18,7 @@ require('packer').startup(function(use)
 
       local nnoremap = require('utils').nnoremap
       nnoremap('<leader>mt', [[:lua require('material.functions').toggle_style()<CR>]])
-      nnoremap('<leader>md', [[:lua require('material.functions').change_style('palenight')<CR>]])
+      nnoremap('<leader>md', [[:lua require('material.functions').change_style('darker')<CR>]])
       nnoremap('<leader>ml', [[:lua require('material.functions').change_style('lighter')<CR>]])
 
       require('material').setup({
@@ -61,7 +61,7 @@ require('packer').startup(function(use)
         custom_highlights = {} -- Overwrite highlights with your own
       })
 
-      vim.g.material_style = "palenight"
+      vim.g.material_style = "darker"
       vim.cmd [[colorscheme material]]
     end
   }
