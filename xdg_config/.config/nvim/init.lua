@@ -289,26 +289,6 @@ vim.cmd [[
     \ 'bash --login -c ': '',
     \ }
   " }}}
-
-  " Plugin: VimWiki {{{
-  let g:vimwiki_auto_header = 1
-  let g:vimwiki_markdown_link_ext = 1
-  let g:vimwiki_filetypes = ['markdown']
-    " \     'custom_wiki2html': '~/bin/wiki2html',
-  let g:vimwiki_list = [
-    \   {
-    \     'path': '~/Documents/Notes/',
-    \     'path_html': '~/Public/Wiki/',
-    \     'custom_wiki2html': $HOME.'/.config/nvim/plugged/vimwiki/autoload/vimwiki/customwiki2html.sh',
-    \     'syntax': 'markdown',
-    \     'ext': '.md',
-    \     'auto_diary_index': 1,
-    \     'auto_tags': 1,
-    \     'auto_toc': 1,
-    \     'links_space_char': '-'
-    \   }
-    \ ]
-  " }}}
 ]]
 
 vim.cmd([[
