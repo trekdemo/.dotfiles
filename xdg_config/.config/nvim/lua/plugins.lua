@@ -359,10 +359,3 @@ require('packer').startup(function(use)
   use 'justinmk/vim-gtfo'
   use 'tweekmonster/spellrotate.vim'
 end)
-
-vim.cmd([[
-augroup PackerPluginsConfig
-  autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
-]])

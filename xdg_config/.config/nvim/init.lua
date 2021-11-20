@@ -185,47 +185,10 @@ util.nnoremap(']oc', ':set conceallevel=0 <CR>')
 -- Use zf to "focus" the current fold.
 util.nnoremap('zf', 'zMzvzz')
 
-vim.cmd [[
-  augroup folding_autocommands
-    autocmd!
-    " Don't screw up folds when inserting text that might affect them, until leaving
-    " insert mode. Foldmethod is local to the window. Protect against screwing up
-    " folding when switching between windows.
-    autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-    autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-  augroup END
-]]
-
-  -- " Mappings: Command-line {{{
-  -- " Some helpers to edit mode http://vimcasts.org/e/14
-  util.cnoremap('%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
-  -- " Emacs bindings in command line mode
-  util.cnoremap('<c-a>', '<home>')
-  util.cnoremap('<c-e>', '<end>')
-  -- " }}}
-
-vim.cmd [[
-  " Autocommands: General {{{
-  augroup custom_autocommands
-    autocmd!
-    " Resize splits on window resize
-    autocmd VimResized * wincmd =
-    " Open quickfix window when it's populated
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost    l* lwindow
-  augroup END
-
-  augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
-  augroup END
-  " }}}
-]]
-
-
-vim.cmd([[
-augroup InitLuaReload
-  autocmd!
-  autocmd BufWritePost init.lua ++nested source <afile>
-augroup end
-]])
+-- " Mappings: Command-line {{{
+-- " Some helpers to edit mode http://vimcasts.org/e/14
+util.cnoremap('%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
+-- " Emacs bindings in command line mode
+util.cnoremap('<c-a>', '<home>')
+util.cnoremap('<c-e>', '<end>')
+-- " }}}
