@@ -9,7 +9,7 @@ vim.g.maplocalleader = "\\"
 require "geri.globals"
 
 -- Load and configure plugins
-require('plugins')
+require "plugins"
 
 local opt = vim.opt
 
@@ -314,6 +314,6 @@ vim.cmd [[
 vim.cmd([[
 augroup InitLuaReload
   autocmd!
-  autocmd BufWritePost init.lua source <afile>
+  autocmd BufWritePost init.lua ++nested source <afile>
 augroup end
 ]])
