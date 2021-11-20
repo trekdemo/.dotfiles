@@ -253,43 +253,8 @@ vim.cmd [[
   cabbrev move Move
   cabbrev mkdir Mkdir!
   " }}}
-
-  " Plugin: vim-test {{{
-  nmap <silent> t<C-l> :TestLast<CR>
-  nmap <silent> t<C-g> :TestVisit<CR>
-
-  nmap t<C-n> :TestNearest<CR>
-  nmap t<C-f> :TestFile<CR>
-  nmap t<C-s> :TestSuite<CR>
-  nmap t<S-n> :TestNearest -strategy=vimux<CR>
-  nmap t<S-f> :TestFile -strategy=vimux<CR>
-  nmap t<S-s> :TestSuite -strategy=vimux<CR>
-
-  function! RunInBashTransform(cmd) abort
-    return "bash --login -c '".a:cmd."'"
-  endfunction
-
-  let g:test#custom_transformations = {
-    \ 'bash': function('RunInBashTransform'),
-    \ }
-  " let g:test#transformation = 'bash'
-  let test#strategy = {
-    \ 'nearest': 'dispatch',
-    \ 'file':    'dispatch',
-    \ 'suite':   'dispatch',
-    \ }
-  let test#ruby#rspec#options = '--format progress'
-  " }}}
-
-  " Plugin: vim-dispatch {{{
-  " When Dispatch tries to recognize the compiler plugin it matches the command
-  " with makeprg name. Some commands have prefixes that prevent the proper
-  " matching.
-  let g:dispatch_compilers = {
-    \ 'bash --login -c ': '',
-    \ }
-  " }}}
 ]]
+
 
 vim.cmd([[
 augroup InitLuaReload

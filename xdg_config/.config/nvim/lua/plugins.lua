@@ -231,6 +231,7 @@ require('packer').startup(function(use)
   use { 'noprompt/vim-yardoc',     ft = { 'ruby' } }
   use { 'tpope/vim-bundler',       ft = { 'ruby' } }
   use { 'tpope/vim-rails',         ft = { 'ruby' } }
+  use { 'mikepjb/vim-chruby',      ft = { 'ruby' } }
   use { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } }
   use { 'vimwiki/vimwiki' }
   use { 'godlygeek/tabular',       ft = { 'markdown' } }
