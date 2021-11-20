@@ -1,15 +1,11 @@
-RELOAD('geri.config')
-
 require('packer').startup(function(use)
   -- Packer can manage itself
-  use {
-    'wbthomason/packer.nvim',
-    -- 'lewis6991/impatient.nvim',
-    -- 'nathom/filetype.nvim',
-    'nvim-lua/plenary.nvim',
-  }
+  use 'wbthomason/packer.nvim'
+  -- use 'lewis6991/impatient.nvim'
+  -- use 'nathom/filetype.nvim'
+  use 'nvim-lua/plenary.nvim'
 
-  use {
+  use { -- material.nvim
     'marko-cerovac/material.nvim',
     event = 'VimEnter',
     module = 'material',
