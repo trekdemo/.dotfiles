@@ -290,11 +290,7 @@ require('packer').startup(function(use)
     }
   }
 
-  use {
-    'tpope/vim-fugitive',
-    requires = { 'tpope/vim-rhubarb' },
-    config = require('geri/config/fugitive').config,
-  }
+  use { 'tpope/vim-fugitive', requires = { 'tpope/vim-rhubarb' } }
 
   use {
     'lewis6991/gitsigns.nvim',
