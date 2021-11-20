@@ -284,7 +284,7 @@ require('packer').startup(function(use)
   use {
     'janko/vim-test',
     requires = {
-      { 'benmills/vimux', config = require('geri/config/vimux').config },
+      'benmills/vimux' ,
       'tpope/vim-dispatch',
       'radenling/vim-dispatch-neovim',
     }
@@ -304,33 +304,7 @@ require('packer').startup(function(use)
       })
     end
   }
-  use {
-    'tpope/vim-surround',
-    config = function ()
-      -- Wrapping words/selections with (, [, {, ", ', ', ", }, ], )
-      local util = require('utils')
-      util.nmap('<leader>(', 'viWS(')
-      util.vmap('<leader>(', 'S(')
-      util.nmap('<leader>)', 'viWS)')
-      util.vmap('<leader>)', 'S)')
-
-      util.nmap('<leader>[', 'viWS[')
-      util.vmap('<leader>[', 'S[')
-      util.nmap('<leader>]', 'viWS]')
-      util.vmap('<leader>]', 'S]')
-
-      util.nmap('<leader>{', 'viWS{')
-      util.vmap('<leader>{', 'S{')
-      util.nmap('<leader>}', 'viWS}')
-      util.vmap('<leader>}', 'S}')
-
-      util.nmap('<leader>"', 'viwS"')
-      util.vmap('<leader>"', 'S"')
-      util.nmap("<leader>'", "viwS'")
-      util.vmap("<leader>'", "S'")
-    end
-  }
-
+  use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-ragtag'
   use 'tpope/vim-vinegar'
@@ -346,9 +320,7 @@ require('packer').startup(function(use)
       util.omap('<C-_>', '<Plug>Commentary')
     end
   }
-  use 'tpope/vim-endwise'
   use 'tpope/vim-eunuch'
-  use 'tpope/vim-abolish'
 
   use 'justinmk/vim-gtfo'
   use 'tweekmonster/spellrotate.vim'
