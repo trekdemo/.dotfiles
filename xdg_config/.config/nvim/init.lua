@@ -206,10 +206,11 @@ vim.cmd [[
 
 vim.cmd [[
   " Autocommands: General {{{
-  " Open quickfix window when it's populated
   augroup custom_autocommands
     autocmd!
+    " Resize splits on window resize
     autocmd VimResized * wincmd =
+    " Open quickfix window when it's populated
     autocmd QuickFixCmdPost [^l]* cwindow
     autocmd QuickFixCmdPost    l* lwindow
   augroup END
