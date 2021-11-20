@@ -220,12 +220,6 @@ vim.cmd [[
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
   augroup END
   " }}}
-
-  " Plugin: floating-preview.nvim {{{
-  set completeopt-=preview
-  let g:float_preview#docked = 0
-  let g:float_preview#max_width = 30
-  " }}}
 ]]
 
 
