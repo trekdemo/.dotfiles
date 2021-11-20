@@ -94,9 +94,11 @@ require('packer').startup(function(use)
     "lukas-reineke/indent-blankline.nvim",
     config = function ()
       require("indent_blankline").setup {
+        use_treesitter = true,
         char = "│",
         show_current_context = true,
-        buftype_exclude = { "terminal", "help" },
+        filetype_exclude = { "help" },
+        buftype_exclude = { "terminal" },
       }
     end
   }
@@ -181,7 +183,7 @@ require('packer').startup(function(use)
     end
   })
 
-  use { 'nvim-lualine/lualine.nvim' }
+  use  'nvim-lualine/lualine.nvim'
 
   use { 'kevinhwang91/nvim-bqf', ft = 'qf' } -- Better quickfix window
 
@@ -200,7 +202,26 @@ require('packer').startup(function(use)
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
     keys = { '<leader>z' },
-    config = require('geri/config/zen-mode').config,
+    config = function ()
+      require("zen-mode").setup({
+        window = {
+          backdrop = 1,
+          height = 0.9,
+          width = 100,
+          options = {
+            signcolumn = 'no',
+            number = false,
+            relativenumber = false,
+            cursorline = false,
+            -- cursorcolumn = false, -- disable cursor column
+            -- foldcolumn = "0", -- disable fold column
+            -- list = false, -- disable whitespace characters
+          }
+        },
+      })
+
+      require'utils'.nnoremap('<leader>z', ':ZenMode<CR>')
+    end,
     requires = {
       {
         'folke/twilight.nvim',
@@ -218,8 +239,7 @@ require('packer').startup(function(use)
 
   use {
     'kassio/neoterm',
-    cmd = { 'Tnew', 'T', 'Texec', 'Topen', 'Ttoggle' },
-    config = require('geri/config/neoterm').config,
+    cmd = { 'T', 'Tnew', 'Texec', 'Topen', 'Tclose', 'Ttoggle' },
   }
 
   use { 'fatih/vim-go',            ft = { 'go' } }
