@@ -7,6 +7,3 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require "geri.globals"
-
--- Load and configure plugins
-require "plugins"
