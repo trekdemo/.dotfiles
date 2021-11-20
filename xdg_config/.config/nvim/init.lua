@@ -247,12 +247,6 @@ vim.cmd [[
   let g:float_preview#docked = 0
   let g:float_preview#max_width = 30
   " }}}
-
-  " Plugin: Eunuch {{{
-  cabbrev rename Rename
-  cabbrev move Move
-  cabbrev mkdir Mkdir!
-  " }}}
 ]]
 
 
