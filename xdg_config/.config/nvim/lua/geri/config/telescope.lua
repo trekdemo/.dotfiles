@@ -19,10 +19,10 @@ M.config = function ()
 
   vim.cmd [[
     cabbrev t Telescope
+    nnoremap <C-p>      <cmd>Telescope find_files<cr>
+    nnoremap <C-b>      <cmd>Telescope buffers<cr>
     nnoremap <leader>fa <cmd>Telescope lsp_code_actions layout_strategy=cursor<cr>
-    nnoremap <leader>fb <cmd>Telescope buffers<cr>
     nnoremap <leader>fc <cmd>Telescope commands<cr>
-    nnoremap <leader>ff <cmd>Telescope find_files<cr>
     nnoremap <leader>fv <cmd>Telescope find_files cwd=~/.config/nvim<cr>
     nnoremap <leader>fw <cmd>Telescope live_grep cwd=~/Documents/Notes<cr>
     nnoremap <leader>fg <cmd>Telescope git_status<cr>
