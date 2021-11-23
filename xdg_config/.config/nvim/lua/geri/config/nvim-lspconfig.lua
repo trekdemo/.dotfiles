@@ -54,6 +54,7 @@ function M.config ()
   lsp.terraformls.setup(options)
   lsp.pylsp.setup(options)
   lsp.yamlls.setup(options)
+  lsp.tsserver.setup(options)
 
   -- Configure Lua
   local sumneko_root_path = vim.fn.stdpath('cache')..'/lua-language-server'
