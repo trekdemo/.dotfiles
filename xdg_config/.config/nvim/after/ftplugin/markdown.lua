@@ -6,7 +6,6 @@ if cmp then
   cmp.setup.buffer {
     sources = {
       { name = 'luasnip' },
-      { name = 'buffer' },
       { name = 'path' },
     },
   }

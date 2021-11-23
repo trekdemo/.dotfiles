@@ -29,6 +29,8 @@ util.noremap('L', 'g_')
 -- Have relative jumps in the jump list (bigger than 5)
 util.nnoremap('j', [[(v:count > 5 ? "m'" . v:count : "") . 'gj']], { expr = true })
 util.nnoremap('k', [[(v:count > 5 ? "m'" . v:count : "") . 'gk']], { expr = true })
+util.inoremap('<Up>', 'gk')
+util.inoremap('<Down>', 'gj')
 
 -- Undo breakpoints
 util.inoremap(',', ',<c-g>u')
