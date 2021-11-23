@@ -173,15 +173,8 @@ require('packer').startup(function(use)
     config = require('geri/config/LuaSnip').config,
   }
 
-  use({
-    "simrat39/symbols-outline.nvim",
-    keys = { "<leader>ls" },
-    cmd = { "SymbolsOutline" },
-    config = function ()
-      local util = require('utils')
-      util.nnoremap('<leader>ls', '<cmd>SymbolsOutline<cr>')
-    end
-  })
+  -- TODO: Install Aerial.nvim
+  -- https://github.com/stevearc/aerial.nvim
 
   use  'nvim-lualine/lualine.nvim'
 
