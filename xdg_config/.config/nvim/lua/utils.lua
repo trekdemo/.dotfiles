@@ -33,9 +33,9 @@ local map = function(mode, key, cmd, opts, defaults)
   if type(cmd) == "function" then
     table.insert(M.functions, cmd)
     if opts.expr then
-      cmd = ([[luaeval('require("util").execute(%d)')]]):format(#M.functions)
+      cmd = ([[luaeval('require("utils").execute(%d)')]]):format(#M.functions)
     else
-      cmd = ("<cmd>lua require('util').execute(%d)<cr>"):format(#M.functions)
+      cmd = ("<cmd>lua require('utils').execute(%d)<cr>"):format(#M.functions)
     end
   end
   if opts.buffer ~= nil then
