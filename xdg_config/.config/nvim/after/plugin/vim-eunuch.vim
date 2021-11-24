@@ -1,4 +1,4 @@
 cabbrev rename Rename
-cabbrev rm Delete
+cabbrev del Delete
 cabbrev move Move
 cabbrev mkdir Mkdir!
