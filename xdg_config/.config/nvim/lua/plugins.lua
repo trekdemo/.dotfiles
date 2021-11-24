@@ -288,8 +288,6 @@ require('packer').startup(function(use)
 
   use 'AndrewRadev/splitjoin.vim'
 
-  use 'ggandor/lightspeed.nvim' -- Super-powers for the s, S, f, t operators
-
   use 'tmux-plugins/vim-tmux' -- Plugin for .tmux.conf ftplugin
 
   use {
