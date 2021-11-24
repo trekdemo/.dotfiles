@@ -1,24 +1,29 @@
 local M = {}
 
 function M.config ()
-  local util = require('utils')
+  local buf_nnoremap = function (buffer, key, cmd)
+    local opts = { silent = true, noremap = true }
+    return vim.api.nvim_buf_set_keymap(buffer, 'n', key, cmd, opts)
+  end
 
   -- https://github.com/neovim/nvim-lspconfig
   local on_attach = function(_, bufnr) -- param: client
-    util.nnoremap('gD'        , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    util.nnoremap('<c-]>'     , '<cmd>lua vim.lsp.buf.definition()<CR>')
-    util.nnoremap('<C-s>'     , '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-    util.nnoremap('K'         , '<cmd>lua vim.lsp.buf.hover()<CR>')
-    util.nnoremap('g0'        , '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-    util.nnoremap('gW'        , '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-    util.nnoremap('gr'        , '<cmd>lua vim.lsp.buf.references()<CR>')
-    util.nnoremap('<leader>af', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    util.nnoremap('<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-    util.nnoremap('<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
-    util.nnoremap('<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    util.nnoremap('<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-    util.nnoremap('[d'        , '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-    util.nnoremap(']d'        , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+    buf_nnoremap(bufnr, 'gD'        , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+    buf_nnoremap(bufnr, '<C-]>'     , '<cmd>lua vim.lsp.buf.definition()<CR>')
+    buf_nnoremap(bufnr, '<C-w>]'    , '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>')
+    buf_nnoremap(bufnr, '<C-w><C-]>', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>')
+    buf_nnoremap(bufnr, '<C-s>'     , '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+    buf_nnoremap(bufnr, 'K'         , '<cmd>lua vim.lsp.buf.hover()<CR>')
+    buf_nnoremap(bufnr, 'g0'        , '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+    buf_nnoremap(bufnr, 'gW'        , '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+    buf_nnoremap(bufnr, 'gr'        , '<cmd>lua vim.lsp.buf.references()<CR>')
+    buf_nnoremap(bufnr, '<leader>af', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+    buf_nnoremap(bufnr, '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
+    buf_nnoremap(bufnr, '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+    buf_nnoremap(bufnr, '<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    buf_nnoremap(bufnr, '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+    buf_nnoremap(bufnr, '[d'        , '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+    buf_nnoremap(bufnr, ']d'        , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     vim.api.nvim_command [[
