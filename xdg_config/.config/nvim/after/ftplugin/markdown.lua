@@ -13,6 +13,8 @@ end
 
 local M = {}
 
+-- TODO: Maybe I could extend it to do quicklook for URLs
+-- https://github.com/strboul/urlview.vim/blob/master/plugin/urlview.vim
 function M.quicklook()
   local cfile_path = vim.fn.expand("<cfile>")
   local buf_path = vim.fn.expand("%:p")
@@ -35,4 +37,4 @@ function M.quicklook()
 end
 
 local nnoremap = require('utils').nnoremap
-nnoremap("<leader>ql", M.quicklook)
+nnoremap("<leader>ql", M.quicklook, { buffer = true })
