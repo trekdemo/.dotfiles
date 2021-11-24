@@ -113,9 +113,9 @@ require('packer').startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-lua/popup.nvim',
-      'kyazdani42/nvim-web-devicons'
+      'kyazdani42/nvim-web-devicons',
+      'jeetsukumaran/telescope-rtp'
     },
-    config = require('geri/config/telescope').config,
   }
 
   use { 'onsails/lspkind-nvim' }
