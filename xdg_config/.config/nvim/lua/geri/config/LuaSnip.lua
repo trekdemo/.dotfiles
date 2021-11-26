@@ -92,6 +92,16 @@ M.config = function ()
       t('attr_writer :'), i(1, "attribute")
     }),
   }
+  snippets.markdown = {
+    s({trig = 'WWW', name = 'Journaling Cues'}, {
+      t({"## What excited you?", ""}),
+      i(1),
+      t({"", "## What drained your energy?", ""}),
+      i(2),
+      t({"", "## What are you grateful for?", ""}),
+      i(0),
+    }),
+  }
   ls.snippets = snippets
 
   -- Loads snippets from https://github.com/rafamadriz/friendly-snippets
