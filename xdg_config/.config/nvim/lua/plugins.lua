@@ -114,7 +114,8 @@ require('packer').startup(function(use)
       'nvim-lua/plenary.nvim',
       'nvim-lua/popup.nvim',
       'kyazdani42/nvim-web-devicons',
-      'jeetsukumaran/telescope-rtp'
+      'jeetsukumaran/telescope-rtp',
+      'nvim-telescope/telescope-symbols.nvim',
     },
   }
 
