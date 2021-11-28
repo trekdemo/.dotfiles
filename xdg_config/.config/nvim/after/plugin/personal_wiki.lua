@@ -2,11 +2,15 @@
 --
 local vimwiki_config = vim.g.vimwiki_list[1]
 local home = vim.fn.expand(vimwiki_config['path'])
+local templates = home .. 'templates/'
 require('telekasten').setup({
   home         = home,
-  dailies      = home .. '/' .. 'diary',
-  weeklies     = home .. '/' .. 'weekly',
-  templates    = home .. '/' .. 'templates',
+  dailies      = home .. 'diary',
+  weeklies     = home .. 'weekly',
+  templates    = templates,
+	template_new_note =   home .. "templates/new_note.md",
+	template_new_daily =  home .. "templates/daily_tk.md",
+	template_new_weekly = home .. "templates/weekly_tk.md",
 
   -- image subdir for pasting
   -- subdir name
@@ -27,13 +31,6 @@ require('telekasten').setup({
   weeklies_create_nonexisting = true,
 
   -- template for new notes (new_note, follow_link)
-  template_new_note = home .. '/' .. 'templates/new_note.md',
-
-  -- template for newly created daily notes (goto_today)
-  template_new_daily = home .. '/' .. 'templates/daily.md',
-
-  -- template for newly created weekly notes (goto_thisweek)
-  template_new_weekly= home .. '/' .. 'templates/weekly.md',
 
   -- integrate with calendar-vim
   plug_into_calendar = true,
