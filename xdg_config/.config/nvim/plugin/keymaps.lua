@@ -6,8 +6,6 @@ util.vnoremap('p', '"_dp')
 util.xnoremap('p', 'pgvy')
 -- Select the previously pasted text
 util.nnoremap('gp', '`[v`]')
--- Select the previously pasted text
-util.nnoremap('gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 util.inoremap("<A-BS>", "<C-W>")
 -- Yank from cursor till the end of the line - Behave like all the other capital letters
@@ -47,9 +45,6 @@ util.inoremap('}', '}<c-g>u')
 
 -- Remove selected highlight
 util.noremap("<leader><leader>", ":nohlsearch<cr>:call clearmatches()<CR>")
-
--- Edit and source vimrc file
-util.nnoremap('<leader>ev', ':vsplit $MYVIMRC<CR>')
 
 -- Open location-list and quickfix list
 util.nnoremap('<leader>lo', ':lwindow<CR>')
