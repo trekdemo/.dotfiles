@@ -136,7 +136,6 @@ require('packer').startup(function(use)
         config = require('geri/config/nvim-autopairs').config,
       },
     },
-    config = require('geri/config/nvim-cmp').config,
     after = 'lspkind-nvim',
   }
   use {
