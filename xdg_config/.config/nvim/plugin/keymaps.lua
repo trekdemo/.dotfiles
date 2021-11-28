@@ -80,10 +80,10 @@ util.nnoremap('<TAB>', ':BufferLineCycleNext<CR>')
 util.nnoremap('<S-TAB>', ':BufferLineCyclePrev<CR>')
 
 -- Window resizing
-util.nnoremap('<C-S-left>', '5<c-w>>')
-util.nnoremap('<C-S-right>', '5<c-w><')
-util.nnoremap('<C-S-up>', '5<c-w>+')
-util.nnoremap('<C-S-down>', '5<c-w>-')
+util.nnoremap('<C-w>>', '5<c-w>>')
+util.nnoremap('<C-w><', '5<c-w><')
+util.nnoremap('<C-w>+', '5<c-w>+')
+util.nnoremap('<C-w>-', '5<c-w>-')
 
 -- Scroll faster
 util.nnoremap('<C-e>', '3<C-e>')
