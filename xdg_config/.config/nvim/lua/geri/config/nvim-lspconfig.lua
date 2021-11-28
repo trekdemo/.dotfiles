@@ -50,16 +50,18 @@ function M.config ()
   -- Here's the list of available LSP servers
   -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
   lsp.bashls.setup(options)
+  lsp.clojure_lsp.setup(options)
+  lsp.cssls.setup(options)
   lsp.dockerls.setup(options)
   lsp.gopls.setup(options)
   lsp.html.setup(options)
   lsp.jsonls.setup(options)
-  lsp.solargraph.setup(options)
-  lsp.vimls.setup(options)
-  lsp.terraformls.setup(options)
   lsp.pylsp.setup(options)
-  lsp.yamlls.setup(options)
+  lsp.solargraph.setup(options)
+  lsp.terraformls.setup(options)
   lsp.tsserver.setup(options)
+  lsp.vimls.setup(options)
+  lsp.yamlls.setup(options)
 
   -- Configure Lua
   local sumneko_root_path = vim.fn.stdpath('cache')..'/lua-language-server'
