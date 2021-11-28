@@ -20,6 +20,7 @@ telescope.load_extension('vim_docs')
 vim.cmd [[
 cabbrev t Telescope
 nnoremap <C-p>      <cmd>Telescope find_files<cr>
+nnoremap <leader>fp <cmd>Telescope projects<cr>
 nnoremap <C-b>      <cmd>Telescope buffers<cr>
 nnoremap <leader>fa <cmd>Telescope lsp_code_actions layout_strategy=cursor<cr>
 nnoremap <leader>fc <cmd>Telescope commands<cr>
