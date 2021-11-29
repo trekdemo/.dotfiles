@@ -81,6 +81,9 @@ require('packer').startup(function(use)
         show_current_context = true,
         filetype_exclude = { "help" },
         buftype_exclude = { "terminal" },
+        show_trailing_blankline_indent = false,
+        show_first_indent_level = false,
+        max_indent_increase = 1,
       }
     end
   }
