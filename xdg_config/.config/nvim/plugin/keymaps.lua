@@ -62,10 +62,6 @@ util.nnoremap('<leader>tn', ':tabnew<CR>:Telescope find_files<CR>')
 util.nnoremap('<leader>s', [[:%s///gc<left><left><left><left>]])
 util.vnoremap('<leader>s', [[:%s/<c-r>//gc<left><left><left>]])
 
--- Window splitting and closing
-util.nnoremap('<C-w>v', ':vsplit<CR>')
-util.nnoremap('<C-w>s', ':split<CR>')
-
 -- Quickly diffing to panes
 util.nnoremap('<leader>dt', ':windo diffthis<CR>')
 util.nnoremap('<leader>du', ':windo diffupdate<CR>')
@@ -78,6 +74,10 @@ util.nnoremap('<leader>F', ':grep! <C-r><C-w><CR>')
 -- Tab navigation
 util.nnoremap('<TAB>', ':BufferLineCycleNext<CR>')
 util.nnoremap('<S-TAB>', ':BufferLineCyclePrev<CR>')
+
+-- Window splitting and closing
+util.nnoremap('<C-w>v', ':vsplit<CR>')
+util.nnoremap('<C-w>s', ':split<CR>')
 
 -- Window resizing
 util.nnoremap('<C-w>>', '5<c-w>>')
