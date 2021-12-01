@@ -48,26 +48,26 @@ cmp.setup({
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' }
-  },
-  experimental = { native_menu = true, },
-})
+-- cmp.setup.cmdline('/', {
+--   sources = {
+--     { name = 'buffer' }
+--   },
+--   experimental = { native_menu = true, },
+-- })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  completion = {
-    -- autocomplete = false,
-    keyword_length = 3,
-  },
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-      { name = 'cmdline' }
-    }),
-  experimental = { native_menu = true, },
-})
+-- cmp.setup.cmdline(':', {
+--   completion = {
+--     -- autocomplete = false,
+--     keyword_length = 3,
+--   },
+--   sources = cmp.config.sources({
+--     { name = 'path' }
+--   }, {
+--       { name = 'cmdline' }
+--     }),
+--   experimental = { native_menu = true, },
+-- })
 
 vim.cmd [[
 highlight link CmpItemAbbr Normal
