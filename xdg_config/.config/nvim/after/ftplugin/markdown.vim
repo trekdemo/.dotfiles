@@ -1,8 +1,7 @@
 setlocal spell spelllang=en,hu
-setlocal wrap linebreak
+setlocal textwidth=80 formatoptions=ntc
 setlocal breakindent breakindentopt=shift:2
-setlocal formatoptions=ln
-setlocal concealcursor=
+setlocal conceallevel=2 concealcursor=
 
 nnoremap <buffer> <silent> gP :!open -a 'Marked 2' '%'<cr>
 
