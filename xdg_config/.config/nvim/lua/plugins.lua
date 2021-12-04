@@ -144,13 +144,13 @@ require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = require('geri/config/treesitter').config,
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
       'romgrk/nvim-treesitter-context',
     }
   }
+  use { 'nvim-treesitter/playground', requires = { 'nvim-treesitter/nvim-treesitter' } }
 
   use {
     'L3MON4D3/LuaSnip',
