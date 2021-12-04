@@ -310,17 +310,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-ragtag'
   use 'tpope/vim-vinegar'
   use 'tpope/vim-repeat'
-  use {
-    'tpope/vim-commentary',
-    config = function ()
-      local util = require('utils')
-      -- TODO: Switch to the gcc (default) mapping
-      -- <C-/> is seen by vim as <C-_>
-      util.nmap('<C-_>', '<Plug>CommentaryLine')
-      util.xmap('<C-_>', '<Plug>Commentary')
-      util.omap('<C-_>', '<Plug>Commentary')
-    end
-  }
+  use 'tpope/vim-commentary'
   use 'tpope/vim-eunuch'
 
   use 'justinmk/vim-gtfo'
