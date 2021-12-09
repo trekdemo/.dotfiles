@@ -1,5 +1,3 @@
--- Check with  ../../plugin/personal_wiki.lua
---
 vim.g.vimwiki_auto_header = 1
 vim.g.vimwiki_markdown_link_ext = 1
 vim.g.vimwiki_filetypes = { 'markdown' }

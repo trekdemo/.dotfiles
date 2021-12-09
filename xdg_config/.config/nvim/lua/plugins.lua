@@ -230,11 +230,6 @@ require('packer').startup(function(use)
   use { 'vimwiki/vimwiki' }
   use { 'godlygeek/tabular',       ft = { 'markdown' } }
   use { 'ferrine/md-img-paste.vim', ft = { 'markdown' } }
-  use { 'renerocksai/telekasten.nvim',
-    requires = {
-      'mattn/calendar-vim',
-    }
-  }
   use {
     "nvim-neorg/neorg",
     config = function()
