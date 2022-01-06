@@ -21,9 +21,9 @@ function M.config ()
     buf_nnoremap(bufnr, '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
     buf_nnoremap(bufnr, '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
     buf_nnoremap(bufnr, '<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    buf_nnoremap(bufnr, '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-    buf_nnoremap(bufnr, '[d'        , '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-    buf_nnoremap(bufnr, ']d'        , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+    buf_nnoremap(bufnr, '<leader>dl', '<cmd>lua vim.diagnostic.set_loclist()<CR>')
+    buf_nnoremap(bufnr, '[d'        , '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+    buf_nnoremap(bufnr, ']d'        , '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     vim.api.nvim_command [[
@@ -74,12 +74,10 @@ function M.config ()
   })
   lsp.sumneko_lua.setup(luadev)
 
-  vim.cmd [[
-    sign define LspDiagnosticsSignError text=ﱥ texthl=LspDiagnosticsSignError linehl= numhl=
-    sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=
-    sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
-    sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=
-  ]]
+  vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
+  vim.fn.sign_define("DiagnosticSignWarn",  { text = "", texthl = "DiagnosticSignWarn" })
+  vim.fn.sign_define("DiagnosticSignInfo",  { text = "", texthl = "DiagnosticSignInfo" })
+  vim.fn.sign_define("DiagnosticSignHint",  { text = "", texthl = "DiagnosticSignHint" })
 end
 
 return M

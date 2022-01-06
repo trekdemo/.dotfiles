@@ -8,8 +8,6 @@ util.xnoremap('p', 'pgvy')
 util.nnoremap('gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 util.inoremap("<A-BS>", "<C-W>")
--- Yank from cursor till the end of the line - Behave like all the other capital letters
-util.nnoremap('Y', 'y$')
 
 -- Don't move on *
 util.nnoremap('*', '*Nzzzv')
@@ -44,7 +42,7 @@ util.inoremap('{', '{<c-g>u')
 util.inoremap('}', '}<c-g>u')
 
 -- Remove selected highlight
-util.noremap("<leader><leader>", ":nohlsearch<cr>:call clearmatches()<CR>")
+util.noremap("<leader><leader>", "<Cmd>nohlsearch<Bar>diffupdate<CR>")
 
 -- Open location-list and quickfix list
 util.nnoremap('<leader>lo', ':lwindow<CR>')

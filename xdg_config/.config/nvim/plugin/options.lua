@@ -65,5 +65,4 @@ opt.listchars = "tab:⇥ ,trail:·,extends:❯,precedes:❮"
 opt.fillchars="diff:╱,vert:│,foldclose:,foldopen:,eob: " -- Comment needed to allow empty eob char
 opt.conceallevel = 2
 opt.concealcursor = "nc" -- Don't show hidden characters in normal mode
-opt.inccommand = "nosplit" -- Show substitution in realtime
 opt.clipboard = {'unnamed', "unnamedplus" }
