@@ -3,7 +3,7 @@ local download_packer = function()
     return
   end
 
-  local install_directory = string.format("%s/site/pack/packer/start/", vim.fn.stdpath "data")
+  local install_directory = string.format("%s/site/pack/packer/opt/", vim.fn.stdpath "data")
 
   vim.fn.mkdir(install_directory, "p")
 
