@@ -227,42 +227,7 @@ require('packer').startup(function(use)
   use { 'tpope/vim-rails',         ft = { 'ruby' } }
   use { 'mikepjb/vim-chruby',      ft = { 'ruby' } }
   use { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } }
-  use { 'vimwiki/vimwiki' }
   use { 'godlygeek/tabular',       ft = { 'markdown' } }
-  use { 'ferrine/md-img-paste.vim', ft = { 'markdown' } }
-  use {
-    "nvim-neorg/neorg",
-    config = function()
-      require('neorg').setup {
-        -- Tell Neorg what modules to load
-        load = {
-          ["core.defaults"] = {}, -- Load all the default modules
-          ["core.keybinds"] = { -- Configure core.keybinds
-            config = {
-              default_keybinds = true, -- Generate the default keybinds
-              neorg_leader = "<Leader>o" -- This is the default if unspecified
-            }
-          },
-          ["core.norg.concealer"] = {}, -- Allows for use of icons
-          ["core.norg.dirman"] = { -- Manage your directories with Neorg
-            config = {
-              workspaces = {
-                notes = "~/neorg"
-              }
-            }
-          },
-          ["core.norg.completion"] = {
-            config = { engine = "nvim-cmp" }
-          },
-          ["core.integrations.telescope"] = {},
-        },
-      }
-    end,
-    requires = {
-      "nvim-lua/plenary.nvim",
-       "nvim-neorg/neorg-telescope",
-    }
-  }
 
   use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
 

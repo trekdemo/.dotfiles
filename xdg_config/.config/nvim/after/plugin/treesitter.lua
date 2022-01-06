@@ -21,7 +21,7 @@ list.markdown = {
     url = "https://github.com/ikatyang/tree-sitter-markdown",
     files = { "src/parser.c", "src/scanner.cc" },
   },
-  filetype = {"markdown", "vimwiki.markdown"},
+  filetype = {"markdown"},
 }
 
 local _ = require("nvim-treesitter.configs").setup {
