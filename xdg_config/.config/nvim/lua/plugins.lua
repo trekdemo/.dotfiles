@@ -23,10 +23,15 @@ require('packer').startup(function(use)
       nnoremap('<leader>ml', [[:lua require('material.functions').change_style('lighter')<CR>]])
 
       require('material').setup({
-        contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
-        borders = true, -- Enable borders between verticaly split windows
-
-        popup_menu = "light", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
+        contrast = {
+          sidebars = true,
+          floating_windows = true,
+          line_numbers = false,
+          sign_column = false,
+          cursor_line = false,
+          non_current_windows = false,
+          popup_menu = false
+        }, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
 
         italics = {
           comments = true, -- Enable italic comments
@@ -36,7 +41,7 @@ require('packer').startup(function(use)
           variables = false -- Enable italic variables
         },
 
-        contrast_windows = { -- Specify which windows get the contrasted (darker) background
+        contrast_filetypes = { -- Specify which windows get the contrasted (darker) background
           'netrw',
           'help',
           'terminal',
@@ -47,19 +52,6 @@ require('packer').startup(function(use)
           'gitcommit',
           'ruby.rspec',
         },
-
-        text_contrast = {
-          lighter = true, -- Enable higher contrast text for lighter style
-          darker = true -- Enable higher contrast text for darker style
-        },
-
-        disable = {
-          background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
-          term_colors = false, -- Prevent the theme from setting terminal colors
-          eob_lines = false -- Hide the end-of-buffer lines
-        },
-
-        custom_highlights = {} -- Overwrite highlights with your own
       })
 
       vim.g.material_style = "darker"
