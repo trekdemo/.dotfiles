@@ -8,22 +8,6 @@ list.sql = {
   },
 }
 
-list.norg = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg",
-    files = { "src/parser.c", "src/scanner.cc" },
-    branch = "main"
-  },
-}
-
-list.markdown = {
-  install_info = {
-    url = "https://github.com/ikatyang/tree-sitter-markdown",
-    files = { "src/parser.c", "src/scanner.cc" },
-  },
-  filetype = {"markdown"},
-}
-
 local _ = require("nvim-treesitter.configs").setup {
   ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript", "typescript" },
   playground = {
