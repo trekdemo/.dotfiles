@@ -1,0 +1,22 @@
+plugin:
+  # Leverage stern (https://github.com/wercker/stern) to output logs.
+  stern:
+    shortCut: Shift-L
+    confirm: false
+    description: "Logs <Stern>"
+    scopes:
+      - pods
+    command: kubectl
+    background: false
+    args:
+      - stern
+      - --tail
+      - 50
+      - $FILTER
+      - --namespace
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+      - --template
+      - >
+        {{.PodName}}/{{.ContainerName}} {{with $d := .Message | parseJSON}}[{{$d.severity}}] {{$d.message}}{{end}}{{"\n"}}

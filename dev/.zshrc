@@ -32,6 +32,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 BROWSER=open
+export XDG_CONFIG_HOME="$HOME/.config/"
 export TZ="/usr/share/zoneinfo/Europe/Amsterdam"
 export LANG="en_US.utf-8"
 export LC_ALL="en_US.utf-8"
