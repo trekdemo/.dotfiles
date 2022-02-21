@@ -15,6 +15,7 @@
 /xdg_config/.config/gcloud
 /xdg_config/.config/heroku
 /xdg_config/.config/hub
+/xdg_config/.config/k9s/config.yml
 /xdg_config/.config/nvim/.init.vim-rplugin~
 /xdg_config/.config/nvim/.netrwhist
 /xdg_config/.config/nvim/autoload/plug.vi*
