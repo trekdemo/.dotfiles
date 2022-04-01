@@ -55,6 +55,7 @@ opt.pumheight = 10
 opt.pumblend = 10
 
 -- Settings
+opt.timeoutlen = 500
 opt.hidden = true -- Edited files can be in hidden buffers
 opt.ignorecase = true
 opt.smartcase = true

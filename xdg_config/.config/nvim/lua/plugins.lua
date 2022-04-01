@@ -7,6 +7,11 @@ require('packer').startup(function(use)
   -- use 'nathom/filetype.nvim'
   use 'nvim-lua/plenary.nvim'
 
+  use {
+    "folke/which-key.nvim",
+    config = function() require("which-key").setup{} end
+  }
+
   use { -- material.nvim
     'marko-cerovac/material.nvim',
     event = 'VimEnter',
@@ -14,10 +19,14 @@ require('packer').startup(function(use)
     config = function ()
       require('lualine').setup({ options = {theme = 'material-nvim'} })
 
-      local nnoremap = require('utils').nnoremap
-      nnoremap('<leader>mt', [[:lua require('material.functions').toggle_style()<CR>]])
-      nnoremap('<leader>md', [[:lua require('material.functions').change_style('darker')<CR>]])
-      nnoremap('<leader>ml', [[:lua require('material.functions').change_style('lighter')<CR>]])
+      require('which-key').register({
+        ["<leader>m"] = {
+          name = "+material",
+          t = { function() require('material.functions').toggle_style() end, "Next style" },
+          d = { function() require('material.functions').change_style('darker') end, "Use darker style" },
+          l = { function() require('material.functions').change_style('lighter') end, "Use lighter style" },
+        }
+      })
 
       require('material').setup({
         contrast = {

@@ -8,22 +8,23 @@ function M.config ()
 
   -- https://github.com/neovim/nvim-lspconfig
   local on_attach = function(_, bufnr) -- param: client
-    buf_nnoremap(bufnr, 'gD'        , '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    buf_nnoremap(bufnr, '<C-]>'     , '<cmd>lua vim.lsp.buf.definition()<CR>')
-    buf_nnoremap(bufnr, '<C-w>]'    , '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>')
-    buf_nnoremap(bufnr, '<C-w><C-]>', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>')
-    buf_nnoremap(bufnr, '<C-s>'     , '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-    buf_nnoremap(bufnr, 'K'         , '<cmd>lua vim.lsp.buf.hover()<CR>')
-    buf_nnoremap(bufnr, 'g0'        , '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-    buf_nnoremap(bufnr, 'gW'        , '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-    buf_nnoremap(bufnr, 'gr'        , '<cmd>lua vim.lsp.buf.references()<CR>')
-    buf_nnoremap(bufnr, '<leader>af', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    buf_nnoremap(bufnr, '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-    buf_nnoremap(bufnr, '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
-    buf_nnoremap(bufnr, '<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    buf_nnoremap(bufnr, '<leader>dl', '<cmd>lua vim.diagnostic.set_loclist()<CR>')
-    buf_nnoremap(bufnr, '[d'        , '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-    buf_nnoremap(bufnr, ']d'        , '<cmd>lua vim.diagnostic.goto_next()<CR>')
+    require('which-key').register({
+      ['g0'] = {'<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'LSP: Document Symbol'},
+      ['gD'] = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', 'LSP: Type Definition'},
+      ['gW'] = {'<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'LSP: Workspace Symbol' },
+      ['gr'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'LSP: References'},
+      ['<C-]>']      = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition' },
+      ['<C-w><C-]>'] = { '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition (vsplit)' },
+      ['<C-s>']      = { '<cmd>lua vim.lsp.buf.signature_help()<CR>' },
+      ['K']          = { '<cmd>lua vim.lsp.buf.hover()<CR>' },
+      ['<leader>af'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>' },
+      ['<leader>ai'] = { '<cmd>lua vim.lsp.buf.incoming_calls()<CR>' },
+      ['<leader>ao'] = { '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>' },
+      ['<leader>ar'] = { '<cmd>lua vim.lsp.buf.rename()<CR>' },
+      ['<leader>dl'] = { '<cmd>lua vim.diagnostic.set_loclist()<CR>' },
+      ['[d']         = { '<cmd>lua vim.diagnostic.goto_prev()<CR>' },
+      [']d']         = { '<cmd>lua vim.diagnostic.goto_next()<CR>' },
+    }, { silent = true, noremap = true, buffer = bufnr })
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     vim.api.nvim_command [[
