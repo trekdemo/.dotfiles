@@ -119,7 +119,7 @@ require('packer').startup(function(use)
         after = 'nvim-lspconfig',
       },
     },
-    config = require('geri/config/nvim-lspconfig').config,
+    config = R('geri/config/nvim-lspconfig').config,
   }
 
   use {
@@ -135,7 +135,7 @@ require('packer').startup(function(use)
       {
         'windwp/nvim-autopairs',
         after = 'cmp-path',
-        config = require('geri/config/nvim-autopairs').config,
+        config = R('geri/config/nvim-autopairs').config,
       },
     },
     after = 'lspkind-nvim',
@@ -154,7 +154,7 @@ require('packer').startup(function(use)
   use {
     'L3MON4D3/LuaSnip',
     requires = { 'rafamadriz/friendly-snippets' },
-    config = require('geri/config/LuaSnip').config,
+    config = R('geri/config/LuaSnip').config,
   }
 
   -- TODO: Install Aerial.nvim
@@ -236,7 +236,7 @@ require('packer').startup(function(use)
 
   use {
     'alexghergh/nvim-tmux-navigation',
-    config = require('geri/config/nvim-tmux-navigation').config,
+    config = R('geri/config/nvim-tmux-navigation').config,
     keys = {'<C-h>', '<C-j>', '<C-k>', '<C-l>'},
     opt = not vim.env.TMUX,
   }
