@@ -47,6 +47,7 @@ require('packer').startup(function(use)
           'OUTLINE',
           'fugitive',
           'gitcommit',
+          'gitrebase',
           'ruby.rspec',
         },
       })
