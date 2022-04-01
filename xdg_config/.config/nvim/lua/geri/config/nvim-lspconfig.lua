@@ -37,31 +37,21 @@ function M.config ()
     print("LSP started.");
   end
 
+  -- Here's the list of available LSP servers
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
   local lsp = require('lspconfig')
   local options = {
     on_attach = on_attach,
-    -- Completion work without this advertisement, and it creates a loading
-    -- order problem
-    -- capabilities = require('cmp_nvim_lsp').update_capabilities(
-    --   vim.lsp.protocol.make_client_capabilities()
-    -- ),
+    flags = {
+      -- This will be the default in neovim 0.7+
+      debounce_text_changes = 150,
+    },
   }
 
-  -- Here's the list of available LSP servers
-  -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-  lsp.bashls.setup(options)
-  lsp.clojure_lsp.setup(options)
-  lsp.cssls.setup(options)
-  lsp.dockerls.setup(options)
-  lsp.gopls.setup(options)
-  lsp.html.setup(options)
-  lsp.jsonls.setup(options)
-  lsp.pylsp.setup(options)
-  lsp.solargraph.setup(options)
-  lsp.terraformls.setup(options)
-  lsp.tsserver.setup(options)
-  lsp.vimls.setup(options)
-  lsp.yamlls.setup(options)
+  local servers = { 'vimls', 'bashls', 'cssls', 'solargraph', 'dockerls', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'tsserver', 'yamlls' }
+  for _, server in pairs(servers) do
+    lsp[server].setup(options)
+  end
 
   -- Configure Lua
   local sumneko_root_path = vim.fn.stdpath('cache')..'/lua-language-server'
