@@ -17,8 +17,6 @@ require('packer').startup(function(use)
     event = 'VimEnter',
     module = 'material',
     config = function ()
-      require('lualine').setup({ options = {theme = 'material-nvim'} })
-
       require('which-key').register({
         ["<leader>m"] = {
           name = "+material",
@@ -63,6 +61,9 @@ require('packer').startup(function(use)
 
       vim.g.material_style = "darker"
       vim.cmd [[colorscheme material]]
+
+      -- https://github.com/nvim-lualine/lualine.nvim#configuring-lualine-in-initvim
+      require('lualine').setup{}
     end
   }
 
