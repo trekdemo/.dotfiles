@@ -292,12 +292,11 @@ require('packer').startup(function(use)
   use {
     "ahmedkhalf/project.nvim",
     config = function()
-      require('telescope').load_extension('projects')
-      require("project_nvim").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      local ext = require('telescope').load_extension('projects')
+      require("project_nvim").setup{}
+      require('which-key').register({
+        ['<leader>fp'] = { function() ext.projects() end, "Projects" },
+      }, {noremap = true})
     end,
     requires = { 'telescope.nvim' },
   }
