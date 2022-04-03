@@ -132,6 +132,7 @@ require('packer').startup(function(use)
       null_ls.setup({
         on_attach = require('geri.config.lsp-on-attach'),
         sources = {
+          null_ls.builtins.hover.dictionary,
           null_ls.builtins.diagnostics.write_good,
           null_ls.builtins.code_actions.gitsigns,
         },
