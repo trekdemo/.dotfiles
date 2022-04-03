@@ -53,6 +53,19 @@ local cursor = function()
     })
   )
 end
+local center = function()
+  return themes.get_dropdown(
+    vim.tbl_deep_extend('force', theme_defaults, {
+      layout_strategy = 'center',
+      layout_config = {
+        width = 0.8,
+        height = 0.5,
+      },
+      previewer = false,
+      prompt_title = false
+    })
+  )
+end
 local ivy = function()
   return themes.get_ivy(
     vim.tbl_deep_extend('force', theme_defaults, {previewer = false})
@@ -66,6 +79,7 @@ local builtins = require('telescope.builtin')
 require('which-key').register({
   ['<C-p>'] = { function() builtins.find_files(full()) end, "Find files" },
   ['<C-b>'] = { function() builtins.buffers(full()) end, "Buffers" },
+  ['<M-b>'] = { function() builtins.builtin(center()) end, "Builtins" },
   ['<leader>f'] = {
     name = "+telescope",
     a = { function() builtins.lsp_code_actions(cursor()) end, "LSP: Code Actions" },
@@ -74,7 +88,7 @@ require('which-key').register({
     g = { function() builtins.git_status(ivy()) end, "Git Status" },
     h = { function() builtins.help_tags(full()) end, "Help Tags" },
     m = { function() builtins.keymaps(ivy()) end, "Keymaps" },
-    t = { function() builtins.treesitter(ivy()) end, "TreeSitter" },
+    t = { function() builtins.treesitter(center()) end, "TreeSitter" },
     v = { function() builtins.find_files(full({cwd="~/.config/nvim"})) end, "NVim Configuration" },
   },
 }, {noremap = true})
