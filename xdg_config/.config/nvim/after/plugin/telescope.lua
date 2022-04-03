@@ -2,10 +2,7 @@ local actions = require("telescope.actions")
 local telescope = require('telescope')
 telescope.setup({
   defaults = {
-    layout_strategy = 'vertical',
-    layout_config = {
-      mirror = true,
-    },
+    layout_strategy = 'horizontal',
     mappings = {
       i = {
         ["<esc>"] = actions.close,
@@ -17,21 +14,72 @@ telescope.setup({
 telescope.load_extension('vim_rtp')
 telescope.load_extension('vim_docs')
 
+-- ----------------------------------------------------------------------------
+-- Themes
+-- ----------------------------------------------------------------------------
+local themes = require('telescope.themes')
+local theme_defaults = {
+  borderchars = {
+    prompt = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+    results = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+    preview = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+  },
+  results_title = '',
+  preview_title = '',
+  winblend = 15,
+}
+local full = function(opt)
+  opt = opt or {}
+  return themes.get_dropdown(
+    vim.tbl_deep_extend('force', theme_defaults, {
+      width = 0.8,
+      show_line = false,
+      layout_strategy = 'horizontal',
+      layout_config = {
+        width = 0.8,
+        height = 0.9,
+        prompt_position = "top",
+        preview_cutoff = 120,
+      }
+    }, opt)
+  )
+end
+local cursor = function()
+  return themes.get_cursor(
+    vim.tbl_deep_extend('force', theme_defaults, {
+      layout_config = { width = 60 },
+      previewer = false,
+      prompt_title = false
+    })
+  )
+end
+local ivy = function()
+  return themes.get_ivy(
+    vim.tbl_deep_extend('force', theme_defaults, {previewer = false})
+  )
+end
+
+-- ----------------------------------------------------------------------------
+-- Keymaps
+-- ----------------------------------------------------------------------------
+local builtins = require('telescope.builtin')
+require('which-key').register({
+  ['<C-p>'] = { function() builtins.find_files(full()) end, "Find files" },
+  ['<C-b>'] = { function() builtins.buffers(full()) end, "Buffers" },
+  ['<leader>f'] = {
+    name = "+telescope",
+    a = { function() builtins.lsp_code_actions(cursor()) end, "LSP: Code Actions" },
+    c = { function() builtins.commands(full()) end, "Commands" },
+    e = { function() builtins.symbols(cursor()) end, "Emojies" },
+    g = { function() builtins.git_status(ivy()) end, "Git Status" },
+    h = { function() builtins.help_tags(full()) end, "Help Tags" },
+    m = { function() builtins.keymaps(ivy()) end, "Keymaps" },
+    t = { function() builtins.treesitter(ivy()) end, "TreeSitter" },
+    v = { function() builtins.find_files(full({cwd="~/.config/nvim"})) end, "NVim Configuration" },
+  },
+}, {noremap = true})
+
 vim.cmd [[
 cabbrev t Telescope
-nnoremap <C-p>      <cmd>Telescope find_files<cr>
-nnoremap <leader>fp <cmd>Telescope projects<cr>
-nnoremap <C-b>      <cmd>Telescope buffers<cr>
-nnoremap <leader>fa <cmd>Telescope lsp_code_actions layout_strategy=cursor<cr>
-nnoremap <leader>fc <cmd>Telescope commands<cr>
-nnoremap <leader>fe <cmd>Telescope symbols<cr>
 inoremap <C-e>      <cmd>Telescope symbols<cr>
-nnoremap <leader>fv <cmd>Telescope find_files cwd=~/.config/nvim<cr>
-nnoremap <leader>wf <cmd>Telescope find_files cwd=~/Documents/Notes<cr>
-nnoremap <leader>wg <cmd>Telescope live_grep cwd=~/Documents/Notes<cr>
-nnoremap <leader>fg <cmd>Telescope git_status<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fm <cmd>Telescope keymaps<cr>
-nnoremap <leader>ft <cmd>Telescope treesitter<cr>
-nnoremap <leader>fo <cmd>lua require("neorg.modules.core.integrations.telescope.module").public.find_linkable()<cr>
 ]]

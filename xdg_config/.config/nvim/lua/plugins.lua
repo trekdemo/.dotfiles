@@ -95,6 +95,7 @@ require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons',
       'jeetsukumaran/telescope-rtp',
       'nvim-telescope/telescope-symbols.nvim',
+      'folke/which-key.nvim',
     },
   }
 
