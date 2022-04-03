@@ -122,6 +122,20 @@ require('packer').startup(function(use)
     config = R('geri/config/nvim-lspconfig').config,
   }
 
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function ()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.diagnostics.write_good,
+          null_ls.builtins.code_actions.gitsigns,
+        },
+      })
+    end,
+  })
+
   use {
     'hrsh7th/nvim-cmp',
     requires = {
