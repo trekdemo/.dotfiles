@@ -237,8 +237,8 @@ require('packer').startup(function(use)
   use {
     'alexghergh/nvim-tmux-navigation',
     config = R('geri/config/nvim-tmux-navigation').config,
-    keys = {'<C-h>', '<C-j>', '<C-k>', '<C-l>'},
-    opt = not vim.env.TMUX,
+    keys = {'<A-h>',    '<A-j>',    '<A-k>',  '<A-l>',
+            '<A-Left>', '<A-Down>', '<A-Up>', '<A-Right>'},
   }
 
   use {
