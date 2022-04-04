@@ -121,7 +121,7 @@ require('packer').startup(function(use)
         after = 'nvim-lspconfig',
       },
     },
-    config = R('geri/config/nvim-lspconfig').config,
+    config = function() R('geri/config/nvim-lspconfig')() end,
   }
 
   use({
