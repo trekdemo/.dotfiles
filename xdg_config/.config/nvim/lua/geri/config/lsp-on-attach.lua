@@ -29,6 +29,25 @@ return function(client, bufnr)
       ]])
     end
 
+    -- puts(client.resolved_capabilities)
+    if client.resolved_capabilities.document_highlight then
+      vim.cmd([[
+      augroup CustomLspHighlighting
+        autocmd! * <buffer>
+        autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+      ]])
+    end
+
+    vim.cmd([[
+    augroup CustomDiagnostics
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.diagnostic.open_float({focusable = false})
+    augroup END
+    ]])
+
+
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     -- TODO: Move this to treesitter config
     vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
