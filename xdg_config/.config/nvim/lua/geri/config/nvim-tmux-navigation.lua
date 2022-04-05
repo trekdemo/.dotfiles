@@ -18,11 +18,15 @@ M.config = function()
   map('n', "<A-Right>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<cr>", options)
   -- vim.api.nvim_set_keymap('n', "<C-\\>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastActive()<cr>", { noremap = true, silent = true })
   -- vim.api.nvim_set_keymap('n', "<C-Space>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateNext()<cr>", { noremap = true, silent = true })
-  map('t', "<C-h>", "<C-\\><C-n><C-h>", { silent = true })
-  map('t', "<C-j>", "<C-\\><C-n><C-j>", { silent = true })
-  map('t', "<C-k>", "<C-\\><C-n><C-k>", { silent = true })
-  -- " I use <C-l> too much to clear the terminal
-  -- map('t', "<C-l>", "<C-\\><C-n><C-l>", options)
+  map('t', "<M-h>", "<C-\\><C-n><C-h>", { silent = true })
+  map('t', "<M-j>", "<C-\\><C-n><C-j>", { silent = true })
+  map('t', "<M-k>", "<C-\\><C-n><C-k>", { silent = true })
+  map('t', "<M-l>", "<C-\\><C-n><C-l>", { silent = true })
+
+  map('t', "<M-Left>", "<C-\\><C-n><C-h>", { silent = true })
+  map('t', "<M-Down>", "<C-\\><C-n><C-j>", { silent = true })
+  map('t', "<M-Up>", "<C-\\><C-n><C-k>", { silent = true })
+  map('t', "<M-Right>", "<C-\\><C-n><C-l>", { silent = true })
 end
 
 return M
