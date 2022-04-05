@@ -4,6 +4,7 @@ return function(client, bufnr)
       ['gD'] = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', 'LSP: Type Definition'},
       ['gW'] = {'<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'LSP: Workspace Symbol' },
       ['gr'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'LSP: References'},
+      ['gi']      = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition' },
       ['<C-]>']      = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition' },
       ['<C-w><C-]>'] = { '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition (vsplit)' },
       ['<C-s>']      = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'LSP: Signature' },
