@@ -53,7 +53,8 @@ local cursor = function()
     })
   )
 end
-local center = function()
+local center = function(opt)
+  opt = opt or {}
   return themes.get_dropdown(
     vim.tbl_deep_extend('force', theme_defaults, {
       layout_strategy = 'center',
@@ -63,12 +64,13 @@ local center = function()
       },
       previewer = false,
       prompt_title = false
-    })
+    }, opt)
   )
 end
-local ivy = function()
+local ivy = function(opt)
+  opt = opt or {}
   return themes.get_ivy(
-    vim.tbl_deep_extend('force', theme_defaults, {previewer = false})
+    vim.tbl_deep_extend('force', theme_defaults, opt)
   )
 end
 
@@ -90,6 +92,7 @@ require('which-key').register({
     m = { function() builtins.keymaps(ivy()) end, "Keymaps" },
     t = { function() builtins.treesitter(center()) end, "TreeSitter" },
     v = { function() builtins.find_files(full({cwd="~/.config/nvim"})) end, "NVim Configuration" },
+    r = { function() builtins.lsp_references(ivy()) end, 'LSP: References'}
   },
 }, {noremap = true})
 
