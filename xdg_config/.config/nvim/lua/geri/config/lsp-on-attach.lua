@@ -3,7 +3,8 @@ return function(client, bufnr)
       ['g0'] = {'<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'LSP: Document Symbol'},
       ['gD'] = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', 'LSP: Type Definition'},
       ['gW'] = {'<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'LSP: Workspace Symbol' },
-      ['gr'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'LSP: References'},
+      -- gr is mapped in telescope.lua
+      ['gR'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'LSP: References'},
       ['gi']      = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition' },
       ['<C-]>']      = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition' },
       ['<C-w><C-]>'] = { '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition (vsplit)' },

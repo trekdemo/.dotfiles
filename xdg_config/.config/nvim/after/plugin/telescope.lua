@@ -92,8 +92,10 @@ require('which-key').register({
     m = { function() builtins.keymaps(ivy()) end, "Keymaps" },
     t = { function() builtins.treesitter(center()) end, "TreeSitter" },
     v = { function() builtins.find_files(full({cwd="~/.config/nvim"})) end, "NVim Configuration" },
-    r = { function() builtins.lsp_references(ivy()) end, 'LSP: References'}
+    r = { function() builtins.lsp_references(ivy()) end, 'LSP: References'},
+    d = { function() builtins.diagnostics(ivy()) end, 'Diagnostics'},
   },
+  ['gr'] = { function() builtins.lsp_references(ivy()) end, 'LSP: References'},
 }, {noremap = true})
 
 vim.cmd [[
