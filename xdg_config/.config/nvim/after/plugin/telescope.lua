@@ -45,6 +45,7 @@ local builtins = require('telescope.builtin')
 require('which-key').register({
   ['<C-p>'] = { function() builtins.find_files() end, "Find files" },
   ['<C-b>'] = { function() builtins.buffers() end, "Buffers" },
+  ['<C-t>'] = { function() builtins.treesitter(cursor({layout_config = {height = 15}})) end, "TreeSitter" },
   ['<M-b>'] = { function() builtins.builtin() end, "Builtins" },
   ['<leader>f'] = {
     name = "+telescope",
@@ -54,7 +55,6 @@ require('which-key').register({
     g = { function() builtins.git_status() end, "Git Status" },
     h = { function() builtins.help_tags() end, "Help Tags" },
     m = { function() builtins.keymaps() end, "Keymaps" },
-    t = { function() builtins.treesitter(cursor({layout_config = {height = 15}})) end, "TreeSitter" },
     v = { function() builtins.find_files({cwd="~/.config/nvim"}) end, "NVim Configuration" },
     r = { function() builtins.lsp_references() end, 'LSP: References'},
     d = { function() builtins.diagnostics() end, 'Diagnostics'},
