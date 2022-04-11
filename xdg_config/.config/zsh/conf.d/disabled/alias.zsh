@@ -13,13 +13,10 @@ alias mkdir="mkdir -vp"
 alias grep='grep --color'
 
 alias cc="circleci"
-alias t="task"
-alias tsh="tasksh"
 # Ruby and friends
 alias b="bundle"
 alias be="bundle exec"
 alias bu="bundle update"
-alias berc="bundle exec rails console"
 # Docker, Kubernetes, ...
 alias k="kubectl"
 alias kx="kubectx"

@@ -27,6 +27,8 @@
 # | /etc/zlogout   |    J      |           |      |
 # +----------------+-----------+-----------+------+
 
+# zmodload zsh/zprof
+
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
@@ -73,3 +75,4 @@ eval "$(starship init zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi
+# zprof
