@@ -4,9 +4,8 @@ alias tilt="$(brew --prefix)/bin/tilt"
 
 alias o="open"
 alias ls=lsd
-alias ll='ls -l'      #long list
-alias la='ls -laFh'   #long list,show all,show type,human readable
-alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
+alias ll='lsd -l'      #long list
+alias la='lsd -laFh'   #long list,show all,show type,human readable
 alias mv="mv -iv"
 alias cp="cp -riv"
 alias mkdir="mkdir -vp"

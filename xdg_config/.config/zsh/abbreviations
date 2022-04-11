@@ -1,6 +1,6 @@
 abbr -g g="git"
-abbr -g gcob="git checkout -b"
-abbr -g gfall="git fetch --all --prune"
+abbr -g la="lsd -laFh"
+abbr -g ll="lsd -lFh"
 abbr :q="exit"
 abbr b="bundle"
 abbr be="bundle exec"
