@@ -15,5 +15,5 @@ augroup end
 " xmap gr <Plug>(neoterm-repl-send)
 
 " Toggle neoterm pane
-nmap <localleader>vv :Ttoggle<CR>
-tmap <localleader>vv <c-\><c-n>:Ttoggle<CR>
+nmap <M-t> :Ttoggle<CR>
+tmap <M-t> <c-\><c-n>:Ttoggle<CR>
