@@ -245,6 +245,7 @@ require('packer').startup(function(use)
   use { 'mikepjb/vim-chruby',      ft = { 'ruby' } }
   use { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } }
   use { 'godlygeek/tabular',       ft = { 'markdown' } }
+  use { 'towolf/vim-helm' }
 
   use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
 
