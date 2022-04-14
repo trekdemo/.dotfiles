@@ -63,15 +63,9 @@ for rc in $(ls "$HOME/.config/zsh/conf.d/"); do
   fi
 done
 
-chruby 3
 
-# Setup prompt
-# https://starship.rs/config/
+# Setup prompt https://starship.rs/config/
 eval "$(starship init zsh)"
-
-# Load abbreviations plugin
-[ -d "$(brew --prefix)/share/zsh-abbr" ] && source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi

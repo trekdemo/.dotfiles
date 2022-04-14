@@ -18,3 +18,6 @@ _chruby() {
   fi
 }
 compdef _chruby chruby
+
+# Set the default version to 3.x
+chruby 3
