@@ -29,9 +29,6 @@
 
 # zmodload zsh/zprof
 
-# History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 BROWSER=open
 export XDG_CONFIG_HOME="$HOME/.config/"
@@ -62,7 +59,6 @@ for rc in $(ls "$HOME/.config/zsh/conf.d/"); do
     source "$HOME/.config/zsh/conf.d/$rc"
   fi
 done
-
 
 # Setup prompt https://starship.rs/config/
 eval "$(starship init zsh)"
