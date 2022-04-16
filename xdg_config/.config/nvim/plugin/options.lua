@@ -68,3 +68,4 @@ opt.fillchars="diff:╱,vert:│,foldclose:,foldopen:,eob: " -- Comment ne
 opt.conceallevel = 2
 opt.concealcursor = "nc" -- Don't show hidden characters in normal mode
 opt.clipboard = {'unnamed', "unnamedplus" }
+opt.laststatus = 3
