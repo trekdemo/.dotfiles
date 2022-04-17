@@ -7,23 +7,30 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end,
   },
-  mapping = {
-    ['<C-e>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-y>'] = cmp.mapping.scroll_docs(4),
-    ['<C-d>'] = cmp.mapping.close(),
-    ['<C-f>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    }),
-  },
+  mapping = cmp.mapping.preset.insert({
+    -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    -- ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-d>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = 'path' },
     { name = 'treesitter' },
-    { name = "neorg" },
     { name = 'buffer', keyword_length = 6 },
+  }),
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+      { name = 'path' },
+    })
   }),
 
   formatting = {
