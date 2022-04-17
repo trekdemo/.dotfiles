@@ -8,6 +8,10 @@ util.xnoremap('p', 'pgvy')
 util.nnoremap('gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 util.inoremap("<A-BS>", "<C-W>")
+util.cnoremap('<A-BS>', "<C-w>")
+
+util.nnoremap('<A-s>', ':w<CR>')
+util.inoremap('<A-s>', '<Esc>:w<CR>a')
 
 -- Don't move on *
 util.nnoremap('*', '*Nzzzv')
