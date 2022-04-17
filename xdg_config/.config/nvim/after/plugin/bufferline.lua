@@ -11,12 +11,12 @@ require('bufferline').setup({
     max_name_length = 30,
     show_close_icon = false,
     custom_filter = function(buf)
-      local ignored_ft = { 'help', 'fugitive', 'term', 'neoterm', 'netrw' }
-      if vim.tbl_contains(ignored_ft, vim.bo[buf].filetype) then
-        return false
+      -- Only show buffers in the current tab
+      if vim.tbl_contains(vim.fn.tabpagebuflist(), buf) then
+        return true
       end
 
-      return true
+      return false
     end,
   },
 })
