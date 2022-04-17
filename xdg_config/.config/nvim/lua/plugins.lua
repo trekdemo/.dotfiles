@@ -63,7 +63,11 @@ require('packer').startup(function(use)
       vim.cmd [[colorscheme material]]
 
       -- https://github.com/nvim-lualine/lualine.nvim#configuring-lualine-in-initvim
-      require('lualine').setup{}
+      require('lualine').setup{
+        options = {
+          globalstatus = true,
+        }
+      }
     end
   }
 
