@@ -188,7 +188,14 @@ require('packer').startup(function(use)
 
   use  'nvim-lualine/lualine.nvim'
 
-  use { 'kevinhwang91/nvim-bqf', ft = 'qf' } -- Better quickfix window
+  use { 'kevinhwang91/nvim-bqf',
+    ft = 'qf',
+    config = function ()
+      require('bqf').setup({
+        preview = { auto_preview = false },
+      })
+    end
+  } -- Better quickfix window
 
   use {
     'roman/golden-ratio',
