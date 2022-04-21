@@ -55,7 +55,7 @@ require('packer').startup(function(use)
           'fugitive',
           'gitcommit',
           'gitrebase',
-          'ruby.rspec',
+          -- 'ruby.rspec',
         },
       })
 
