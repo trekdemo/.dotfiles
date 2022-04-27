@@ -33,7 +33,7 @@ require('packer').startup(function(use)
           line_numbers = false,
           sign_column = false,
           cursor_line = false,
-          non_current_windows = true,
+          non_current_windows = false,
           popup_menu = false
         }, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
 
