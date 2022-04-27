@@ -75,8 +75,21 @@ util.nnoremap('<leader>A', ':lgrep! "FIXME\\|TODO"<CR>')
 util.nnoremap('<leader>F', ':grep! <C-r><C-w><CR>')
 
 -- Tab navigation
-util.nnoremap('<TAB>', ':tabnext<CR>')
-util.nnoremap('<S-TAB>', ':tabprevious<CR>')
+vim.keymap.set('n', '<TAB>', function ()
+  if vim.fn.tabpagenr('$') > 1 then
+    vim.cmd('tabnext')
+  else
+    vim.cmd('bnext')
+  end
+end)
+vim.keymap.set('n', '<S-TAB>', function ()
+  if vim.fn.tabpagenr('$') > 1 then
+    vim.cmd('tabprevious')
+  else
+    vim.cmd('bprevious')
+  end
+end)
+
 
 -- Window splitting and closing
 util.nnoremap('<C-w>v', ':vsplit<CR>')
