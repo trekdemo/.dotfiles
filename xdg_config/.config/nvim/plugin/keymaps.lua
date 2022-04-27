@@ -51,6 +51,7 @@ util.noremap("<leader><leader>", "<Cmd>nohlsearch<Bar>diffupdate<CR>")
 -- Open location-list and quickfix list
 util.nnoremap('<leader>lo', ':lwindow<CR>')
 util.nnoremap('<leader>co', ':cwindow<CR>')
+util.nnoremap('<leader>cc', ':cclose<CR>')
 
 -- Move lines in visual mode
 util.vnoremap('J', ":m '>+1<CR>gv=gv")
