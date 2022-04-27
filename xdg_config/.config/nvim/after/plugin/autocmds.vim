@@ -8,7 +8,7 @@ augroup custom_autocommands
   autocmd QuickFixCmdPost    l* lwindow
 
   " Highlight yank
-  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=500 }
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', timeout=750 }
 
   " Only show cursorline in the active window
   autocmd InsertLeave,WinEnter * set cursorline
