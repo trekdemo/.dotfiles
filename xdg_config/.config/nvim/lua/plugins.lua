@@ -186,9 +186,6 @@ require('packer').startup(function(use)
     config = R('geri/config/LuaSnip').config,
   }
 
-  -- TODO: Install Aerial.nvim
-  -- https://github.com/stevearc/aerial.nvim
-
   use  'nvim-lualine/lualine.nvim'
 
   use { 'kevinhwang91/nvim-bqf',
