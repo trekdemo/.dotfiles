@@ -87,6 +87,7 @@ util.nnoremap('<C-w>>', '5<c-w>>')
 util.nnoremap('<C-w><', '5<c-w><')
 util.nnoremap('<C-w>+', '5<c-w>+')
 util.nnoremap('<C-w>-', '5<c-w>-')
+vim.keymap.set('n', '<A-Enter>', "<C-w>|<C-w>_")
 
 -- Scroll faster
 util.nnoremap('<C-e>', '3<C-e>')
