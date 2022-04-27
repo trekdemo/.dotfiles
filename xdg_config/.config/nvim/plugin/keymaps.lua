@@ -100,7 +100,17 @@ util.nnoremap('<C-w>>', '5<c-w>>')
 util.nnoremap('<C-w><', '5<c-w><')
 util.nnoremap('<C-w>+', '5<c-w>+')
 util.nnoremap('<C-w>-', '5<c-w>-')
-vim.keymap.set('n', '<A-Enter>', "<C-w>|<C-w>_")
+vim.keymap.set('n', '<A-Enter>', function ()
+  local winWidth = vim.opt.columns._value
+  local paneWidth = vim.fn.winwidth(0)
+  if (winWidth - paneWidth) < 10 then
+    vim.cmd "wincmd ="
+  else
+    vim.cmd "wincmd |"
+    vim.cmd "wincmd _"
+  end
+end
+)
 
 -- Scroll faster
 util.nnoremap('<C-e>', '3<C-e>')
