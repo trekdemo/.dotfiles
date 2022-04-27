@@ -157,7 +157,10 @@ require('packer').startup(function(use)
       { 'hrsh7th/cmp-path', after = 'cmp-nvim-lua' },
       { 'ray-x/cmp-treesitter', after = 'cmp-path' },
       { 'hrsh7th/cmp-cmdline', after = 'cmp-treesitter' },
-      {"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"},
+      { "petertriho/cmp-git",
+        requires = "nvim-lua/plenary.nvim",
+        config = function() require("cmp_git").setup() end,
+      },
       {
         'windwp/nvim-autopairs',
         after = 'cmp-path',
