@@ -321,6 +321,8 @@ require('packer').startup(function(use)
     end
   }
 
+  -- use 'mfussenegger/nvim-dap'
+
   use {
     "ahmedkhalf/project.nvim",
     config = function()
