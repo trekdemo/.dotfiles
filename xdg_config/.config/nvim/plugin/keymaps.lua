@@ -113,8 +113,8 @@ end
 )
 
 -- Scroll faster
-util.nnoremap('<C-e>', '3<C-e>')
-util.nnoremap('<C-y>', '3<C-y>')
+util.nnoremap('<C-d>', '3<C-e>')
+util.nnoremap('<C-u>', '3<C-y>')
 
 -- Upcase last word
 util.inoremap('<C-u>', '<esc>gUiwea')
