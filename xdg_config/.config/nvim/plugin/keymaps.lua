@@ -101,9 +101,13 @@ util.nnoremap('<C-w><', '5<c-w><')
 util.nnoremap('<C-w>+', '5<c-w>+')
 util.nnoremap('<C-w>-', '5<c-w>-')
 vim.keymap.set('n', '<A-Enter>', function ()
+  local threshold = 10
   local winWidth = vim.opt.columns._value
+  local winHeight = vim.opt.lines._value
   local paneWidth = vim.fn.winwidth(0)
-  if (winWidth - paneWidth) < 10 then
+  local paneHeight = vim.fn.winheight(0)
+
+  if (winWidth - paneWidth) < threshold and (winHeight - paneHeight) < threshold then
     vim.cmd "wincmd ="
   else
     vim.cmd "wincmd |"
