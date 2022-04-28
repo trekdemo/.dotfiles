@@ -13,6 +13,9 @@ augroup custom_autocommands
   " Only show cursorline in the active window
   autocmd InsertLeave,WinEnter * set cursorline
   autocmd InsertEnter,WinLeave * set nocursorline
+
+  " https://vi.stackexchange.com/a/20617
+  autocmd! BufWinEnter *Quickfix* setlocal nowinfixheight
 augroup END
 
 augroup folding_autocommands
