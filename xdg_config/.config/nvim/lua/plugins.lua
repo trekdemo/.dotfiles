@@ -289,14 +289,7 @@ require('packer').startup(function(use)
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('gitsigns').setup({
-        signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
-        numhl      = true,  -- Toggle with `:Gitsigns toggle_numhl`
-        linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-        word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-      })
-    end
+    config = function() require('gitsigns').setup() end,
   }
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
