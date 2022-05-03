@@ -2,7 +2,7 @@ cabbrev g Git
 
 " Open file for diff in new tab and jump to the first change
 nnoremap <leader>gd <C-w>s<C-w>T:Gdiff<cr>zRgg]c
-nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gs :0Git<cr>
 nnoremap <leader>g<Space> :Git<Space>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>ga :Gadd<cr>
