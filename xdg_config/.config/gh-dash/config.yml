@@ -1,0 +1,21 @@
+prSections:
+- title: My Pull Requests
+  filters: is:open author:@me
+- title: Needs My Review
+  filters: is:open review-requested:@me
+- title: Localisation PR
+  filters: is:open -label:dependencies repo:catawiki/cw-translations repo:catawiki/cw-translation-keys repo:catawiki/cw-machine-translation
+- title: Localisation Dependabot
+  filters: is:open label:dependencies repo:catawiki/cw-translations repo:catawiki/cw-translation-keys repo:catawiki/cw-machine-translation
+issuesSections:
+- title: My Issues
+  filters: is:open author:@me
+- title: Assigned
+  filters: is:open assignee:@me
+defaults:
+  preview:
+    open: true
+    width: 80
+  prsLimit: 20
+  issuesLimit: 20
+  view: prs
