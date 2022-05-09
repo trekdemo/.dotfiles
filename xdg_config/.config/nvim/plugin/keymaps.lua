@@ -96,10 +96,10 @@ util.nnoremap('<C-w>v', ':vsplit<CR>')
 util.nnoremap('<C-w>s', ':split<CR>')
 
 -- Window resizing
-util.nnoremap('<C-w>>', '5<c-w>>')
-util.nnoremap('<C-w><', '5<c-w><')
-util.nnoremap('<C-w>+', '5<c-w>+')
-util.nnoremap('<C-w>-', '5<c-w>-')
+util.nnoremap('<M-S-Right>', '5<c-w>>')
+util.nnoremap('<M-S-Left>', '5<c-w><')
+util.nnoremap('<M-S-Up>', '5<c-w>+')
+util.nnoremap('<M-S-Down>', '5<c-w>-')
 vim.keymap.set('n', '<A-Enter>', function ()
   local threshold = 10
   local winWidth = vim.opt.columns._value
