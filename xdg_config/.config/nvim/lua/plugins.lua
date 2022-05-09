@@ -169,15 +169,10 @@ require('packer').startup(function(use)
           backdrop = 1,
           height = 0.9,
           width = 100,
-          options = {
-            signcolumn = 'no',
-            number = false,
-            relativenumber = false,
-            cursorline = false,
-            -- cursorcolumn = false, -- disable cursor column
-            -- foldcolumn = "0", -- disable fold column
-            -- list = false, -- disable whitespace characters
-          }
+        },
+        plugins = {
+          twilight = { enabled = false },
+          gitsigns = { enabled = true },
         },
       })
 
@@ -186,13 +181,20 @@ require('packer').startup(function(use)
     requires = {
       {
         'folke/twilight.nvim',
-        cmd = { 'Twilight', 'TwilightEnable', 'TwilightDisable' },
         keys = { '<leader>tl' },
         config = function ()
-          require("twilight").setup({ dimming = { alpha = 0.4 } })
+          local tw = require("twilight")
 
-          local util = require('utils')
-          util.nnoremap('<leader>tl', '<cmd>Twilight<cr>')
+          vim.keymap.set('n', '<leader>tl', tw.toggle)
+
+          tw.setup({
+            dimming = { alpha = 0.4 },
+            expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+              "function",
+              "method",
+              "table",
+            },
+          })
         end
       }
     },
