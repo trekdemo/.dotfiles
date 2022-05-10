@@ -26,3 +26,4 @@ set diff-context = 6
 bind status P !git push origin
 bind generic C !git commit --verbose
 bind generic K view-help
+bind generic Y !@sh -c "git rev-parse --short %(commit) | pbcopy"
