@@ -3,10 +3,6 @@ augroup custom_autocommands
   " Resize splits on window resize
   autocmd VimResized * wincmd =
 
-  " Open quickfix window when it's populated
-  autocmd QuickFixCmdPost [^l]* cwindow
-  autocmd QuickFixCmdPost    l* lwindow
-
   " Highlight yank
   autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', timeout=750 }
 
