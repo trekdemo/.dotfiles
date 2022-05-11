@@ -46,6 +46,7 @@ require('which-key').register({
   ['<C-p>'] = { function() builtins.find_files() end, "Find files" },
   ['<C-b>'] = { function() builtins.buffers() end, "Buffers" },
   ['<C-q>'] = { function() builtins.quickfix() end, "Quickfix" },
+  ['<C-g>'] = { function() builtins.live_grep({hidden = true}) end, "Live grep" },
   ['<C-t>'] = { function() builtins.treesitter(cursor({layout_config = {height = 15}})) end, "TreeSitter" },
   ['<M-b>'] = { function() builtins.builtin() end, "Builtins" },
   ['<leader>f'] = {
