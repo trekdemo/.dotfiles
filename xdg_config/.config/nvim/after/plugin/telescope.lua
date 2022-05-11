@@ -45,6 +45,7 @@ local builtins = require('telescope.builtin')
 require('which-key').register({
   ['<C-p>'] = { function() builtins.find_files() end, "Find files" },
   ['<C-b>'] = { function() builtins.buffers() end, "Buffers" },
+  ['<C-q>'] = { function() builtins.quickfix() end, "Quickfix" },
   ['<C-t>'] = { function() builtins.treesitter(cursor({layout_config = {height = 15}})) end, "TreeSitter" },
   ['<M-b>'] = { function() builtins.builtin() end, "Builtins" },
   ['<leader>f'] = {
@@ -55,8 +56,8 @@ require('which-key').register({
     e = { function() builtins.symbols(cursor()) end, "Emojies" },
     g = {
       name = "+git",
-      d = { function() builtins.git_status() end, "Git Status" },
-      c = { function() builtins.git_bcommits() end, "Git Commits" },
+      s = { function() builtins.git_status({layout_config = {height = 0.9}}) end, "Git Status" },
+      c = { function() builtins.git_bcommits({layout_config = {height = 0.9}}) end, "Git Commits" },
       b = { function() builtins.git_branches() end, "Git Branches" },
     },
     h = { function() builtins.help_tags() end, "Help Tags" },
