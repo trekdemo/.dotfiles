@@ -67,7 +67,6 @@ util.nnoremap('<leader>du', ':windo diffupdate<CR>')
 util.nnoremap('<leader>do', ':windo diffoff<CR>')
 
 -- Quickly search
-util.nnoremap('<leader>A', ':lgrep! "FIXME\\|TODO"<CR>')
 util.nnoremap('<leader>F', ':grep! <C-r><C-w><CR>')
 
 -- Tab navigation
