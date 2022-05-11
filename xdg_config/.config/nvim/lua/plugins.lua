@@ -254,7 +254,10 @@ require('packer').startup(function(use)
 
   use 'justinmk/vim-gtfo'
   use 'tweekmonster/spellrotate.vim'
-
+  use {
+    'lewis6991/spellsitter.nvim',
+    config = function() require('spellsitter').setup() end,
+  }
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
