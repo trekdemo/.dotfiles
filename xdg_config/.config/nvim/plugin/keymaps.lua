@@ -44,9 +44,6 @@ util.inoremap(')', ')<c-g>u')
 util.inoremap('{', '{<c-g>u')
 util.inoremap('}', '}<c-g>u')
 
--- Remove selected highlight
-util.noremap("<leader><leader>", "<Cmd>nohlsearch<Bar>diffupdate<CR>")
-
 -- Open location-list and quickfix list
 util.nnoremap('<leader>lo', ':lwindow<CR>')
 util.nnoremap('<leader>co', ':cwindow<CR>')
