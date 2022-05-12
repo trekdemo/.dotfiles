@@ -29,6 +29,8 @@
 
 # zmodload zsh/zprof
 
+setopt SHARE_HISTORY             # Share history between all sessions.
+
 HISTFILE=~/.cache/zsh/history
 BROWSER=open
 export XDG_CONFIG_HOME="$HOME/.config/"
