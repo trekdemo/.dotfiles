@@ -1,12 +1,12 @@
-let g:neoterm_default_mod = 'botright'
-let g:neoterm_autojump = 1
-let g:neoterm_autoinsert = 1
+" let g:neoterm_default_mod = 'botright'
+" let g:neoterm_autojump = 1
+" let g:neoterm_autoinsert = 1
 
-augroup TermExtra
-  autocmd!
-  autocmd TermOpen * setlocal nonumber scrolloff=0
-  autocmd FileType neoterm nmap <silent> <buffer> q :Tclose<CR>
-augroup end
+" augroup TermExtra
+"   autocmd!
+"   autocmd TermOpen * setlocal nonumber scrolloff=0
+"   autocmd FileType neoterm nmap <silent> <buffer> q :Tclose<CR>
+" augroup end
 
 " TODO: This needs to be figured out
 " Use gx{text-object} in normal mode
@@ -15,5 +15,5 @@ augroup end
 " xmap gr <Plug>(neoterm-repl-send)
 
 " Toggle neoterm pane
-nmap <M-t> :Ttoggle<CR>
-tmap <M-t> <c-\><c-n>:Ttoggle<CR>
+" nmap <M-t> :Ttoggle<CR>
+" tmap <M-t> <c-\><c-n>:Ttoggle<CR>

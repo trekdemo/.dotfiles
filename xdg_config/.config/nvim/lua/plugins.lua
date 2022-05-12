@@ -200,10 +200,7 @@ require('packer').startup(function(use)
     },
   }
 
-  use {
-    'kassio/neoterm',
-    cmd = { 'T', 'Tnew', 'Texec', 'Topen', 'Tclose', 'Ttoggle' },
-  }
+  use { "akinsho/toggleterm.nvim", tag = 'v1.*' }
 
   use { 'fatih/vim-go',            ft = { 'go' } }
   use { 'jgdavey/vim-blockle',     ft = { 'ruby' } }
@@ -267,7 +264,13 @@ require('packer').startup(function(use)
     end
   }
 
-  -- use 'mfussenegger/nvim-dap'
+  -- use {
+  --   'suketa/nvim-dap-ruby',
+  --   requires = 'mfussenegger/nvim-dap',
+  --   config = function ()
+  --     require('dap-ruby').setup()
+  --   end
+  -- }
 
   use {
     "ahmedkhalf/project.nvim",
