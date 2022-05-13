@@ -112,8 +112,8 @@ end
 )
 
 -- Scroll faster
-util.nnoremap('<C-d>', '3<C-e>')
-util.nnoremap('<C-u>', '3<C-y>')
+vim.keymap.set({ 'n', 'v' }, '<PageUp>', '2<C-e>')
+vim.keymap.set({ 'n', 'v' }, '<PageDown>', '2<C-y>')
 
 -- Upcase last word
 util.inoremap('<C-u>', '<esc>gUiwea')
@@ -129,6 +129,6 @@ util.nnoremap('zf', 'zMzvzz')
 -- " Some helpers to edit mode http://vimcasts.org/e/14
 util.cnoremap('%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
 -- " Emacs bindings in command line mode
-util.cnoremap('<c-a>', '<home>')
-util.cnoremap('<c-e>', '<end>')
+util.cnoremap('<c-a>', '<Home>')
+util.cnoremap('<c-e>', '<End>')
 -- " }}}
