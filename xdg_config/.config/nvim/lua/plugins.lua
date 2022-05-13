@@ -133,7 +133,11 @@ require('packer').startup(function(use)
     config = function ()
       -- https://github.com/nvim-lualine/lualine.nvim#configuring-lualine-in-initvim
       require('lualine').setup{
-        options = { globalstatus = true, },
+        options = {
+          globalstatus = true,
+          component_separators = { left = '\\', right = '/'},
+          section_separators = { left = '', right = '' },
+        },
         sections = { lualine_c = {{'filename', path = 1}}, },
       }
     end,
