@@ -1,0 +1,67 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$time\
+$cmd_duration\
+$line_break\
+$username\
+$hostname\
+$directory\
+$git_status\
+$git_state\
+$git_branch\
+$line_break\
+$character"""
+
+[time]
+disabled = false
+format = "[ $time ]($style)"
+style = "bright-yellow"
+
+[cmd_duration]
+format = "[ $duration]($style) "
+style = "dimmed yellow"
+show_milliseconds = true
+min_time = 0
+
+[directory]
+format = "[$read_only]($read_only_style)[ ](bold bright-cyan)[$path]($style) "
+style = "bold cyan"
+read_only = " "
+read_only_style = "bold yellow"
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
+style = "white italic"
+symbol = ""
+# symbol = " "
+
+[git_status]
+format = '[ ](red)[$all_status$ahead_behind]($style)'
+style = ""
+conflicted = "[ ](red)"
+untracked = "[ ](bright-green)"
+modified = "[ ](yellow)"
+staged = "[ ](green)"
+renamed = "[ ](purple)"
+deleted = "[ ](red)"
+stashed = "[ ](white)"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[ruby]
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[nodejs]
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[character]
+# success_symbol = "[❯  ](purple)"
+success_symbol = "[ ](green)"
+error_symbol = "[ ](red)"
+
