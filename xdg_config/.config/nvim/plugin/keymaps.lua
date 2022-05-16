@@ -24,6 +24,8 @@ util.nnoremap('N', 'Nzzzv')
 -- Easier to type, and I never use the default behavior.
 util.noremap('H', '^')
 util.noremap('L', 'g_')
+vim.keymap.set('n', '<Home>', '^')
+vim.keymap.set('n', '<End>', '$')
 
 -- Have relative jumps in the jump list (bigger than 5)
 util.nnoremap('j', [[(v:count > 5 ? "m'" . v:count : "") . 'gj']], { expr = true })
