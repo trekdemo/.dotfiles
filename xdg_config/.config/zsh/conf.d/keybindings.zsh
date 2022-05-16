@@ -1,5 +1,7 @@
 autoload -Uz edit-command-line
 
+bindkey -e
+
 # allow ctrl-p, ctrl-n for navigate history (standard behaviour)
 bindkey '^P' up-history
 bindkey '^N' down-history
