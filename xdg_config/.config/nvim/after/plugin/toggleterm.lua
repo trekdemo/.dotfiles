@@ -10,6 +10,14 @@ require("toggleterm").setup({
   end
 })
 
+local Terminal  = require('toggleterm.terminal').Terminal
+
+local gh_dash = Terminal:new({ cmd = "gh dash", hidden = true })
+vim.keymap.set("n", "<M-S-h>", function() gh_dash:toggle() end)
+
+local tig = Terminal:new({ cmd = "tig", hidden = true })
+vim.keymap.set("n", "<M-S-g>", function() tig:toggle() end)
+
   -- highlight clear ToggleTermFloatBorder
   -- highlight clear ToggleTermNormalFloat
   -- highlight link ToggleTermFloatBorder FloatBorder
