@@ -16,5 +16,11 @@ vim.keymap.set({'n', 't'}, "<M-S-h>", function() gh_dash:toggle() end)
 local tig = Terminal:new({ cmd = "tig", hidden = true })
 vim.keymap.set({'n', 't'}, "<M-S-g>", function() tig:toggle() end)
 
-local rails_c = Terminal:new({ cmd = "bin/rails console", hidden = true, close_on_exit = false })
+local rails_c = Terminal:new({
+  cmd = "bin/rails console",
+  dir = "git_dir",
+  direction = 'horizontal',
+  hidden = true,
+  close_on_exit = false,
+})
 vim.keymap.set({'n', 't'}, "<M-S-r>", function() rails_c:toggle() end)
