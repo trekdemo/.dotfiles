@@ -33,7 +33,7 @@ read_only_style = "bold yellow"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
-style = "white italic"
+style = "italic bright-gray"
 symbol = ""
 # symbol = " "
 
@@ -46,7 +46,10 @@ modified = "[ ](yellow)"
 staged = "[ ](green)"
 renamed = "[ ](purple)"
 deleted = "[ ](red)"
-stashed = "[ ](white)"
+stashed = "[ ](gray)"
+ahead = "[ ](green)"
+behind = "[ ](red)"
+diverged = "[繁](red)"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
