@@ -8,12 +8,12 @@ telescope.setup({
     layout_config = { },
     borderchars = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
     previewer = false,
-    winblend = 15,
+    winblend = 10,
     mappings = {
       i = {
         ["<esc>"] = actions.close,
         ['<c-d>'] = actions.delete_buffer,
-        ['<C-p>'] = action_layout.toggle_preview,
+        ['<M-p>'] = action_layout.toggle_preview,
       },
     },
   }
@@ -47,7 +47,7 @@ require('which-key').register({
   ['<C-b>'] = { function() builtins.buffers() end, "Buffers" },
   ['<C-q>'] = { function() builtins.quickfix() end, "Quickfix" },
   ['<C-g>'] = { function() builtins.live_grep({hidden = true}) end, "Live grep" },
-  ['<C-t>'] = { function() builtins.treesitter(cursor({layout_config = {height = 15}})) end, "TreeSitter" },
+  ['<C-t>'] = { function() builtins.treesitter(cursor({layout_config = {height = 0.8}})) end, "TreeSitter" },
   ['<M-b>'] = { function() builtins.builtin() end, "Builtins" },
   ['<leader>f'] = {
     name = "+telescope",
