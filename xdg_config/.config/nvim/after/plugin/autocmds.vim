@@ -12,6 +12,10 @@ augroup custom_autocommands
 
   " https://vi.stackexchange.com/a/20617
   autocmd! BufWinEnter *Quickfix* setlocal nowinfixheight
+
+  " Open quickfix window when it's populated
+  autocmd QuickFixCmdPost l^l]* cwindow
+  autocmd QuickFixCmdPost    l* lwindow
 augroup END
 
 augroup folding_autocommands
