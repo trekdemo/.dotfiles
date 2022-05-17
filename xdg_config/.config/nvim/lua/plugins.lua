@@ -138,7 +138,15 @@ require('packer').startup(function(use)
           component_separators = { left = '\\', right = '/'},
           section_separators = { left = '', right = '' },
         },
-        sections = { lualine_c = {{'filename', path = 1}}, },
+        sections = {
+          lualine_a = { { 'mode', fmt = function(str) return str:sub(1,1) end } },
+          lualine_b = {
+            {'branch', icon = ''},
+            {'diff', symbols = {added = ' ', removed = ' ', modified = ' '}},
+            'diagnostics',
+          },
+          lualine_c = {{'filename', path = 1}},
+        },
       }
     end,
   }
