@@ -161,17 +161,6 @@ require('packer').startup(function(use)
   } -- Better quickfix window
 
   use {
-    'roman/golden-ratio',
-    cmd = { 'GoldenRatioResize', 'GoldenRatioToggle' },
-    keys = { '<C-w>g', '<C-w>G' },
-    config = function ()
-      vim.g.golden_ratio_exclude_nonmodifiable = 1
-      vim.api.nvim_set_keymap('n', '<C-w>g', ':GoldenRatioResize<CR>', {noremap = true});
-      vim.api.nvim_set_keymap('n', '<C-w>G', '<C-w>=:GoldenRatioToggle<CR>', {noremap = true});
-    end,
-  }
-
-  use {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
     keys = { '<leader>z' },
