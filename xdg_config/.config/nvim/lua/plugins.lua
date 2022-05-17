@@ -130,25 +130,10 @@ require('packer').startup(function(use)
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function ()
-      -- https://github.com/nvim-lualine/lualine.nvim#configuring-lualine-in-initvim
-      require('lualine').setup{
-        options = {
-          globalstatus = true,
-          component_separators = { left = '\\', right = '/'},
-          section_separators = { left = '', right = '' },
-        },
-        sections = {
-          lualine_a = { { 'mode', fmt = function(str) return str:sub(1,1) end } },
-          lualine_b = {
-            {'branch', icon = ''},
-            {'diff', symbols = {added = ' ', removed = ' ', modified = ' '}},
-            'diagnostics',
-          },
-          lualine_c = {{'filename', path = 1}},
-        },
-      }
-    end,
+  }
+  use {
+    'arkav/lualine-lsp-progress',
+    requires = { 'nvim-lualine/lualine.nvim', opt = true },
   }
 
   use { 'kevinhwang91/nvim-bqf',
