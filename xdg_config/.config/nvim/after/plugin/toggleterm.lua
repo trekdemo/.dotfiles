@@ -8,8 +8,12 @@ require("toggleterm").setup({
   },
 })
 
+-- Keymaps
 vim.cmd [[tnoremap <A-[> <c-\><c-n>]]
+vim.keymap.set('n', '<leader>x', ':ToggleTermSendCurrentLine<cr>')
+vim.keymap.set('v', '<leader>x', ':ToggleTermSendVisualSelection<cr>')
 
+-- Custom terminals
 local Terminal  = require('toggleterm.terminal').Terminal
 
 local gh_dash = Terminal:new({ cmd = "gh dash", hidden = true, direction = 'tab' })
