@@ -15,11 +15,6 @@ require('packer').startup(function(use)
   use { 'marko-cerovac/material.nvim', opt = true }
 
   use {
-    'akinsho/bufferline.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
-
-  use {
     "lukas-reineke/indent-blankline.nvim",
     config = function ()
       require("indent_blankline").setup {
@@ -125,6 +120,11 @@ require('packer').startup(function(use)
     'L3MON4D3/LuaSnip',
     requires = { 'rafamadriz/friendly-snippets' },
     config = R('geri/config/LuaSnip').config,
+  }
+
+  use {
+    'akinsho/bufferline.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   }
 
   use {
