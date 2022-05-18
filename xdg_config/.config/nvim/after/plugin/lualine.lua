@@ -13,11 +13,13 @@ require('lualine').setup{
       {'diff', symbols = {added = ' ', removed = ' ', modified = ' '}},
     },
     lualine_c = {
+      {'filetype', icon_only = true},
+      -- { 'fileformat', symbols = { unix = '', dos = '', mac = '' } },
       { 'filename', path = 1, symbols = { modified = '  ', readonly = ' ' } },
       'diagnostics',
     },
     lualine_x = {{ 'lsp_progress', spinner_symbols = {"🤘 ", "🤟 ", "🖖 ", "✋ ", "🤚 ", "👆 "} }},
-    lualine_y = {'filetype'},
+    lualine_y = {},
     lualine_z = {'location'}
   },
   inactive_sections = {

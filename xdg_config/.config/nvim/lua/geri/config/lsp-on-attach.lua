@@ -64,6 +64,4 @@ return function(client, bufnr)
     -- TODO: Move this to treesitter config
     vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
     vim.api.nvim_win_set_option(0, 'foldexpr', 'nvim_treesitter#foldexpr()')
-
-    print("LSP client started (" .. client.name .. ")");
   end
