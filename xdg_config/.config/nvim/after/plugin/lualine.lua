@@ -13,7 +13,7 @@ require('lualine').setup{
       {'diff', symbols = {added = ' ', removed = ' ', modified = ' '}},
     },
     lualine_c = {
-      {'filetype', icon_only = true},
+      {'filetype', icon_only = true, colored = false},
       -- { 'fileformat', symbols = { unix = '', dos = '', mac = '' } },
       { 'filename', path = 1, symbols = { modified = '  ', readonly = ' ' } },
       'diagnostics',
@@ -25,7 +25,7 @@ require('lualine').setup{
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {{'filename', path = 1}},
+    lualine_c = {{ 'filename', path = 1, symbols = { modified = '  ', readonly = ' ' } }},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
