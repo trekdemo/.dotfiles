@@ -9,8 +9,9 @@ util.nnoremap('gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 vim.keymap.set({'i', 'c', 't'}, '<M-BS>', '<C-w>')
 
-util.nnoremap('<A-s>', ':w<CR>')
-util.inoremap('<A-s>', '<Esc>:w<CR>a')
+vim.keymap.set('n', '<A-s>', ':w<CR>')
+vim.keymap.set('i', '<A-s>', '<Esc>:w<CR>a')
+vim.keymap.set('n', '<C-x>', ':bd<CR>')
 
 -- Don't move on *
 util.nnoremap('*', '*Nzzzv')
