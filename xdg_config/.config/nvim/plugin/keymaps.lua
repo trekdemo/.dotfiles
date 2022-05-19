@@ -115,6 +115,8 @@ end
 )
 
 -- Scroll faster
+vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>')
+vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>')
 vim.keymap.set({ 'n', 'v' }, '<PageUp>', '2<C-y>')
 vim.keymap.set({ 'n', 'v' }, '<PageDown>', '2<C-e>')
 
