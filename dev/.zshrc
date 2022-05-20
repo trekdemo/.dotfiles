@@ -31,19 +31,12 @@
 
 setopt SHARE_HISTORY             # Share history between all sessions.
 
-HISTFILE=~/.cache/zsh/history
-BROWSER=open
+export HISTFILE=~/.cache/zsh/history
+export BROWSER=open
 export XDG_CONFIG_HOME="$HOME/.config/"
 export TZ="/usr/share/zoneinfo/Europe/Amsterdam"
 export LANG="en_US.utf-8"
 export LC_ALL="en_US.utf-8"
-
-if [ -z "$NVIM_LISTEN_ADDRESS" ]; then
-  export VISUAL=nvim
-else
-  export VISUAL="nvr -cc split --remote-wait +'setlocal bufhidden=wipe'"
-fi
-export EDITOR="$VISUAL"
 
 [ -d "$HOME/bin" ]        && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
@@ -52,11 +45,14 @@ export EDITOR="$VISUAL"
 # Add Python bin paths to the PATH
 # $HOME/Library/Python/*/bin
 export PATH="$HOME/Library/Python/*/bin:$PATH"
+
+# Add executables from projects within git repositories
 export PATH=".git/safe/../../node_modules/.bin/:$PATH"
 export PATH=".git/safe/../../bin:$PATH"
 
 # Load config files
 for rc in $(ls "$HOME/.config/zsh/conf.d/"); do
+  # echo "Loading $rc"
   if [ -f "$HOME/.config/zsh/conf.d/$rc" ]; then
     source "$HOME/.config/zsh/conf.d/$rc"
   fi
@@ -64,7 +60,4 @@ done
 
 # Setup prompt https://starship.rs/config/
 eval "$(starship init zsh)"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi
 # zprof
