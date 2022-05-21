@@ -9,8 +9,11 @@ util.nnoremap('gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 vim.keymap.set({'i', 'c', 't'}, '<M-BS>', '<C-w>')
 
-vim.keymap.set('n', '<A-s>', ':w<CR>')
-vim.keymap.set('i', '<A-s>', '<Esc>:w<CR>a')
+-- Save buffer
+vim.keymap.set('n', '<M-s>', ':w<CR>')
+vim.keymap.set('i', '<M-s>', '<Esc>:w<CR>a')
+
+-- Delete buffer
 vim.keymap.set('n', '<C-x>', ':bd<CR>')
 
 -- Don't move on *
@@ -120,9 +123,6 @@ vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>')
 vim.keymap.set({ 'n', 'v' }, '<PageUp>', '2<C-y>')
 vim.keymap.set({ 'n', 'v' }, '<PageDown>', '2<C-e>')
 
--- Upcase last word
-util.inoremap('<C-u>', '<esc>gUiwea')
-
 util.nnoremap('[oc', ':set conceallevel=2 <CR>')
 util.nnoremap(']oc', ':set conceallevel=0 <CR>')
 
@@ -133,7 +133,20 @@ util.nnoremap('zf', 'zMzvzz')
 -- " Mappings: Command-line {{{
 -- " Some helpers to edit mode http://vimcasts.org/e/14
 util.cnoremap('%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
--- " Emacs bindings in command line mode
-util.cnoremap('<c-a>', '<Home>')
-util.cnoremap('<c-e>', '<End>')
+
+-- =============================================================================
+-- " Emacs bindings
+-- https://www.johndcook.com/blog/emacs_move_cursor/
+require('which-key').register({
+  ['<C-a>'] = { '<Home>', 'Beginning line' },
+  ['<C-e>'] = { '<End>', 'End line' },
+}, {mode = 'c'})
+
+require('which-key').register({
+  ['<C-f>'] = { '<Right>', 'Next char' },
+  ['<C-b>'] = { '<Left>', 'Previous char' },
+  ['<M-f>'] = { '<C-o>w', 'Next word' },
+  ['<M-b>'] = { '<C-o>b', 'Previous word' },
+  ['<C-u>'] = { '<esc>gUiwea', 'Upcase last word' }
+}, {mode = 'i'})
 -- " }}}
