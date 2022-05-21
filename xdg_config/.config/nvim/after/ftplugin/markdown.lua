@@ -6,16 +6,13 @@ if cmp then
   cmp.setup.buffer {
     sources = {
       { name = 'luasnip' },
+      { name = 'buffer' },
       { name = 'path' },
     },
   }
 end
 
-local M = {}
-
--- TODO: Maybe I could extend it to do quicklook for URLs
--- https://github.com/strboul/urlview.vim/blob/master/plugin/urlview.vim
-function M.quicklook()
+vim.keymap.set('n', "<leader>ql", function ()
   local cfile_path = vim.fn.expand("<cfile>")
   local buf_path = vim.fn.expand("%:p")
   local buf_dir = vim.fn.expand("%:p:h")
@@ -35,6 +32,4 @@ function M.quicklook()
 
   vim.fn.system("qlmanage -p " .. preview_path)
 end
-
-local nnoremap = require('utils').nnoremap
-nnoremap("<leader>ql", M.quicklook, { buffer = true })
+, { buffer = true })
