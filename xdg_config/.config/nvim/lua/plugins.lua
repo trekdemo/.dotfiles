@@ -232,7 +232,13 @@ require('packer').startup(function(use)
   use 'tpope/vim-ragtag'
   use 'tpope/vim-vinegar'
   use 'tpope/vim-repeat'
-  use 'tpope/vim-commentary'
+  use {
+    'tpope/vim-commentary',
+    config = function ()
+      vim.keymap.set({'n', 'v'}, '<M-/>', ':Commentary<CR>')
+      vim.keymap.set({'i'}, '<M-/>', '<Esc>:Commentary<CR>A')
+    end,
+  }
   use 'tpope/vim-eunuch'
 
   use 'tweekmonster/spellrotate.vim'
