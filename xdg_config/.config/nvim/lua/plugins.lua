@@ -216,7 +216,6 @@ require('packer').startup(function(use)
     requires = {
       'benmills/vimux' ,
       'tpope/vim-dispatch',
-      'radenling/vim-dispatch-neovim',
     }
   }
 
