@@ -31,37 +31,37 @@ local activateDiagnosticFloat = function()
 end
 
 return function(client, bufnr)
-    require('which-key').register({
-      ['g0'] = {'<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'LSP: Document Symbol'},
-      ['gD'] = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', 'LSP: Type Definition'},
-      ['gW'] = {'<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'LSP: Workspace Symbol' },
-      -- gr is mapped in telescope.lua
-      ['gR'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'LSP: References'},
-      ['gi']      = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition' },
-      ['<C-]>']      = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition' },
-      ['<C-w><C-]>'] = { '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', 'LSP: Jump to Definition (vsplit)' },
-      ['<C-s>']      = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'LSP: Signature' },
-      ['K']          = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'LSP: Hover' },
-      ['<leader>af'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'LSP: Code action' },
-      ['<leader>ai'] = { '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', 'LSP: Incoming calls' },
-      ['<leader>ao'] = { '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', 'LSP: Outgoing calls' },
-      ['<leader>ar'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'LSP: Rename' },
-      ['<leader>dl'] = { '<cmd>lua vim.diagnostic.set_loclist()<CR>', 'Diagnostics - Set loclist' },
-      ['[d']         = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Diagonstics: Previous' },
-      [']d']         = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Diagnostics: Next' },
-    }, { noremap = true, buffer = bufnr })
+  local builtins = require('telescope.builtin')
+  local lsp_buf = vim.lsp.buf
 
-    activateDiagnosticFloat()
-    if client.resolved_capabilities.document_formatting then
-      activateLspFormatting()
-    end
-    if client.resolved_capabilities.document_highlight then
-      activateLspReferenceUnderCursor()
-    end
+  vim.keymap.set('n', 'g0', lsp_buf.document_symbol, {desc = 'LSP: Document Symbol'})
+  vim.keymap.set('n', 'gD', lsp_buf.type_definition, {desc = 'LSP: Type Definition'})
+  vim.keymap.set('n', 'gW', lsp_buf.workspace_symbol, {desc = 'LSP: Workspace Symbol'} )
+  vim.keymap.set('n', 'gr', builtins.lsp_references, {desc = "Telescope lsp_reference"})
+  vim.keymap.set('n', 'gR', lsp_buf.references, {desc = 'LSP: References'})
+  vim.keymap.set('n', 'gi', lsp_buf.definition, {desc = 'LSP: Jump to Definition'} )
+  vim.keymap.set('n', 'gI', '<cmd>vsplit | lua lsp_buf.definition()<CR>', {desc = 'LSP: Jump to Definition (vsplit)'})
+  vim.keymap.set('n', 'K', lsp_buf.hover, {desc = 'LSP: Hover'})
+  vim.keymap.set('n', '<leader>af', lsp_buf.code_action, {desc = 'LSP: Code action'})
+  vim.keymap.set('n', '<leader>ai', lsp_buf.incoming_calls, {desc = 'LSP: Incoming calls'})
+  vim.keymap.set('n', '<leader>ao', lsp_buf.outgoing_calls, {desc = 'LSP: Outgoing calls'})
+  vim.keymap.set('n', '<leader>ar', lsp_buf.rename, {desc = 'LSP: Rename'})
+  vim.keymap.set('n', '<leader>dl', function () vim.diagnostic.set_loclist() end, {desc = 'Diagnostics - Set loclist'})
+  vim.keymap.set('n', '<C-s>', lsp_buf.signature_help, {desc = 'LSP: Signature'})
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {desc = 'Diagonstics: Previous'})
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {desc = 'Diagnostics: Next'})
 
-
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    -- TODO: Move this to treesitter config
-    vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
-    vim.api.nvim_win_set_option(0, 'foldexpr', 'nvim_treesitter#foldexpr()')
+  activateDiagnosticFloat()
+  if client.resolved_capabilities.document_formatting then
+    activateLspFormatting()
   end
+  if client.resolved_capabilities.document_highlight then
+    activateLspReferenceUnderCursor()
+  end
+
+
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- TODO: Move this to treesitter config
+  vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
+  vim.api.nvim_win_set_option(0, 'foldexpr', 'nvim_treesitter#foldexpr()')
+end

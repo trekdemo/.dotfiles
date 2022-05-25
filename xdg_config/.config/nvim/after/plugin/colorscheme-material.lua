@@ -14,14 +14,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
-require('which-key').register({
-  ["<leader>m"] = {
-    name = "+material",
-    t = { function() require('material.functions').toggle_style() end, "Next style" },
-    d = { function() require('material.functions').change_style('darker') end, "Use darker style" },
-    l = { function() require('material.functions').change_style('lighter') end, "Use lighter style" },
-  }
-})
+local mf = require('material.functions')
+vim.keymap.set('n', '<leader>mt', mf.toggle_style, {desc = 'Next material style'})
+vim.keymap.set('n', '<leader>md', function() mf.change_style('darker') end, {desc = 'Use darker style'})
+vim.keymap.set('n', '<leader>ml', function() mf.change_style('lighter') end, {desc = 'Use lighter style'})
 
 require('material').setup({
   contrast = {

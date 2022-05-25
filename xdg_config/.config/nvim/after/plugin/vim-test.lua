@@ -3,16 +3,9 @@ let test#strategy = 'dispatch'
 let test#ruby#rspec#options = '--format progress'
 ]]
 
-require('which-key').register({
-  ['<leader>'] = {
-    t = {
-      name = '+test',
-      l = {'<cmd>TestLast<cr>', 'Re-run test'},
-      a = {'<cmd>AbortDispatch<cr>', 'Abort dispatch'},
+vim.keymap.set('n', '<leader>tl', '<Cmd>TestLast<CR>')
+vim.keymap.set('n', '<leader>ta', '<Cmd>AbortDispatch<CR>')
 
-      n = {'<cmd>TestNearest<cr>', 'Test nearest'},
-      f = {'<cmd>TestFile<cr>', 'Test current file'},
-      s = {'<cmd>TestSuite<cr>', 'Test suite'},
-    }
-  },
-}, {silent = true})
+vim.keymap.set('n', '<leader>tn', '<Cmd>TestNearest<CR>')
+vim.keymap.set('n', '<leader>tf', '<Cmd>TestFile<CR>')
+vim.keymap.set('n', '<leader>ts', '<Cmd>TestSuite<CR>')

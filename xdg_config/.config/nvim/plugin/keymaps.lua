@@ -1,79 +1,76 @@
-local util = require('utils')
-
 -- Keep the previous clipboard value
-util.vnoremap('p', '"_dp')
+vim.keymap.set('v', 'p', '"_dp', {desc = "Paste (keep clipboard)"})
 -- Paste without overwriting default register (doesn't work with other registers)
-util.xnoremap('p', 'pgvy')
+vim.keymap.set('x', 'p', 'pgvy')
 -- Select the previously pasted text
-util.nnoremap('gp', '`[v`]')
+vim.keymap.set('n', 'gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 vim.keymap.set({'i', 'c', 't'}, '<M-BS>', '<C-w>')
 
 -- Save buffer
-vim.keymap.set('n', '<M-s>', ':w<CR>')
-vim.keymap.set('i', '<M-s>', '<Esc>:w<CR>a')
+vim.keymap.set('n', '<M-s>', ':w<CR>', {desc = 'Save file'})
+vim.keymap.set('i', '<M-s>', '<Esc>:w<CR>a', {desc = 'Save file'})
 
 -- Delete buffer
 vim.keymap.set('n', '<C-x>', ':bd<CR>')
 
 -- Don't move on *
-util.nnoremap('*', '*Nzzzv')
+vim.keymap.set('n', '*', '*Nzzzv')
 -- Don't move on J - line join
-util.nnoremap('J', 'mzJ`z')
+vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Keep search matches in the middle of the window and pulse the line when moving to them.
-util.nnoremap('n', 'nzzzv')
-util.nnoremap('N', 'Nzzzv')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- Easier to type, and I never use the default behavior.
-util.noremap('H', '^')
-util.noremap('L', 'g_')
-vim.keymap.set('n', '<Home>', '^')
-vim.keymap.set('n', '<End>', '$')
+vim.keymap.set({'n', 'v'}, 'H', '^')
+vim.keymap.set({'n', 'v'}, 'L', 'g_')
+vim.keymap.set({'n', 'v'}, '<Home>', '^')
+vim.keymap.set({'n', 'v'}, '<End>', '$')
 
 -- Have relative jumps in the jump list (bigger than 5)
-util.nnoremap('j', [[(v:count > 5 ? "m'" . v:count : "") . 'gj']], { expr = true })
-util.nnoremap('k', [[(v:count > 5 ? "m'" . v:count : "") . 'gk']], { expr = true })
-util.nnoremap('<Up>', 'gk')
-util.nnoremap('<Down>', 'gj')
+vim.keymap.set('n', 'j', [[(v:count > 5 ? "m'" . v:count : "") . 'gj']], { expr = true })
+vim.keymap.set('n', 'k', [[(v:count > 5 ? "m'" . v:count : "") . 'gk']], { expr = true })
+vim.keymap.set('n', '<Up>', 'gk')
+vim.keymap.set('n', '<Down>', 'gj')
 
 -- Undo breakpoints
-util.inoremap(',', ',<c-g>u')
-util.inoremap('.', '.<c-g>u')
-util.inoremap('!', '!<c-g>u')
-util.inoremap('?', '?<c-g>u')
-util.inoremap(';', ';<c-g>u')
-util.inoremap('[', '[<c-g>u')
-util.inoremap(']', ']<c-g>u')
-util.inoremap('(', '(<c-g>u')
-util.inoremap(')', ')<c-g>u')
-util.inoremap('{', '{<c-g>u')
-util.inoremap('}', '}<c-g>u')
+vim.keymap.set('i', ',', ',<c-g>u')
+vim.keymap.set('i', '.', '.<c-g>u')
+vim.keymap.set('i', '!', '!<c-g>u')
+vim.keymap.set('i', '?', '?<c-g>u')
+vim.keymap.set('i', ';', ';<c-g>u')
+vim.keymap.set('i', '[', '[<c-g>u')
+vim.keymap.set('i', ']', ']<c-g>u')
+vim.keymap.set('i', '(', '(<c-g>u')
+vim.keymap.set('i', ')', ')<c-g>u')
+vim.keymap.set('i', '{', '{<c-g>u')
+vim.keymap.set('i', '}', '}<c-g>u')
 
 -- Open location-list and quickfix list
-util.nnoremap('<leader>lo', ':lwindow<CR>')
-util.nnoremap('<leader>co', ':cwindow<CR>')
-util.nnoremap('<leader>cc', ':cclose<CR>')
+vim.keymap.set('n', '<leader>lo', ':lwindow<CR>')
+vim.keymap.set('n', '<leader>co', ':cwindow<CR>')
+vim.keymap.set('n', '<leader>cc', ':cclose<CR>')
 
 -- Move lines in visual mode
-util.vnoremap('J', ":m '>+1<CR>gv=gv")
-util.vnoremap('K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Tab openning and closing
-util.nnoremap('<leader>tc', ':tabclose<CR>')
-util.nnoremap('<leader>tn', ':tabnew<CR>:Telescope find_files<CR>')
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>')
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>:Telescope find_files<CR>')
 
 -- Shorcut for quick substitution
-util.nnoremap('<leader>s', [[:%s///gc<left><left><left><left>]])
-util.vnoremap('<leader>s', [[:%s/<c-r>//gc<left><left><left>]])
+vim.keymap.set('n', '<leader>s', [[:%s///gc<left><left><left><left>]], {desc = 'Replace in file'})
 
 -- Quickly diffing to panes
-util.nnoremap('<leader>dt', ':windo diffthis<CR>')
-util.nnoremap('<leader>du', ':windo diffupdate<CR>')
-util.nnoremap('<leader>do', ':windo diffoff<CR>')
+vim.keymap.set('n', '<leader>dt', ':windo diffthis<CR>')
+vim.keymap.set('n', '<leader>du', ':windo diffupdate<CR>')
+vim.keymap.set('n', '<leader>do', ':windo diffoff<CR>')
 
 -- Quickly search
-util.nnoremap('<leader>F', ':grep! <C-r><C-w><CR>')
+vim.keymap.set('n', '<leader>F', ':grep! <C-r><C-w><CR>', {desc = 'Grep <cword>'})
 
 -- Tab navigation
 vim.keymap.set('n', '<TAB>', function ()
@@ -93,14 +90,14 @@ end)
 
 
 -- Window splitting and closing
-util.nnoremap('<C-w>v', ':vsplit<CR>')
-util.nnoremap('<C-w>s', ':split<CR>')
+vim.keymap.set('n', '<C-w>v', ':vsplit<CR>')
+vim.keymap.set('n', '<C-w>s', ':split<CR>')
 
 -- Window resizing
-util.nnoremap('<M-S-Right>', '5<c-w>>')
-util.nnoremap('<M-S-Left>', '5<c-w><')
-util.nnoremap('<M-S-Up>', '5<c-w>+')
-util.nnoremap('<M-S-Down>', '5<c-w>-')
+vim.keymap.set('n', '<M-S-Right>', '5<c-w>>', {desc = 'Grow width by 5'})
+vim.keymap.set('n', '<M-S-Left>', '5<c-w><', {desc = 'Shrink width by 5'})
+vim.keymap.set('n', '<M-S-Up>', '5<c-w>+', {desc = 'Grow height by 5'})
+vim.keymap.set('n', '<M-S-Down>', '5<c-w>-', {desc = 'Shrink height by 5'})
 vim.keymap.set('n', '<A-Enter>', function ()
   local threshold = 10
   local winWidth = vim.opt.columns._value
@@ -115,38 +112,30 @@ vim.keymap.set('n', '<A-Enter>', function ()
     vim.cmd "wincmd _"
   end
 end
-)
+  , {desc = 'Toggle maximise window'})
 
 -- Scroll faster
-vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>')
-vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>')
+vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>', {desc = 'Scroll up'})
+vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>', {desc = 'Scroll down'})
 vim.keymap.set({ 'n', 'v' }, '<PageUp>', '2<C-y>')
 vim.keymap.set({ 'n', 'v' }, '<PageDown>', '2<C-e>')
 
-util.nnoremap('[oc', ':set conceallevel=2 <CR>')
-util.nnoremap(']oc', ':set conceallevel=0 <CR>')
+vim.keymap.set('n', '[oc', ':set conceallevel=2 <CR>')
+vim.keymap.set('n', ']oc', ':set conceallevel=0 <CR>')
 
--- Mappings: Folding {{{
--- Use zf to "focus" the current fold.
-util.nnoremap('zf', 'zMzvzz')
+vim.keymap.set('n', 'zf', 'zMzvzz', {desc = 'Focus on current fold'})
 
 -- " Mappings: Command-line {{{
 -- " Some helpers to edit mode http://vimcasts.org/e/14
-util.cnoremap('%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
+vim.keymap.set('c', '%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
 
 -- =============================================================================
 -- " Emacs bindings
 -- https://www.johndcook.com/blog/emacs_move_cursor/
-require('which-key').register({
-  ['<C-a>'] = { '<Home>', 'Beginning line' },
-  ['<C-e>'] = { '<End>', 'End line' },
-}, {mode = 'c'})
-
-require('which-key').register({
-  ['<C-f>'] = { '<Right>', 'Next char' },
-  ['<C-b>'] = { '<Left>', 'Previous char' },
-  ['<M-f>'] = { '<C-o>w', 'Next word' },
-  ['<M-b>'] = { '<C-o>b', 'Previous word' },
-  ['<C-u>'] = { '<esc>gUiwea', 'Upcase last word' }
-}, {mode = 'i'})
--- " }}}
+vim.keymap.set('c', '<C-a>', '<Home>', {desc = 'Beginning line'})
+vim.keymap.set('c', '<C-e>', '<End>', {desc = 'End line'})
+vim.keymap.set('i', '<C-f>', '<Right>', {desc = 'Next char'})
+vim.keymap.set('i', '<C-b>', '<Left>', {desc = 'Previous char'})
+vim.keymap.set('i', '<M-f>', '<C-o>w', {desc = 'Next word'})
+vim.keymap.set('i', '<M-b>', '<C-o>b', {desc = 'Previous word'})
+vim.keymap.set('i', '<C-u>', '<esc>gUiwea', {desc = 'Upcase last word'})

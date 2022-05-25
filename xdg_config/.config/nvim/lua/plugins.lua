@@ -162,7 +162,7 @@ require('packer').startup(function(use)
         },
       })
 
-      require'utils'.nnoremap('<leader>z', ':ZenMode<CR>')
+      vim.keymap.set('n', '<leader>z', ':ZenMode<CR>')
     end,
     requires = {
       {
@@ -171,7 +171,8 @@ require('packer').startup(function(use)
         config = function ()
           local tw = require("twilight")
 
-          vim.keymap.set('n', '<leader>tl', tw.toggle)
+          -- FIXME: This is shadowed by TestLast
+          -- vim.keymap.set('n', '<leader>tl', tw.toggle, {desc = 'Toggle Twilight'})
 
           tw.setup({
             dimming = { alpha = 0.4 },
@@ -268,9 +269,7 @@ require('packer').startup(function(use)
     config = function()
       local ext = require('telescope').load_extension('projects')
       require("project_nvim").setup{}
-      require('which-key').register({
-        ['<leader>fp'] = { function() ext.projects() end, "Projects" },
-      }, {noremap = true})
+      vim.keymap.set('n', '<leader>fp', ext.projects, {desc = 'Find Projects'})
     end,
     requires = { 'telescope.nvim' },
   }

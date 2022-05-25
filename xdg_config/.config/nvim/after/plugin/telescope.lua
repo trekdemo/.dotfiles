@@ -1,6 +1,10 @@
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 local telescope = require('telescope')
+
+-- ----------------------------------------------------------------------------
+-- Setup
+-- ----------------------------------------------------------------------------
 telescope.setup({
   defaults = {
     layout_strategy = 'bottom_pane',
@@ -11,9 +15,13 @@ telescope.setup({
     winblend = 10,
     mappings = {
       i = {
-        ["<esc>"] = actions.close,
-        ['<c-d>'] = actions.delete_buffer,
+        ["<Esc>"] = actions.close,
+        ['<C-x>'] = actions.delete_buffer,
         ['<M-p>'] = action_layout.toggle_preview,
+        ['<C-y>'] = actions.preview_scrolling_up,
+        ['<C-e>'] = actions.preview_scrolling_down,
+        ['<PageUp>'] = actions.preview_scrolling_up,
+        ['<PageDown>'] = actions.preview_scrolling_down,
       },
     },
   }
@@ -42,34 +50,30 @@ end
 -- Keymaps
 -- ----------------------------------------------------------------------------
 local builtins = require('telescope.builtin')
-require('which-key').register({
-  ['<C-p>'] = { function() builtins.find_files() end, "Find files" },
-  ['<C-b>'] = { function() builtins.buffers() end, "Buffers" },
-  ['<C-q>'] = { function() builtins.quickfix() end, "Quickfix" },
-  ['<C-g>'] = { function() builtins.live_grep({hidden = true}) end, "Live grep" },
-  ['<C-t>'] = { function() builtins.treesitter(cursor({layout_config = {height = 0.8}})) end, "TreeSitter" },
-  ['<M-b>'] = { function() builtins.builtin() end, "Builtins" },
-  ['<leader>f'] = {
-    name = "+telescope",
-    a = { function() builtins.lsp_code_actions(cursor()) end, "LSP: Code Actions" },
-    c = { function() builtins.commands() end, "Commands" },
-    d = { function() builtins.diagnostics() end, 'Diagnostics'},
-    e = { function() builtins.symbols(cursor()) end, "Emojies" },
-    g = {
-      name = "+git",
-      s = { function() builtins.git_status({layout_config = {height = 0.9}}) end, "Git Status" },
-      c = { function() builtins.git_bcommits({layout_config = {height = 0.9}}) end, "Git Commits" },
-      b = { function() builtins.git_branches() end, "Git Branches" },
-    },
-    h = { function() builtins.help_tags() end, "Help Tags" },
-    m = { function() builtins.keymaps() end, "Keymaps" },
-    r = { function() builtins.lsp_references() end, 'LSP: References'},
-    v = { function() builtins.find_files({cwd = "~/.dotfiles/", hidden = true}) end, "Dotfiles" },
-  },
-  ['gr'] = { function() builtins.lsp_references() end, 'LSP: References'},
-}, {noremap = true})
+vim.keymap.set('n', '<C-b>', builtins.buffers, {desc = "Telescope buffers"})
+vim.keymap.set('n', '<C-g>', function() builtins.live_grep({hidden = true}) end, {desc = "Telescope live_grep"})
+vim.keymap.set('n', '<C-p>', builtins.find_files, {desc = "Telescope find_files"})
+vim.keymap.set('n', '<C-q>', builtins.quickfix, {desc = "Telescope quickfix"})
+vim.keymap.set('n', '<C-t>', function() builtins.treesitter(cursor({layout_config = {height = 0.4}})) end, {desc = "Telescope treesitter"})
+vim.keymap.set('n', '<M-b>', builtins.builtin, {desc = "Telescope builtin"})
 
-vim.cmd [[
-cabbrev t Telescope
-inoremap <C-e>      <cmd>Telescope symbols<cr>
-]]
+vim.keymap.set('n', '<leader>fc', builtins.commands, {desc = "Telescope commands"})
+vim.keymap.set('n', '<leader>fd', builtins.diagnostics, {desc = "Telescope diagnostics"})
+vim.keymap.set('n', '<leader>fe', function() builtins.symbols(cursor()) end, {desc = "Telescope symbols"})
+vim.keymap.set('n', '<leader>fh', builtins.help_tags, {desc = "Telescope help_tags"})
+vim.keymap.set('n', '<leader>fm', builtins.keymaps, {desc = "Telescope keymaps"})
+vim.keymap.set('n', '<leader>fv', function () builtins.find_files({cwd = "~/.dotfiles/", hidden = true}) end, {desc = "Find in .config"})
+
+vim.keymap.set('n', '<leader>gS', function() builtins.git_status({layout_config = {height = 0.9}}) end, {desc = "Telescope git_status"})
+vim.keymap.set('n', '<leader>gc', function() builtins.git_bcommits({layout_config = {height = 0.9}}) end, {desc = "Telescope git_bcommits"})
+vim.keymap.set('n', '<leader>gB', builtins.git_branches, {desc = "Telescope git_branches"})
+
+vim.keymap.set('i', '<C-e>', function() builtins.symbols(cursor({sources = {'emoji', 'kaomoji', 'gitmoji'}})) end, {desc = "Telescope symbols"})
+
+vim.cmd [[cabbrev t Telescope]]
+
+-- ----------------------------------------------------------------------------
+-- vim.ui.select
+-- ----------------------------------------------------------------------------
+-- TODO: Setup select with the function from dressing.nvim
+-- https://github.com/stevearc/dressing.nvim/blob/master/lua/dressing/select/telescope.lua

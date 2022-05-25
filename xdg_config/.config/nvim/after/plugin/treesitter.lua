@@ -96,8 +96,7 @@ local _ = require("nvim-treesitter.configs").setup {
   },
 }
 
-local u = require('utils')
-u.nmap("[[", "[[zz")
-u.nmap("]]", "]]zz")
-u.nmap("][", "][zz")
-u.nmap("[]", "[]zz")
+vim.keymap.set('n', "[[", "[[zz", {noremap = false})
+vim.keymap.set('n', "]]", "]]zz", {noremap = false})
+vim.keymap.set('n', "][", "][zz", {noremap = false})
+vim.keymap.set('n', "[]", "[]zz", {noremap = false})
