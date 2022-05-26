@@ -54,8 +54,10 @@ vim.keymap.set('n', '<leader>co', ':cwindow<CR>')
 vim.keymap.set('n', '<leader>cc', ':cclose<CR>')
 
 -- Move lines in visual mode
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<C-k>', ":move '<-2<CR>gv=gv", {desc = 'Move line up'})
+vim.keymap.set('v', '<C-j>', ":move '>+1<CR>gv=gv", {desc = 'Move line down'})
+vim.keymap.set('n', '<C-k>', ":move .-2<CR>==", {desc = 'Move line up'})
+vim.keymap.set('n', '<C-j>', ":move .+1<CR>==", {desc = 'Move line down'})
 
 -- Tab openning and closing
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>')
