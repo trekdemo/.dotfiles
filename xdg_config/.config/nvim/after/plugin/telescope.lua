@@ -55,10 +55,10 @@ vim.keymap.set('n', '<C-g>', function() builtins.live_grep({hidden = true}) end,
 vim.keymap.set('n', '<C-p>', builtins.find_files, {desc = "Telescope find_files"})
 vim.keymap.set('n', '<C-q>', builtins.quickfix, {desc = "Telescope quickfix"})
 vim.keymap.set('n', '<C-t>', function() builtins.treesitter(cursor({layout_config = {height = 0.4}})) end, {desc = "Telescope treesitter"})
-vim.keymap.set('n', '<M-b>', builtins.builtin, {desc = "Telescope builtin"})
 
 vim.keymap.set('n', '<leader>fc', builtins.commands, {desc = "Telescope commands"})
 vim.keymap.set('n', '<leader>fd', builtins.diagnostics, {desc = "Telescope diagnostics"})
+vim.keymap.set('n', '<leader>ff', builtins.builtin, {desc = "Telescope builtin"})
 vim.keymap.set('n', '<leader>fe', function() builtins.symbols(cursor()) end, {desc = "Telescope symbols"})
 vim.keymap.set('n', '<leader>fh', builtins.help_tags, {desc = "Telescope help_tags"})
 vim.keymap.set('n', '<leader>fm', builtins.keymaps, {desc = "Telescope keymaps"})
