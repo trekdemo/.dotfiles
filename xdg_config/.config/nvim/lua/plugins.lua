@@ -130,10 +130,12 @@ require('packer').startup(function(use)
     requires = { 'nvim-treesitter/nvim-treesitter' },
     config = function ()
       local tc = require('tree-climber')
-      vim.keymap.set({'n', 'v'}, '<S-Left>', tc.goto_parent, {desc = 'Goto parent'})
-      vim.keymap.set({'n', 'v'}, '<S-Right>', tc.goto_child, {desc = 'Goto child'})
-      vim.keymap.set({'n', 'v'}, '<S-Down>', tc.goto_next, {desc = 'Goto next'})
-      vim.keymap.set({'n', 'v'}, '<S-Up>', tc.goto_prev, {desc = ''})
+      local around = function (movement) return movement end
+
+      vim.keymap.set({'n', 'v'}, '<S-Left>', around(tc.goto_parent), {desc = 'Goto parent'})
+      vim.keymap.set({'n', 'v'}, '<S-Right>', around(tc.goto_child), {desc = 'Goto child'})
+      vim.keymap.set({'n', 'v'}, '<S-Down>', around(tc.goto_next), {desc = 'Goto next'})
+      vim.keymap.set({'n', 'v'}, '<S-Up>', around(tc.goto_prev), {desc = ''})
       vim.keymap.set('n', '<A-S-Down>', tc.swap_next, {desc = ''})
       vim.keymap.set('n', '<A-S-Up>',   tc.swap_prev, {desc = ''})
     end
