@@ -73,30 +73,5 @@ local _ = require("nvim-treesitter.configs").setup {
         -- ["[]"] = "@class.outer",
       },
     },
-
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-
-        ["ac"] = "@conditional.outer",
-        ["ic"] = "@conditional.inner",
-
-        ["aa"] = "@parameter.outer",
-        ["ia"] = "@parameter.inner",
-
-        -- markdown
-        ["ili"] = "@list_item.inner",
-        ["ali"] = "@list_item.outer",
-        ["icb"] = "@code_block.inner",
-        ["acb"] = "@code_block.outer",
-      },
-    },
   },
 }
-
-vim.keymap.set('n', "[[", "[[zz", {noremap = false})
-vim.keymap.set('n', "]]", "]]zz", {noremap = false})
-vim.keymap.set('n', "][", "][zz", {noremap = false})
-vim.keymap.set('n', "[]", "[]zz", {noremap = false})
