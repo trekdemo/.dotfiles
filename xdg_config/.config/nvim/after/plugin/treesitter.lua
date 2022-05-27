@@ -10,6 +10,16 @@ list.sql = {
 
 local _ = require("nvim-treesitter.configs").setup {
   ensure_installed = { "ruby", "yaml", "sql", "go", "query", "html", "css", "lua", "vim", "bash", "javascript", "typescript" },
+
+  indent = { enable = true },
+  highlight = { enable = true },
+  query_linter = {
+    enable = true,
+    use_virtual_text = true,
+    lint_events = {"BufWrite", "CursorHold"},
+  },
+
+  -- https://github.com/nvim-treesitter/playground
   playground = {
     enable = true,
     disable = {},
@@ -28,22 +38,16 @@ local _ = require("nvim-treesitter.configs").setup {
       show_help = '?',
     },
   },
-  query_linter = {
-    enable = true,
-    use_virtual_text = true,
-    lint_events = {"BufWrite", "CursorHold"},
-  },
-
-  highlight = { enable = true },
-  indent = { enable = true },
 
   -- https://github.com/RRethy/nvim-treesitter-textsubjects#quick-start
   textsubjects = {
     enable = true,
+    prev_selection = ',',
     keymaps = {
       ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-container-outer',
-    }
+      [';'] = 'textsubjects-container-inner',
+      ['o;'] = 'textsubjects-container-outer',
+    },
   },
 
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects

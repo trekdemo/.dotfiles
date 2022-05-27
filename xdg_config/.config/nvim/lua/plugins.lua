@@ -105,15 +105,39 @@ require('packer').startup(function(use)
     },
     after = 'lspkind-nvim',
   }
+
+  -- --------------------------------------------------------------------------
+  -- --[ Treesitter ]----------------------------------------------------------
+  -- --------------------------------------------------------------------------
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
-    }
+      {
+        'nvim-treesitter/playground',
+        config = function ()
+          vim.keymap.set('n', '<leader>tp', '<Cmd>TSPlaygroundToggle<CR>')
+        end
+      }
+    },
+    -- Config in after/plugin/treesitter.lua
   }
-  use { 'nvim-treesitter/playground', requires = { 'nvim-treesitter/nvim-treesitter' } }
+
+  use {
+    'drybalka/tree-climber.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function ()
+      local tc = require('tree-climber')
+      vim.keymap.set({'n', 'v'}, '<S-Left>', tc.goto_parent, {desc = 'Goto parent'})
+      vim.keymap.set({'n', 'v'}, '<S-Right>', tc.goto_child, {desc = 'Goto child'})
+      vim.keymap.set({'n', 'v'}, '<S-Down>', tc.goto_next, {desc = 'Goto next'})
+      vim.keymap.set({'n', 'v'}, '<S-Up>', tc.goto_prev, {desc = ''})
+      vim.keymap.set('n', '<A-S-Down>', tc.swap_next, {desc = ''})
+      vim.keymap.set('n', '<A-S-Up>',   tc.swap_prev, {desc = ''})
+    end
+  }
 
   use {
     'L3MON4D3/LuaSnip',
@@ -166,7 +190,7 @@ require('packer').startup(function(use)
     requires = {
       {
         'folke/twilight.nvim',
-        keys = { '<leader>tl' },
+        -- keys = { '<leader>tl' },
         config = function ()
           local tw = require("twilight")
 
