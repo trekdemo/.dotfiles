@@ -24,3 +24,23 @@ bindkey '^[[F' end-of-line # End
 # Word-wise movements
 bindkey '^[[1;3C' .forward-word # Alt-Right
 bindkey '^[[1;3D' .backward-word # Alt-Left
+
+
+# Create a ZSH widget that can be bound to a key
+# https://unix.stackexchange.com/questions/289883/binding-key-shortcuts-to-shell-functions-in-zsh
+
+# Open In Neovim
+open-vim-here() { nvim "+Telescop find_files" }
+zle -N open-vim-here
+bindkey '^[v' open-vim-here
+
+
+# Jump to a project folder
+jump-to-folder() {
+  local dir="cd $(ls -rdt ~/{projects,src}/* | fzf --layout=reverse)"
+
+  ${=dir}
+  zle reset-prompt
+}
+zle -N jump-to-folder
+bindkey '^[j' jump-to-folder
