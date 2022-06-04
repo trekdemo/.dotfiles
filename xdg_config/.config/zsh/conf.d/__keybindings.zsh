@@ -37,7 +37,9 @@ bindkey '^[v' open-vim-here
 
 # Jump to a project folder
 jump-to-folder() {
-  local dir="cd $(ls -rdt ~/{projects,src}/* | fzf --layout=reverse)"
+  setopt local_options
+  setopt +o nomatch
+  local dir="cd $(ls -rdt ~/projects ~/src/*/*/* | fzf --layout=reverse)"
 
   ${=dir}
   zle reset-prompt
