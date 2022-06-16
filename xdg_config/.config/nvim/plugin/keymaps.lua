@@ -7,6 +7,9 @@ vim.keymap.set('n', 'gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 vim.keymap.set({'i', 'c', 't'}, '<M-BS>', '<C-w>')
 
+-- Use Esc to get into command mode with Esc
+vim.keymap.set('n', '<Esc>', ':')
+
 -- Save buffer
 vim.keymap.set('n', '<M-s>', ':w<CR>', {desc = 'Save file'})
 vim.keymap.set('i', '<M-s>', '<Esc>:w<CR>a', {desc = 'Save file'})
