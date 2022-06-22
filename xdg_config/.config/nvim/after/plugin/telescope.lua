@@ -17,6 +17,7 @@ telescope.setup({
       i = {
         ["<Esc>"] = actions.close,
         ['<C-x>'] = actions.delete_buffer,
+        ['<C-s>'] = actions.file_split,
         ['<M-p>'] = action_layout.toggle_preview,
         ['<C-y>'] = actions.preview_scrolling_up,
         ['<C-e>'] = actions.preview_scrolling_down,
