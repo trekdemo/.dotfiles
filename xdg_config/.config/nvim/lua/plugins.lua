@@ -243,7 +243,7 @@ require('packer').startup(function(use)
   }
 
   use {
-    'janko/vim-test',
+    'vim-test/vim-test',
     requires = {
       'benmills/vimux' ,
       'tpope/vim-dispatch',
