@@ -161,11 +161,11 @@ require('packer').startup(function(use)
     requires = { 'nvim-lualine/lualine.nvim', opt = true },
   }
 
-  use {
-    'https://gitlab.com/yorickpeterse/nvim-pqf.git',
-    ft = 'qf',
-    config = "require('pqf').setup()",
-  }
+  -- use {
+  --   'https://gitlab.com/yorickpeterse/nvim-pqf.git',
+  --   ft = 'qf',
+  --   config = "require('pqf').setup()",
+  -- }
   use { 'kevinhwang91/nvim-bqf',
     ft = 'qf',
     config = function ()
