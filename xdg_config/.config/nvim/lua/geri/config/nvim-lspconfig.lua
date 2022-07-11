@@ -51,7 +51,7 @@ return function()
 
     -- Here's the list of available LSP servers
     -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-    local servers = { 'vimls', 'bashls', 'cssls', 'solargraph', 'dockerls', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'tsserver', 'yamlls' }
+    local servers = { 'vimls', 'bashls', 'clangd', 'solargraph', 'dockerls', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'tsserver', 'yamlls' }
     for _, server in pairs(servers) do
       lsp[server].setup(defaultOptions())
     end

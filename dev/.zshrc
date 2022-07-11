@@ -38,10 +38,11 @@ export TZ="/usr/share/zoneinfo/Europe/Amsterdam"
 export LANG="en_US.utf-8"
 export LC_ALL="en_US.utf-8"
 
-[ -d "$HOME/bin" ]        && export PATH="$HOME/bin:$PATH"
+[ -d "/usr/local/opt/llvm/bin" ] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/go/bin" ]     && export PATH="$HOME/go/bin:$PATH"
+[ -d "$HOME/bin" ]        && export PATH="$HOME/bin:$PATH"
 # Add Python bin paths to the PATH
 # $HOME/Library/Python/*/bin
 export PATH="$HOME/Library/Python/*/bin:$PATH"
