@@ -5,15 +5,15 @@ if ! command -v brew >/dev/null; then
   echo "Installing Homebrew ..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-  export PATH="/usr/local/bin:$PATH"
+  export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 fi
 
 if ! command -v stow >/dev/null; then
   echo 'Install stow'
   brew install stow
 fi
-echo 'Link dotfiles'
-stow dev executables git tmux xdg_config terminfo
+echo 'Linking dotfiles'
+make link
 
 # Install apps & commands via brew
 brew bundle install --global
