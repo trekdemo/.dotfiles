@@ -58,7 +58,7 @@ cask 'google-cloud-sdk'
 # cask 'google-chrome'
 # cask 'viscosity'
 # cask 'docker'
-cask 'alacritty'
+cask 'kitty'
 cask 'sequel-pro'
 cask 'rectangle'
 # mas 'Jira Cloud by Atlassian', id: 1475897096
