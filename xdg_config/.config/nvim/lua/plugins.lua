@@ -9,14 +9,14 @@ require('packer').startup(function(use)
 
   use {
     "folke/which-key.nvim",
-    config = function() require("which-key").setup{} end
+    config = function() require("which-key").setup {} end
   }
 
-  use { 'marko-cerovac/material.nvim', opt = true }
+  use { 'marko-cerovac/material.nvim' }
 
   use {
     "lukas-reineke/indent-blankline.nvim",
-    config = function ()
+    config = function()
       require("indent_blankline").setup {
         use_treesitter = true,
         char = "│",
@@ -69,14 +69,13 @@ require('packer').startup(function(use)
   use({
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    config = function ()
+    config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
         on_attach = require('geri.config.lsp-on-attach'),
         sources = {
           null_ls.builtins.diagnostics.rubocop,
           null_ls.builtins.hover.dictionary,
-          null_ls.builtins.diagnostics.write_good,
           null_ls.builtins.code_actions.gitsigns,
         },
       })
@@ -117,7 +116,7 @@ require('packer').startup(function(use)
       'RRethy/nvim-treesitter-textsubjects',
       {
         'nvim-treesitter/playground',
-        config = function ()
+        config = function()
           vim.keymap.set('n', '<leader>tp', '<Cmd>TSPlaygroundToggle<CR>')
         end
       }
@@ -128,16 +127,16 @@ require('packer').startup(function(use)
   use {
     'drybalka/tree-climber.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = function ()
+    config = function()
       local tc = require('tree-climber')
-      local around = function (movement) return movement end
+      local around = function(movement) return movement end
 
-      vim.keymap.set({'n', 'v'}, '<S-Left>', around(tc.goto_parent), {desc = 'Goto parent'})
-      vim.keymap.set({'n', 'v'}, '<S-Right>', around(tc.goto_child), {desc = 'Goto child'})
-      vim.keymap.set({'n', 'v'}, '<S-Down>', around(tc.goto_next), {desc = 'Goto next'})
-      vim.keymap.set({'n', 'v'}, '<S-Up>', around(tc.goto_prev), {desc = ''})
-      vim.keymap.set('n', '<A-S-Down>', tc.swap_next, {desc = ''})
-      vim.keymap.set('n', '<A-S-Up>',   tc.swap_prev, {desc = ''})
+      vim.keymap.set({ 'n', 'v' }, '<S-Left>', around(tc.goto_parent), { desc = 'Goto parent' })
+      vim.keymap.set({ 'n', 'v' }, '<S-Right>', around(tc.goto_child), { desc = 'Goto child' })
+      vim.keymap.set({ 'n', 'v' }, '<S-Down>', around(tc.goto_next), { desc = 'Goto next' })
+      vim.keymap.set({ 'n', 'v' }, '<S-Up>', around(tc.goto_prev), { desc = '' })
+      vim.keymap.set('n', '<A-S-Down>', tc.swap_next, { desc = '' })
+      vim.keymap.set('n', '<A-S-Up>', tc.swap_prev, { desc = '' })
     end
   }
 
@@ -168,7 +167,7 @@ require('packer').startup(function(use)
   -- }
   use { 'kevinhwang91/nvim-bqf',
     ft = 'qf',
-    config = function ()
+    config = function()
       require('bqf').setup({
         preview = { auto_preview = false },
       })
@@ -179,7 +178,7 @@ require('packer').startup(function(use)
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
     keys = { '<leader>z' },
-    config = function ()
+    config = function()
       require("zen-mode").setup({
         window = {
           backdrop = 1,
@@ -198,7 +197,7 @@ require('packer').startup(function(use)
       {
         'folke/twilight.nvim',
         -- keys = { '<leader>tl' },
-        config = function ()
+        config = function()
           local tw = require("twilight")
 
           -- FIXME: This is shadowed by TestLast
@@ -219,14 +218,14 @@ require('packer').startup(function(use)
 
   use { "akinsho/toggleterm.nvim", tag = 'v1.*' }
 
-  use { 'fatih/vim-go',            ft = { 'go' } }
-  use { 'jgdavey/vim-blockle',     ft = { 'ruby' } }
-  use { 'noprompt/vim-yardoc',     ft = { 'ruby' } }
-  use { 'tpope/vim-bundler',       ft = { 'ruby' } }
-  use { 'tpope/vim-rails',         ft = { 'ruby' } }
-  use { 'mikepjb/vim-chruby',      ft = { 'ruby' } }
+  use { 'fatih/vim-go', ft = { 'go' } }
+  use { 'jgdavey/vim-blockle', ft = { 'ruby' } }
+  use { 'noprompt/vim-yardoc', ft = { 'ruby' } }
+  use { 'tpope/vim-bundler', ft = { 'ruby' } }
+  use { 'tpope/vim-rails', ft = { 'ruby' } }
+  use { 'mikepjb/vim-chruby', ft = { 'ruby' } }
   use { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } }
-  use { 'godlygeek/tabular',       ft = { 'markdown' } }
+  use { 'godlygeek/tabular', ft = { 'markdown' } }
   use { 'towolf/vim-helm' }
 
   use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
@@ -238,14 +237,14 @@ require('packer').startup(function(use)
   use {
     'alexghergh/nvim-tmux-navigation',
     config = R('geri/config/nvim-tmux-navigation').config,
-    keys = {'<A-h>',    '<A-j>',    '<A-k>',  '<A-l>',
-            '<A-Left>', '<A-Down>', '<A-Up>', '<A-Right>'},
+    keys = { '<A-h>', '<A-j>', '<A-k>', '<A-l>',
+      '<A-Left>', '<A-Down>', '<A-Up>', '<A-Right>' },
   }
 
   use {
     'vim-test/vim-test',
     requires = {
-      'benmills/vimux' ,
+      'benmills/vimux',
       'tpope/vim-dispatch',
     }
   }
@@ -264,9 +263,9 @@ require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   use {
     'tpope/vim-commentary',
-    config = function ()
-      vim.keymap.set({'n', 'v'}, '<M-/>', ':Commentary<CR>')
-      vim.keymap.set({'i'}, '<M-/>', '<Esc>:Commentary<CR>A')
+    config = function()
+      vim.keymap.set({ 'n', 'v' }, '<M-/>', ':Commentary<CR>')
+      vim.keymap.set({ 'i' }, '<M-/>', '<Esc>:Commentary<CR>A')
     end,
   }
   use 'tpope/vim-eunuch'
@@ -281,7 +280,7 @@ require('packer').startup(function(use)
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup { }
+      require("todo-comments").setup {}
       vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>')
     end
   }
@@ -298,8 +297,8 @@ require('packer').startup(function(use)
     "ahmedkhalf/project.nvim",
     config = function()
       local ext = require('telescope').load_extension('projects')
-      require("project_nvim").setup{}
-      vim.keymap.set('n', '<leader>fp', ext.projects, {desc = 'Find Projects'})
+      require("project_nvim").setup {}
+      vim.keymap.set('n', '<leader>fp', ext.projects, { desc = 'Find Projects' })
     end,
     requires = { 'telescope.nvim' },
   }
