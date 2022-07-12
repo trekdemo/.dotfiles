@@ -3,14 +3,12 @@
 # ------------------------------------------------------------------------------
 brew 'stow'         # Organize software neatly under a single directory tree
 brew 'tmux'         # My choice of terminal multiplexer
-# brew 'fish'         # Shell for the win
 brew 'lsd'
 brew 'starship'     # The cross-shell prompt for astronauts; https://starship.rs
-brew 'neovim', args: %w[HEAD]
+brew 'neovim'       # , args: %w[HEAD]
 brew 'mobile-shell' # Mobile Shell (MOSH) is like SSH plus roaming and smart echo.
 brew 'bat'          # Clone of cat(1) with syntax highlighting and Git integration
 brew 'git'
-brew 'svn'
 brew 'tig'
 brew 'hub'
 brew 'ctags'
@@ -33,14 +31,15 @@ brew 'olets/tap/zsh-abbr'
 # ------------------------------------------------------------------------------
 # Languages
 # ------------------------------------------------------------------------------
-brew 'go'
-brew 'node'
-brew 'yarn'
-brew 'chruby'
-brew 'ruby-install'
-brew 'lua-language-server'
-# brew 'shellcheck'
+brew 'bash-language-server'
 brew 'bats'
+brew 'chruby'
+brew 'go'
+brew 'lua-language-server'
+brew 'node'
+brew 'ruby-install'
+brew 'shellcheck'
+brew 'yarn'
 
 # ------------------------------------------------------------------------------
 # HashiCorp
@@ -57,7 +56,7 @@ cask 'google-cloud-sdk'
 # cask 'slack'
 # cask 'google-chrome'
 # cask 'viscosity'
-# cask 'docker'
+cask 'docker'
 cask 'kitty'
 cask 'sequel-pro'
 cask 'rectangle'
@@ -66,16 +65,16 @@ cask 'rectangle'
 # ------------------------------------------------------------------------------
 # Apps for personal and productivity use
 # ------------------------------------------------------------------------------
-cask 'launchbar'
-cask 'choosy'
+# cask 'launchbar'
+# cask 'choosy'
 mas 'Things 3', id: 904280696
-mas '1Password', id: 443987910 # 1Password 6.x
+mas '1Password', id: 1333542190 # 1Password 7.x
 mas 'Telegram', id: 747648890
-# mas 'Messenger', id: 1480068668
+mas 'Messenger', id: 1480068668
 
 # ------------------------------------------------------------------------------
 # Fonts
 # ------------------------------------------------------------------------------
 tap 'homebrew/cask-fonts'
 cask 'font-fira-code'
-cask 'font-roboto-mono'
+cask 'font-victor-mono-nerd-font'
