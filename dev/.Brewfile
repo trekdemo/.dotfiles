@@ -65,12 +65,14 @@ cask 'rectangle'
 # ------------------------------------------------------------------------------
 # Apps for personal and productivity use
 # ------------------------------------------------------------------------------
+cask 'obsidian'
 # cask 'launchbar'
 # cask 'choosy'
 mas 'Things 3', id: 904280696
 mas '1Password', id: 1333542190 # 1Password 7.x
 mas 'Telegram', id: 747648890
 mas 'Messenger', id: 1480068668
+mas 'Session', id: 1521432881
 
 # ------------------------------------------------------------------------------
 # Fonts
