@@ -99,6 +99,8 @@
 	process = git-lfs filter-process
 [credential "https://github.com"]
 	username = trekdemo
+[credential]
+	helper = osxkeychain
 [commit]
 	template = ~/.gitmessage
 	gpgsign = true
@@ -108,7 +110,5 @@
 	user = trekdemo
 [gpg]
 	program = gpg
-[credential]
-	helper = osxkeychain
 [init]
 	defaultBranch = main
