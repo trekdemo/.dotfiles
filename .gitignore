@@ -27,5 +27,6 @@
 /xdg_config/.config/gh/hosts.yml
 /xdg_config/.config/gh/state.yml
 /xdg_config/.config/cliptic/*
+/xdg_config/.config/helm/repositories.*
 /executables/bin/cw
 /executables/bin/brian
