@@ -70,6 +70,8 @@ vim.keymap.set('n', '<leader>s', [[:%s///gc<left><left><left><left>]], {desc = '
 vim.keymap.set('n', '<leader>dt', ':windo diffthis<CR>')
 vim.keymap.set('n', '<leader>du', ':windo diffupdate<CR>')
 vim.keymap.set('n', '<leader>do', ':windo diffoff<CR>')
+vim.keymap.set('n', '<leader>dg', ':diffget<CR>')
+vim.keymap.set('n', '<leader>dp', ':diffput<CR>')
 
 -- Quickly search
 vim.keymap.set('n', '<leader>F', ':grep! <C-r><C-w><CR>', {desc = 'Grep <cword>'})
