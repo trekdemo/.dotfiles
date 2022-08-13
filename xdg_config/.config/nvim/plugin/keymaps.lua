@@ -17,7 +17,7 @@ vim.keymap.set('n', '<C-x>', ':bd<CR>')
 -- Don't move on *
 vim.keymap.set('n', '*', '*Nzzzv')
 -- Center current line on <C-l>
-vim.keymap.set('n', '<C-l>', '<C-l>zz10<C-e>')
+-- vim.keymap.set('n', '<C-l>', '<C-l>zz10<C-e>')
 -- Don't move on J - line join
 vim.keymap.set('n', 'J', 'mzJ`z')
 
