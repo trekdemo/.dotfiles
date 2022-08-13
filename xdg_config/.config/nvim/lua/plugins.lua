@@ -127,6 +127,20 @@ require('packer').startup(function(use)
     -- Config in after/plugin/treesitter.lua
   }
 
+  -- TODO: For Ruby this is really buggy, it needs work
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" }
+    },
+    config = function()
+      local refac = require('refactoring')
+      refac.setup({})
+      vim.keymap.set("v", "<leader>rr", refac.select_refactor)
+    end
+  }
+
   use {
     'drybalka/tree-climber.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },
@@ -303,7 +317,7 @@ require('packer').startup(function(use)
           }
         },
         provider_selector = function(bufnr, filetype, buftype)
-          return {'treesitter', 'indent'}
+          return { 'treesitter', 'indent' }
         end
       })
     end,
