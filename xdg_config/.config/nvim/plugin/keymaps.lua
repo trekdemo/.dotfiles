@@ -132,11 +132,11 @@ vim.keymap.set('n', ']oc', ':set conceallevel=0 <CR>')
 -- Fold mappings
 vim.keymap.set('n', 'zf', 'zMzvzz', { desc = 'Focus on current fold' })
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds, {desc = "Open all folds"})
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, {desc = "Close all folds"})
-vim.keymap.set('n', 'z<Space>', require('ufo').peekFoldedLinesUnderCursor, {desc = "Close all folds"})
-vim.keymap.set('n', '[z', require('ufo').goPreviousClosedFold, {desc = "Previous closed fold"})
-vim.keymap.set('n', ']z', require('ufo').goNextClosedFold, {desc = "Next closed fold"})
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = "Open all folds" })
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = "Close all folds" })
+vim.keymap.set('n', 'z<Space>', require('ufo').peekFoldedLinesUnderCursor, { desc = "Close all folds" })
+vim.keymap.set('n', '[z', require('ufo').goPreviousClosedFold, { desc = "Previous closed fold" })
+vim.keymap.set('n', ']z', require('ufo').goNextClosedFold, { desc = "Next closed fold" })
 
 -- " Mappings: Command-line {{{
 -- " Some helpers to edit mode http://vimcasts.org/e/14
