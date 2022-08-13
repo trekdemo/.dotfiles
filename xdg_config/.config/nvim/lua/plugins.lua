@@ -284,7 +284,24 @@ require('packer').startup(function(use)
     'kevinhwang91/nvim-ufo',
     requires = { 'kevinhwang91/promise-async' },
     config = function()
+      local border = {
+        { '🭽', 'FloatBorder' },
+        { '▔', 'FloatBorder' },
+        { '🭾', 'FloatBorder' },
+        { '▕', 'FloatBorder' },
+        { '🭿', 'FloatBorder' },
+        { '▁', 'FloatBorder' },
+        { '🭼', 'FloatBorder' },
+        { '▏', 'FloatBorder' },
+      }
       require('ufo').setup({
+        preview = {
+          win_config = {
+            border = border,
+            winblend = 0,
+            winhighlight = 'Normal:FloatBorder'
+          }
+        },
         provider_selector = function(bufnr, filetype, buftype)
           return {'treesitter', 'indent'}
         end
