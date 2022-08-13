@@ -62,6 +62,4 @@ return function(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   -- TODO: Move this to treesitter config
-  vim.api.nvim_win_set_option(0, 'foldmethod', 'expr')
-  vim.api.nvim_win_set_option(0, 'foldexpr', 'nvim_treesitter#foldexpr()')
 end

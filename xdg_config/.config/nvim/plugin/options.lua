@@ -42,11 +42,11 @@ opt.splitright = true -- New split window on the right
 opt.splitbelow = true -- New split window on the bottom
 
 -- Folds
-opt.foldenable = true
-opt.foldlevel = 999999
-opt.foldlevelstart = 10
-opt.foldmethod = 'manual'
+opt.foldcolumn = '1'
+opt.foldlevel = 99
+opt.foldlevelstart = 99
 opt.foldtext = "folding#text()"
+opt.foldenable = true
 
 -- Completion
 opt.complete = ".,w,b,u,t,kspell"
