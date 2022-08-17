@@ -1,5 +1,5 @@
 local activateLspFormatting = function()
-  local lsp_format_grp = vim.api.nvim_create_augroup("MyLspFormating", {clear = true})
+  local lsp_format_grp = vim.api.nvim_create_augroup("MyLspFormating", { clear = true })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = lsp_format_grp,
     buffer = 0,
@@ -7,8 +7,8 @@ local activateLspFormatting = function()
   })
 end
 
-local activateLspReferenceUnderCursor = function ()
-  local lsp_ref_grp = vim.api.nvim_create_augroup("MyLspReferenceUnderCursor", {clear = true})
+local activateLspReferenceUnderCursor = function()
+  local lsp_ref_grp = vim.api.nvim_create_augroup("MyLspReferenceUnderCursor", { clear = true })
   vim.api.nvim_create_autocmd("CursorHold", {
     group = lsp_ref_grp,
     buffer = 0,
@@ -21,37 +21,27 @@ local activateLspReferenceUnderCursor = function ()
   })
 end
 
-local activateDiagnosticFloat = function()
-  local grp = vim.api.nvim_create_augroup("MyDiagnosticFloat", {clear = true})
-  vim.api.nvim_create_autocmd("CursorHold", {
-    group = grp,
-    buffer = 0,
-    callback = function () vim.diagnostic.open_float({focusable = false}) end
-  })
-end
-
 return function(client, bufnr)
   local builtins = require('telescope.builtin')
   local lsp_buf = vim.lsp.buf
 
-  vim.keymap.set('n', 'g0', lsp_buf.document_symbol, {desc = 'LSP: Document Symbol'})
-  vim.keymap.set('n', 'gD', lsp_buf.type_definition, {desc = 'LSP: Type Definition'})
-  vim.keymap.set('n', 'gW', lsp_buf.workspace_symbol, {desc = 'LSP: Workspace Symbol'} )
-  vim.keymap.set('n', 'gr', builtins.lsp_references, {desc = "Telescope lsp_reference"})
-  vim.keymap.set('n', 'gR', lsp_buf.references, {desc = 'LSP: References'})
-  vim.keymap.set('n', 'gi', lsp_buf.definition, {desc = 'LSP: Jump to Definition'} )
-  vim.keymap.set('n', 'gI', '<cmd>vsplit | lua lsp_buf.definition()<CR>', {desc = 'LSP: Jump to Definition (vsplit)'})
-  vim.keymap.set('n', 'K', lsp_buf.hover, {desc = 'LSP: Hover'})
-  vim.keymap.set('n', '<leader>af', lsp_buf.code_action, {desc = 'LSP: Code action'})
-  vim.keymap.set('n', '<leader>ai', lsp_buf.incoming_calls, {desc = 'LSP: Incoming calls'})
-  vim.keymap.set('n', '<leader>ao', lsp_buf.outgoing_calls, {desc = 'LSP: Outgoing calls'})
-  vim.keymap.set('n', '<leader>ar', lsp_buf.rename, {desc = 'LSP: Rename'})
-  vim.keymap.set('n', '<leader>dl', function () vim.diagnostic.set_loclist() end, {desc = 'Diagnostics - Set loclist'})
-  vim.keymap.set('n', '<C-s>', lsp_buf.signature_help, {desc = 'LSP: Signature'})
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {desc = 'Diagonstics: Previous'})
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {desc = 'Diagnostics: Next'})
+  vim.keymap.set('n', 'g0', lsp_buf.document_symbol, { desc = 'LSP: Document Symbol' })
+  vim.keymap.set('n', 'gD', lsp_buf.type_definition, { desc = 'LSP: Type Definition' })
+  vim.keymap.set('n', 'gW', lsp_buf.workspace_symbol, { desc = 'LSP: Workspace Symbol' })
+  vim.keymap.set('n', 'gr', builtins.lsp_references, { desc = "Telescope lsp_reference" })
+  vim.keymap.set('n', 'gR', lsp_buf.references, { desc = 'LSP: References' })
+  vim.keymap.set('n', 'gi', lsp_buf.definition, { desc = 'LSP: Jump to Definition' })
+  vim.keymap.set('n', 'gI', '<cmd>vsplit | lua lsp_buf.definition()<CR>', { desc = 'LSP: Jump to Definition (vsplit)' })
+  vim.keymap.set('n', 'K', lsp_buf.hover, { desc = 'LSP: Hover' })
+  vim.keymap.set('n', '<leader>af', lsp_buf.code_action, { desc = 'LSP: Code action' })
+  vim.keymap.set('n', '<leader>ai', lsp_buf.incoming_calls, { desc = 'LSP: Incoming calls' })
+  vim.keymap.set('n', '<leader>ao', lsp_buf.outgoing_calls, { desc = 'LSP: Outgoing calls' })
+  vim.keymap.set('n', '<leader>ar', lsp_buf.rename, { desc = 'LSP: Rename' })
+  vim.keymap.set('n', '<leader>dl', function() vim.diagnostic.set_loclist() end, { desc = 'Diagnostics - Set loclist' })
+  vim.keymap.set('n', '<C-s>', lsp_buf.signature_help, { desc = 'LSP: Signature' })
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagonstics: Previous' })
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics: Next' })
 
-  activateDiagnosticFloat()
   if client.resolved_capabilities.document_formatting then
     activateLspFormatting()
   end
@@ -61,5 +51,4 @@ return function(client, bufnr)
 
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  -- TODO: Move this to treesitter config
 end
