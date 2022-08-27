@@ -58,6 +58,7 @@ for rc in $(ls "$HOME/.config/zsh/conf.d/"); do
     source "$HOME/.config/zsh/conf.d/$rc"
   fi
 done
+[ -f "$HOME/.local/zshrc" ] && source "$HOME/.local/zshrc"
 
 # Setup prompt https://starship.rs/config/
 eval "$(starship init zsh)"
