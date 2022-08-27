@@ -1,5 +1,0 @@
-#!/bin/sh
-
-"$(brew --prefix)/bin/alacritty" \
-  --title Vimwiki \
-  --command "$(brew --prefix)/bin/nvim" +VimwikiIndex +Goyo

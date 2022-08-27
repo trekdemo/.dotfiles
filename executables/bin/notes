@@ -1,7 +1,0 @@
-#!/bin/sh
-
-"$(brew --prefix)/bin/alacritty" \
-  --title Vimwiki \
-  --command "$(brew --prefix)/bin/nvim" \
-    -c ":cd /Users/gergo/Documents/Notes" \
-    -c ":FZF"
