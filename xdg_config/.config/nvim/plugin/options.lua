@@ -42,7 +42,7 @@ opt.splitright = true -- New split window on the right
 opt.splitbelow = true -- New split window on the bottom
 
 -- Folds
-opt.foldcolumn = '1'
+-- opt.foldcolumn = '1'
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldtext = "folding#text()"
