@@ -145,8 +145,8 @@ vim.keymap.set('c', '%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
 -- =============================================================================
 -- " Emacs bindings
 -- https://www.johndcook.com/blog/emacs_move_cursor/
-vim.keymap.set('c', '<C-a>', '<Home>', { desc = 'Beginning line' })
-vim.keymap.set('c', '<C-e>', '<End>', { desc = 'End line' })
+vim.keymap.set({'c', 'i'}, '<C-a>', '<Home>', { desc = 'Beginning line' })
+vim.keymap.set({'c', 'i'}, '<C-e>', '<End>', { desc = 'End line' })
 vim.keymap.set('i', '<C-f>', '<Right>', { desc = 'Next char' })
 vim.keymap.set('i', '<C-b>', '<Left>', { desc = 'Previous char' })
 vim.keymap.set('i', '<M-f>', '<C-o>w', { desc = 'Next word' })

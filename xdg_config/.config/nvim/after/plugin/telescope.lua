@@ -69,7 +69,7 @@ vim.keymap.set('n', '<leader>gS', function() builtins.git_status({layout_config 
 vim.keymap.set('n', '<leader>gc', function() builtins.git_bcommits({layout_config = {height = 0.9}}) end, {desc = "Telescope git_bcommits"})
 vim.keymap.set('n', '<leader>gB', builtins.git_branches, {desc = "Telescope git_branches"})
 
-vim.keymap.set('i', '<C-e>', function() builtins.symbols(cursor({sources = {'emoji', 'kaomoji', 'gitmoji'}})) end, {desc = "Telescope symbols"})
+vim.keymap.set('i', '<C-m>', function() builtins.symbols(cursor({ sources = { 'emoji', 'kaomoji', 'gitmoji' } })) end, { desc = "Telescope symbols" })
 
 vim.cmd [[cabbrev t Telescope]]
 
