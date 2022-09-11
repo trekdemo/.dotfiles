@@ -37,10 +37,6 @@ return function(client, bufnr)
   vim.keymap.set('n', '<leader>ai', lsp_buf.incoming_calls, { desc = 'LSP: Incoming calls' })
   vim.keymap.set('n', '<leader>ao', lsp_buf.outgoing_calls, { desc = 'LSP: Outgoing calls' })
   vim.keymap.set('n', '<leader>ar', lsp_buf.rename, { desc = 'LSP: Rename' })
-  vim.keymap.set('n', '<leader>dl', function() vim.diagnostic.set_loclist() end, { desc = 'Diagnostics - Set loclist' })
-  vim.keymap.set('n', '<C-s>', lsp_buf.signature_help, { desc = 'LSP: Signature' })
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagonstics: Previous' })
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics: Next' })
 
   if client.resolved_capabilities.document_formatting then
     activateLspFormatting()

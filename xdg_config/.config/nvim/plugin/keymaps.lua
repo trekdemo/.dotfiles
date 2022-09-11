@@ -75,6 +75,13 @@ vim.keymap.set('n', '<leader>do', ':windo diffoff<CR>')
 vim.keymap.set('n', '<leader>dg', ':diffget<CR>')
 vim.keymap.set('n', '<leader>dp', ':diffput<CR>')
 
+-- Diagnostics
+vim.keymap.set('n', '<leader>dl', ':lua vim.diagnostic.set_loclist()', { desc = 'Diagnostics - Set loclist' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagonstics: Previous' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics: Next' })
+vim.keymap.set('n', '[D', vim.diagnostic.disable, { desc = 'Diagonstics: Disable' })
+vim.keymap.set('n', ']D', vim.diagnostic.enable, { desc = 'Diagnostics: Enable' })
+
 -- Quickly search
 vim.keymap.set('n', '<leader>F', ':grep! <C-r><C-w><CR>', { desc = 'Grep <cword>' })
 
@@ -145,8 +152,8 @@ vim.keymap.set('c', '%%', [[<C-R>=fnameescape(expand('%:h')).'/'<cr>]])
 -- =============================================================================
 -- " Emacs bindings
 -- https://www.johndcook.com/blog/emacs_move_cursor/
-vim.keymap.set({'c', 'i'}, '<C-a>', '<Home>', { desc = 'Beginning line' })
-vim.keymap.set({'c', 'i'}, '<C-e>', '<End>', { desc = 'End line' })
+vim.keymap.set({ 'c', 'i' }, '<C-a>', '<Home>', { desc = 'Beginning line' })
+vim.keymap.set({ 'c', 'i' }, '<C-e>', '<End>', { desc = 'End line' })
 vim.keymap.set('i', '<C-f>', '<Right>', { desc = 'Next char' })
 vim.keymap.set('i', '<C-b>', '<Left>', { desc = 'Previous char' })
 vim.keymap.set('i', '<M-f>', '<C-o>w', { desc = 'Next word' })
