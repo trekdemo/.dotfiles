@@ -22,21 +22,17 @@ local activateLspReferenceUnderCursor = function(bufnr)
 end
 
 return function(client, bufnr)
-  local builtins = require('telescope.builtin')
+  local telescope = require('telescope.builtin')
   local lsp_buf = vim.lsp.buf
 
-  vim.keymap.set('n', 'g0', lsp_buf.document_symbol, { desc = 'LSP: Document Symbol' })
-  vim.keymap.set('n', 'gD', lsp_buf.type_definition, { desc = 'LSP: Type Definition' })
-  vim.keymap.set('n', 'gW', lsp_buf.workspace_symbol, { desc = 'LSP: Workspace Symbol' })
-  vim.keymap.set('n', 'gr', builtins.lsp_references, { desc = "Telescope lsp_reference" })
-  vim.keymap.set('n', 'gR', lsp_buf.references, { desc = 'LSP: References' })
-  vim.keymap.set('n', 'gi', lsp_buf.definition, { desc = 'LSP: Jump to Definition' })
-  vim.keymap.set('n', 'gI', '<cmd>vsplit | lua lsp_buf.definition()<CR>', { desc = 'LSP: Jump to Definition (vsplit)' })
   vim.keymap.set('n', 'K', lsp_buf.hover, { desc = 'LSP: Hover' })
-  vim.keymap.set('n', '<leader>af', lsp_buf.code_action, { desc = 'LSP: Code action' })
-  vim.keymap.set('n', '<leader>ai', lsp_buf.incoming_calls, { desc = 'LSP: Incoming calls' })
-  vim.keymap.set('n', '<leader>ao', lsp_buf.outgoing_calls, { desc = 'LSP: Outgoing calls' })
-  vim.keymap.set('n', '<leader>ar', lsp_buf.rename, { desc = 'LSP: Rename' })
+  vim.keymap.set('n', 'gr', telescope.lsp_references, { desc = "Telescope lsp_reference" })
+  vim.keymap.set('n', 'gi', telescope.lsp_definitions, { desc = 'LSP: Definitions' })
+  vim.keymap.set('n', 'gd', telescope.lsp_type_definitions, { desc = 'LSP: Type Definitions' })
+  vim.keymap.set('n', '<leader>ca', lsp_buf.code_action, { desc = 'LSP: List code actions' })
+  vim.keymap.set('n', '<leader>cI', lsp_buf.incoming_calls, { desc = 'LSP: Incoming calls' })
+  vim.keymap.set('n', '<leader>cO', lsp_buf.outgoing_calls, { desc = 'LSP: Outgoing calls' })
+  vim.keymap.set('n', '<leader>cr', lsp_buf.rename, { desc = 'LSP: Rename' })
 
   if client.resolved_capabilities.document_formatting then
     activateLspFormatting(bufnr)
@@ -44,7 +40,6 @@ return function(client, bufnr)
   if client.resolved_capabilities.document_highlight then
     activateLspReferenceUnderCursor(bufnr)
   end
-
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
