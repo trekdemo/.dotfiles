@@ -1,22 +1,22 @@
-local activateLspFormatting = function()
+local activateLspFormatting = function(bufnr)
   local lsp_format_grp = vim.api.nvim_create_augroup("MyLspFormating", { clear = true })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = lsp_format_grp,
-    buffer = 0,
+    buffer = bufnr,
     callback = vim.lsp.buf.formatting_sync
   })
 end
 
-local activateLspReferenceUnderCursor = function()
+local activateLspReferenceUnderCursor = function(bufnr)
   local lsp_ref_grp = vim.api.nvim_create_augroup("MyLspReferenceUnderCursor", { clear = true })
   vim.api.nvim_create_autocmd("CursorHold", {
     group = lsp_ref_grp,
-    buffer = 0,
+    buffer = bufnr,
     callback = vim.lsp.buf.document_highlight,
   })
   vim.api.nvim_create_autocmd("CursorMoved", {
     group = lsp_ref_grp,
-    buffer = 0,
+    buffer = bufnr,
     callback = vim.lsp.buf.clear_references,
   })
 end
@@ -39,10 +39,10 @@ return function(client, bufnr)
   vim.keymap.set('n', '<leader>ar', lsp_buf.rename, { desc = 'LSP: Rename' })
 
   if client.resolved_capabilities.document_formatting then
-    activateLspFormatting()
+    activateLspFormatting(bufnr)
   end
   if client.resolved_capabilities.document_highlight then
-    activateLspReferenceUnderCursor()
+    activateLspReferenceUnderCursor(bufnr)
   end
 
 
