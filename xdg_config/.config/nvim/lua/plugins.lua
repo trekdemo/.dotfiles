@@ -13,6 +13,8 @@ require('packer').startup(function(use)
   }
 
   use { 'marko-cerovac/material.nvim' }
+  -- TODO: Waiting for neovim 0.8.x
+  -- use { 'levouh/tint.nvim', config = 'require("tint").setup()' }
 
   use {
     "lukas-reineke/indent-blankline.nvim",
