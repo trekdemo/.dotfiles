@@ -77,7 +77,6 @@ require('packer').startup(function(use)
           null_ls.builtins.diagnostics.rubocop, -- gem install rubocop
           null_ls.builtins.hover.dictionary,
           null_ls.builtins.code_actions.gitsigns,
-          null_ls.builtins.completion.spell,
           null_ls.builtins.diagnostics.cspell, -- npm install -g cspell
           null_ls.builtins.diagnostics.actionlint, -- brew install actionlint
         },
