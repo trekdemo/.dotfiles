@@ -41,6 +41,7 @@ require('packer').startup(function(use)
       'jeetsukumaran/telescope-rtp',
       'nvim-telescope/telescope-symbols.nvim',
       'folke/which-key.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
     },
   }
 

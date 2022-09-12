@@ -29,6 +29,7 @@ telescope.setup({
 })
 telescope.load_extension('vim_rtp')
 telescope.load_extension('vim_docs')
+telescope.load_extension("ui-select")
 
 -- ----------------------------------------------------------------------------
 -- Themes
@@ -55,7 +56,8 @@ vim.keymap.set('n', '<C-b>', builtins.buffers, { desc = "Telescope buffers" })
 vim.keymap.set('n', '<C-g>', function() builtins.live_grep({ hidden = true }) end, { desc = "Telescope live_grep" })
 vim.keymap.set('n', '<C-p>', builtins.find_files, { desc = "Telescope find_files" })
 vim.keymap.set('n', '<C-q>', builtins.quickfix, { desc = "Telescope quickfix" })
-vim.keymap.set('n', '<C-t>', function() builtins.treesitter(cursor({ layout_config = { height = 0.4 } })) end, { desc = "Telescope treesitter" })
+vim.keymap.set('n', '<C-t>', function() builtins.treesitter(cursor({ layout_config = { height = 0.4 } })) end,
+  { desc = "Telescope treesitter" })
 
 vim.keymap.set('n', '<leader>fc', builtins.commands, { desc = "Telescope commands" })
 vim.keymap.set('n', '<leader>fd', builtins.diagnostics, { desc = "Telescope diagnostics" })
@@ -63,13 +65,17 @@ vim.keymap.set('n', '<leader>ff', builtins.builtin, { desc = "Telescope builtin"
 vim.keymap.set('n', '<leader>fe', function() builtins.symbols(cursor()) end, { desc = "Telescope symbols" })
 vim.keymap.set('n', '<leader>fh', builtins.help_tags, { desc = "Telescope help_tags" })
 vim.keymap.set('n', '<leader>fm', builtins.keymaps, { desc = "Telescope keymaps" })
-vim.keymap.set('n', '<leader>fv', function() builtins.find_files({ cwd = "~/.dotfiles/", hidden = true }) end, { desc = "Find in .config" })
+vim.keymap.set('n', '<leader>fv', function() builtins.find_files({ cwd = "~/.dotfiles/", hidden = true }) end,
+  { desc = "Find in .config" })
 
-vim.keymap.set('n', '<leader>gS', function() builtins.git_status({ layout_config = { height = 0.9 } }) end, { desc = "Telescope git_status" })
-vim.keymap.set('n', '<leader>gc', function() builtins.git_bcommits({ layout_config = { height = 0.9 } }) end, { desc = "Telescope git_bcommits" })
+vim.keymap.set('n', '<leader>gS', function() builtins.git_status({ layout_config = { height = 0.9 } }) end,
+  { desc = "Telescope git_status" })
+vim.keymap.set('n', '<leader>gc', function() builtins.git_bcommits({ layout_config = { height = 0.9 } }) end,
+  { desc = "Telescope git_bcommits" })
 vim.keymap.set('n', '<leader>gB', builtins.git_branches, { desc = "Telescope git_branches" })
 
-vim.keymap.set('i', '<C-m>', function() builtins.symbols(cursor({ sources = { 'emoji', 'kaomoji', 'gitmoji' } })) end, { desc = "Telescope symbols" })
+vim.keymap.set('i', '<C-m>', function() builtins.symbols(cursor({ sources = { 'emoji', 'kaomoji', 'gitmoji' } })) end,
+  { desc = "Telescope symbols" })
 
 vim.cmd [[cabbrev t Telescope]]
 
