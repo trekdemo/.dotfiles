@@ -274,7 +274,18 @@ require('packer').startup(function(use)
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function() require('gitsigns').setup() end,
+    config = function()
+      require('gitsigns').setup({
+        signcolumn = false,
+        numhl = true,
+        -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame = false,
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = 'right_align'
+        }
+      })
+    end,
   }
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
