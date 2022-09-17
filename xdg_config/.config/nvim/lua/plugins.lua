@@ -275,7 +275,8 @@ require('packer').startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('gitsigns').setup({
+      local gitsigns = require('gitsigns')
+      gitsigns.setup({
         signcolumn = false,
         numhl = true,
         -- Toggle with `:Gitsigns toggle_current_line_blame`
@@ -285,6 +286,8 @@ require('packer').startup(function(use)
           virt_text_pos = 'right_align'
         }
       })
+      vim.keymap.set('n', ']g', gitsigns.toggle_numhl, { desc = ":Gitsign toggle_numhl" })
+      vim.keymap.set('n', '[g', gitsigns.toggle_current_line_blame, { desc = ":Gitsign toggle_current_line_blame" })
     end,
   }
   use 'tpope/vim-surround'
