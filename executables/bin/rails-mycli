@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+# Rails.configuration.database_configuration[Rails.env]
+# => {"adapter"=>"mysql2", "encoding"=>"utf8mb4", "pool"=>5, "reconnect"=>true,
+# "database"=>"mailer_development", "port"=>3306, "host"=>"127.0.0.1",
+# "username"=>"root", "password"=>nil}
+APP_PATH = "#{Dir.getwd}/config/application"
+require_relative "#{Dir.getwd}/config/environment"
+
+
+db = Rails.configuration.database_configuration[Rails.env]
+system "mycli",
+       format(
+         "%s://%s@%s:%s/%s",
+         db['adapter'],
+         db['username'],
+         db['host'],
+         db['port'],
+         db['database'],
+       )
