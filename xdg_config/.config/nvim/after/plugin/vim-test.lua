@@ -1,7 +1,5 @@
-vim.cmd [[
-let test#strategy = 'dispatch'
-let test#ruby#rspec#options = '--format progress'
-]]
+vim.g['test#ruby#rspec#options'] = '--format progress'
+vim.g['test#strategy'] = 'dispatch'
 
 vim.keymap.set('n', '<leader>tl', '<Cmd>TestLast<CR>')
 vim.keymap.set('n', '<leader>ta', '<Cmd>AbortDispatch<CR>')
