@@ -16,6 +16,20 @@ require('packer').startup(function(use)
   -- TODO: Waiting for neovim 0.8.x
   -- use { 'levouh/tint.nvim', config = 'require("tint").setup()' }
 
+  use { "anuvyklack/windows.nvim",
+    requires = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim"
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      require('windows').setup()
+
+      vim.keymap.set('n', '<A-Enter>', '<Cmd>WindowsMaximaze<CR>')
+    end
+  }
+
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()

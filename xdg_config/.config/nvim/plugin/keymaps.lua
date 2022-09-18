@@ -110,21 +110,6 @@ vim.keymap.set('n', '<M-S-Right>', '5<c-w>>', { desc = 'Grow width by 5' })
 vim.keymap.set('n', '<M-S-Left>', '5<c-w><', { desc = 'Shrink width by 5' })
 vim.keymap.set('n', '<M-S-Up>', '5<c-w>+', { desc = 'Grow height by 5' })
 vim.keymap.set('n', '<M-S-Down>', '5<c-w>-', { desc = 'Shrink height by 5' })
-vim.keymap.set('n', '<A-Enter>', function()
-  local threshold = 10
-  local winWidth = vim.opt.columns._value
-  local winHeight = vim.opt.lines._value
-  local paneWidth = vim.fn.winwidth(0)
-  local paneHeight = vim.fn.winheight(0)
-
-  if (winWidth - paneWidth) < threshold and (winHeight - paneHeight) < threshold then
-    vim.cmd "wincmd ="
-  else
-    vim.cmd "wincmd |"
-    vim.cmd "wincmd _"
-  end
-end
-  , { desc = 'Toggle maximise window' })
 
 -- Scroll faster
 vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>', { desc = 'Scroll up' })
