@@ -75,7 +75,7 @@ require('packer').startup(function(use)
           require('lsp_signature').setup({
             bind = true, -- This is mandatory, otherwise border config won't get registered.
             handler_opts = {
-              border = 'rounded',
+              border = require('geri.border').thin,
             },
           })
         end,
@@ -263,7 +263,7 @@ require('packer').startup(function(use)
     },
   }
 
-  use { "akinsho/toggleterm.nvim", tag = 'v1.*' }
+  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
 
   use { 'fatih/vim-go', ft = { 'go' } }
   use { 'jgdavey/vim-blockle', ft = { 'ruby' } }
@@ -324,16 +324,7 @@ require('packer').startup(function(use)
         floating = {
           max_height = 0.8,
           max_width = 0.9,
-          border = {
-            { '🭽', 'FloatBorder' },
-            { '▔', 'FloatBorder' },
-            { '🭾', 'FloatBorder' },
-            { '▕', 'FloatBorder' },
-            { '🭿', 'FloatBorder' },
-            { '▁', 'FloatBorder' },
-            { '🭼', 'FloatBorder' },
-            { '▏', 'FloatBorder' },
-          }
+          border = require('geri.border').thick
         }
       })
 
