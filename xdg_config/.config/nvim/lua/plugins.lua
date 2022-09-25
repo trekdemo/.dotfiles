@@ -12,6 +12,8 @@ require('packer').startup(function(use)
     config = function() require("which-key").setup {} end
   }
 
+  use { "ellisonleao/gruvbox.nvim" }
+  use { "catppuccin/nvim", as = "catppuccin" }
   use { 'marko-cerovac/material.nvim' }
   -- TODO: Waiting for neovim 0.8.x
   -- use { 'levouh/tint.nvim', config = 'require("tint").setup()' }
