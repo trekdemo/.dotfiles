@@ -275,8 +275,6 @@ require('packer').startup(function(use)
   use { 'godlygeek/tabular', ft = { 'markdown' } }
   use { 'towolf/vim-helm' }
 
-  use 'ncm2/float-preview.nvim' -- Display *preview-window* as a floating window.
-
   use 'AndrewRadev/splitjoin.vim'
 
   use 'tmux-plugins/vim-tmux' -- Plugin for .tmux.conf ftplugin
