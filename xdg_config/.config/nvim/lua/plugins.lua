@@ -102,7 +102,16 @@ require('packer').startup(function(use)
           null_ls.builtins.diagnostics.rubocop, -- gem install rubocop
           null_ls.builtins.hover.dictionary,
           null_ls.builtins.code_actions.gitsigns,
-          null_ls.builtins.diagnostics.cspell, -- npm install -g cspell
+          null_ls.builtins.diagnostics.cspell.with({
+            diagnostic_config = {
+              -- see :help vim.diagnostic.config()
+              underline = true,
+              virtual_text = false,
+              signs = false,
+              update_in_insert = false,
+              severity_sort = true,
+            },
+          }), -- npm install -g cspell
           null_ls.builtins.diagnostics.actionlint, -- brew install actionlint
           -- shell
           null_ls.builtins.diagnostics.shellcheck,

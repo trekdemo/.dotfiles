@@ -74,13 +74,6 @@ vim.keymap.set('n', '<leader>do', ':windo diffoff<CR>')
 vim.keymap.set('n', '<leader>dg', ':diffget<CR>')
 vim.keymap.set('n', '<leader>dp', ':diffput<CR>')
 
--- Diagnostics
-vim.keymap.set('n', '<leader>dl', ':lua vim.diagnostic.set_loclist()', { desc = 'Diagnostics - Set loclist' })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagonstics: Previous' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics: Next' })
-vim.keymap.set('n', '[D', vim.diagnostic.disable, { desc = 'Diagonstics: Disable' })
-vim.keymap.set('n', ']D', vim.diagnostic.enable, { desc = 'Diagnostics: Enable' })
-
 -- Quickly search
 vim.keymap.set('n', '<leader>F', ':grep! <C-r><C-w><CR>', { desc = 'Grep <cword>' })
 
