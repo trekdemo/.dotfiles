@@ -114,20 +114,14 @@ vim.keymap.set('n', '<M-S-Down>', '5<c-w>-', { desc = 'Shrink height by 5' })
 -- Scroll faster
 vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>', { desc = 'Scroll up' })
 vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>', { desc = 'Scroll down' })
-vim.keymap.set({ 'n', 'v' }, '<PageUp>', '2<C-y>')
-vim.keymap.set({ 'n', 'v' }, '<PageDown>', '2<C-e>')
+vim.keymap.set({ 'n', 'v' }, '<PageUp>', '2<C-y>', { desc = 'Scroll up' })
+vim.keymap.set({ 'n', 'v' }, '<PageDown>', '2<C-e>', { desc = 'Scroll down' })
 
 vim.keymap.set('n', '[oc', ':set conceallevel=2 <CR>')
 vim.keymap.set('n', ']oc', ':set conceallevel=0 <CR>')
 
 -- Fold mappings
 vim.keymap.set('n', 'zf', 'zMzvzz', { desc = 'Focus on current fold' })
--- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = "Open all folds" })
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = "Close all folds" })
-vim.keymap.set('n', 'z<Space>', require('ufo').peekFoldedLinesUnderCursor, { desc = "Close all folds" })
-vim.keymap.set('n', '[z', require('ufo').goPreviousClosedFold, { desc = "Previous closed fold" })
-vim.keymap.set('n', ']z', require('ufo').goNextClosedFold, { desc = "Next closed fold" })
 
 -- " Mappings: Command-line {{{
 -- " Some helpers to edit mode http://vimcasts.org/e/14
