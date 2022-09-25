@@ -86,6 +86,12 @@ require('packer').startup(function(use)
   use({
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    run = [[
+      npm install -g cspell
+      brew install shellharden shfmt shellcheck;
+      brew install hadolint;
+      brew install actionlint
+    ]],
     config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
@@ -96,6 +102,12 @@ require('packer').startup(function(use)
           null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.diagnostics.cspell, -- npm install -g cspell
           null_ls.builtins.diagnostics.actionlint, -- brew install actionlint
+          -- shell
+          null_ls.builtins.diagnostics.shellcheck,
+          null_ls.builtins.formatting.shellharden,
+          null_ls.builtins.formatting.shfmt,
+          -- dockerfile
+          null_ls.builtins.diagnostics.hadolint,
         },
       })
     end,
