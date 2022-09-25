@@ -9,10 +9,6 @@ return function()
   local defaultOptions = function()
     return {
       on_attach = require('geri.config.lsp-on-attach'),
-      flags = {
-        -- This will be the default in neovim 0.7+
-        debounce_text_changes = 150,
-      },
     }
   end
 
