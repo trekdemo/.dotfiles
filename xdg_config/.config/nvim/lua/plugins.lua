@@ -328,6 +328,8 @@ require('packer').startup(function(use)
     config = function()
       vim.keymap.set({ 'n', 'v' }, '<M-/>', ':Commentary<CR>')
       vim.keymap.set({ 'i' }, '<M-/>', '<Esc>:Commentary<CR>A')
+      vim.keymap.set({ 'n', 'v' }, '<C-/>', ':Commentary<CR>')
+      vim.keymap.set({ 'i' }, '<C-/>', '<Esc>:Commentary<CR>A')
     end,
   }
   use 'tpope/vim-eunuch'
