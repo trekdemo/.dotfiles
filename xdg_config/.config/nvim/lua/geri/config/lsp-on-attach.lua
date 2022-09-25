@@ -28,6 +28,8 @@ return function(client, bufnr)
   vim.keymap.set('n', 'K', lsp_buf.hover, { desc = 'LSP: Hover' })
   vim.keymap.set('n', 'gr', telescope.lsp_references, { desc = "Telescope lsp_reference" })
   vim.keymap.set('n', 'gi', telescope.lsp_definitions, { desc = 'LSP: Definitions' })
+  vim.keymap.set('n', 'gI', function() telescope.lsp_definitions({ jump_type = 'vsplit' }) end,
+    { desc = 'LSP: Definitions' })
   vim.keymap.set('n', 'gd', telescope.lsp_type_definitions, { desc = 'LSP: Type Definitions' })
   vim.keymap.set('n', '<leader>ca', lsp_buf.code_action, { desc = 'LSP: List code actions' })
   vim.keymap.set('n', '<leader>cI', lsp_buf.incoming_calls, { desc = 'LSP: Incoming calls' })
