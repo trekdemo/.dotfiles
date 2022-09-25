@@ -7,6 +7,8 @@ vim.keymap.set('n', 'gp', '`[v`]')
 -- Alt + Backspace should delete the last word
 vim.keymap.set({ 'i', 'c', 't' }, '<M-BS>', '<C-w>')
 
+vim.cmd [[tnoremap <A-[> <c-\><c-n>]]
+
 -- Save the current buffer
 vim.keymap.set('n', '<cr>', '<cmd>w<cr>', { desc = 'Save file' })
 

@@ -272,7 +272,21 @@ require('packer').startup(function(use)
     },
   }
 
-  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = 'v2.*',
+    config = function()
+      require("toggleterm").setup({
+        open_mapping = [[<M-t>]],
+        start_in_insert = false,
+        size = 25,
+        float_opts = { border = require('geri.border').thick },
+      })
+
+      vim.keymap.set('n', '<leader>x', ':ToggleTermSendCurrentLine<cr>', {})
+      vim.keymap.set('v', '<leader>x', ':ToggleTermSendVisualSelection<cr>', {})
+    end
+  }
 
   use { 'fatih/vim-go', ft = { 'go' } }
   use { 'jgdavey/vim-blockle', ft = { 'ruby' } }

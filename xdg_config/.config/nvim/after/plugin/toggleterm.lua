@@ -1,31 +1,29 @@
-require("toggleterm").setup({
-  open_mapping = [[<M-t>]],
-  direction = 'horizontal',
-  size = 25,
-  float_opts = {
-    -- border = {'▛', '▀','▜', '▐', '▟', '▄', '▙', '▌'},
-    border = 'rounded',
-  },
+-- Custom terminals
+local term_on = function(key, config)
+  local Terminal = require('toggleterm.terminal').Terminal
+  local term = Terminal:new(config)
+  local toggle = function() term:toggle() end
+
+  vim.keymap.set({ 'n', 't' }, key, toggle, { desc = 'Open ' .. term.cmd })
+end
+
+term_on("<M-S-g>", {
+  cmd = "tig",
+  dir = "git_dir",
+  direction = 'float',
+  on_open = function(term)
+    vim.cmd("startinsert!")
+  end,
 })
 
--- Keymaps
-vim.cmd [[tnoremap <A-[> <c-\><c-n>]]
-vim.keymap.set('n', '<leader>x', ':ToggleTermSendCurrentLine<cr>')
-vim.keymap.set('v', '<leader>x', ':ToggleTermSendVisualSelection<cr>')
-
--- Custom terminals
-local Terminal  = require('toggleterm.terminal').Terminal
-
-local gh_dash = Terminal:new({ cmd = "gh dash", hidden = true, direction = 'tab' })
-vim.keymap.set({'n', 't'}, "<M-S-h>", function() gh_dash:toggle() end)
-
-local tig = Terminal:new({ cmd = "tig", hidden = true, direction = 'float' })
-vim.keymap.set({'n', 't'}, "<M-S-g>", function() tig:toggle() end)
-
-local rails_c = Terminal:new({
+term_on("<M-S-r>", {
   cmd = "bin/rails console",
   dir = "git_dir",
   direction = 'horizontal',
-  close_on_exit = false,
 })
-vim.keymap.set({'n', 't'}, "<M-S-r>", function() rails_c:toggle() end)
+
+term_on("<M-S-m>", {
+  cmd = "rails-mycli",
+  dir = "git_dir",
+  direction = 'horizontal',
+})
