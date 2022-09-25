@@ -307,15 +307,8 @@ require('packer').startup(function(use)
       gitsigns.setup({
         signcolumn = false,
         numhl = true,
-        -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame = false,
-        current_line_blame_opts = {
-          virt_text = true,
-          virt_text_pos = 'right_align'
-        }
       })
       vim.keymap.set('n', ']g', gitsigns.toggle_numhl, { desc = ":Gitsign toggle_numhl" })
-      vim.keymap.set('n', '[g', gitsigns.toggle_current_line_blame, { desc = ":Gitsign toggle_current_line_blame" })
     end,
   }
   use 'tpope/vim-surround'
