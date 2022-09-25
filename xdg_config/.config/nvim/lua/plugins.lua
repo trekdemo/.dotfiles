@@ -296,6 +296,70 @@ require('packer').startup(function(use)
     }
   }
 
+  use {
+    'nvim-neotest/neotest',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'olimorris/neotest-rspec',
+    },
+    config = function()
+      local neotest = require("neotest")
+      neotest.setup({
+        adapters = {
+          require('neotest-rspec'),
+        },
+        icons = {
+          passed = "",
+          running = "羽",
+          running_animated = { "◐", "◓", "◑", "◒" },
+          failed = "",
+          skipped = "",
+          unknown = "",
+        },
+        status = {
+          enabled = true,
+          signs = false,
+          virtual_text = true
+        },
+        floating = {
+          max_height = 0.8,
+          max_width = 0.9,
+          border = {
+            { '🭽', 'FloatBorder' },
+            { '▔', 'FloatBorder' },
+            { '🭾', 'FloatBorder' },
+            { '▕', 'FloatBorder' },
+            { '🭿', 'FloatBorder' },
+            { '▁', 'FloatBorder' },
+            { '🭼', 'FloatBorder' },
+            { '▏', 'FloatBorder' },
+          }
+        }
+      })
+
+      vim.keymap.set('n', '[t', ":lua require'neotest'.jump.prev()<CR>", { silent = true })
+      vim.keymap.set('n', ']t', ":lua require'neotest'.jump.next()<CR>", { silent = true })
+
+      vim.keymap.set('n', '<leader>tt', neotest.summary.toggle, { desc = 'Test: Toggle summary' })
+      vim.keymap.set('n', '<leader>tl', neotest.run.run_last, { desc = 'Test: Run last' })
+      vim.keymap.set('n', '<leader>tx', neotest.run.stop, { desc = 'Test: Stop' })
+      vim.keymap.set('n', '<leader>ta', neotest.run.attach, { desc = 'Test: Attach' })
+      vim.keymap.set('n', '<leader>to', function()
+        neotest.output.open({ enter = true, short = true })
+      end, { desc = 'Test: Open output' })
+
+      vim.keymap.set('n', '<leader>tn', neotest.run.run, { desc = 'Test: Nearest' })
+      vim.keymap.set('n', '<leader>tf', function()
+        neotest.run.run(vim.fn.expand("%"))
+      end, { desc = 'Test: Current file' })
+      vim.keymap.set('n', '<leader>ts', function()
+        neotest.run.run(vim.fn.getcwd())
+      end, { desc = 'Test: Suite' })
+    end
+  }
+
   use { 'tpope/vim-fugitive', requires = { 'tpope/vim-rhubarb' } }
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
