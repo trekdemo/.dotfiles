@@ -6,3 +6,4 @@ nnoremap <leader>gg :Git<CR>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>ga :Gadd<cr>
 nnoremap <leader>gb :Git blame<cr>
+nnoremap <leader>gl :Git log<cr>
