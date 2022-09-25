@@ -367,10 +367,15 @@ require('packer').startup(function(use)
     config = function()
       local gitsigns = require('gitsigns')
       gitsigns.setup({
+        preview_config = {
+          -- Options passed to nvim_open_win
+          border = require('geri.border').thin,
+        },
         signcolumn = false,
         numhl = true,
       })
-      vim.keymap.set('n', ']g', gitsigns.toggle_numhl, { desc = ":Gitsign toggle_numhl" })
+      vim.keymap.set('n', '[g', function() gitsigns.prev_hunk({ preview = true }) end, { desc = ":Gitsign toggle_numhl" })
+      vim.keymap.set('n', ']g', function() gitsigns.next_hunk({ preview = true }) end, { desc = ":Gitsign toggle_numhl" })
     end,
   }
   use 'tpope/vim-surround'
