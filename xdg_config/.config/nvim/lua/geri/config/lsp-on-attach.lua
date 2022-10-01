@@ -36,10 +36,10 @@ return function(client, bufnr)
   vim.keymap.set('n', '<leader>cO', lsp_buf.outgoing_calls, { desc = 'LSP: Outgoing calls' })
   vim.keymap.set('n', '<leader>cr', lsp_buf.rename, { desc = 'LSP: Rename' })
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     activateLspFormatting(bufnr)
   end
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     activateLspReferenceUnderCursor(bufnr)
   end
 
