@@ -12,6 +12,10 @@ vim.cmd [[tnoremap <A-[> <c-\><c-n>]]
 -- Save the current buffer
 vim.keymap.set('n', '<cr>', '<cmd>w<cr>', { desc = 'Save file' })
 
+-- Delete every buffer except the current one
+vim.cmd('command! BufOnly silent! execute "%bd|e#|bd#"')
+vim.keymap.set('n', '<leader>bo', ':BufOnly<CR>')
+
 -- Delete buffer
 vim.keymap.set('n', '<C-x>', ':bd<CR>')
 
