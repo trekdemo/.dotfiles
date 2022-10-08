@@ -319,12 +319,21 @@ require('packer').startup(function(use)
       'nvim-treesitter/nvim-treesitter',
       'antoinemadec/FixCursorHold.nvim',
       'olimorris/neotest-rspec',
+      'haydenmeade/neotest-jest',
     },
     config = function()
       local neotest = require("neotest")
       neotest.setup({
         adapters = {
           require('neotest-rspec'),
+          require('neotest-jest')({
+            -- jestCommand = "yarn test --",
+            jestConfigFile = "config/jest.js",
+            -- env = { CI = true },
+            cwd = function(path)
+              return vim.fn.getcwd()
+            end,
+          }),
         },
         icons = {
           passed = "",
