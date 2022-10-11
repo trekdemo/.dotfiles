@@ -387,7 +387,7 @@ require('packer').startup(function(use)
           -- Options passed to nvim_open_win
           border = require('geri.border').thin,
         },
-        signcolumn = false,
+        signcolumn = true,
         numhl = true,
       })
       vim.keymap.set('n', '[g', function() gitsigns.prev_hunk({ preview = true }) end, { desc = ":Gitsign toggle_numhl" })
