@@ -450,4 +450,16 @@ require('packer').startup(function(use)
     end,
     requires = { 'telescope.nvim' },
   }
+
+  use {
+    "otavioschwanck/telescope-alternate",
+    requires = { 'telescope.nvim' },
+    config = function ()
+      require('telescope-alternate').setup({
+        presets = { 'rails', 'rspec' }, -- Telescope pre-defined mapping presets
+      })
+      local ext = require('telescope').load_extension('telescope-alternate')
+      vim.keymap.set('n', '<leader>fa', ext.alternate_file, { desc = 'Find alternate files' })
+    end
+  }
 end)
