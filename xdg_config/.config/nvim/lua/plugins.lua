@@ -26,7 +26,7 @@ require('packer').startup(function(use)
       vim.o.winminwidth = 10
       require('windows').setup()
 
-      vim.keymap.set('n', '<A-Enter>', '<Cmd>WindowsMaximaze<CR>')
+      vim.keymap.set('n', '<A-Enter>', '<Cmd>WindowsMaximize<CR>')
     end
   }
 
