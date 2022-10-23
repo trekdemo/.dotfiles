@@ -15,13 +15,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 local mf = require('material.functions')
-vim.keymap.set('n', '<leader>mt', mf.toggle_style, {desc = 'Next material style'})
-vim.keymap.set('n', '<leader>md', function() mf.change_style('darker') end, {desc = 'Use darker style'})
-vim.keymap.set('n', '<leader>ml', function() mf.change_style('lighter') end, {desc = 'Use lighter style'})
+vim.keymap.set('n', '<leader>mt', mf.find_style, {desc = 'Next material style'})
 
 require('material').setup({
   contrast = {
-    sidebars = true,
+    sidebars = false,
     floating_windows = true,
     line_numbers = false,
     sign_column = false,
