@@ -6,18 +6,16 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 return function()
-  local defaultOptions = function()
-    return {
-      on_attach = require('geri.config.lsp-on-attach'),
-    }
-  end
+  local defaultOptions = {
+    on_attach = require('geri.config.lsp-on-attach'),
+  }
 
   local luaDevOptions = function()
     local lsp = require('lspconfig')
     return require("lua-dev").setup({
       lspconfig = vim.tbl_deep_extend(
         'keep',
-        defaultOptions(),
+        defaultOptions,
         { root_dir = lsp.util.root_pattern('.nvim-root') }
       )
     })
@@ -31,10 +29,23 @@ return function()
 
     -- Here's the list of available LSP servers
     -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-    local servers = { 'vimls', 'bashls', 'clangd', 'solargraph', 'dockerls',
-      'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'tsserver', 'yamlls' }
+    local servers = {
+      'vimls',
+      'bashls',
+      'clangd',
+      'solargraph',
+      -- 'ruby_ls',
+      'dockerls',
+      'gopls',
+      'html',
+      'jsonls',
+      'pylsp',
+      'terraformls',
+      'tsserver',
+      'yamlls'
+    }
     for _, server in pairs(servers) do
-      lsp[server].setup(defaultOptions())
+      lsp[server].setup(defaultOptions)
     end
   end
 
