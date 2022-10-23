@@ -375,10 +375,6 @@ require('packer').startup(function(use)
   use 'tpope/vim-eunuch'
 
   use 'tweekmonster/spellrotate.vim'
-  use {
-    'lewis6991/spellsitter.nvim',
-    config = function() require('spellsitter').setup() end,
-  }
 
   use {
     "folke/todo-comments.nvim",
