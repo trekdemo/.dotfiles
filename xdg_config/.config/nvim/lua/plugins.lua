@@ -29,14 +29,6 @@ require('packer').startup(function(use)
   }
 
   use {
-    'phaazon/notisys.nvim',
-    branch = 'v0.1',
-    config = function()
-      require'notisys'.setup()
-    end
-  }
-
-  use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("indent_blankline").setup {
