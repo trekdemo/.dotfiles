@@ -295,15 +295,8 @@ require('packer').startup(function(use)
       local neotest = require("neotest")
       neotest.setup({
         adapters = {
-          require('neotest-rspec'),
-          require('neotest-jest')({
-            -- jestCommand = "yarn test --",
-            jestConfigFile = "config/jest.js",
-            -- env = { CI = true },
-            cwd = function(path)
-              return vim.fn.getcwd()
-            end,
-          }),
+          require('neotest-rspec')({ rspec_cmd = "bin/rspec" }),
+          require('neotest-jest'),
         },
         icons = {
           passed = "",
@@ -325,8 +318,8 @@ require('packer').startup(function(use)
         }
       })
 
-      vim.keymap.set('n', '[t', ":lua require'neotest'.jump.prev()<CR>", { silent = true })
-      vim.keymap.set('n', ']t', ":lua require'neotest'.jump.next()<CR>", { silent = true })
+      vim.keymap.set('n', '[t', function () neotest.jump.prev({status = 'failed'}) end, { silent = true })
+      vim.keymap.set('n', ']t', function () neotest.jump.next({status = 'failed'}) end, { silent = true })
 
       vim.keymap.set('n', '<leader>tt', neotest.summary.toggle, { desc = 'Test: Toggle summary' })
       vim.keymap.set('n', '<leader>tl', neotest.run.run_last, { desc = 'Test: Run last' })
