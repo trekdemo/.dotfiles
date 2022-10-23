@@ -187,22 +187,6 @@ require('packer').startup(function(use)
   }
 
   use {
-    'drybalka/tree-climber.nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      local tc = require('tree-climber')
-      local around = function(movement) return movement end
-
-      vim.keymap.set({ 'n', 'v' }, '<S-Left>', around(tc.goto_parent), { desc = 'Goto parent' })
-      vim.keymap.set({ 'n', 'v' }, '<S-Right>', around(tc.goto_child), { desc = 'Goto child' })
-      vim.keymap.set({ 'n', 'v' }, '<S-Down>', around(tc.goto_next), { desc = 'Goto next' })
-      vim.keymap.set({ 'n', 'v' }, '<S-Up>', around(tc.goto_prev), { desc = '' })
-      vim.keymap.set('n', '<A-S-Down>', tc.swap_next, { desc = '' })
-      vim.keymap.set('n', '<A-S-Up>', tc.swap_prev, { desc = '' })
-    end
-  }
-
-  use {
     'L3MON4D3/LuaSnip',
     requires = { 'rafamadriz/friendly-snippets' },
     config = R('geri/config/LuaSnip').config,

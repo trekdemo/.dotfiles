@@ -47,35 +47,64 @@ local _ = require("nvim-treesitter.configs").setup {
     keymaps = {
       ['.'] = 'textsubjects-smart',
       [';'] = 'textsubjects-container-inner',
-      ['o;'] = 'textsubjects-container-outer',
+      -- ['o;'] = 'textsubjects-container-outer',
     },
   },
 
+
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   textobjects = {
+    select = {
+      enable = true,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/master/queries
+        ["am"] = { query = "@function.outer", desc = "a function definition" },
+        ["im"] = { query = "@function.inner", desc = "a function body"},
+        ["ac"] = { query = "@class.outer", desc = "a class" },
+        ["ic"] = { query = "@class.inner", desc = "inner class" },
+        ["id"] = { query = "@block.inner", desc = "inner block" },
+        ["ad"] = { query = "@block.outer", desc = "a block" },
+      },
+      -- You can choose the select mode (default is charwise 'v')
+      --
+      -- Can also be a function which gets passed a table with the keys
+      -- * query_string: eg '@function.inner'
+      -- * method: eg 'v' or 'o'
+      -- and should return the mode ('v', 'V', or '<c-v>') or a table
+      -- mapping query_strings to modes.
+      selection_modes = {
+        ['@function.outer'] = 'V',
+        ['@class.outer'] = 'V',
+      },
+    },
+
     move = {
       enable = true,
       set_jumps = true,
 
       goto_next_start = {
-        ["]]"] = "@function.outer",
-        -- ["]m"] = "@function.outer",
-        -- ["]]"] = "@class.outer",
+        ["]m"] = "@function.outer",
+        ["]c"] = "@class.outer",
+        ["]]"] = "@structure.outer",
       },
       goto_next_end = {
-        ["]["] = "@function.outer",
-        -- ["]M"] = "@function.outer",
-        -- ["]["] = "@class.outer",
+        ["]M"] = "@function.outer",
+        ["]C"] = "@class.outer",
+        ["]["] = "@structure.outer",
       },
       goto_previous_start = {
-        ["[["] = "@function.outer",
-        -- ["[m"] = "@function.outer",
-        -- ["[["] = "@class.outer",
+        ["[m"] = "@function.outer",
+        ["[c"] = "@class.outer",
+        ["[["] = "@structure.outer",
       },
       goto_previous_end = {
-        ["[]"] = "@function.outer",
-        -- ["[M"] = "@function.outer",
-        -- ["[]"] = "@class.outer",
+        ["[M"] = "@function.outer",
+        ["[C"] = "@class.outer",
+        ["[]"] = "@structure.outer",
       },
     },
   },
