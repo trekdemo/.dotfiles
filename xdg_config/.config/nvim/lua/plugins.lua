@@ -12,8 +12,6 @@ require('packer').startup(function(use)
     config = function() require("which-key").setup {} end
   }
 
-  use { "ellisonleao/gruvbox.nvim" }
-  use { "catppuccin/nvim", as = "catppuccin" }
   use { 'marko-cerovac/material.nvim' }
 
   use { "anuvyklack/windows.nvim",
