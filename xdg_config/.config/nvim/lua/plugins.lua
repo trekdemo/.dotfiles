@@ -97,7 +97,6 @@ require('packer').startup(function(use)
         sources = {
           null_ls.builtins.diagnostics.rubocop, -- gem install rubocop
           null_ls.builtins.hover.dictionary,
-          null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.diagnostics.cspell.with({
             diagnostic_config = {
               -- see :help vim.diagnostic.config()
@@ -348,7 +347,6 @@ require('packer').startup(function(use)
   }
 
   use { 'tpope/vim-fugitive', requires = { 'tpope/vim-rhubarb' } }
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -363,8 +361,8 @@ require('packer').startup(function(use)
         signcolumn = true,
         numhl = true,
       })
-      vim.keymap.set('n', '[g', function() gitsigns.prev_hunk({ preview = true }) end, { desc = ":Gitsign toggle_numhl" })
-      vim.keymap.set('n', ']g', function() gitsigns.next_hunk({ preview = true }) end, { desc = ":Gitsign toggle_numhl" })
+      vim.keymap.set('n', '[g', function() gitsigns.prev_hunk({ preview = true }) end, { desc = ":Gitsign next_hunk" })
+      vim.keymap.set('n', ']g', function() gitsigns.next_hunk({ preview = true }) end, { desc = ":Gitsign prev_hunk" })
     end,
   }
   use 'tpope/vim-surround'
