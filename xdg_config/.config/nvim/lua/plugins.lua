@@ -214,10 +214,19 @@ require('packer').startup(function(use)
           backdrop = 1,
           height = 0.9,
           width = 100,
+          options = {
+            number = false,
+            relativenumber = false,
+            cursorline = false,
+          }
         },
         plugins = {
           twilight = { enabled = false },
-          gitsigns = { enabled = true },
+          gitsigns = { enabled = false },
+          kitty = {
+            enabled = true,
+            font = "+4", -- font size increment
+          },
         },
       })
 
