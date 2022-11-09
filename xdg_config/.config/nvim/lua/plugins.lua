@@ -217,7 +217,7 @@ require('packer').startup(function(use)
           options = {
             number = false,
             relativenumber = false,
-            cursorline = false,
+            cursorline = true,
           }
         },
         plugins = {
@@ -225,7 +225,7 @@ require('packer').startup(function(use)
           gitsigns = { enabled = false },
           kitty = {
             enabled = true,
-            font = "+4", -- font size increment
+            font = "+2", -- font size increment
           },
         },
       })
