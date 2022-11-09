@@ -2,14 +2,19 @@
 require('lualine').setup{
   options = {
     globalstatus = false,
+    component_separators = { left = '│', right = '│' },
+    section_separators  = { left = '', right = ''},
     -- component_separators = { left = '\\', right = '/'},
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = '' },
+    -- component_separators= { left = '▐', right = '▌' },
+    -- section_separators = { left = '', right = '' },
+    -- section_separators = { left = '▕', right = '▏' },
+    -- section_separators = { left = '▐', right = '▌' },
+    -- section_separators = { left = '▐│', right = '│▌' },
   },
 
   tabline = {
     lualine_a = {
-      { 'mode', separator = '\\', fmt = function(str) return str:sub(1,1) end },
+      { 'mode', fmt = function(str) return str:sub(1,1) end },
       { 'vim.fs.basename(vim.fn.getcwd())' },
     },
     lualine_b = {
