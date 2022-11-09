@@ -12,7 +12,7 @@ return function()
 
   local luaDevOptions = function()
     local lsp = require('lspconfig')
-    return require("lua-dev").setup({
+    return require("neodev").setup({
       lspconfig = vim.tbl_deep_extend(
         'keep',
         defaultOptions,

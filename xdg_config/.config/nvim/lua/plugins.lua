@@ -63,7 +63,7 @@ require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
     requires = {
       { 'onsails/lspkind-nvim' },
-      { 'folke/lua-dev.nvim' },
+      { 'folke/neodev.nvim' },
       {
         'ray-x/lsp_signature.nvim',
         config = function()
