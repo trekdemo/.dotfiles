@@ -12,6 +12,23 @@ require('packer').startup(function(use)
     config = function() require("which-key").setup {} end
   }
 
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+        padding = false,
+        action_keys = {
+          open_split = { "<c-s>" }
+        },
+      }
+      vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
+        {silent = true, noremap = true}
+      )
+    end
+  }
+
   use { 'marko-cerovac/material.nvim' }
 
   use { "anuvyklack/windows.nvim",
