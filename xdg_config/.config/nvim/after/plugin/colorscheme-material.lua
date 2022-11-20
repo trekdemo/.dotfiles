@@ -17,12 +17,19 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 local mf = require('material.functions')
 vim.keymap.set('n', '<leader>mt', mf.find_style, {desc = 'Next material style'})
 
+local g = require('material.colors').git
 require('material').setup({
+  custom_highlights = {
+    -- These highlight groups show up in the fugitive windows
+    -- It looks better to have colored text instead of colored background
+    diffAdded     = { fg = g.added, reverse = false },
+    diffRemoved   = { fg = g.removed, reverse = false },
+  },
   contrast = {
     terminal = false, -- Enable contrast for the built-in terminal
     sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
     floating_windows = true, -- Enable contrast for floating windows
-    cursor_line = true, -- Enable darker background for the cursor line
+    cursor_line = false, -- Enable darker background for the cursor line
     non_current_windows = false, -- Enable darker background for non-current windows
     filetypes = { -- Specify which windows get the contrasted (darker) background
       'netrw',
@@ -32,15 +39,18 @@ require('material').setup({
       'qf',
       'OUTLINE',
       'fugitive',
+      'git',
       'gitcommit',
       'gitrebase',
+      'Trouble',
+      'neotest-summary',
     },
   },
 
   styles = { -- Give comments style such as bold, italic, underline etc.
-    comments = { --[[ italic = true ]] },
+    comments = { italic = true },
     strings = { --[[ bold = true ]] },
-    keywords = { --[[ italic = true ]] },
+    keywords = { italic = true },
     functions = { --[[ bold = true, undercurl = true ]] },
     variables = {},
     operators = {},
@@ -79,8 +89,6 @@ require('material').setup({
   --   lighter = false, -- Enable higher contrast text for lighter style
   --   darker = false -- Enable higher contrast text for darker style
   -- },
-
-  lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
 })
 
 vim.g.material_style = "darker"
