@@ -4,7 +4,6 @@
 format = """
 $time\
 $cmd_duration\
-$line_break\
 $username\
 $hostname\
 $directory\
@@ -15,12 +14,13 @@ $line_break\
 $character"""
 
 [time]
-disabled = false
-format = "[ $time ]($style)"
+disabled = true
+format = "[ $time]($style)"
 style = "bright-yellow"
 
 [cmd_duration]
-format = "[ $duration]($style) "
+disabled = true
+format = "[ $duration]($style)"
 style = "dimmed yellow"
 show_milliseconds = true
 min_time = 0
