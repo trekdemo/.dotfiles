@@ -37,10 +37,10 @@ vim.keymap.set({ 'n', 'v', 'o' }, '<Home>', '^')
 vim.keymap.set({ 'n', 'v', 'o' }, '<End>', '$')
 
 -- Have relative jumps in the jump list (bigger than 5)
-vim.keymap.set('n', 'j', [[(v:count > 5 ? "m'" . v:count : "") . 'gj']], { expr = true })
-vim.keymap.set('n', 'k', [[(v:count > 5 ? "m'" . v:count : "") . 'gk']], { expr = true })
-vim.keymap.set('n', '<Up>', 'gk')
-vim.keymap.set('n', '<Down>', 'gj')
+vim.keymap.set('n', 'j', [[(v:count > 5 ? "m'" . v:count : "") . 'gj']], { expr = true, silent = true })
+vim.keymap.set('n', 'k', [[(v:count > 5 ? "m'" . v:count : "") . 'gk']], { expr = true, silent = true })
+vim.keymap.set('n', '<Up>', 'gk', { silent = true })
+vim.keymap.set('n', '<Down>', 'gj', { silent = true })
 
 -- Undo breakpoints
 vim.keymap.set('i', ',', ',<c-g>u')
