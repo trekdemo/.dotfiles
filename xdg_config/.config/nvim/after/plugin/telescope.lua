@@ -67,6 +67,14 @@ vim.keymap.set('n', '<leader>fh', builtins.help_tags, { desc = "Telescope help_t
 vim.keymap.set('n', '<leader>fm', builtins.keymaps, { desc = "Telescope keymaps" })
 vim.keymap.set('n', '<leader>fv', function() builtins.find_files({ cwd = "~/.dotfiles/", hidden = true }) end,
   { desc = "Find in .config" })
+vim.keymap.set('n', '<leader>fg', function()
+  local gem_paths = vim.split(os.getenv('GEM_PATH'), ':', true)
+  local search_dirs = vim.tbl_map(function (path)
+    return path .. '/gems'
+  end, gem_paths)
+  -- builtins.live_grep({search_dirs = gem_paths, type = 'ruby'})
+  builtins.find_files({search_dirs = search_dirs})
+end, { desc = "Telescope Find in gems" })
 
 vim.keymap.set('n', '<leader>gS', function() builtins.git_status({ layout_config = { height = 0.9 } }) end,
   { desc = "Telescope git_status" })
