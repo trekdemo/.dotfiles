@@ -65,7 +65,7 @@ vim.keymap.set('n', '<leader>ff', builtins.builtin, { desc = "Telescope builtin"
 vim.keymap.set('n', '<leader>fe', function() builtins.symbols(cursor()) end, { desc = "Telescope symbols" })
 vim.keymap.set('n', '<leader>fh', builtins.help_tags, { desc = "Telescope help_tags" })
 vim.keymap.set('n', '<leader>fm', builtins.keymaps, { desc = "Telescope keymaps" })
-vim.keymap.set('n', '<leader>fv', function() builtins.find_files({ cwd = "~/.dotfiles/", hidden = true }) end,
+vim.keymap.set('n', '<leader>fv', function() builtins.find_files({ cwd = "~/.config/", hidden = true }) end,
   { desc = "Find in .config" })
 vim.keymap.set('n', '<leader>fg', function()
   local gem_paths = vim.split(os.getenv('GEM_PATH'), ':', true)

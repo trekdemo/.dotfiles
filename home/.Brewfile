@@ -43,16 +43,10 @@ brew 'shellcheck'
 brew 'yarn'
 
 # ------------------------------------------------------------------------------
-# HashiCorp
-# ------------------------------------------------------------------------------
-# tap 'hashicorp/tap'
-# brew 'hashicorp/tap/terraform-ls'
-# brew 'vault'
-
-# ------------------------------------------------------------------------------
 # Apps for work
 # ------------------------------------------------------------------------------
-brew 'derailed/k9s/k9s'
+tap 'derailed/k9s'
+brew 'k9s'
 # cask 'google-cloud-sdk'
 # cask 'slack'
 # cask 'google-chrome'

@@ -1,10 +1,10 @@
 IMAGE_NAME_VERSION="dev-shell:latest"
 
 link:
-	stow --target ~ dev executables git tmux xdg_config
+	stow --target ~ home
 
 unlink:
-	stow --delete --target ~ dev executables git tmux xdg_config
+	stow --delete --target ~ home
 
 brew_install:
 	brew bundle install --global
