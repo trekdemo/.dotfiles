@@ -36,8 +36,8 @@ require('packer').startup(function(use)
     run = 'make install',
     config = function ()
       vim.keymap.set('n', '<C-h>', function ()
-        bang = false
-        query = ''
+        local bang = false
+        local query = ''
         require('dash').search(bang, query)
       end)
     end
