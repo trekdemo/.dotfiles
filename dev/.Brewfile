@@ -53,7 +53,7 @@ brew 'yarn'
 # Apps for work
 # ------------------------------------------------------------------------------
 brew 'derailed/k9s/k9s'
-cask 'google-cloud-sdk'
+# cask 'google-cloud-sdk'
 # cask 'slack'
 # cask 'google-chrome'
 # cask 'viscosity'
@@ -67,6 +67,7 @@ cask 'rectangle'
 # Apps for personal and productivity use
 # ------------------------------------------------------------------------------
 cask 'obsidian'
+cask 'raycast'
 # cask 'launchbar'
 # cask 'choosy'
 mas 'Things 3', id: 904280696
