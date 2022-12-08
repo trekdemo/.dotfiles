@@ -256,7 +256,7 @@ require('packer').startup(function(use)
           gitsigns = { enabled = false },
           kitty = {
             enabled = true,
-            font = "+2", -- font size increment
+            font = "+1", -- font size increment
           },
         },
       })
