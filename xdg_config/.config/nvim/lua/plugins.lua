@@ -348,9 +348,9 @@ require('packer').startup(function(use)
           unknown = "",
         },
         status = {
-          enabled = true,
+          enabled = false,
           signs = false,
-          virtual_text = true
+          virtual_text = false
         },
         floating = {
           max_height = 0.8,
@@ -367,8 +367,12 @@ require('packer').startup(function(use)
       vim.keymap.set('n', '<leader>tx', neotest.run.stop, { desc = 'Test: Stop' })
       vim.keymap.set('n', '<leader>ta', neotest.run.attach, { desc = 'Test: Attach' })
       vim.keymap.set('n', '<leader>to', function()
-        neotest.output.open({ enter = true, short = true })
+        neotest.output.open({ enter = false, short = true })
       end, { desc = 'Test: Open output' })
+
+      vim.keymap.set('n', '<leader>tq', function()
+        vim.diagnostic.setqflist({ns = 'neotest'})
+      end, { desc = 'Test: Populate qfwindow' })
 
       vim.keymap.set('n', '<leader>tn', neotest.run.run, { desc = 'Test: Nearest' })
       vim.keymap.set('n', '<leader>tf', function()
