@@ -115,6 +115,7 @@ require('packer').startup(function(use)
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     run = [[
       npm install -g cspell
+      npm install -g prettier
       brew install shellharden shfmt shellcheck;
       brew install hadolint;
       brew install actionlint
@@ -126,16 +127,16 @@ require('packer').startup(function(use)
         sources = {
           null_ls.builtins.diagnostics.rubocop, -- gem install rubocop
           null_ls.builtins.hover.dictionary,
-          null_ls.builtins.diagnostics.cspell.with({
-            diagnostic_config = {
-              -- see :help vim.diagnostic.config()
-              underline = true,
-              virtual_text = false,
-              signs = false,
-              update_in_insert = false,
-              severity_sort = true,
-            },
-          }), -- npm install -g cspell
+          -- null_ls.builtins.diagnostics.cspell.with({
+          --   diagnostic_config = {
+          --     -- see :help vim.diagnostic.config()
+          --     underline = true,
+          --     virtual_text = false,
+          --     signs = false,
+          --     update_in_insert = false,
+          --     severity_sort = true,
+          --   },
+          -- }), -- npm install -g cspell
           null_ls.builtins.diagnostics.actionlint, -- brew install actionlint
           -- shell
           null_ls.builtins.diagnostics.shellcheck,
@@ -143,6 +144,7 @@ require('packer').startup(function(use)
           null_ls.builtins.formatting.shfmt,
           -- dockerfile
           null_ls.builtins.diagnostics.hadolint,
+          null_ls.builtins.formatting.prettier,
         },
       })
     end,
