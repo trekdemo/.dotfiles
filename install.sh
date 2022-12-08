@@ -21,11 +21,11 @@ brew bundle install --global
 # Install necessary python modules
 pip3 install --user --requirement requirements.txt
 
-# TODO: Install terminfo from Alacritty
-curl https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info --output alacritty.info --silent
-echo "Enter password for \`sudo tic -e alacritty,alacritty-direct alacritty.info\`"
-sudo tic -e alacritty,alacritty-direct alacritty.info
-rm alacritty.info
+# TODO: Install terminfo from Kitty
+# curl https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info --output alacritty.info --silent
+# echo "Enter password for \`sudo tic -e alacritty,alacritty-direct alacritty.info\`"
+# sudo tic -e alacritty,alacritty-direct alacritty.info
+# rm alacritty.info
 
 # Install tmp the plugin manager for tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
