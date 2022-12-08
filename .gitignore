@@ -1,6 +1,7 @@
 !/home/.config/fish/fisher-pkg/fishfile
 !/terminfo/.terminfo/src
 /.DS_Store
+/home/.config/raycast/extensions
 /home/.config/cliptic/*
 /home/.config/configstore
 /home/.config/fish/fish_history
