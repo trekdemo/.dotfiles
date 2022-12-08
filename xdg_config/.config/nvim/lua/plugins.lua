@@ -31,6 +31,18 @@ require('packer').startup(function(use)
 
   use { 'marko-cerovac/material.nvim' }
 
+  use({
+    'mrjones2014/dash.nvim',
+    run = 'make install',
+    config = function ()
+      vim.keymap.set('n', '<C-h>', function ()
+        bang = false
+        query = ''
+        require('dash').search(bang, query)
+      end)
+    end
+  })
+
   use { "anuvyklack/windows.nvim",
     requires = {
       "anuvyklack/middleclass",
