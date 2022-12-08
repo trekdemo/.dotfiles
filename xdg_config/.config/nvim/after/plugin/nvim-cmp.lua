@@ -16,7 +16,7 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'path' },
     { name = 'treesitter' },
-    { name = 'buffer', keyword_length = 6 },
+    { name = 'buffer', keyword_length = 3 },
   }),
 
   -- Set configuration for specific filetype.
