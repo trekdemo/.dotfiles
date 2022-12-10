@@ -3,6 +3,10 @@ if ! (( $+commands[brew] )); then
 fi
 
 local installation_path="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+if [[ ! -d "$installation_path" ]]; then
+  return
+fi
+
 source "$installation_path/path.zsh.inc"
 
 for exe in $(ls "${installation_path}/bin"); do
