@@ -23,7 +23,7 @@ cask 'gpg-suite'
 brew 'htop'
 brew 'httpie'
 brew 'imagemagick@6', link: true
-brew 'ranger'
+brew 'nnn'
 brew 'gh'
 brew 'kubectx'
 brew 'helm'
