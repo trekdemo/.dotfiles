@@ -66,6 +66,7 @@
   p = push
   pf = push --force-with-lease
   s = status --short --branch
+  rom = rebase origin/master
 
   branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
   collaborators = shortlog -n -s --no-merges
