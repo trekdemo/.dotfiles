@@ -447,4 +447,11 @@ require('packer').startup(function(use)
     end,
     requires = { 'telescope.nvim' },
   }
+
+  use {
+    'mbbill/undotree',
+    config = function ()
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+    end
+  }
 end)
