@@ -2,6 +2,10 @@ autoload -Uz edit-command-line
 
 bindkey -e
 
+exit_zsh() { exit }
+zle -N exit_zsh
+bindkey '^X' exit_zsh
+
 # allow ctrl-p, ctrl-n for navigate history (standard behaviour)
 bindkey '^P' up-history
 bindkey '^N' down-history
