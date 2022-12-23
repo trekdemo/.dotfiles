@@ -299,13 +299,7 @@ require('packer').startup(function(use)
   use 'AndrewRadev/splitjoin.vim'
 
   use 'tmux-plugins/vim-tmux' -- Plugin for .tmux.conf ftplugin
-
-  use {
-    'alexghergh/nvim-tmux-navigation',
-    config = R('geri/config/nvim-tmux-navigation').config,
-    keys = { '<A-h>', '<A-j>', '<A-k>', '<A-l>',
-      '<A-Left>', '<A-Down>', '<A-Up>', '<A-Right>' },
-  }
+  use 'alexghergh/nvim-tmux-navigation'
 
   use {
     'vim-test/vim-test',
