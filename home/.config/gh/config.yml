@@ -9,6 +9,7 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     show: pr view -w
+    prs: pr list
     clone: repo clone
     # co: pr checkout
     co: '!id="$(gh pr list -L100 | fzf | cut -f1)"; [ -n "$id" ] && gh pr checkout "$id"'
