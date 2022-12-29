@@ -50,8 +50,8 @@ require('material').setup({
   styles = { -- Give comments style such as bold, italic, underline etc.
     comments = { italic = true },
     strings = { --[[ bold = true ]] },
-    keywords = { italic = true },
-    functions = { --[[ bold = true, undercurl = true ]] },
+    keywords = { bold = true },
+    functions = { bold = true },
     variables = {},
     operators = {},
     types = {},
