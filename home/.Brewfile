@@ -74,5 +74,4 @@ mas 'Session', id: 1521432881
 # Fonts
 # ------------------------------------------------------------------------------
 tap 'homebrew/cask-fonts'
-cask 'font-fira-code'
 cask 'font-victor-mono-nerd-font'
