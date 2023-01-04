@@ -1,4 +1,16 @@
--- vim.cmd.packadd('packer.nvim')
+local vim = vim
+
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
   -- Packer can manage itself
@@ -29,7 +41,7 @@ require('packer').startup(function(use)
     end
   }
 
-  use { 'marko-cerovac/material.nvim' }
+  use 'marko-cerovac/material.nvim'
 
   use({
     'mrjones2014/dash.nvim',
@@ -51,7 +63,12 @@ require('packer').startup(function(use)
     config = function()
       vim.o.winwidth = 10
       vim.o.winminwidth = 10
-      require('windows').setup()
+      require('windows').setup({
+        ignore = {
+          buftype = { "quickfix" },
+          filetype = { "Neotest Summary" }
+        },
+      })
 
       vim.keymap.set('n', '<A-Enter>', '<Cmd>WindowsMaximize<CR>')
     end
@@ -342,9 +359,9 @@ require('packer').startup(function(use)
           unknown = "",
         },
         status = {
-          enabled = false,
+          enabled = true,
           signs = false,
-          virtual_text = false
+          virtual_text = true
         },
         floating = {
           max_height = 0.8,
@@ -419,7 +436,7 @@ require('packer').startup(function(use)
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup {}
+      require("todo-comments").setup({})
       vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>')
     end
   }
@@ -445,7 +462,7 @@ require('packer').startup(function(use)
   use {
     'mbbill/undotree',
     config = function ()
-      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+      vim.keymap.set('n', '<leader>u', function() vim.cmd('UndotreeToggle') end)
     end
   }
 end)
