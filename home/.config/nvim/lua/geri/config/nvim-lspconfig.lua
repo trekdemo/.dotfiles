@@ -10,22 +10,20 @@ return function()
     on_attach = require('geri.config.lsp-on-attach'),
   }
 
-  local luaDevOptions = function()
-    local lsp = require('lspconfig')
-    return require("neodev").setup({
-      lspconfig = vim.tbl_deep_extend(
-        'keep',
-        defaultOptions,
-        { root_dir = lsp.util.root_pattern('.nvim-root') }
-      )
-    })
-  end
-
   local config = function()
-    local lsp = require('lspconfig')
+    -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+    require("neodev").setup({})
 
     -- Lua gets some additional fields
-    lsp.sumneko_lua.setup(luaDevOptions())
+    local lsp = require('lspconfig')
+    lsp.sumneko_lua.setup({
+      settings = {
+        Lua = {
+          diagnostics = { globals = {  'vim' },
+          completion = { callSnippet = "Replace" }
+        }
+      }
+    }})
 
     -- Here's the list of available LSP servers
     -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
