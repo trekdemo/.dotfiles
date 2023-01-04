@@ -1,5 +1,3 @@
-local vim = vim
-
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -10,7 +8,7 @@ local ensure_packer = function()
   end
   return false
 end
-local packer_bootstrap = ensure_packer()
+ensure_packer()
 
 require('packer').startup(function(use)
   -- Packer can manage itself
@@ -334,66 +332,66 @@ require('packer').startup(function(use)
     }
   }
 
-  use {
-    'nvim-neotest/neotest',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim',
-      'olimorris/neotest-rspec',
-      'haydenmeade/neotest-jest',
-    },
-    config = function()
-      local neotest = require("neotest")
-      neotest.setup({
-        adapters = {
-          require('neotest-rspec')({ rspec_cmd = "bin/rspec" }),
-          require('neotest-jest'),
-        },
-        icons = {
-          passed = "",
-          running = "羽",
-          running_animated = { "◐", "◓", "◑", "◒" },
-          failed = "",
-          skipped = "",
-          unknown = "",
-        },
-        status = {
-          enabled = true,
-          signs = false,
-          virtual_text = true
-        },
-        floating = {
-          max_height = 0.8,
-          max_width = 0.9,
-          border = require('geri.border').thick
-        }
-      })
+  -- use {
+  --   'nvim-neotest/neotest',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-treesitter/nvim-treesitter',
+  --     'antoinemadec/FixCursorHold.nvim',
+  --     'olimorris/neotest-rspec',
+  --     'haydenmeade/neotest-jest',
+  --   },
+  --   config = function()
+  --     local neotest = require("neotest")
+  --     neotest.setup({
+  --       adapters = {
+  --         require('neotest-rspec')({ rspec_cmd = "bin/rspec" }),
+  --         require('neotest-jest'),
+  --       },
+  --       icons = {
+  --         passed = "",
+  --         running = "羽",
+  --         running_animated = { "◐", "◓", "◑", "◒" },
+  --         failed = "",
+  --         skipped = "",
+  --         unknown = "",
+  --       },
+  --       status = {
+  --         enabled = true,
+  --         signs = false,
+  --         virtual_text = true
+  --       },
+  --       floating = {
+  --         max_height = 0.8,
+  --         max_width = 0.9,
+  --         border = require('geri.border').thick
+  --       }
+  --     })
 
-      vim.keymap.set('n', '[t', function () neotest.jump.prev({status = 'failed'}) end, { silent = true })
-      vim.keymap.set('n', ']t', function () neotest.jump.next({status = 'failed'}) end, { silent = true })
+  --     vim.keymap.set('n', '[t', function () neotest.jump.prev({status = 'failed'}) end, { silent = true })
+  --     vim.keymap.set('n', ']t', function () neotest.jump.next({status = 'failed'}) end, { silent = true })
 
-      vim.keymap.set('n', '<leader>tt', neotest.summary.toggle, { desc = 'Test: Toggle summary' })
-      vim.keymap.set('n', '<leader>tl', neotest.run.run_last, { desc = 'Test: Run last' })
-      vim.keymap.set('n', '<leader>tx', neotest.run.stop, { desc = 'Test: Stop' })
-      vim.keymap.set('n', '<leader>ta', neotest.run.attach, { desc = 'Test: Attach' })
-      vim.keymap.set('n', '<leader>to', function()
-        neotest.output.open({ enter = false, short = true })
-      end, { desc = 'Test: Open output' })
+  --     vim.keymap.set('n', '<leader>tt', neotest.summary.toggle, { desc = 'Test: Toggle summary' })
+  --     vim.keymap.set('n', '<leader>tl', neotest.run.run_last, { desc = 'Test: Run last' })
+  --     vim.keymap.set('n', '<leader>tx', neotest.run.stop, { desc = 'Test: Stop' })
+  --     vim.keymap.set('n', '<leader>ta', neotest.run.attach, { desc = 'Test: Attach' })
+  --     vim.keymap.set('n', '<leader>to', function()
+  --       neotest.output.open({ enter = false, short = true })
+  --     end, { desc = 'Test: Open output' })
 
-      vim.keymap.set('n', '<leader>tq', function()
-        vim.diagnostic.setqflist({ns = 'neotest'})
-      end, { desc = 'Test: Populate qfwindow' })
+  --     vim.keymap.set('n', '<leader>tq', function()
+  --       vim.diagnostic.setqflist({ns = 'neotest'})
+  --     end, { desc = 'Test: Populate qfwindow' })
 
-      vim.keymap.set('n', '<leader>tn', neotest.run.run, { desc = 'Test: Nearest' })
-      vim.keymap.set('n', '<leader>tf', function()
-        neotest.run.run(vim.fn.expand("%"))
-      end, { desc = 'Test: Current file' })
-      vim.keymap.set('n', '<leader>ts', function()
-        neotest.run.run(vim.fn.getcwd())
-      end, { desc = 'Test: Suite' })
-    end
-  }
+  --     vim.keymap.set('n', '<leader>tn', neotest.run.run, { desc = 'Test: Nearest' })
+  --     vim.keymap.set('n', '<leader>tf', function()
+  --       neotest.run.run(vim.fn.expand("%"))
+  --     end, { desc = 'Test: Current file' })
+  --     vim.keymap.set('n', '<leader>ts', function()
+  --       neotest.run.run(vim.fn.getcwd())
+  --     end, { desc = 'Test: Suite' })
+  --   end
+  -- }
 
   use { 'tpope/vim-fugitive', requires = { 'tpope/vim-rhubarb' } }
 
@@ -432,14 +430,14 @@ require('packer').startup(function(use)
 
   use 'tweekmonster/spellrotate.vim'
 
-  use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup({})
-      vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>')
-    end
-  }
+  -- use {
+  --   "folke/todo-comments.nvim",
+  --   requires = "nvim-lua/plenary.nvim",
+  --   config = function()
+  --     require("todo-comments").setup({})
+  --     vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>')
+  --   end
+  -- }
 
   -- use {
   --   'suketa/nvim-dap-ruby',
@@ -462,7 +460,7 @@ require('packer').startup(function(use)
   use {
     'mbbill/undotree',
     config = function ()
-      vim.keymap.set('n', '<leader>u', function() vim.cmd('UndotreeToggle') end)
+      vim.keymap.set('n', '<leader>u', ':UndotreeToggle<cr>')
     end
   }
 end)
