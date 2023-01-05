@@ -285,8 +285,7 @@ require('packer').startup(function(use)
         config = function()
           local tw = require("twilight")
 
-          -- FIXME: This is shadowed by TestLast
-          -- vim.keymap.set('n', '<leader>tl', tw.toggle, {desc = 'Toggle Twilight'})
+          vim.keymap.set('n', '<leader>tw', tw.toggle, {desc = 'Toggle Twilight'})
 
           tw.setup({
             dimming = { alpha = 0.4 },
