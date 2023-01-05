@@ -430,14 +430,14 @@ require('packer').startup(function(use)
 
   use 'tweekmonster/spellrotate.vim'
 
-  -- use {
-  --   "folke/todo-comments.nvim",
-  --   requires = "nvim-lua/plenary.nvim",
-  --   config = function()
-  --     require("todo-comments").setup({})
-  --     vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>')
-  --   end
-  -- }
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup({})
+      vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>')
+    end
+  }
 
   -- use {
   --   'suketa/nvim-dap-ruby',
