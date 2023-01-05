@@ -322,10 +322,9 @@ require('packer').startup(function(use)
       {
         'tpope/vim-dispatch',
         config = function ()
-          vim.keymap.set('n', '<M-t>', ':Start zsh<CR>')
-          vim.keymap.set('n', '<M-S-r>', ':Start bin/rails console<CR>')
-          vim.keymap.set('n', '<M-S-m>', ':Start rails-mycli<CR>')
-          vim.keymap.set('n', '<M-S-g>', ':Start tig<CR>')
+          vim.keymap.set('n', "'r", ':Start bundle exec rails console<CR>')
+          vim.keymap.set('n', "'m", ':Start rails-mycli<CR>')
+          vim.keymap.set('n', "'g", ':Start tig<CR>')
         end
       },
     }
