@@ -1,4 +1,7 @@
 nnoremap <buffer> q :q<CR>
-" Open quickfix always on the bottom
-wincmd J
+
 setlocal wrap
+setlocal nonumber
+setlocal signcolumn=yes
+
+wincmd J " Open quickfix always on the bottom
