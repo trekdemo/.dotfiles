@@ -310,7 +310,11 @@ require('packer').startup(function(use)
   use { 'godlygeek/tabular', ft = { 'markdown' } }
   use { 'towolf/vim-helm' }
 
-  use 'AndrewRadev/splitjoin.vim'
+  use({
+    'ckolkey/ts-node-action',
+    requires = { 'nvim-treesitter' },
+    -- after/plugin/ts-node-action.lua
+  })
 
   use 'tmux-plugins/vim-tmux' -- Plugin for .tmux.conf ftplugin
   use 'alexghergh/nvim-tmux-navigation'
