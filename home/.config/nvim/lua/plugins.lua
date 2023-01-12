@@ -395,8 +395,6 @@ require('packer').startup(function(use)
   --   end
   -- }
 
-  use { 'tpope/vim-fugitive', requires = { 'tpope/vim-rhubarb' } }
-
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -414,11 +412,12 @@ require('packer').startup(function(use)
       vim.keymap.set('n', ']g', function() gitsigns.next_hunk({ preview = true }) end, { desc = ":Gitsign prev_hunk" })
     end,
   }
+  use 'tpope/vim-eunuch'
+  use 'tpope/vim-ragtag'
+  use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
-  use 'tpope/vim-ragtag'
-  use 'tpope/vim-vinegar'
-  use 'tpope/vim-repeat'
+  use { 'tpope/vim-fugitive', requires = { 'tpope/vim-rhubarb' } }
   use {
     'tpope/vim-commentary',
     config = function()
@@ -428,7 +427,21 @@ require('packer').startup(function(use)
       vim.keymap.set({ 'i' }, '<C-/>', '<Esc>:Commentary<CR>A')
     end,
   }
-  use 'tpope/vim-eunuch'
+  -- use 'tpope/vim-vinegar'
+  use {
+    'stevearc/oil.nvim',
+    config = function()
+      require('oil').setup({
+        view_options = { show_hidden = true },
+        float = {
+          padding = 10,
+          border = require('geri.border').thick,
+        },
+        win_options = { winblend = 1 },
+      })
+      vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+    end
+  }
 
   use 'tweekmonster/spellrotate.vim'
 
@@ -448,16 +461,6 @@ require('packer').startup(function(use)
   --     require('dap-ruby').setup()
   --   end
   -- }
-
-  use {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      local ext = require('telescope').load_extension('projects')
-      require("project_nvim").setup {}
-      vim.keymap.set('n', '<leader>fp', ext.projects, { desc = 'Find Projects' })
-    end,
-    requires = { 'telescope.nvim' },
-  }
 
   use {
     'mbbill/undotree',
