@@ -64,7 +64,7 @@ require('packer').startup(function(use)
       require('windows').setup({
         ignore = {
           buftype = { "quickfix" },
-          filetype = { "Neotest Summary" }
+          filetype = { "Neotest Summary", 'fugitiveblame' }
         },
       })
 
