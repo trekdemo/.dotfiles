@@ -261,8 +261,8 @@ require('packer').startup(function(use)
           height = 0.9,
           width = 100,
           options = {
-            number = false,
-            relativenumber = false,
+            number = true,
+            relativenumber = true,
             cursorline = true,
           }
         },
