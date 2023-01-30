@@ -251,6 +251,22 @@ require('packer').startup(function(use)
   } -- Better quickfix window
 
   use {
+    "shortcuts/no-neck-pain.nvim",
+    tag = "*",
+    config = function ()
+      local nnp = require("no-neck-pain")
+      nnp.setup({
+        width = 110,
+        -- buffers = { right = { enabled = false, }, },
+      })
+      -- Toggle automatic window  resizing too
+      vim.keymap.set('n', '<leader>n', function ()
+        vim.cmd('WindowsToggleAutowidth')
+        nnp.toggle()
+      end)
+    end
+  }
+  use {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
     keys = { '<leader>z' },
