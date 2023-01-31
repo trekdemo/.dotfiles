@@ -54,7 +54,7 @@ end
 local builtins = require('telescope.builtin')
 vim.keymap.set('n', '<C-b>', builtins.buffers, { desc = "Telescope buffers" })
 vim.keymap.set('n', '<C-g>', function() builtins.live_grep({ hidden = true }) end, { desc = "Telescope live_grep" })
-vim.keymap.set('n', '<C-p>', builtins.find_files, { desc = "Telescope find_files" })
+vim.keymap.set('n', '<C-p>', builtins.git_files, { desc = "Telescope find_files" })
 vim.keymap.set('n', '<C-q>', builtins.quickfix, { desc = "Telescope quickfix" })
 vim.keymap.set('n', '<C-t>', function() builtins.treesitter(cursor({ layout_config = { height = 0.4 } })) end,
   { desc = "Telescope treesitter" })
