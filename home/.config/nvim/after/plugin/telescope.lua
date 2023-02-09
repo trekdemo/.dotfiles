@@ -67,7 +67,17 @@ vim.keymap.set('n', '<leader>fh', builtins.help_tags, { desc = "Telescope help_t
 vim.keymap.set('n', '<leader>fm', builtins.keymaps, { desc = "Telescope keymaps" })
 vim.keymap.set('n', '<leader>fv', function() builtins.find_files({ cwd = "~/.config/", hidden = true }) end,
   { desc = "Find in .config" })
-vim.keymap.set('n', '<leader>fg', function()
+
+local find_rails_files = function (class_type)
+  return function ()
+    builtins.find_files({search_dirs = {'./app/' .. class_type}})
+  end
+end
+
+vim.keymap.set('n', '<leader>rc', find_rails_files('controllers'), { desc = "Find Rails Controllers" })
+vim.keymap.set('n', '<leader>rm', find_rails_files('models'), { desc = "Find Rails Models" })
+vim.keymap.set('n', '<leader>rv', find_rails_files('views'), { desc = "Find Rails Views" })
+vim.keymap.set('n', '<leader>rg', function()
   local gem_paths = vim.split(os.getenv('GEM_PATH'), ':', true)
   local search_dirs = vim.tbl_map(function (path)
     return path .. '/gems'
