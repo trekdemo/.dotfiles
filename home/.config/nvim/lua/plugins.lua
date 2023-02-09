@@ -256,7 +256,7 @@ require('packer').startup(function(use)
     config = function ()
       local nnp = require("no-neck-pain")
       nnp.setup({
-        width = 110,
+        width = 120,
         -- buffers = { right = { enabled = false, }, },
       })
       -- Toggle automatic window  resizing too
