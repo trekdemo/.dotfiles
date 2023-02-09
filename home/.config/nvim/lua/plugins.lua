@@ -454,6 +454,10 @@ require('packer').startup(function(use)
           border = require('geri.border').thick,
         },
         win_options = { winblend = 1 },
+        keymaps = {
+          -- I use this mapping to trigger fuzzy file finder
+          ["<C-p>"] = ':Telescope git_files<cr>',
+        },
       })
       vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
     end
