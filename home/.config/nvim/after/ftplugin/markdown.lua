@@ -1,4 +1,4 @@
-vim.g.markdown_fenced_languages = { 'yaml', 'ruby', 'json', 'sh', 'javascript', 'diff', 'python' }
+vim.g.markdown_fenced_languages = { 'yaml', 'ruby', 'json', 'sh', 'javascript', 'diff', 'python', 'mermaid' }
 
 local util = require('utils')
 local cmp = util.prequire("cmp")
