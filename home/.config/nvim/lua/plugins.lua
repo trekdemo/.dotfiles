@@ -79,7 +79,7 @@ require('packer').startup(function(use)
         use_treesitter = true,
         char = "│",
         show_current_context = true,
-        filetype_exclude = { "help" },
+        filetype_exclude = { "help", "markdown" },
         buftype_exclude = { "terminal" },
         show_trailing_blankline_indent = false,
         show_first_indent_level = false,
