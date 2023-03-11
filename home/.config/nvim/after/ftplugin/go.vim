@@ -1,5 +1,5 @@
-nmap <buffer> <leader>m <Plug>(go-test)
-nmap <buffer> <leader>b <Plug>(go-build)
-nmap <buffer> <leader>r <Plug>(go-run)
+inoremap <buffer> <c-l> <space>:=<space>
 
-set foldmethod=syntax
+" Disable the mapping of K to :GoDoc
+" https://github.com/fatih/vim-go/issues/140
+let g:go_doc_keywordprg_enabled = 0
