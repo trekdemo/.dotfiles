@@ -5,3 +5,5 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require "geri.globals"
+
+vim.cmd [[colorscheme material]]

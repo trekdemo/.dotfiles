@@ -443,25 +443,8 @@ require('packer').startup(function(use)
       vim.keymap.set({ 'i' }, '<C-/>', '<Esc>:Commentary<CR>A')
     end,
   }
-  -- use 'tpope/vim-vinegar'
-  use {
-    'stevearc/oil.nvim',
-    config = function()
-      require('oil').setup({
-        view_options = { show_hidden = true },
-        float = {
-          padding = 10,
-          border = require('geri.border').thick,
-        },
-        win_options = { winblend = 1 },
-        keymaps = {
-          -- I use this mapping to trigger fuzzy file finder
-          ["<C-p>"] = ':Telescope git_files<cr>',
-        },
-      })
-      vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
-    end
-  }
+
+  use 'tpope/vim-vinegar'
 
   use 'tweekmonster/spellrotate.vim'
 
