@@ -60,6 +60,7 @@ vim.keymap.set('n', '<C-t>', function() builtins.treesitter(cursor({ layout_conf
   { desc = "Telescope treesitter" })
 
 vim.keymap.set('n', '<leader>fc', builtins.commands, { desc = "Telescope commands" })
+vim.keymap.set('n', '<leader>fs', builtins.lsp_workspace_symbols, { desc = "Telescope LSP Symbols" })
 vim.keymap.set('n', '<leader>fd', builtins.diagnostics, { desc = "Telescope diagnostics" })
 vim.keymap.set('n', '<leader>ff', builtins.builtin, { desc = "Telescope builtin" })
 vim.keymap.set('n', '<leader>fe', function() builtins.symbols(cursor()) end, { desc = "Telescope symbols" })
