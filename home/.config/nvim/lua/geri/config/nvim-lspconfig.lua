@@ -16,7 +16,7 @@ return function()
 
     -- Lua gets some additional fields
     local lsp = require('lspconfig')
-    lsp.sumneko_lua.setup({
+    lsp.lua_ls.setup({
       settings = {
         Lua = {
           diagnostics = { globals = {  'vim' },
