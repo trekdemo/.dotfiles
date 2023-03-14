@@ -23,6 +23,15 @@ require('packer').startup(function(use)
   }
 
   use {
+    'RRethy/vim-illuminate',
+    config = function ()
+      require('illuminate').configure({
+        under_cursor = false,
+      })
+      vim.cmd("hi link IlluminatedWordRead cursorline")
+    end
+  }
+  use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
