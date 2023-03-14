@@ -60,6 +60,7 @@ vim.keymap.set('i', '}', '}<c-g>u')
 
 -- Open location-list and quickfix list
 vim.keymap.set('n', '<leader>lo', ':lwindow<CR>')
+vim.keymap.set('n', '<leader>lc', ':lclose<CR>')
 vim.keymap.set('n', '<leader>co', ':copen<CR>')
 vim.keymap.set('n', '<leader>cc', ':cclose<CR>')
 
