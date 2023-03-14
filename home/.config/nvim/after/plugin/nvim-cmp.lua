@@ -1,6 +1,16 @@
 local cmp = require'cmp'
 local lspkind = require'lspkind'
 
+-- Accept currently selected item. Set `select` to `false` to only confirm
+-- explicitly selected items.
+my_confirm =  function(fallback)
+  if cmp.visible() then
+    cmp.confirm({select = true})
+  else
+    fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
+  end
+end
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -8,7 +18,9 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<C-y>'] = my_confirm,
+    ['<C-f>'] = my_confirm,
+    -- ['<CR>'] = my_confirm,
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -31,10 +43,10 @@ cmp.setup({
 
   formatting = {
     format = lspkind.cmp_format({
-      with_text = true,
+      mode = 'text',
       menu = {
-        treesitter = "[tree]",
-        path = "[path]",
+        treesitter = "[TS]",
+        path = "[PATH]",
         spell = "[spell]",
         buffer = "[buf]",
         nvim_lsp = "[LSP]",
