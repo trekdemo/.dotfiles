@@ -339,6 +339,8 @@ require('packer').startup(function(use)
   use { 'mikepjb/vim-chruby', ft = { 'ruby' } }
   use { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } }
   use { 'godlygeek/tabular', ft = { 'markdown' } }
+  -- use { 'mracos/mermaid.vim', ft = { 'markdown', 'mermaid'} }
+  use { 'mracos/mermaid.vim' }
   use { 'towolf/vim-helm' }
 
   use({
