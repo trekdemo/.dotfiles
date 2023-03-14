@@ -54,6 +54,12 @@ require('packer').startup(function(use)
     'mrjones2014/dash.nvim',
     run = 'make install',
     config = function ()
+      require('dash').setup({
+        file_type_keywords = {
+          javascript = { 'javascript', 'nodejs', 'express' },
+          typescript = { 'typescript', 'javascript', 'nodejs', 'express' },
+        },
+      })
       vim.keymap.set('n', '<C-h>', function ()
         local bang = false
         local query = ''
