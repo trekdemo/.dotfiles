@@ -51,7 +51,7 @@ opt.foldenable = true
 
 -- Completion
 opt.complete = ".,w,b,u,t,kspell"
-opt.completeopt = { "menu", "menuone", "noselect" }
+opt.completeopt = { "menuone", "noselect" }
 opt.pumheight = 10
 opt.pumblend = 10
 
