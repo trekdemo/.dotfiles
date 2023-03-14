@@ -118,6 +118,12 @@ require('packer').startup(function(use)
     },
   }
 
+  use {
+    "williamboman/mason.nvim",
+    config = function ()
+      require("mason").setup()
+    end
+  }
   use { 'onsails/lspkind-nvim' }
 
   use {
