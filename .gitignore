@@ -25,6 +25,7 @@
 /home/.config/nvim/spell/*.add*
 /home/.config/telepresence
 /home/.config/yarn/global
+/home/.config/exercism/user.json
 /home/.tmux/plugins/*
 /home/bin/brian
 /home/bin/cw
