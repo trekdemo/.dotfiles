@@ -1,13 +1,5 @@
 local list = require("nvim-treesitter.parsers").get_parser_configs()
 
-list.sql = {
-  install_info = {
-    url = "https://github.com/DerekStride/tree-sitter-sql",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-}
-
 local _ = require("nvim-treesitter.configs").setup {
   ensure_installed = { "help", "ruby", "json", "yaml", "sql", "go", "query",
     "html", "css", "lua", "vim", "bash", "javascript", "typescript", "tsx", "c",
