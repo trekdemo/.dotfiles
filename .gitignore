@@ -18,6 +18,7 @@
 /home/.config/irb/irb_history
 /home/.config/k9s/config.yml
 /home/.config/kitty/kitty.conf.bak
+/home/.config/lazygit/state.yml
 /home/.config/nvim/.init.vim-rplugin~
 /home/.config/nvim/.netrwhist
 /home/.config/nvim/autoload/plug.vi*
