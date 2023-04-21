@@ -5,3 +5,6 @@ iabbrev <buffer> pry require 'pry'; binding.pry
 
 " Gary Bernhardt's hashrocket
 inoremap <buffer> <c-l> <space>=><space>
+
+nnoremap <buffer> { 2{w
+nnoremap <buffer> } }w
