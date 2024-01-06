@@ -49,7 +49,6 @@ require('packer').startup(function(use)
   }
 
   use "savq/melange-nvim"
-  use "ellisonleao/gruvbox.nvim"
   use 'marko-cerovac/material.nvim'
 
   use({
