@@ -118,6 +118,64 @@ require('packer').startup(function(use)
   }
 
   use {
+		"akinsho/toggleterm.nvim",
+		config = function()
+      require("toggleterm").setup({
+        open_mapping = [[<c-t>]],
+        on_open = function(_term)
+          vim.cmd("startinsert!")
+        end,
+        on_close = function(_term)
+          vim.cmd("startinsert!")
+        end,
+        size = 25,
+        direction = "horizontal",
+        float_opts = {
+          border = "curved",
+          winblend = 6,
+        },
+      })
+
+      local create_floating_terminal = function(term, cmd)
+        local instance = nil
+        if vim.fn.executable(cmd) == 1 then
+          local terminal = term.Terminal
+          instance = terminal:new({
+            cmd = cmd,
+            dir = "git_dir",
+            direction = "float",
+            float_opts = {
+              border = "double",
+            },
+            on_open = function()
+              vim.cmd("startinsert!")
+            end,
+            on_close = function()
+              vim.cmd("startinsert!")
+            end,
+          })
+        end
+        -- check if TermExec function exists
+        return function()
+          if vim.fn.executable(cmd) == 1 and instance ~= nil then
+            instance:toggle()
+          else
+            vim.notify("Command not found: " .. cmd .. ". Ensure it is installed.", "error")
+          end
+        end
+      end
+      local term = require("toggleterm.terminal")
+
+			_G.term = {
+        lazygit_toggle = create_floating_terminal(term, "lazygit"),
+        nnn_toggle = create_floating_terminal(term, "nnn"),
+      }
+      vim.keymap.set("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "open lazygit" })
+      vim.keymap.set("n", "<leader>nn", "<CMD>lua term.nnn_toggle()<CR>", { desc = "open lazygit" })
+		end,
+	}
+
+  use {
     "williamboman/mason.nvim",
     config = function ()
       require("mason").setup()
