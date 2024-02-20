@@ -40,7 +40,8 @@ return function()
       'pylsp',
       'terraformls',
       'tsserver',
-      'yamlls'
+      'yamlls',
+      'tailwindcss'
     }
     for _, server in pairs(servers) do
       lsp[server].setup(defaultOptions)
