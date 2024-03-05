@@ -45,6 +45,7 @@ require('lazy').setup {
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
+      numhl = true,
       signs = {
         add = { text = '+' },
         change = { text = '~' },
@@ -60,6 +61,8 @@ require('lazy').setup {
   require 'plugins.lsp-config',
   require 'plugins.nvim-cmp',
   require 'plugins.nvim-treesitter',
+  require 'plugins.mini-nvim',
+  require 'plugins.vim-test',
 
   {
     'anuvyklack/windows.nvim',
@@ -101,6 +104,8 @@ require('lazy').setup {
     },
   },
 
+  -- 'marko-cerovac/material.nvim',
+
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is
@@ -120,47 +125,6 @@ require('lazy').setup {
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-
-  { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
-    config = function()
-      -- Better Around/Inside textobjects
-      --
-      -- Examples:
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - yinq - [Y]ank [I]nside [N]ext [']quote
-      --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
-      -- Better Around/Inside textobjects
-      --
-      require('mini.bracketed').setup {}
-      require('mini.pairs').setup()
-
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
-
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      statusline.setup()
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
-    end,
-  },
 
   { -- Add indentation guides even on blank lines
     -- See `:help ibl`
@@ -188,8 +152,6 @@ require('lazy').setup {
 
   'tmux-plugins/vim-tmux', -- Plugin for .tmux.conf ftplugin
   'alexghergh/nvim-tmux-navigation',
-
-  require 'plugins.vim-test',
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`

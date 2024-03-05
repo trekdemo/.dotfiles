@@ -4,8 +4,17 @@
 --  For more options, you can see `:help option-list`
 
 -- Colorscheme
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 vim.opt.background = 'dark'
+
+-- Text flow
+vim.opt.wrap = false
+vim.opt.textwidth = 80
+vim.opt.expandtab = true
+vim.opt.shiftround = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 
 -- Make line numbers default
 vim.opt.number = true
@@ -60,9 +69,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+vim.opt.diffopt = 'filler,internal,algorithm:histogram,indent-heuristic,iwhite'
+vim.opt.fillchars = 'diff:/,vert:│,foldclose:,foldopen:,eob: ' -- Comment needed to allow empty eob char
