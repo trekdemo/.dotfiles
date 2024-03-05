@@ -5,9 +5,9 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 require 'custom.options'
-require 'custom.gui'
 require 'custom.keymaps'
 require 'custom.autocommands'
+require 'custom.gui'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
