@@ -81,7 +81,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<C-b>', builtin.buffers, { desc = 'Telescope buffers' })
+    vim.keymap.set('n', '<C-b>', builtin.buffers, { desc = 'Find buffers' })
     vim.keymap.set('n', '<C-g>', function()
       builtin.live_grep { hidden = true }
     end, { desc = 'Telescope live_grep' })
@@ -94,15 +94,15 @@ return { -- Fuzzy Finder (files, lsp, etc)
     end, { desc = 'Telescope treesitter' })
 
     vim.keymap.set('n', '<leader>fp', require('telescope').extensions.project.project, { desc = '[F]ind [P]roject' })
-    vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = 'Telescope commands' })
-    vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = 'Telescope LSP Symbols' })
+    vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[F]ind [C]ommands' })
+    vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = '[F]ind LSP [S]ymbols' })
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope diagnostics' })
     vim.keymap.set('n', '<leader>ff', builtin.builtin, { desc = 'Telescope builtin' })
     vim.keymap.set('n', '<leader>fe', function()
       builtin.symbols()
     end, { desc = 'Telescope symbols' })
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help_tags' })
-    vim.keymap.set('n', '<leader>fm', builtin.keymaps, { desc = 'Telescope keymaps' })
+    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
+    vim.keymap.set('n', '<leader>fm', builtin.keymaps, { desc = '[F]ind key [M]appings' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
     vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
 
