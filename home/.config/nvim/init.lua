@@ -32,7 +32,18 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-vinegar',
+  'tpope/vim-eunuch',
   require 'plugins.vim-fugitive',
+  require 'plugins.which-key',
+  require 'plugins.telescope',
+  require 'plugins.lsp-config',
+  require 'plugins.nvim-cmp',
+  require 'plugins.nvim-treesitter',
+  require 'plugins.mini-nvim',
+  require 'plugins.vim-test',
+  require 'plugins.windows',
+  require 'plugins.ts-node-action',
+  require 'plugins.nvim-tmux-navigation',
 
   -- Use `opts = {}` to force a plugin to be loaded.
   --
@@ -54,34 +65,6 @@ require('lazy').setup {
         changedelete = { text = '~' },
       },
     },
-  },
-
-  require 'plugins.which-key',
-  require 'plugins.telescope',
-  require 'plugins.lsp-config',
-  require 'plugins.nvim-cmp',
-  require 'plugins.nvim-treesitter',
-  require 'plugins.mini-nvim',
-  require 'plugins.vim-test',
-
-  {
-    'anuvyklack/windows.nvim',
-    dependencies = {
-      'anuvyklack/middleclass',
-      'anuvyklack/animation.nvim',
-    },
-    config = function()
-      vim.o.winwidth = 10
-      vim.o.winminwidth = 10
-      require('windows').setup {
-        ignore = {
-          buftype = { 'quickfix' },
-          filetype = { 'Neotest Summary', 'fugitiveblame' },
-        },
-      }
-
-      vim.keymap.set('n', '<A-Enter>', '<Cmd>WindowsMaximize<CR>')
-    end,
   },
 
   { -- Autoformat
