@@ -32,7 +32,15 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-vinegar',
-  'tpope/vim-eunuch',
+  { -- Vim sugar for the UNIX shell commands that need it the most.
+    'tpope/vim-eunuch',
+    config = function()
+      vim.cmd.cabbrev('rename', 'Rename')
+      vim.cmd.cabbrev('del', 'Delete')
+      vim.cmd.cabbrev('move', 'Move')
+      vim.cmd.cabbrev('mkdir', 'Mkdir!')
+    end,
+  },
   require 'plugins.vim-fugitive',
   require 'plugins.which-key',
   require 'plugins.telescope',
