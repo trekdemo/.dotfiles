@@ -131,9 +131,8 @@ require('lazy').setup {
   { 'mikepjb/vim-chruby', ft = { 'ruby' } },
   { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } },
   { 'mracos/mermaid.vim', ft = { 'markdown', 'mermaid' } },
-  { 'towolf/vim-helm' },
-
-  'tmux-plugins/vim-tmux', -- Plugin for .tmux.conf ftplugin
+  { 'towolf/vim-helm', ft = { 'helm' } },
+  { 'tmux-plugins/vim-tmux', ft = { 'tmux' } },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
