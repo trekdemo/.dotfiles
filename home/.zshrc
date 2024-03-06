@@ -38,6 +38,8 @@ export TZ="/usr/share/zoneinfo/Europe/Amsterdam"
 export LANG="en_US.utf-8"
 export LC_ALL="en_US.utf-8"
 
+export PATH="/opt/homebrew/bin:$PATH"
+
 [ -d "/usr/local/opt/llvm/bin" ] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
@@ -63,3 +65,9 @@ done
 # Setup prompt https://starship.rs/config/
 eval "$(starship init zsh)"
 # zprof
+
+export NVM_DIR="$HOME/.config//nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
