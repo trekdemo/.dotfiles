@@ -31,7 +31,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-vinegar',
+  'tpope/vim-vinegar', -- Expends netrw to become even more powerful.
   { -- Vim sugar for the UNIX shell commands that need it the most.
     'tpope/vim-eunuch',
     config = function()
