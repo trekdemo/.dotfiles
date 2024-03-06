@@ -15,12 +15,12 @@ $character"""
 
 [time]
 disabled = true
-format = "[ $time]($style)"
+format = "[  $time]($style)"
 style = "bright-yellow"
 
 [cmd_duration]
 disabled = true
-format = "[ $duration]($style)"
+format = "[󰔛 $duration]($style)"
 style = "dimmed yellow"
 show_milliseconds = true
 min_time = 0
@@ -46,7 +46,7 @@ modified = "[ ](yellow)"
 staged = "[ ](green)"
 renamed = "[ ](purple)"
 deleted = "[ ](red)"
-stashed = "[ ](gray)"
+stashed = "[ ](gray)"
 ahead = "[ ](green)"
 behind = "[ ](red)"
 diverged = "[繁](red)"
@@ -61,10 +61,10 @@ symbol = " "
 
 [nodejs]
 format = "[$symbol($version)]($style) "
-symbol = " "
+symbol = " "
 
 [character]
 # success_symbol = "[❯  ](purple)"
-success_symbol = "[ ](green)"
+success_symbol = "[ ](green)"
 error_symbol = "[ ](red)"
 
