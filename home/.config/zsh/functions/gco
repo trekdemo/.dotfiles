@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+# https://medium.com/@mrWinston/smarter-git-checkout-using-fzf-to-supercharge-your-commandline-7507db600996
+function gco () {
+  git checkout "$(git branch --list | fzf | tr -d '[:space:]')"
+}
+
