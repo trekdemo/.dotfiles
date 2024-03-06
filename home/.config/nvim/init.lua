@@ -136,6 +136,7 @@ require('lazy').setup {
   { 'noprompt/vim-yardoc', ft = { 'ruby' } },
   { 'tpope/vim-bundler', ft = { 'ruby' } },
   { 'tpope/vim-rails', ft = { 'ruby' } },
+  { 'rbong/vim-flog', ft = { 'ruby' } },
   { 'mikepjb/vim-chruby', ft = { 'ruby' } },
   { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } },
   { 'mracos/mermaid.vim', ft = { 'markdown', 'mermaid' } },
