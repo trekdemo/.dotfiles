@@ -2,6 +2,7 @@ tags*
 .tags
 gems.tags
 .bundle/
+.vscode/
 node_modules/
 
 .env.development
