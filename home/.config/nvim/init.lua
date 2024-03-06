@@ -140,6 +140,13 @@ require('lazy').setup {
   { 'mikepjb/vim-chruby', ft = { 'ruby' } },
   { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } },
   { 'mracos/mermaid.vim', ft = { 'markdown', 'mermaid' } },
+  {
+    'iamcco/markdown-preview.nvim',
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
+  },
   { 'towolf/vim-helm', ft = { 'helm' } },
   { 'tmux-plugins/vim-tmux', ft = { 'tmux' } },
 }
