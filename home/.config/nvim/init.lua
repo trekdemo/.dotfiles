@@ -138,6 +138,7 @@ require('lazy').setup {
   { 'tpope/vim-rails', ft = { 'ruby' } },
   { 'rbong/vim-flog', ft = { 'ruby' } },
   { 'mikepjb/vim-chruby', ft = { 'ruby' } },
+  { 'tpope/vim-ragtag', ft = { 'eruby', 'html', 'xml', 'javascript.jsx', 'jsx', 'typescript.tsx', 'tsx' } },
   { 'vim-scripts/bash-support.vim', ft = { 'sh', 'bash' } },
   { 'mracos/mermaid.vim', ft = { 'markdown', 'mermaid' } },
   {
