@@ -13,15 +13,13 @@ return {
     },
   },
   config = function()
-    vim.g['test#ruby#rspec#options'] = {
-      nearest = '--format documentation --backtrace',
-      file = '--format documentation',
-      suite = '--format progress',
-    }
-
-    vim.g['test#ruby#rspec#executable'] = 'bundle exec rspec'
-    -- vim.g['test#strategy'] = 'dispatch'
-    vim.g['test#strategy'] = 'vimux'
+    if vim.g.neovide then
+      vim.g['test#neovim_sticky#reopen_window'] = 1
+      vim.g['test#strategy'] = 'neovim_sticky'
+    else
+      vim.g['test#strategy'] = 'vimux'
+      -- vim.g['test#strategy'] = 'dispatch'
+    end
 
     vim.keymap.set('n', '<leader>tl', '<Cmd>TestLast<CR>', { desc = '[T]est [L]ast' })
     vim.keymap.set('n', '<leader>ta', '<Cmd>AbortDispatch<CR>', { desc = '[T]est Dispatch [A]bort' })
@@ -37,7 +35,17 @@ return {
       end
     end
     vim.keymap.set('n', '<leader>tv', switchStrategy 'vimux', { desc = 'Run [T]ests with [V]imux' })
+    vim.keymap.set('n', '<leader>tS', switchStrategy 'neovim_sticky', { desc = 'Run [T]ests with Neovim [S]ticky' })
     vim.keymap.set('n', '<leader>td', switchStrategy 'dispatch', { desc = 'Run [T]ests with [D]ispatch' })
     vim.keymap.set('n', '<leader>tD', switchStrategy 'dispatch_background', { desc = 'Run [T]ests with [D]ispatch!' })
+
+    -- [LANGUAGE SPECIFIC SETTINGS] -------------------------------------------
+    -- Ruby settings for RSpec
+    vim.g['test#ruby#rspec#executable'] = 'bundle exec rspec'
+    vim.g['test#ruby#rspec#options'] = {
+      nearest = '--format documentation --backtrace',
+      file = '--format documentation',
+      suite = '--format progress',
+    }
   end,
 }
