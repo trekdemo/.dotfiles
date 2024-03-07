@@ -12,7 +12,7 @@ return {
     vim.keymap.set('n', '<leader>ga', ':Gadd<cr>')
     vim.keymap.set('n', '<leader>gb', ':Git blame<CR>')
     vim.keymap.set('n', '<leader>gl', ':Git log<CR>')
-    vim.keymap.set('n', '<leader>gP', ':!gh pr view -w || gh pr create -w<cr>')
+    vim.keymap.set('n', '<leader>gP', ':!gh pr view -w || gh pr create -w<cr>', { desc = 'Create or view [G]itHub [P]R' })
 
     local augrp = vim.api.nvim_create_augroup('FugitiveUserMappings', {})
     vim.api.nvim_create_autocmd('BufWinEnter', {
