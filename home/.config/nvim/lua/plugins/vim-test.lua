@@ -31,7 +31,7 @@ return {
     local switchStrategy = function(strategy)
       return function()
         vim.g['test#strategy'] = strategy
-        print('Using ' .. strategy .. ' to run tests')
+        vim.notify('Using ' .. strategy .. ' to run tests', vim.log.levels.INFO)
       end
     end
     vim.keymap.set('n', '<leader>tv', switchStrategy 'vimux', { desc = 'Run [T]ests with [V]imux' })
