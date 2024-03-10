@@ -4,6 +4,7 @@ return { -- Highlight, edit, and navigate code
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-textsubjects',
+    { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
   },
   config = function()
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
