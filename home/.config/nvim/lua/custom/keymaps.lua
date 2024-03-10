@@ -35,8 +35,10 @@ vim.keymap.set({ 'i', 'c', 't' }, '<M-BS>', '<C-w>')
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Save the current buffer
-vim.keymap.set('n', '<cr>', '<cmd>w<cr>', { desc = 'Save file' })
+-- Save the current buffer if modifiable
+vim.keymap.set('n', '<C-s>', function()
+  vim.cmd.write()
+end, { desc = 'Save file' })
 
 -- Delete every buffer except the current one
 vim.cmd 'command! BufOnly silent! execute "%bd|e#|bd#"'
