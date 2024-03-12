@@ -62,6 +62,18 @@ require('lazy').setup {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  -- Create annotations with one keybind, and jump your cursor in the inserted
+  -- annotationCreate annotations with one keybind, and jump your cursor in the
+  -- inserted annotation
+  {
+    'danymat/neogen',
+    config = function()
+      local neogen = require 'neogen'
+      neogen.setup { snippet_engine = 'luasnip' }
+      vim.keymap.set('n', '<leader>ng', neogen.generate)
+    end,
+  },
+
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
