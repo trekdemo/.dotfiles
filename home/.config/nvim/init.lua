@@ -98,6 +98,7 @@ require('lazy').setup {
       },
       formatters_by_ft = {
         lua = { 'stylua' },
+        markdown = { 'mdformat' }, -- pip3 install mdformat-gfm
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
