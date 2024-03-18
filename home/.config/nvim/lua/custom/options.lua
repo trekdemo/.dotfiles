@@ -75,3 +75,5 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.opt.diffopt = 'filler,internal,algorithm:histogram,indent-heuristic,iwhite'
 vim.opt.fillchars = 'diff: ,vert:│,foldclose:,foldopen:,eob: ' -- Comment needed to allow empty eob char
+
+vim.opt.foldlevelstart = 99 -- Do not close folds on file open
