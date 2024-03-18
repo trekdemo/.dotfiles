@@ -70,7 +70,7 @@ require('lazy').setup {
     config = function()
       local neogen = require 'neogen'
       neogen.setup { snippet_engine = 'luasnip' }
-      vim.keymap.set('n', '<leader>ng', neogen.generate)
+      vim.keymap.set('n', '<leader>ng', neogen.generate, { desc = 'Generate documentation' })
     end,
   },
 
