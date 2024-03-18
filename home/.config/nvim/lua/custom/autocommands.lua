@@ -37,3 +37,12 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
     vim.opt.cursorline = false
   end,
 })
+
+vim.api.nvim_create_autocmd({ 'TermOpen' }, {
+  desc = 'Do not display line numbers in terminal buffers',
+  group = custom_autocmds,
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+})
