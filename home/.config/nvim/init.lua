@@ -112,6 +112,17 @@ require('lazy').setup {
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
+  -- Distraction-free coding for Neovim >= 0.5
+  -- https://github.com/folke/zen-mode.nvim?tab=readme-ov-file#%EF%B8%8F-configuration
+  {
+    'folke/zen-mode.nvim',
+    config = function()
+      require('zen-mode').setup()
+
+      vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = '[Z]en Mode' })
+    end,
+  },
+
   { -- Add indentation guides even on blank lines
     -- See `:help ibl`
     'lukas-reineke/indent-blankline.nvim',
