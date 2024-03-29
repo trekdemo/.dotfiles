@@ -46,3 +46,31 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
     vim.opt_local.relativenumber = false
   end,
 })
+
+-- Quit using "q" from certain buffers
+-- Source:https://github.com/Mr-LLLLL/utilities.nvim/blob/main/lua/utilities/init.lua
+vim.api.nvim_create_autocmd({ 'Filetype' }, {
+  pattern = {
+    'qf',
+    'git',
+    'fugitive',
+    'fugitiveblame',
+    'help',
+    'guihua',
+    'notify',
+    'tsplayground',
+    'query',
+  },
+  callback = function(_)
+    vim.keymap.set('n', 'q', '<cmd>quit!<cr>', { noremap = true, silent = true, buffer = true })
+  end,
+  group = custom_autocmds,
+})
+-- This window opens when "q:" is hit
+vim.api.nvim_create_autocmd({ 'CmdwinEnter' }, {
+  pattern = { '*' },
+  callback = function()
+    vim.keymap.set('n', 'q', '<cmd>quit!<cr>', { noremap = true, silent = true, buffer = true })
+  end,
+  group = custom_autocmds,
+})
