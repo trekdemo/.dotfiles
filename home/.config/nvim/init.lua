@@ -137,6 +137,7 @@ require('lazy').setup {
     },
   },
 
+  { 'kevinhwang91/nvim-bqf', ft = { 'qf' } },
   { 'fatih/vim-go', ft = { 'go' } },
   { 'jgdavey/vim-blockle', ft = { 'ruby' } },
   { 'noprompt/vim-yardoc', ft = { 'ruby' } },
