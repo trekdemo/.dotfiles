@@ -30,6 +30,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup {
+  'nvim-tree/nvim-web-devicons',
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-vinegar', -- Expends netrw to become even more powerful.
   { -- Vim sugar for the UNIX shell commands that need it the most.
@@ -53,6 +54,7 @@ require('lazy').setup {
   require 'plugins.windows',
   require 'plugins.ts-node-action',
   require 'plugins.nvim-tmux-navigation',
+  require 'plugins.trouble',
 
   -- Use `opts = {}` to force a plugin to be loaded.
   --
