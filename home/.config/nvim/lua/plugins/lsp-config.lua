@@ -138,7 +138,6 @@ return { -- LSP Configuration & Plugins
     local servers = {
       clangd = {},
       solargraph = {},
-      ruby_ls = {},
       gopls = {},
       dockerls = {},
       html = {},
