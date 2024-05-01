@@ -5,7 +5,6 @@ gems.tags
 .vscode/
 node_modules/
 
-.env.development
 .gitver
 /.vim
 
