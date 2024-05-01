@@ -1,3 +1,4 @@
+version: "1"
 # What protocol to use when performing git operations. Supported values: ssh, https
 git_protocol: https
 # What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
@@ -8,8 +9,6 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
+    prs: f -p # Uses gh-f extension
     show: pr view -w
-    prs: pr list
     clone: repo clone
-    # co: pr checkout
-    co: '!id="$(gh pr list -L100 | fzf | cut -f1)"; [ -n "$id" ] && gh pr checkout "$id"'
