@@ -100,7 +100,7 @@ require('lazy').setup {
       },
       formatters_by_ft = {
         lua = { 'stylua' },
-        markdown = { 'mdformat' }, -- pip3 install mdformat-gfm
+        markdown = { 'mdformat' }, -- pip3 install mdformat-gfm mdformat-frontmatter
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -119,7 +119,19 @@ require('lazy').setup {
   {
     'folke/zen-mode.nvim',
     config = function()
-      require('zen-mode').setup()
+      require('zen-mode').setup {
+        window = {
+          width = 100, -- width of the Zen window
+          height = 0.8, -- height of the Zen window
+        },
+        plugins = {
+          tmux = { enabled = true }, -- disables the tmux statusline
+          kitty = {
+            enabled = true,
+            font = '+4', -- font size increment
+          },
+        },
+      }
 
       vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = '[Z]en Mode' })
     end,
