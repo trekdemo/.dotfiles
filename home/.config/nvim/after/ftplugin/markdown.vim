@@ -3,6 +3,7 @@ setlocal spell spelllang=en,hu
 setlocal textwidth=80
 setlocal formatoptions=nbl " *fo-table*
 setlocal wrap linebreak
+setlocal nonumber norelativenumber
 " let &showbreak = '﬌ '
 " let &showbreak = ''
 setlocal breakindent breakindentopt=shift:-1,list:-1,sbr
