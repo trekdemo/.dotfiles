@@ -32,6 +32,10 @@
 /home/bin/cw
 /terminfo/.terminfo/*
 ^/home/.tmux/plugins/tpm
+/home/.config/codeclimate
+/home/.config/op
+/home/.httpie/version_info.json
+/home/.config/nvm
 
 # Only keep the settings file
 /home/.config/zed/*
