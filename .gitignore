@@ -36,3 +36,7 @@
 # Only keep the settings file
 /home/.config/zed/*
 !/home/.config/zed/settings.json
+
+# Only keep the config file
+/home/.config/pgcli/*
+!/home/.config/pgcli/config
