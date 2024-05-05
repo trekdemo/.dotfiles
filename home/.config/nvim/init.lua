@@ -128,7 +128,7 @@ require('lazy').setup {
           tmux = { enabled = true }, -- disables the tmux statusline
           kitty = {
             enabled = true,
-            font = '+4', -- font size increment
+            font = '+2', -- font size increment
           },
         },
       }
