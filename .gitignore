@@ -32,3 +32,7 @@
 /home/bin/cw
 /terminfo/.terminfo/*
 ^/home/.tmux/plugins/tpm
+
+# Only keep the settings file
+/home/.config/zed/*
+!/home/.config/zed/settings.json
