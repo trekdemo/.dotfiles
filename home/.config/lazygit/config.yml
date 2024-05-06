@@ -1,0 +1,2 @@
+gui:
+  showFileTree: false # Just the list the files changed
