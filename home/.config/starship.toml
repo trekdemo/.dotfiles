@@ -49,7 +49,7 @@ deleted = "[ ](red)"
 stashed = "[ ](gray)"
 ahead = "[ ](green)"
 behind = "[ ](red)"
-diverged = "[繁](red)"
+diverged = "[ ](red)"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
