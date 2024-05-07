@@ -147,6 +147,7 @@ require('lazy').setup {
     opts = {
       indent = { char = '│' },
       scope = {
+        show_start = false,
         exclude = {
           node_type = { ruby = { 'class', 'module' } },
         },
