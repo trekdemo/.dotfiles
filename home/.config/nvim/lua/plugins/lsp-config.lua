@@ -137,7 +137,6 @@ return { -- LSP Configuration & Plugins
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       clangd = {},
-      solargraph = {},
       gopls = {},
       dockerls = {},
       html = {},
@@ -202,6 +201,7 @@ return { -- LSP Configuration & Plugins
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
+      automatic_installation = { exclude = { 'solargraph' } },
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
@@ -212,6 +212,12 @@ return { -- LSP Configuration & Plugins
           require('lspconfig')[server_name].setup(server)
         end,
       },
+    }
+
+    -- Install solargraph manually for each Ruby version
+    require('lspconfig').solargraph.setup {
+      -- cmd = { 'chruby-exec', '$RUBY_VERSION', '--', 'solargraph', 'stdio' },
+      capabilities = capabilities,
     }
   end,
 }
