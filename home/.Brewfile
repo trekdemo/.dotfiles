@@ -27,8 +27,6 @@ brew 'httpie'
 brew 'imagemagick@6', link: true
 brew 'nnn'
 brew 'gh'
-brew 'kubectx'
-brew 'helm'
 brew 'olets/tap/zsh-abbr'
 
 # ------------------------------------------------------------------------------
