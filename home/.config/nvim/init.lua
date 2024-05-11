@@ -102,7 +102,7 @@ require('lazy').setup {
       },
       formatters_by_ft = {
         lua = { 'stylua' },
-        markdown = { 'mdformat' }, -- pip3 install mdformat-gfm mdformat-frontmatter
+        markdown = { 'mdformat' }, -- pip3 install mdformat-gfm mdformat-frontmatter mdformat-wikilink
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -117,9 +117,13 @@ require('lazy').setup {
   -- https://github.com/folke/zen-mode.nvim?tab=readme-ov-file#%EF%B8%8F-configuration
   {
     'folke/zen-mode.nvim',
+    dependencies = {
+      { 'folke/twilight.nvim', opts = {} },
+    },
     config = function()
       require('zen-mode').setup {
         window = {
+          backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
           width = 100, -- width of the Zen window
           height = 0.8, -- height of the Zen window
         },
