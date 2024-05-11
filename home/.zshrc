@@ -64,6 +64,7 @@ done
 
 # Setup prompt https://starship.rs/config/
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 # zprof
 
 export NVM_DIR="$HOME/.config//nvm"
