@@ -47,6 +47,7 @@ require('lazy').setup {
   require 'plugins.which-key',
   require 'plugins.telescope',
   require 'plugins.lsp-config',
+  require 'plugins.dap-config',
   require 'plugins.nvim-cmp',
   require 'plugins.nvim-treesitter',
   require 'plugins.mini-nvim',
