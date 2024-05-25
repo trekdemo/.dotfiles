@@ -202,7 +202,7 @@ return { -- LSP Configuration & Plugins
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
-      automatic_installation = { exclude = { 'solargraph' } },
+      automatic_installation = { exclude = { 'solargraph', 'ruby_lsp' } },
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
@@ -215,10 +215,9 @@ return { -- LSP Configuration & Plugins
       },
     }
 
-    -- Install solargraph manually for each Ruby version
-    require('lspconfig').solargraph.setup {
-      -- cmd = { 'chruby-exec', '$RUBY_VERSION', '--', 'solargraph', 'stdio' },
-      capabilities = capabilities,
-    }
+    -- Install solargraph & rusy-lsp manually for each Ruby version
+    -- cmd = { 'chruby-exec', '$RUBY_VERSION', '--', 'solargraph', 'stdio' },
+    require('lspconfig').solargraph.setup { capabilities = capabilities }
+    require('lspconfig').ruby_lsp.setup { capabilities = capabilities }
   end,
 }
