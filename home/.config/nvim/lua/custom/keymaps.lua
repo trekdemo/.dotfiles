@@ -11,10 +11,6 @@ vim.keymap.set('n', '<A-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Diagnostics
 vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Diagnostics - Set quickfix list' })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagonstics: Previous' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics: Next' })
-vim.keymap.set('n', '[D', vim.diagnostic.disable, { desc = 'Diagonstics: Disable' })
-vim.keymap.set('n', ']D', vim.diagnostic.enable, { desc = 'Diagnostics: Enable' })
 
 -- Better defaults
 vim.keymap.set('n', 'Q', '<nop>')
