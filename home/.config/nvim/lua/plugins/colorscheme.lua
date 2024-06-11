@@ -1,11 +1,20 @@
--- 'marko-cerovac/material.nvim',
--- 'Verf/deepwhite.nvim'
+local deepwhite = {
+  'Verf/deepwhite.nvim',
+  opts = {},
+}
 
-return { -- You can easily change to a different colorscheme.
-  -- Change the name of the colorscheme plugin below, and then
-  -- change the command in the config to whatever the name of that colorscheme is
-  --
-  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
+local patana = {
+  'cvigilv/patana.nvim',
+  config = function()
+    -- Load the colorscheme here
+    vim.opt_global.background = 'light'
+    vim.cmd.colorscheme 'patana'
+  end,
+  lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  priority = 1000, -- make sure to load this before all the other start plugins
+}
+
+local tokyonight = { -- You can easily change to a different colorscheme.
   'folke/tokyonight.nvim',
   lazy = false, -- make sure we load this during startup if it is your main colorscheme
   priority = 1000, -- make sure to load this before all the other start plugins
@@ -18,3 +27,7 @@ return { -- You can easily change to a different colorscheme.
     vim.cmd.hi 'Folded guibg=none'
   end,
 }
+
+-- Change the name of the colorscheme plugin below, and then
+-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
+return ({ deepwhite, patana, tokyonight })[2]
