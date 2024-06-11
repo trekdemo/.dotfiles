@@ -90,7 +90,6 @@
   ignored = !git status -s --ignored | grep \"^!!\"
 [heroku]
   account = personal
-[tig]
 [push]
   default = simple
 [pull]
