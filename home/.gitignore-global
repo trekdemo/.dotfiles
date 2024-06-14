@@ -33,3 +33,4 @@ telepresence.log
 /.solargraph.yml
 /bin/solargraph
 /config/definitions.rb
+.ruby-lsp
