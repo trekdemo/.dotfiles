@@ -30,4 +30,4 @@ local tokyonight = { -- You can easily change to a different colorscheme.
 
 -- Change the name of the colorscheme plugin below, and then
 -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-return ({ deepwhite, patana, tokyonight })[2]
+return ({ deepwhite, patana, tokyonight })[3]
