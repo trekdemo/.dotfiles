@@ -10,6 +10,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-project.nvim',
+    'sato-s/telescope-rails.nvim',
     { -- If encountering errors, see telescope-fzf-native README for install instructions
       'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -86,6 +87,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'project')
+    pcall(require('telescope').load_extension, 'rails')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
@@ -144,6 +146,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     vim.cmd [[cabbrev t Telescope]]
 
+    vim.keymap.set('n', '<leader>rc', '<Cmd>Telescope rails controllers<CR>', { desc = 'Find Rails Controllers' })
+    vim.keymap.set('n', '<leader>rm', '<Cmd>Telescope rails models<CR>', { desc = 'Find Rails Models' })
+    vim.keymap.set('n', '<leader>rv', '<Cmd>Telescope rails views<CR>', { desc = 'Find Rails Views' })
+    vim.keymap.set('n', '<leader>rs', '<Cmd>Telescope rails specs<CR>', { desc = 'Find RSpec tests' })
     vim.keymap.set('n', '<leader>rg', function()
       local gem_paths = vim.split(os.getenv 'GEM_PATH', ':', { trimempty = true })
       local search_dirs = vim.tbl_map(function(path)
