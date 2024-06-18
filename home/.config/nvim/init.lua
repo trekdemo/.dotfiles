@@ -42,6 +42,7 @@ require('lazy').setup {
       vim.cmd.cabbrev('mkdir', 'Mkdir!')
     end,
   },
+  'github/copilot.vim',
   require 'plugins.colorscheme',
   require 'plugins.vim-fugitive',
   require 'plugins.which-key',

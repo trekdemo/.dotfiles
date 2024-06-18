@@ -28,6 +28,7 @@
 /home/.config/yarn/global
 /home/.config/exercism/user.json
 /home/.tmux/plugins/*
+/home/.config/github-copilot/apps.json
 /home/bin/brian
 /home/bin/cw
 /terminfo/.terminfo/*
