@@ -15,4 +15,4 @@ nmap <buffer> <silent> ss ]s
 
 " nmap <C-s> <Plug>MarkdownPreview
 " nmap <M-s> <Plug>MarkdownPreviewStop
-nmap <M-p> <Plug>MarkdownPreviewToggle
+nmap <buffer> <M-p> <Plug>MarkdownPreviewToggle
