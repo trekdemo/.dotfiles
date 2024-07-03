@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd({ 'CmdwinEnter' }, {
 -- Display diagnostics as virtual text only if not in insert mode
 local function toggle_diagnostics_virtual_text()
   vim.diagnostic.config {
-    virtual_text = ~(vim.fn.mode() == 'i'),
+    virtual_text = not (vim.fn.mode() == 'i'),
   }
 end
 
