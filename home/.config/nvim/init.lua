@@ -67,21 +67,6 @@ require('lazy').setup {
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
-  {
-    'rachartier/tiny-inline-diagnostic.nvim',
-    event = 'VeryLazy',
-    config = function()
-      -- This plugin replaces the virtual_text with a less intrusive message
-      vim.diagnostic.config {
-        signs = true,
-        underline = true,
-        virtual_text = false,
-      }
-
-      require('tiny-inline-diagnostic').setup {}
-    end,
-  },
-
   -- Create annotations with one keybind, and jump your cursor in the inserted
   -- annotationCreate annotations with one keybind, and jump your cursor in the
   -- inserted annotation
