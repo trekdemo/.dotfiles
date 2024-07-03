@@ -49,12 +49,27 @@ return { -- Autocompletion
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
 
-    -- If you want to add a bunch of pre-configured snippets,
-    --    you can use this plugin to help you. It even has snippets
-    --    for various frameworks/libraries/etc. but you will have to
-    --    set up the ones that are useful for you.
-    -- 'rafamadriz/friendly-snippets',
+    -- Setup Copilot
+    -- 'github/copilot.vim',
+    {
+      'zbirenbaum/copilot.lua',
+      cmd = 'Copilot',
+      event = 'InsertEnter',
+      opts = {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      },
+      dependencies = {
+        {
+          'zbirenbaum/copilot-cmp',
+          config = function()
+            require('copilot_cmp').setup()
+          end,
+        },
+      },
+    },
   },
   config = function()
     -- See `:help cmp`
@@ -106,8 +121,10 @@ return { -- Autocompletion
         end, { 'i', 's' }),
       },
       sources = cmp.config.sources {
+        { name = 'copilot' },
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' },
         { name = 'path' },
       },
