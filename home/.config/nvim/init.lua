@@ -56,7 +56,7 @@ require('lazy').setup {
   require 'plugins.ts-node-action',
   require 'plugins.nvim-tmux-navigation',
   require 'plugins.trouble',
-  require 'plugins.obsidian',
+  -- require 'plugins.obsidian',
 
   -- Use `opts = {}` to force a plugin to be loaded.
   --
