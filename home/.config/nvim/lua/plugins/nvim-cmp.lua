@@ -87,6 +87,14 @@ return { -- Autocompletion
         end,
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
+      sources = cmp.config.sources {
+        { name = 'copilot' },
+        { name = 'luasnip' },
+        { name = 'nvim_lsp', dup = 0 },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'buffer', dup = 0 },
+        { name = 'path' },
+      },
 
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`
@@ -122,14 +130,6 @@ return { -- Autocompletion
             luasnip.jump(-1)
           end
         end, { 'i', 's' }),
-      },
-      sources = cmp.config.sources {
-        { name = 'copilot' },
-        { name = 'luasnip' },
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'buffer' },
-        { name = 'path' },
       },
     }
   end,
