@@ -48,8 +48,11 @@ return { -- Autocompletion
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp-signature-help',
+    'f3fora/cmp-spell',
+    { 'Gelio/cmp-natdat', opts = true },
 
     -- Setup Copilot
     -- 'github/copilot.vim',
@@ -90,10 +93,12 @@ return { -- Autocompletion
       sources = cmp.config.sources {
         { name = 'copilot' },
         { name = 'luasnip' },
-        { name = 'nvim_lsp', dup = 0 },
+        { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
-        { name = 'buffer', dup = 0 },
+        { name = 'buffer' },
         { name = 'path' },
+        { name = 'path' },
+        { name = 'natdat' },
       },
 
       -- For an understanding of why these mappings were

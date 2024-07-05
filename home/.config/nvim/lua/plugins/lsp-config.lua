@@ -144,6 +144,18 @@ return { -- LSP Configuration & Plugins
       jsonls = {},
       yamlls = {},
       tailwindcss = {},
+      ltex = {
+        settings = {
+          ltex = {
+            enabled = { 'gitcommit', 'markdown', 'restructuredtext', 'html', 'xhtml', 'mail', 'plaintext' },
+            language = 'en-GB',
+            additionalRules = {
+              -- Downloaded from https://languagetool.org/download/ngram-data/
+              languageModel = '~/.ngrams/',
+            },
+          },
+        },
+      },
       -- pyright = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
