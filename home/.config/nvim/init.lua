@@ -8,6 +8,7 @@ require 'custom.options'
 require 'custom.keymaps'
 require 'custom.autocommands'
 require 'custom.gui'
+require 'custom.diagnostics'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
