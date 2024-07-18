@@ -56,23 +56,23 @@ return { -- Autocompletion
 
     -- Setup Copilot
     -- 'github/copilot.vim',
-    {
-      'zbirenbaum/copilot.lua',
-      cmd = 'Copilot',
-      event = 'InsertEnter',
-      opts = {
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      },
-      dependencies = {
-        {
-          'zbirenbaum/copilot-cmp',
-          config = function()
-            require('copilot_cmp').setup()
-          end,
-        },
-      },
-    },
+    -- {
+    --   'zbirenbaum/copilot.lua',
+    --   cmd = 'Copilot',
+    --   event = 'InsertEnter',
+    --   opts = {
+    --     suggestion = { enabled = false },
+    --     panel = { enabled = false },
+    --   },
+    --   dependencies = {
+    --     {
+    --       'zbirenbaum/copilot-cmp',
+    --       config = function()
+    --         require('copilot_cmp').setup()
+    --       end,
+    --     },
+    --   },
+    -- },
   },
   config = function()
     -- See `:help cmp`
@@ -91,7 +91,7 @@ return { -- Autocompletion
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
       sources = cmp.config.sources {
-        { name = 'copilot' },
+        -- { name = 'copilot' },
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
