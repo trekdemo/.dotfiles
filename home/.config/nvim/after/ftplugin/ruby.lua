@@ -1,3 +1,5 @@
+-- Telescope keymaps are in lua/plugins/telescope.lua
+
 vim.opt_local.iskeyword:append { '?', '!' }
 vim.g.ruby_spellcheck_strings = 1
 
