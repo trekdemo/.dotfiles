@@ -175,6 +175,16 @@ require('lazy').setup {
       vim.fn['mkdp#util#install']()
     end,
   },
+  {
+    'OXY2DEV/markview.nvim',
+    ft = 'markdown',
+    dependencies = {
+      -- You may not need this if you don't lazy load
+      -- Or if the parsers are in your $RUNTIMEPATH
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
   { 'towolf/vim-helm', ft = { 'helm' } },
   { 'tmux-plugins/vim-tmux', ft = { 'tmux' } },
   {
