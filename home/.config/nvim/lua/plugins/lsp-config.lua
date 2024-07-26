@@ -144,6 +144,7 @@ return { -- LSP Configuration & Plugins
       jsonls = {},
       yamlls = {},
       tailwindcss = {},
+      marksman = {},
       ltex = {
         settings = {
           ltex = {
