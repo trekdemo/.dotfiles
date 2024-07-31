@@ -45,7 +45,7 @@ require('lazy').setup {
   },
   require 'plugins.colorscheme',
   require 'plugins.vim-fugitive',
-  require 'plugins.which-key',
+  { 'folke/which-key.nvim', event = 'VimEnter', opts = {} },
   require 'plugins.telescope',
   require 'plugins.lsp-config',
   require 'plugins.dap-config',
