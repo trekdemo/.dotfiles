@@ -21,6 +21,7 @@ local specs = {
     'folke/tokyonight.nvim',
     name = 'color_tokyonight',
     config = function()
+      vim.opt_global.background = 'dark'
       vim.cmd.colorscheme 'tokyonight-moon'
 
       -- You can configure highlights by doing something like
@@ -30,9 +31,9 @@ local specs = {
   },
 }
 
-local name = 'color_tokyonight'
+local name = 'tokyonight'
 for _, spec in ipairs(specs) do
-  if spec.name == name then
+  if spec.name == 'color_' .. name then
     spec.lazy = false -- make sure we load this during startup if it is your main colorscheme
     spec.priority = 1000 -- make sure to load this before all the other start plugins
   else
