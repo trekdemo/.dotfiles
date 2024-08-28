@@ -46,3 +46,4 @@
 # Only keep the config file
 /home/.config/pgcli/*
 !/home/.config/pgcli/config
+/home/.config/raycast/config.json
