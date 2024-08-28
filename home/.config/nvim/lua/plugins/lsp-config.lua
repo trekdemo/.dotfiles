@@ -17,10 +17,11 @@ return { -- LSP Configuration & Plugins
       dependencies = {
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-telescope/telescope.nvim' },
+        { 'kosayoda/nvim-lightbulb' },
       },
       event = 'LspAttach',
       config = function()
-        require('tiny-code-action').setup()
+        require('tiny-code-action').setup { telescope_opts = { layout_config = { height = 0.6 } } }
       end,
     },
   },
