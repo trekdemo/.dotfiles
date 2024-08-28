@@ -8,6 +8,7 @@ return { -- LSP Configuration & Plugins
 
     -- Support for document links for neovim.
     { 'icholy/lsplinks.nvim', opts = {} },
+    { 'VidocqH/lsp-lens.nvim', opts = {} },
 
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
@@ -128,6 +129,10 @@ return { -- LSP Configuration & Plugins
             buffer = event.buf,
             callback = vim.lsp.buf.clear_references,
           })
+        end
+
+        if client and client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable(true)
         end
       end,
     })
