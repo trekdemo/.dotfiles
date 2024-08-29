@@ -4,10 +4,10 @@ local vim = vim
 --  Use Alt+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<A-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<A-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<A-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Better defaults
 vim.keymap.set('n', 'Q', '<nop>')
@@ -83,10 +83,10 @@ vim.keymap.set('n', '<leader>co', ':copen<CR>')
 vim.keymap.set('n', '<leader>cc', ':cclose<CR>')
 
 -- Move lines in visual mode
-vim.keymap.set('v', '<C-k>', ":move '<-2<CR>gv=gv", { desc = 'Move line up' })
-vim.keymap.set('v', '<C-j>', ":move '>+1<CR>gv=gv", { desc = 'Move line down' })
-vim.keymap.set('n', '<C-k>', ':move .-2<CR>==', { desc = 'Move line up' })
-vim.keymap.set('n', '<C-j>', ':move .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('v', '[e', ":move '<-2<CR>gv=gv", { desc = 'Move line up' })
+vim.keymap.set('v', ']e', ":move '>+1<CR>gv=gv", { desc = 'Move line down' })
+vim.keymap.set('n', '[e', ':move .-2<CR>==', { desc = 'Move line up' })
+vim.keymap.set('n', ']e', ':move .+1<CR>==', { desc = 'Move line down' })
 
 -- Tab openning and closing
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>')
