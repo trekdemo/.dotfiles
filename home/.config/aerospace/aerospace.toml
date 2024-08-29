@@ -90,6 +90,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
+alt-f = ['layout floating tiling'] # Toggle between floating and tiling layout
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -145,6 +146,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # How to configure an app specific hook
 # https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
+# https://nikitabobko.github.io/AeroSpace/goodness#popular-apps-ids
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
 check-further-callbacks = true
@@ -165,8 +167,12 @@ if.app-id = 'com.apple.Music'
 check-further-callbacks = true
 run = ['layout floating']
 
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+check-further-callbacks = true
+run = ['layout floating']
+
 # Example hook to make a window floating instead of tiling.
-# https://nikitabobko.github.io/AeroSpace/goodness#popular-apps-ids
 
 # [[on-window-detected]]
 # if.app-id = '<app id>'
