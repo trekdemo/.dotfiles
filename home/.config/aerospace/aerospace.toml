@@ -160,6 +160,11 @@ if.app-id = 'com.tinyspeck.slackmacgap'
 check-further-callbacks = true
 run = ['layout tiling', 'move-node-to-workspace m']
 
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+check-further-callbacks = true
+run = ['layout floating']
+
 # Example hook to make a window floating instead of tiling.
 # https://nikitabobko.github.io/AeroSpace/goodness#popular-apps-ids
 
