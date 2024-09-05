@@ -12,6 +12,11 @@ return {
       '<cmd>TroubleToggle workspace_diagnostics<cr>',
       desc = 'Buffer Diagnostics (Trouble)',
     },
+    {
+      '<leader>xt',
+      '<cmd>TroubleToggle todo<cr>',
+      desc = 'Project TODOs (Trouble)',
+    },
   },
   opts = {}, -- for default options, refer to the configuration section for custom setup.
 }
