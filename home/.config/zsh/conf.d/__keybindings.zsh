@@ -29,6 +29,8 @@ bindkey '^[[F' end-of-line # End
 bindkey '^[[1;3C' .forward-word # Alt-Right
 bindkey '^[[1;3D' .backward-word # Alt-Left
 
+# Alt-l instead of C-l because that is used to navigate tmux and vim panes
+bindkey "^[l" clear-screen
 
 # Create a ZSH widget that can be bound to a key
 # https://unix.stackexchange.com/questions/289883/binding-key-shortcuts-to-shell-functions-in-zsh
