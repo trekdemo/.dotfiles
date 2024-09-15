@@ -1,4 +1,5 @@
 abbr g="git"
+abbr r="bin/rails"
 abbr la="lsd -laFh"
 abbr ll="lsd -lFh"
 abbr :q="exit"
