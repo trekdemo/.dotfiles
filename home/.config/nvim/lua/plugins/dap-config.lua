@@ -72,8 +72,7 @@ return {
       'theHamsta/nvim-dap-virtual-text',
       'nvim-neotest/nvim-nio',
       'leoluz/nvim-dap-go',
-      -- 'suketa/nvim-dap-ruby',
-      -- { dir = '~/projects/nvim-dap-ruby/' },
+      { 'suketa/nvim-dap-ruby', dir = '~/projects/nvim-dap-ruby/', dev = false },
     },
     config = function()
       local dap = require 'dap'
@@ -81,8 +80,7 @@ return {
       require('nvim-dap-virtual-text').setup {}
 
       require('dap-go').setup()
-      -- require('dap-ruby').setup()
-      require('plugins.dap-ruby').setup()
+      require('dap-ruby').setup()
 
       setup_dap_keymaps(dap)
       setup_dap_ui(dap)
