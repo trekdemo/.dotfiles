@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Source: https://jmeridth.com/posts/use-git-grep-to-replace-strings-in-files-in-your-git-repository/
+case "$(uname)" in
+  "Darwin")
+    git grep -l "$1" | xargs sed -i '' -e "s/$1/$2/g"
+    ;;
+  *)
+    git grep -l "$1" | xargs sed -i "s/$1/$2/g"
+    ;;
+esac
