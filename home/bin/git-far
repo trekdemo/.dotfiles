@@ -1,11 +1,31 @@
 #!/usr/bin/env bash
 
 # Source: https://jmeridth.com/posts/use-git-grep-to-replace-strings-in-files-in-your-git-repository/
+# Uses git grep to find occurences of a pattern and replaces them using sed.
+pattern="$1"
+replacement="$2"
+
+usage ()
+{
+  echo "A Find and Replace solution."
+  echo "Uses git grep to find occurences of a pattern and replaces them using sed."
+  echo
+  echo "usage: $(basename "$0") <pattern> <replacement>"
+  echo "   or: $(basename "$0") -h"
+}
+
+if [[ -z "$replacement" ]]; then
+  if [[ -z "$pattern" || "$pattern" == "-h" ]]; then
+    usage
+    exit
+  fi
+fi
+
 case "$(uname)" in
   "Darwin")
-    git grep -l "$1" | xargs sed -i '' -e "s/$1/$2/g"
+    git grep -l "$pattern" | xargs sed -i '' -e "s/$pattern/$replacement/g"
     ;;
   *)
-    git grep -l "$1" | xargs sed -i "s/$1/$2/g"
+    git grep -l "$pattern" | xargs sed -i "s/$pattern/$replacement/g"
     ;;
 esac
