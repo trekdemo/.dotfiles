@@ -44,16 +44,14 @@ brew 'yarn'
 # ------------------------------------------------------------------------------
 # Apps for work
 # ------------------------------------------------------------------------------
-tap 'derailed/k9s'
-brew 'k9s'
+# tap 'derailed/k9s'
+# brew 'k9s'
 # cask 'google-cloud-sdk'
 # cask 'slack'
 # cask 'google-chrome'
-# cask 'viscosity'
 cask 'docker'
 cask 'kitty'
 brew 'tailspin' # A log file highlighter - https://github.com/bensadeh/tailspin
-cask 'sequel-pro'
 cask 'rectangle'
 # mas 'Jira Cloud by Atlassian', id: 1475897096
 
