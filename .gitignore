@@ -47,3 +47,5 @@
 /home/.config/pgcli/*
 !/home/.config/pgcli/config
 /home/.config/raycast/config.json
+/home/.config/1Password/
+/home/.config/colima/
