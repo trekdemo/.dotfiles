@@ -10,8 +10,7 @@ brew 'neovim'       # , args: %w[HEAD]
 brew 'mobile-shell' # Mobile Shell (MOSH) is like SSH plus roaming and smart echo.
 brew 'bat'          # Clone of cat(1) with syntax highlighting and Git integration
 brew 'git'
-brew 'tig'
-brew 'hub'
+brew 'lazygit'
 brew 'ctags'
 brew 'tree'
 brew 'fzf'
