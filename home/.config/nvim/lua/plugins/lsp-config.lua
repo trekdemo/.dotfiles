@@ -239,7 +239,7 @@ return { -- LSP Configuration & Plugins
 
     -- Install solargraph & rusy-lsp manually for each Ruby version
     -- cmd = { 'chruby-exec', '$RUBY_VERSION', '--', 'solargraph', 'stdio' },
-    require('lspconfig').solargraph.setup { capabilities = capabilities }
+    -- require('lspconfig').solargraph.setup { capabilities = capabilities }
     require('lspconfig').ruby_lsp.setup { capabilities = capabilities }
   end,
 }
