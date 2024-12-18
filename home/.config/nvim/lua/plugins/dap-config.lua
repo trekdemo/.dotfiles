@@ -72,7 +72,7 @@ return {
       'theHamsta/nvim-dap-virtual-text',
       'nvim-neotest/nvim-nio',
       'leoluz/nvim-dap-go',
-      { 'suketa/nvim-dap-ruby', dir = '~/projects/nvim-dap-ruby/', dev = false },
+      { 'suketa/nvim-dap-ruby' },
     },
     config = function()
       local dap = require 'dap'
