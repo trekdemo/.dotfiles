@@ -64,7 +64,7 @@
   f = fetch
   fall = fetch --all --prune
   lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -15
-  p = push
+  p = push --set-upstream
   pf = push --force-with-lease
   s = status --short --branch
   rom = rebase origin/master
