@@ -190,12 +190,6 @@ require('lazy').setup {
   },
   { 'towolf/vim-helm', ft = { 'helm' } },
   { 'tmux-plugins/vim-tmux', ft = { 'tmux' } },
-  {
-    'Vigemus/iron.nvim',
-    config = function()
-      require 'plugins.repl-config'
-    end,
-  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
