@@ -9,6 +9,6 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
-    prs: f -p # Uses gh-f extension
+    prs: pr list
     show: pr view -w
     clone: repo clone
