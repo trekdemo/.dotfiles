@@ -69,6 +69,16 @@ require('lazy').setup {
   { 'numToStr/Comment.nvim', opts = {} },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'sphamba/smear-cursor.nvim',
+    opts = {
+      -- Faster smear: https://github.com/sphamba/smear-cursor.nvim?tab=readme-ov-file#examples
+      stiffness = 0.6,
+      trailing_stiffness = 0.4,
+      distance_stop_animating = 0.5,
+      hide_target_hack = false,
+    },
+  },
 
   -- Create annotations with one keybind, and jump your cursor in the inserted
   -- annotationCreate annotations with one keybind, and jump your cursor in the
