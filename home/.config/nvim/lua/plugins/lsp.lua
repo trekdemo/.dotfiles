@@ -24,6 +24,21 @@ return { -- LSP Configuration & Plugins
         require('tiny-code-action').setup { telescope_opts = { layout_config = { height = 0.6 } } }
       end,
     },
+    { -- Autoformat
+      'stevearc/conform.nvim',
+      opts = {
+        notify_on_error = false,
+        format_on_save = {
+          timeout_ms = 500,
+          lsp_fallback = true,
+        },
+        formatters_by_ft = {
+          lua = { 'stylua' },
+          markdown = { 'mdformat' }, -- pip3 install mdformat-gfm mdformat-frontmatter mdformat-wikilink
+          eruby = { 'erb-format' },
+        },
+      },
+    },
   },
   config = function()
     -- Brief Aside: **What is LSP?**
