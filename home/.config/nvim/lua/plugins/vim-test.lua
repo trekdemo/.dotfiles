@@ -7,7 +7,6 @@ return {
       config = function()
         vim.keymap.set('n', "'r", ':Start bundle exec rails console<CR>')
         vim.keymap.set('n', "'m", ':Start rails-mycli<CR>')
-        vim.keymap.set('n', "'g", ':Start tig<CR>')
         vim.keymap.set('n', "'n", ':Start nnn<CR>')
       end,
     },
