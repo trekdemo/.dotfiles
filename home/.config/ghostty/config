@@ -1,0 +1,12 @@
+theme = tokyonight-storm
+font-size = 14
+
+shell-integration = zsh
+
+# keybind = ctrl+k=goto_split:top
+# keybind = ctrl+j=goto_split:bottom
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+l=goto_split:right
+
+keybind = cmd+enter=toggle_split_zoom
+keybind = unconsumed:cmd+[=clear_screen
