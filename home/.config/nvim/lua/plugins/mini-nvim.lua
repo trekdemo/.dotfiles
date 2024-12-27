@@ -28,17 +28,37 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [']quote
     --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup { n_lines = 500 }
+
     -- Better Around/Inside textobjects
-    --
+    require('mini.ai').setup { n_lines = 500 }
+
+    -- Buffer	[B [b ]b ]B	MiniBracketed.buffer()
+    -- Comment block	[C [c ]c ]C	MiniBracketed.comment()
+    -- Conflict marker	[X [x ]x ]X	MiniBracketed.conflict()
+    -- Diagnostic	[D [d ]d ]D	MiniBracketed.diagnostic()
+    -- File on disk	[F [f ]f ]F	MiniBracketed.file()
+    -- Indent change	[I [i ]i ]I	MiniBracketed.indent()
+    -- Jump from jumplist inside current buffer	[J [j ]j ]J	MiniBracketed.jump()
+    -- Location from location list	[L [l ]l ]L	MiniBracketed.location()
+    -- Old files	[O [o ]o ]O	MiniBracketed.oldfile()
+    -- Quickfix entry from quickfix list	[Q [q ]q ]Q	MiniBracketed.quickfix()
+    -- Tree-sitter node and parents	[T [t ]t ]T	MiniBracketed.treesitter()
+    -- Undo states from specially tracked linear history	[U [u ]u ]U	MiniBracketed.undo()
+    -- Window in current tab	[W [w ]w ]W	MiniBracketed.window()
+    -- selection replacing latest put region	[Y [y ]y ]Y	MiniBracketed.yank()
     require('mini.bracketed').setup {}
     require('mini.pairs').setup()
+
+    -- Text objects: ii and  ai
+    -- Motions: [i and ]i
+    require('mini.indentscope').setup { symbol = '│' }
+
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
-    require('mini.surround').setup()
+    require('mini.surround').setup {}
 
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,

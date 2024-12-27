@@ -122,12 +122,6 @@ vim.keymap.set('n', '<M-S-Left>', '5<c-w><', { desc = 'Shrink width by 5' })
 vim.keymap.set('n', '<M-S-Up>', '5<c-w>+', { desc = 'Grow height by 5' })
 vim.keymap.set('n', '<M-S-Down>', '5<c-w>-', { desc = 'Shrink height by 5' })
 
--- Scroll faster
-vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>', { desc = 'Scroll up' })
-vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>', { desc = 'Scroll down' })
-vim.keymap.set({ 'n', 'v' }, '<PageUp>', '2<C-y>', { desc = 'Scroll up' })
-vim.keymap.set({ 'n', 'v' }, '<PageDown>', '2<C-e>', { desc = 'Scroll down' })
-
 vim.keymap.set('n', '[oc', ':set conceallevel=2 <CR>')
 vim.keymap.set('n', ']oc', ':set conceallevel=0 <CR>')
 
