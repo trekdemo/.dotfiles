@@ -52,6 +52,10 @@ return {
           ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
           ['vim.lsp.util.stylize_markdown'] = true,
         },
+        -- Lsp Progress is formatted using the builtins for lsp_progress. See
+        -- config.format.builtin See the section on formatting for more details
+        -- on how to customize.
+        progress = { enabled = true },
       },
       -- you can enable a preset for easier configuration
       presets = {

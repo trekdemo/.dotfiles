@@ -6,13 +6,6 @@ return { -- LSP Configuration & Plugins
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-    -- Support for document links for neovim.
-    { 'icholy/lsplinks.nvim', opts = {} },
-    -- { 'VidocqH/lsp-lens.nvim', opts = {} },
-
-    -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = {} },
     {
       'rachartier/tiny-code-action.nvim',
       dependencies = {
