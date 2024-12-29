@@ -13,10 +13,11 @@ return {
         height = 0.8, -- Height of the Zen window
       },
       plugins = {
+        twilight = { enabled = false },
         tmux = { enabled = true },
         kitty = {
           enabled = true,
-          font = '+2', -- Font size increment
+          font = '+2',
         },
       },
     }
