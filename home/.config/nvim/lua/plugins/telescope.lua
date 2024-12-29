@@ -114,6 +114,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Find [H]elp' })
     vim.keymap.set('n', '<leader>fm', builtin.keymaps, { desc = 'Find key [M]appings' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Find [R]esume' })
+    vim.keymap.set('n', 'z=', function()
+      builtin.spell_suggest {
+        sorting_strategy = 'ascending',
+        layout_strategy = 'cursor',
+        layout_config = {
+          width = 0.3,
+          height = 0.4,
+        },
+      }
+    end)
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
