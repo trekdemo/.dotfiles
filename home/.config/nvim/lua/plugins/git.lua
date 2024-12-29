@@ -1,4 +1,11 @@
 return {
+  -- Adds git related signs to the gutter, as well as utilities for managing changes
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = { numhl = true },
+  },
+
+  -- A Git wrapper so awesome, it should be illegal
   {
     'tpope/vim-fugitive',
     dependencies = { 'tpope/vim-rhubarb' },
@@ -39,19 +46,5 @@ return {
         end,
       })
     end,
-  },
-  -- Adds git related signs to the gutter, as well as utilities for managing changes
-  {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      numhl = true,
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
   },
 }
