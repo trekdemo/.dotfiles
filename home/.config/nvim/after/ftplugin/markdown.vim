@@ -16,3 +16,5 @@ nmap <buffer> <silent> ss ]s
 " nmap <C-s> <Plug>MarkdownPreview
 " nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <buffer> <M-p> <Plug>MarkdownPreviewToggle
+
+hi link @markup.link.url Comment
