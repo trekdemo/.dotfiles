@@ -19,18 +19,6 @@ return {
     end,
   },
 
-  -- Neovide-like cursor animation
-  {
-    'sphamba/smear-cursor.nvim',
-    enabled = not vim.g.neovide,
-    opts = {
-      -- Faster smear: https://github.com/sphamba/smear-cursor.nvim?tab=readme-ov-file#examples
-      stiffness = 0.6,
-      trailing_stiffness = 0.4,
-      distance_stop_animating = 0.5,
-      hide_target_hack = false,
-    },
-  },
   {
     'echasnovski/mini.nvim',
     config = function()
