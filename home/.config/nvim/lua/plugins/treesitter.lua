@@ -3,6 +3,7 @@ return { -- Highlight, edit, and navigate code
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'nvim-treesitter/playground',
     'RRethy/nvim-treesitter-textsubjects',
   },
   config = function()
