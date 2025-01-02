@@ -1,8 +1,16 @@
 theme = tokyonight-storm
+font-family = VictorMono Nerd Font Mono
 font-size = 14
 
+macos-titlebar-style = hidden
 shell-integration = zsh
 
+# background = #3b4261
+# background-opacity = 0.90
+# background-blur-radius = 20
+
+# Move between panes
+# TODO: Unfortunately, for me, this did not work well with my nvim mappings.
 # keybind = ctrl+k=goto_split:top
 # keybind = ctrl+j=goto_split:bottom
 # keybind = ctrl+h=goto_split:left
