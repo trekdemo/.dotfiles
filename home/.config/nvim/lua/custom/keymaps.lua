@@ -90,8 +90,11 @@ vim.keymap.set('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<left><left>
 vim.keymap.set('n', '<leader>dt', ':windo diffthis<CR>')
 vim.keymap.set('n', '<leader>du', ':windo diffupdate<CR>')
 vim.keymap.set('n', '<leader>do', ':windo diffoff<CR>')
-vim.keymap.set('n', '<leader>dg', ':diffget<CR>')
+-- Diff and Merge mappings
 vim.keymap.set('n', '<leader>dp', ':diffput<CR>')
+vim.keymap.set('n', '<leader>dg', ':diffget<CR>')
+vim.keymap.set('n', '<leader>dgh', '<cmd>diffget //2<cr>', { desc = 'Get the hunk in the left' })
+vim.keymap.set('n', '<leader>dgl', '<cmd>diffget //3<cr>', { desc = 'Get the hunk in the right' })
 
 -- Quickly search
 vim.keymap.set('n', '<leader>F', ':grep! <C-r><C-w><CR>', { desc = 'Grep <cword>' })
