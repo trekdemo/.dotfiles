@@ -26,6 +26,7 @@ brew 'httpie'
 brew 'imagemagick@6', link: true
 brew 'nnn'
 brew 'gh'
+tap 'olets/tap'
 brew 'olets/tap/zsh-abbr'
 
 # ------------------------------------------------------------------------------
@@ -49,27 +50,20 @@ brew 'yarn'
 # cask 'google-cloud-sdk'
 # cask 'slack'
 # cask 'google-chrome'
-cask 'docker'
 cask 'kitty'
-brew 'tailspin' # A log file highlighter - https://github.com/bensadeh/tailspin
 cask 'rectangle'
 # mas 'Jira Cloud by Atlassian', id: 1475897096
 
 # ------------------------------------------------------------------------------
 # Apps for personal and productivity use
 # ------------------------------------------------------------------------------
-cask 'obsidian'
-cask 'raycast'
+# cask 'obsidian'
+# cask 'raycast'
 # cask 'launchbar'
 # cask 'choosy'
-mas 'Things 3', id: 904280696
-mas '1Password', id: 1333542190 # 1Password 7.x
-mas 'Telegram', id: 747648890
-mas 'Messenger', id: 1480068668
-mas 'Session', id: 1521432881
+# mas 'Things 3', id: 904280696
 
 # ------------------------------------------------------------------------------
 # Fonts
 # ------------------------------------------------------------------------------
-tap 'homebrew/cask-fonts'
 cask 'font-victor-mono-nerd-font'

@@ -1,7 +1,7 @@
 IMAGE_NAME_VERSION="dev-shell:latest"
 
 link:
-	stow --target ~ home
+	stow --adopt --target ~ home 
 
 unlink:
 	stow --delete --target ~ home
