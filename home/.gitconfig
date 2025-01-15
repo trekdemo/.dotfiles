@@ -1,7 +1,6 @@
 [user]
 	name = Gergő Sulymosi
 	email = gergo.sulymosi@gmail.com
-	signingkey = EC587FDEDC0E4FF25A587A7B07A4D3B24760A48A
 [core]
   excludesfile = ~/.gitignore-global
   autocrlf = input
