@@ -24,7 +24,7 @@ cask 'gpg-suite'
 brew 'htop'
 brew 'httpie'
 brew 'imagemagick@6', link: true
-brew 'nnn'
+brew 'yazi'
 brew 'gh'
 tap 'olets/tap'
 brew 'olets/tap/zsh-abbr'
