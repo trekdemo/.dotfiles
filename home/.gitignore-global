@@ -4,6 +4,7 @@ gems.tags
 .bundle/
 .vscode/
 node_modules/
+.projections.json
 
 .gitver
 /.vim
