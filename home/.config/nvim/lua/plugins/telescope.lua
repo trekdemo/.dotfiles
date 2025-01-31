@@ -98,7 +98,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       builtin.live_grep { hidden = true }
     end, { desc = 'Telescope live_grep' })
     vim.keymap.set('n', '<C-p>', function()
-      builtin.git_files { show_untracked = true }
+      builtin.find_files { show_untracked = true, hidden = true }
     end, { desc = 'Telescope find_files' })
     vim.keymap.set('n', '<C-q>', builtin.quickfix, { desc = 'Telescope quickfix' })
     vim.keymap.set('n', '<C-t>', function()
