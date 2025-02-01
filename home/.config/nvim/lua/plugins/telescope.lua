@@ -9,7 +9,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'sato-s/telescope-rails.nvim',
     { -- If encountering errors, see telescope-fzf-native README for install instructions
       'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -82,7 +81,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
-    pcall(require('telescope').load_extension, 'rails')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
@@ -91,7 +89,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       builtin.live_grep { hidden = true }
     end, { desc = 'Telescope live_grep' })
     vim.keymap.set('n', '<C-p>', function()
-      builtin.find_files { show_untracked = true, hidden = true }
+      builtin.find_files { hidden = true }
     end, { desc = 'Telescope find_files' })
     vim.keymap.set('n', '<C-q>', builtin.quickfix, { desc = 'Telescope quickfix' })
     vim.keymap.set('n', '<C-t>', function()
@@ -126,15 +124,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
 
-    -- Also possible to pass additional configuration options.
-    --  See `:help telescope.builtin.live_grep()` for information about particular keys
-    vim.keymap.set('n', '<leader>s/', function()
-      builtin.live_grep {
-        grep_open_files = true,
-        prompt_title = 'Live Grep in Open Files',
-      }
-    end, { desc = '[S]earch [/] in Open Files' })
-
     -- Shortcut for searching your neovim configuration files
     vim.keymap.set('n', '<leader>fv', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
@@ -150,17 +139,31 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     vim.cmd [[cabbrev t Telescope]]
 
-    vim.keymap.set('n', '<leader>rc', '<Cmd>Telescope rails controllers<CR>', { desc = 'Find Rails Controllers' })
-    vim.keymap.set('n', '<leader>rm', '<Cmd>Telescope rails models<CR>', { desc = 'Find Rails Models' })
-    vim.keymap.set('n', '<leader>ri', '<Cmd>Telescope rails migrations<CR>', { desc = 'Find Rails Migrations' })
-    vim.keymap.set('n', '<leader>rv', '<Cmd>Telescope rails views<CR>', { desc = 'Find Rails Views' })
-    vim.keymap.set('n', '<leader>rt', '<Cmd>Telescope rails specs<CR>', { desc = 'Find RSpec tests' })
+    local function find_files_within_glob(glob, glob_name)
+      return function()
+        require('telescope.builtin').find_files {
+          prompt_title = 'Find ' .. (glob_name or 'Files'),
+          find_command = { 'rg', '--files', '--glob', glob },
+        }
+      end
+    end
+
+    vim.keymap.set('n', '<leader>ra', find_files_within_glob('**/app/assets/**', 'Assets'), { desc = 'Find Rails Assets' })
+    vim.keymap.set('n', '<leader>rn', find_files_within_glob('**/app/channels/**', 'Channels'), { desc = 'Find Rails Channels' })
+    vim.keymap.set('n', '<leader>rc', find_files_within_glob('**/app/controllers/**.rb', 'Controllers'), { desc = 'Find Rails Controllers' })
+    vim.keymap.set('n', '<leader>rh', find_files_within_glob('**/app/helpers/**.rb', 'Helpers'), { desc = 'Find Rails Helpers' })
+    vim.keymap.set('n', '<leader>rj', find_files_within_glob('**/app/jobs/**.rb', 'Jobs'), { desc = 'Find Rails Jobs' })
+    vim.keymap.set('n', '<leader>rl', find_files_within_glob('**/app/mailers/**.rb', 'Mailers'), { desc = 'Find Rails Mailers' })
+    vim.keymap.set('n', '<leader>rm', find_files_within_glob('**/app/models/**.rb', 'Models'), { desc = 'Find Rails Models' })
+    vim.keymap.set('n', '<leader>rv', find_files_within_glob('**/app/views/**', 'Views'), { desc = 'Find Rails Views' })
+    vim.keymap.set('n', '<leader>rs', find_files_within_glob('*_spec.rb', 'RSpec Specs'), { desc = 'Find RSpec Specs' })
+    vim.keymap.set('n', '<leader>ri', find_files_within_glob('db/migrate/*.rb', 'Database Migrations'), { desc = 'Find Rails Migrations' })
+
     vim.keymap.set('n', '<leader>rg', function()
       local gem_paths = vim.split(os.getenv 'GEM_PATH', ':', { trimempty = true })
       local search_dirs = vim.tbl_map(function(path)
         return path .. '/gems'
       end, gem_paths)
-      -- builtins.live_grep({search_dirs = gem_paths, type = 'ruby'})
       builtin.find_files { search_dirs = search_dirs }
     end, { desc = 'Telescope Find in gems' })
   end,
