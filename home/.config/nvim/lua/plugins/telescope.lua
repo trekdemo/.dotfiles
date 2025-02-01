@@ -9,7 +9,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-project.nvim',
     'sato-s/telescope-rails.nvim',
     { -- If encountering errors, see telescope-fzf-native README for install instructions
       'nvim-telescope/telescope-fzf-native.nvim',
@@ -77,18 +76,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
-        project = {
-          base_dirs = {
-            '~/projects',
-          },
-        },
       },
     }
 
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
-    pcall(require('telescope').load_extension, 'project')
     pcall(require('telescope').load_extension, 'rails')
 
     -- See `:help telescope.builtin`
@@ -105,7 +98,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       builtin.treesitter()
     end, { desc = 'Telescope treesitter' })
 
-    vim.keymap.set('n', '<leader>fp', require('telescope').extensions.project.project, { desc = 'Find [P]roject' })
     vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = 'Find [C]ommands' })
     vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = 'Find LSP [S]ymbols' })
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope [D]iagnostics' })
