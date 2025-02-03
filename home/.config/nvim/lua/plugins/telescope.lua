@@ -148,6 +148,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       end
     end
 
+    -- Rails related finders
     vim.keymap.set('n', '<leader>ra', find_files_within_glob('**/app/assets/**', 'Assets'), { desc = 'Find Rails Assets' })
     vim.keymap.set('n', '<leader>rn', find_files_within_glob('**/app/channels/**', 'Channels'), { desc = 'Find Rails Channels' })
     vim.keymap.set('n', '<leader>rc', find_files_within_glob('**/app/controllers/**.rb', 'Controllers'), { desc = 'Find Rails Controllers' })
