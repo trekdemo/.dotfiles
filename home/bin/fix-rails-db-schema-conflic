@@ -1,0 +1,7 @@
+#!/bin/sh
+
+git checkout HEAD -- db/schema.rb
+git checkout HEAD -- db/structure.sql
+
+bundle install
+bin/rails db:migrate
