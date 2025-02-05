@@ -114,3 +114,5 @@
 	format = openpgp
 [init]
 	defaultBranch = main
+[fetch]
+	writeCommitGraph = true
