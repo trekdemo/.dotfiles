@@ -1,1 +1,7 @@
-return { 'kevinhwang91/nvim-bqf', ft = { 'qf' } }
+return {
+  'kevinhwang91/nvim-bqf',
+  ft = { 'qf' },
+  opts = {
+    preview = { auto_preview = false },
+  },
+}
