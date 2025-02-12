@@ -2,6 +2,7 @@ theme = tokyonight-storm
 font-family = VictorMono Nerd Font Mono
 font-size = 14
 
+macos-option-as-alt = true
 macos-titlebar-style = hidden
 shell-integration = zsh
 
@@ -17,4 +18,3 @@ shell-integration = zsh
 # keybind = ctrl+l=goto_split:right
 
 keybind = cmd+enter=toggle_split_zoom
-keybind = unconsumed:cmd+[=clear_screen
