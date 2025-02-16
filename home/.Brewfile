@@ -29,6 +29,9 @@ brew 'gh'
 tap 'olets/tap'
 brew 'olets/tap/zsh-abbr'
 
+brew 'llm'  # Access to multiple LLMs from the terminal with logging and more...
+brew 'glow' # Markdown rendering in the terminal
+
 # ------------------------------------------------------------------------------
 # Languages
 # ------------------------------------------------------------------------------
