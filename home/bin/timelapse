@@ -1,5 +1,12 @@
 #!/usr/bin/env ruby -w0
 
+# Usage: timelapse <directory_path>
+#
+# This script generates a timelapse video from a series of JPG images in a
+# specified directory where GoPro images are stored. The video file is named
+# after the directory containing the images. The images should be named in a
+# sequence that `ffmpeg` can interpret, such as G000001.JPG, G000002.JPG, etc.
+
 require 'shellwords'
 
 path = ARGV[0].to_s
