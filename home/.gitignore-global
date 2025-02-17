@@ -36,3 +36,5 @@ telepresence.log
 /config/definitions.rb
 .ruby-lsp
 .yardoc/
+
+.aider.*
