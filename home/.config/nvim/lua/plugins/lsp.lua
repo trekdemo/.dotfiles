@@ -143,7 +143,6 @@ return { -- LSP Configuration & Plugins
       yamlls = {},
       tailwindcss = {},
       marksman = {},
-      ['harper-ls'] = { userDictPath = '~/dict.txt' },
       -- pyright = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -154,7 +153,10 @@ return { -- LSP Configuration & Plugins
       -- But for many setups, the LSP (`tsserver`) will work just fine
       -- tsserver = {},
       --
-
+      -- https://writewithharper.com/docs/integrations/neovim#Configuration
+      ['harper-ls'] = {
+        userDictPath = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add',
+      },
       bashls = {},
 
       lua_ls = {

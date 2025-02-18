@@ -24,7 +24,7 @@
 /home/.config/nvim/.netrwhist
 /home/.config/nvim/autoload/plug.vi*
 /home/.config/nvim/plugin/packer_compiled.lua
-/home/.config/nvim/spell/*.add*
+/home/.config/nvim/spell/*.add.spl
 /home/.config/telepresence
 /home/.config/yarn/global
 /home/.config/exercism/user.json
