@@ -72,6 +72,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         },
       },
       extensions = {
+        fzf = {},
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
@@ -139,25 +140,51 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     vim.cmd [[cabbrev t Telescope]]
 
-    local function find_files_within_glob(glob, glob_name)
+    local function find_files_within_glob(globs, glob_name)
       return function()
+        local find_command = { 'rg', '--files' }
+
+        -- Build the list of directory globs to search in
+        if type(globs) == 'string' then
+          table.insert(find_command, '--glob')
+          table.insert(find_command, globs)
+        elseif type(globs) == 'table' then
+          for _, glob in ipairs(globs) do
+            table.insert(find_command, '--glob')
+            table.insert(find_command, glob)
+          end
+        end
+
         require('telescope.builtin').find_files {
           prompt_title = 'Find ' .. (glob_name or 'Files'),
-          find_command = { 'rg', '--files', '--glob', glob },
+          find_command = find_command,
         }
       end
     end
 
     -- Rails related finders
     vim.keymap.set('n', '<leader>ra', find_files_within_glob('**/app/assets/**', 'Assets'), { desc = 'Find Rails Assets' })
-    vim.keymap.set('n', '<leader>rn', find_files_within_glob('**/app/channels/**', 'Channels'), { desc = 'Find Rails Channels' })
-    vim.keymap.set('n', '<leader>rc', find_files_within_glob('**/app/controllers/**.rb', 'Controllers'), { desc = 'Find Rails Controllers' })
-    vim.keymap.set('n', '<leader>re', find_files_within_glob('**/app/serializers/**.rb', 'Controllers'), { desc = 'Find Rails Serializers' })
+    vim.keymap.set(
+      'n',
+      '<leader>rc',
+      find_files_within_glob({ '**/app/controllers/**.rb', '**/app/channels/**' }, 'Controllers'),
+      { desc = 'Find Rails Controllers' }
+    )
     vim.keymap.set('n', '<leader>rh', find_files_within_glob('**/app/helpers/**.rb', 'Helpers'), { desc = 'Find Rails Helpers' })
     vim.keymap.set('n', '<leader>rj', find_files_within_glob('**/app/jobs/**.rb', 'Jobs'), { desc = 'Find Rails Jobs' })
     vim.keymap.set('n', '<leader>rl', find_files_within_glob('**/app/mailers/**.rb', 'Mailers'), { desc = 'Find Rails Mailers' })
-    vim.keymap.set('n', '<leader>rm', find_files_within_glob('**/app/models/**.rb', 'Models'), { desc = 'Find Rails Models' })
-    vim.keymap.set('n', '<leader>rv', find_files_within_glob('**/app/views/**', 'Views'), { desc = 'Find Rails Views' })
+    vim.keymap.set(
+      'n',
+      '<leader>rm',
+      find_files_within_glob({
+        '**/app/models/**.rb',
+        '**/app/services/**.rb',
+        '**/app/listeners/**.rb',
+        '**/app/policies/**.rb',
+      }, 'Models and business logic'),
+      { desc = 'Find Rails Models and business logic' }
+    )
+    vim.keymap.set('n', '<leader>rv', find_files_within_glob({ '**/app/views/**', '**/app/serializers/**' }, 'Views'), { desc = 'Find Rails Views' })
     vim.keymap.set('n', '<leader>rs', find_files_within_glob('**/spec/**', 'RSpec Specs'), { desc = 'Find RSpec Specs' })
     vim.keymap.set('n', '<leader>ri', find_files_within_glob('db/migrate/*.rb', 'Database Migrations'), { desc = 'Find Rails Migrations' })
 
