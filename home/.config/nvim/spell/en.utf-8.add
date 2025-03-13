@@ -7,3 +7,8 @@ keymap
 LSP
 NeoVim
 config
+UUIDs
+UUID
+packwerk
+ActiveRecord
+GlobalIDs
