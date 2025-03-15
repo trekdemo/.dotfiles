@@ -1,6 +1,41 @@
 [user]
-	name = Gergő Sulymosi
-	email = gergo.sulymosi@gmail.com
+  name = Gergő Sulymosi
+  email = gergo.sulymosi@gmail.com
+
+[alias]
+  aa= !git add -u && git add . && git status -s
+  b = branch
+  c = commit
+  ca = commit --amend -C HEAD
+  co = checkout
+  cob = checkout -b
+  corb = "!f() { git fetch --all; git checkout -b $1 origin/$1; }; f"
+  d = diff
+  f = fetch
+  lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -15
+  p = push --set-upstream
+  pf = push --force-with-lease
+  s = status --short --branch
+  branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
+  collaborators = shortlog -n -s --no-merges
+  ctags = !.git/hooks/ctags
+  edit = !$EDITOR $(git status --porcelain | awk '{print $2}' )
+  list-aliases = "!git config -l | grep alias | cut -c 7-"
+  ls-ignored = ls-files --exclude-standard --ignored --others
+  deleted-files = log --diff-filter=D --summary
+  message = log --format=%B -n 1
+  remotes = remote -v
+  staged = diff --cached            # diff staged changes
+  tags = tag -l
+  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
+  unstage = reset                   # remove files from index (tracking)
+  wip = !echo 'Use git worktree add ... instead!'
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  unhide-all = update-index --really-refresh
+  hidden = !git ls-files -v | grep '^[[:lower:]]'
+  ignored = !git status -s --ignored | grep '^!!'
+
 [core]
   excludesfile = ~/.gitignore-global
   autocrlf = input
@@ -13,6 +48,17 @@
   precomposeunicode = true
   pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
 
+[init]
+  defaultBranch = main
+
+[column]
+  ui = auto
+
+[commit]
+  template = ~/.gitmessage
+  gpgsign = true
+  verbose = true
+
 [color]
   ui = auto
 [color "diff"]
@@ -22,11 +68,38 @@
   old = red
   new = green
   whitespace = red reverse
+# Darker change highlights are easier on my eyes
 [color "diff-highlight"]
   oldNormal = "red"
   oldHighlight = "red bold 52"
   newNormal = "green"
   newHighlight = "green bold 22"
+
+[branch]
+  autosetuprebase = always
+  sort = -committerdate
+
+[branch "master"]
+  remote = origin
+  merge = refs/heads/master
+
+[tag]
+  sort = version:refname
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
 
 [merge]
   tool = nvimdiff
@@ -41,78 +114,41 @@
 [mergetool "nvimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
-[branch]
-  autosetuprebase = always
-
-[branch "master"]
-  remote = origin
-  merge = refs/heads/master
-
 [diff "filestat"]
   textconv = stat
 
-[alias]
-  aa= !git add -u && git add . && git status -s
-  b = branch
-  c = commit --verbose
-  ca = commit --amend -C HEAD
-  co = checkout
-  cob = checkout -b
-  corb = "!f() { git fetch --all; git checkout -b $1 origin/$1; }; f"
-  d = diff
-  f = fetch
-  fall = fetch --all --prune
-  lg = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -15
-  p = push --set-upstream
-  pf = push --force-with-lease
-  s = status --short --branch
-  rom = rebase origin/master
-
-  branches = "!f() { git branch -a -v | grep -v '/pr/'; }; f"
-  collaborators = shortlog -n -s --no-merges
-  ctags = !.git/hooks/ctags
-  edit = !$EDITOR $(git status --porcelain | awk '{print $2}' )
-  list-aliases = "!git config -l | grep alias | cut -c 7-"
-  ls-ignored = ls-files --exclude-standard --ignored --others
-  deleted-files = log --diff-filter=D --summary
-  message = log --format=%B -n 1
-  remotes = remote -v
-  staged = diff --cached            # diff staged changes
-  tags = tag -l
-  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
-  unstage = reset                   # remove files from index (tracking)
-  wip = commit -m 'WIP [skip ci]'
-  hide = update-index --assume-unchanged
-  unhide = update-index --no-assume-unchanged
-  unhide-all = update-index --really-refresh
-  hidden = !git ls-files -v | grep "^[[:lower:]]"
-  ignored = !git status -s --ignored | grep \"^!!\"
-[heroku]
-  account = personal
 [push]
   default = simple
+  autoSetupRemote = true
+  followTags = true
+
 [pull]
   ff = only
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-  required = true
-	process = git-lfs filter-process
-[credential "https://github.com"]
-	username = trekdemo
-[credential]
-	helper = osxkeychain
-[commit]
-	template = ~/.gitmessage
-	gpgsign = true
-[remote "origin"]
-	push = HEAD
-[github]
-	user = trekdemo
-[gpg]
-	program = /usr/local/MacGPG2/bin/gpg2
-	format = openpgp
-[init]
-	defaultBranch = main
+
 [fetch]
-	writeCommitGraph = true
+  all = true
+  prune = true
+  pruneTags = true
+  writeCommitGraph = true
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
+
+[credential "https://github.com"]
+  username = trekdemo
+[credential]
+  helper = osxkeychain
+
+[remote "origin"]
+  push = HEAD
+[github]
+  user = trekdemo
+[gpg]
+  program = /usr/local/MacGPG2/bin/gpg2
+  format = openpgp
+
+[help]
+  autocorrect = prompt
