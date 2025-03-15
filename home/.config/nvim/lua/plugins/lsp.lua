@@ -99,11 +99,11 @@ return { -- LSP Configuration & Plugins
         -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('<leader>ca', require('tiny-code-action').code_action, '[C]ode [A]ction')
 
-        -- Opens a popup that displays documentation about the word under your cursor
+        -- Opens a pop-up that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
+        -- WARN: This is not Go to Definition, this is Go to Declaration.
         --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
@@ -133,7 +133,7 @@ return { -- LSP Configuration & Plugins
     })
 
     -- Enable the following language servers
-    --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+    -- Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     local servers = {
       clangd = {},
       gopls = {},
@@ -144,12 +144,11 @@ return { -- LSP Configuration & Plugins
       tailwindcss = {},
       marksman = {},
       -- https://writewithharper.com/docs/integrations/neovim#Configuration
-      ['harper-ls'] = {
+      harper_ls = {
         userDictPath = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add',
       },
       stimulus_ls = {},
       bashls = {},
-
       lua_ls = {
         -- cmd = {...},
         -- filetypes { ...},
@@ -214,5 +213,6 @@ return { -- LSP Configuration & Plugins
     -- cmd = { 'chruby-exec', '$RUBY_VERSION', '--', 'solargraph', 'stdio' },
     -- require('lspconfig').solargraph.setup { capabilities = capabilities }
     require('lspconfig').ruby_lsp.setup { capabilities = require('blink.cmp').get_lsp_capabilities() }
+    require('lspconfig').turbo_ls.setup { capabilities = require('blink.cmp').get_lsp_capabilities() }
   end,
 }
