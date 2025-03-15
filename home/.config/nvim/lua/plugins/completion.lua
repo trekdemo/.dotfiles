@@ -23,13 +23,14 @@ return {
     completion = {
       -- Show documentation when selecting a completion item
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      ghost_text = { enabled = true },
       menu = {
         auto_show = false,
+        border = 'padded',
         draw = {
           columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' } },
         },
       },
-      ghost_text = { enabled = true },
     },
 
     sources = {
