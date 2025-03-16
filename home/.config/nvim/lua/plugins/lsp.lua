@@ -135,6 +135,10 @@ return { -- LSP Configuration & Plugins
       -- https://writewithharper.com/docs/integrations/neovim#Configuration
       harper_ls = {
         userDictPath = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add',
+        linters = {
+          SentenceCapitalization = false,
+          SpellCheck = false,
+        },
       },
       stimulus_ls = {},
       bashls = {},
