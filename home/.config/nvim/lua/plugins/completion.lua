@@ -34,16 +34,18 @@ return {
         },
       },
     },
+    -- Use exact to prioritize snippets when exact matching.
+    fuzzy = { sorts = { 'exact', 'score', 'sort_text' } },
 
     sources = {
-      -- Remove 'buffer' if you don't want text completions, by default it's only enabled when LSP returns no items
-      default = { 'lsp', 'snippets', 'path', 'copilot', 'buffer' },
+      default = { 'snippets', 'copilot', 'lsp', 'path', 'buffer' },
       providers = {
-        snippets = { score_offset = 999 }, -- Show snippets before anything else
+        snippets = { max_items = 3, min_keyword_length = 1 },
+        buffer = { max_items = 5, min_keyword_length = 3 },
         copilot = {
           name = 'copilot',
           module = 'blink-cmp-copilot',
-          score_offset = 100,
+          score_offset = 100, -- Move copilot completions to the top
           async = true,
         },
       },
