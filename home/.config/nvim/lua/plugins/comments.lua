@@ -16,8 +16,8 @@ return {
     'danymat/neogen',
     config = function()
       local neogen = require 'neogen'
-      neogen.setup { snippet_engine = 'luasnip' }
-      vim.keymap.set('n', '<leader>ng', neogen.generate, { desc = 'Generate documentation' })
+      neogen.setup { snippet_engine = 'nvim' }
+      vim.keymap.set('n', 'gcg', neogen.generate, { desc = 'Generate documentation' })
     end,
   },
 }
