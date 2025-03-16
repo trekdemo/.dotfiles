@@ -1,5 +1,6 @@
 return {
   'saghen/blink.cmp',
+  version = '*', -- Use a release tag to download pre-built binaries
   dependencies = {
     {
       'zbirenbaum/copilot.lua',
@@ -22,8 +23,8 @@ return {
       ['<C-n>'] = { 'show', 'select_next', 'fallback_to_mappings' },
       ['<C-f>'] = { 'select_and_accept', 'fallback' },
     },
+
     completion = {
-      -- Show documentation when selecting a completion item
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
       ghost_text = { enabled = true },
       menu = {
@@ -34,6 +35,9 @@ return {
         },
       },
     },
+    -- Experimental signature help support
+    signature = { enabled = true },
+
     -- Use exact to prioritize snippets when exact matching.
     fuzzy = { sorts = { 'exact', 'score', 'sort_text' } },
 
@@ -50,15 +54,5 @@ return {
         },
       },
     },
-
-    -- Experimental signature help support
-    signature = { enabled = true },
   },
-
-  -- use a release tag to download pre-built binaries
-  version = '*',
-  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
 }
