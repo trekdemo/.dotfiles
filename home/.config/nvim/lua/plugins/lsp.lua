@@ -6,18 +6,7 @@ return { -- LSP Configuration & Plugins
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    {
-      'rachartier/tiny-code-action.nvim',
-      dependencies = {
-        { 'nvim-lua/plenary.nvim' },
-        { 'nvim-telescope/telescope.nvim' },
-        { 'kosayoda/nvim-lightbulb' },
-      },
-      event = 'LspAttach',
-      config = function()
-        require('tiny-code-action').setup { telescope_opts = { layout_config = { height = 0.6 } } }
-      end,
-    },
+    { 'kosayoda/nvim-lightbulb', event = 'LspAttach', opts = { autocmd = { enabled = true } } },
   },
   config = function()
     -- Brief Aside: **What is LSP?**
@@ -97,7 +86,7 @@ return { -- LSP Configuration & Plugins
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
         -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-        map('<leader>ca', require('tiny-code-action').code_action, '[C]ode [A]ction')
+        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
         -- Opens a pop-up that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap
