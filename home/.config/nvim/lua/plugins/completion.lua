@@ -18,6 +18,8 @@ return {
   ---@type blink.cmp.Config
   opts = {
     keymap = {
+      ['<C-space>'] = { 'show', 'hide' },
+      ['<C-n>'] = { 'show', 'select_next', 'fallback_to_mappings' },
       ['<C-f>'] = { 'select_and_accept', 'fallback' },
     },
     completion = {
