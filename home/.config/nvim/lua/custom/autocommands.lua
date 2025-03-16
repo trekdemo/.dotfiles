@@ -74,22 +74,3 @@ vim.api.nvim_create_autocmd({ 'CmdwinEnter' }, {
   end,
   group = custom_autocmds,
 })
-
--- Toggle diagnostics virtual text in insert mode
--- Display diagnostics as virtual text only if not in insert mode
-local function toggle_diagnostics_virtual_text()
-  vim.diagnostic.config {
-    virtual_text = not (vim.fn.mode() == 'i'),
-  }
-end
-
-vim.api.nvim_create_autocmd('InsertEnter', {
-  group = custom_autocmds,
-  pattern = '*',
-  callback = toggle_diagnostics_virtual_text,
-})
-vim.api.nvim_create_autocmd('InsertLeave', {
-  group = custom_autocmds,
-  pattern = '*',
-  callback = toggle_diagnostics_virtual_text,
-})
