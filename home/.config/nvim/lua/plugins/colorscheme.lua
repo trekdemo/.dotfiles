@@ -1,7 +1,7 @@
 local specs = {
   {
     'Verf/deepwhite.nvim',
-    name = 'color_deepwhite',
+    name = 'deepwhite',
     config = function()
       -- Load the colorscheme here
       vim.opt_global.background = 'light'
@@ -10,7 +10,7 @@ local specs = {
   },
   {
     'cvigilv/patana.nvim',
-    name = 'color_patana',
+    name = 'patana',
     config = function()
       -- Load the colorscheme here
       vim.opt_global.background = 'light'
@@ -19,7 +19,7 @@ local specs = {
   },
   {
     'folke/tokyonight.nvim',
-    name = 'color_tokyonight',
+    name = 'tokyonight',
     config = function()
       vim.opt_global.background = 'dark'
       vim.cmd.colorscheme 'tokyonight-moon'
@@ -29,11 +29,39 @@ local specs = {
       vim.cmd.hi 'Folded guibg=none'
     end,
   },
+  -- https://github.com/catppuccin/nvim?tab=readme-ov-file#configuration
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    config = function()
+      require('catppuccin').setup {
+        flavour = 'auto', -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+          light = 'latte',
+          dark = 'macchiato',
+        },
+        integrations = {
+          blink_cmp = true,
+          gitsigns = true,
+          treesitter = true,
+          mini = {
+            enabled = true,
+            indentscope_color = '',
+          },
+          mason = true,
+          which_key = true,
+        },
+      }
+      vim.opt_global.background = 'dark'
+      vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
 }
 
-local name = 'tokyonight'
+local name = 'catppuccin'
 for _, spec in ipairs(specs) do
-  if spec.name == 'color_' .. name then
+  if spec.name == name then
     spec.lazy = false -- make sure we load this during startup if it is your main colorscheme
     spec.priority = 1000 -- make sure to load this before all the other start plugins
   else
