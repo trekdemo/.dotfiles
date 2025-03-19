@@ -1,5 +1,5 @@
 # Default model (gpt-3.5-turbo, gpt-4, ggml-gpt4all-j...).
-default-model: gpt-4o-mini
+default-model: gemma3
 # Text to append when using the -f flag.
 format-text:
   markdown: 'Format the response as markdown without enclosing backticks.'
@@ -159,6 +159,11 @@ apis:
   ollama:
     base-url: http://localhost:11434/api
     models: # https://ollama.com/library
+      "gemma3:12b":
+        max-input-chars: 650000
+      "gemma3:4b":
+        aliases: ["gemma3"]
+        max-input-chars: 650000
       "llama3.2:3b":
         aliases: ["llama3.2"]
         max-input-chars: 650000
