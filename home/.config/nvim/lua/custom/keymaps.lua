@@ -1,5 +1,7 @@
 local vim = vim
 
+vim.keymap.set('n', '<leader>l<space>', ':Lazy ', { desc = 'Lazy' })
+
 -- Better defaults
 vim.keymap.set('n', 'Q', '<nop>')
 -- Keep the previous clipboard value
@@ -81,7 +83,7 @@ vim.keymap.set('n', ']e', ':move .+1<CR>==', { desc = 'Move line down' })
 
 -- Tab openning and closing
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>')
-vim.keymap.set('n', '<leader>tn', ':tabnew<CR>:Telescope find_files<CR>')
+vim.keymap.set('n', '<leader>tt', ':tabnew<CR>:Telescope find_files<CR>')
 
 -- Shorcut for quick substitution
 vim.keymap.set('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<left><left><left>]], { desc = 'Replace in file' })
