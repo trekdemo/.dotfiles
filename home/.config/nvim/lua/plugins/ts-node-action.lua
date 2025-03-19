@@ -23,7 +23,7 @@ end
 return {
   'CKolkey/ts-node-action',
   keys = {
-    { 'T', '<cmd>NodeAction<CR>', desc = 'Trigger node action' },
+    { '<leader>tr', '<cmd>NodeAction<CR>', desc = 'Trigger node action' },
   },
   opts = {
     markdown_inline = {
