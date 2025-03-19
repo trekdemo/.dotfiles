@@ -6,7 +6,7 @@ return {
   -- and setup() does not need to be called, so the whole opts block is optional as well.
   opts = {
     -- Whether to briefly highlight the node after jumping to it
-    highlight = true,
+    highlight = false,
 
     -- How long should above highlight last (in ms)
     highlight_duration = 250,
