@@ -56,6 +56,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --  All the info you're looking for is in `:help telescope.setup()`
       --
       defaults = {
+        layout_strategy = 'bottom_pane',
         mappings = {
           i = {
             ['<Esc>'] = 'close',
@@ -139,6 +140,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>gB', builtin.git_branches, { desc = 'Telescope git_branches' })
 
     vim.cmd [[cabbrev t Telescope]]
+    vim.keymap.set('n', '<leader>t<space>', ':Telescope ', { desc = 'Telescope git_branches' })
 
     local function find_files_within_glob(globs, glob_name)
       return function()
@@ -167,7 +169,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set(
       'n',
       '<leader>rc',
-      find_files_within_glob({ '**/app/controllers/**.rb', '**/app/channels/**' }, 'Controllers'),
+      find_files_within_glob({ '**/app/controllers/**.rb', '**/app/channels/**', '**/app/admin/**' }, 'Controllers'),
       { desc = 'Find Rails Controllers' }
     )
     vim.keymap.set('n', '<leader>rh', find_files_within_glob('**/app/helpers/**.rb', 'Helpers'), { desc = 'Find Rails Helpers' })
