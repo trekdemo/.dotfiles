@@ -36,7 +36,7 @@ return {
       },
     },
     -- Experimental signature help support
-    signature = { enabled = true },
+    signature = { enabled = false },
 
     -- Use exact to prioritize snippets when exact matching.
     fuzzy = { sorts = { 'exact', 'score', 'sort_text' } },
