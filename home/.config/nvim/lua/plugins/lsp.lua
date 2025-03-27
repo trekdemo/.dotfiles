@@ -121,6 +121,26 @@ return { -- LSP Configuration & Plugins
       end,
     })
 
+    -- Detach LSP in vim when all related buffers are closed
+    -- https://www.reddit.com/r/neovim/s/UkwEMkZlNE
+    vim.api.nvim_create_autocmd({ 'LspDetach' }, {
+      group = vim.api.nvim_create_augroup('LspStopWithLastClient', {}),
+      desc = 'Stop lsp client when no buffer is attached',
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.attached_buffers then
+          return
+        end
+
+        for buf_id in pairs(client.attached_buffers) do
+          if buf_id ~= args.buf then
+            return
+          end
+        end
+
+        client:stop()
+      end,
+    })
     -- Enable the following language servers
     -- Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     local servers = {
