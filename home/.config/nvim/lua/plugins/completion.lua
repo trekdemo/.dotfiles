@@ -28,7 +28,7 @@ return {
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
       ghost_text = { enabled = true },
       menu = {
-        auto_show = false,
+        auto_show = true,
         border = 'padded',
         draw = {
           columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' } },
@@ -42,10 +42,9 @@ return {
     fuzzy = { sorts = { 'exact', 'score', 'sort_text' } },
 
     sources = {
-      default = { 'snippets', 'copilot', 'lsp', 'path', 'buffer' },
+      default = { 'buffer', 'snippets', 'copilot', 'lsp', 'path' },
       providers = {
         snippets = { max_items = 3, min_keyword_length = 1 },
-        buffer = { max_items = 5, min_keyword_length = 3 },
         copilot = {
           name = 'copilot',
           module = 'blink-cmp-copilot',
