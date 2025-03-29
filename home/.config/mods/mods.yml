@@ -1,5 +1,5 @@
 # Default model (gpt-3.5-turbo, gpt-4, ggml-gpt4all-j...).
-default-model: gemma3
+default-model: gemini-2.0-flash-lite
 # Text to append when using the -f flag.
 format-text:
   markdown: 'Format the response as markdown without enclosing backticks.'
@@ -149,13 +149,20 @@ apis:
       command-r:
         max-input-chars: 128000
   google:
-    models:
+    api-key-env: GEMINI_API_KEY
+    models: # https://ai.google.dev/gemini-api/docs/models/gemini
       gemini-1.5-pro-latest:
-        aliases: ["gemini"]
+        aliases: ["gmp", "gemini", "gemini-1.5-pro"]
         max-input-chars: 392000
       gemini-1.5-flash-latest:
-        aliases: ["flash"]
+        aliases: ["gmf", "flash", "gemini-1.5-flash"]
         max-input-chars: 392000
+      gemini-2.0-flash-001:
+        aliases: ["gm2f", "flash-2", "gemini-2-flash"]
+        max-input-chars: 4194304
+      gemini-2.0-flash-lite:
+        aliases: ["gm2fl", "flash-2-lite", "gemini-2-flash-lite"]
+        max-input-chars: 4194304
   ollama:
     base-url: http://localhost:11434/api
     models: # https://ollama.com/library
