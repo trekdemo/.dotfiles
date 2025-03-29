@@ -43,8 +43,10 @@ return {
 
     sources = {
       default = { 'buffer', 'snippets', 'copilot', 'lsp', 'path' },
+      per_filetype = { sql = { 'dadbod' } },
       providers = {
         snippets = { max_items = 3, min_keyword_length = 1 },
+        dadbod = { module = 'vim_dadbod_completion.blink' },
         copilot = {
           name = 'copilot',
           module = 'blink-cmp-copilot',

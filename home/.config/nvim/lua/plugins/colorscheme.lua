@@ -51,6 +51,7 @@ local specs = {
           },
           mason = true,
           which_key = true,
+          dadbod_ui = true,
         },
       }
       vim.opt_global.background = 'dark'
