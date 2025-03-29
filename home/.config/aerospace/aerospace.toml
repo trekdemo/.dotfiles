@@ -26,7 +26,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 80
+accordion-padding = 120
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -95,10 +95,10 @@ alt-ctrl-period = 'layout v_accordion h_tiles'
 alt-ctrl-f = ['layout floating tiling'] # Toggle between floating and tiling layout
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-ctrl-h = 'focus left'
-alt-ctrl-j = 'focus down'
-alt-ctrl-k = 'focus up'
-alt-ctrl-l = 'focus right'
+alt-ctrl-h = 'focus --boundaries-action wrap-around-the-workspace left'
+alt-ctrl-j = 'focus --boundaries-action wrap-around-the-workspace down'
+alt-ctrl-k = 'focus --boundaries-action wrap-around-the-workspace up'
+alt-ctrl-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-ctrl-shift-h = 'move left'
@@ -110,18 +110,10 @@ alt-ctrl-shift-l = 'move right'
 alt-ctrl-minus = 'resize smart -50'
 alt-ctrl-equal = 'resize smart +50'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-ctrl-1 = 'workspace 1'
-alt-ctrl-2 = 'workspace 2'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-ctrl-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
-alt-ctrl-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
+alt-tab = 'workspace --auto-back-and-forth 2'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'workspace --wrap-around next'
+alt-ctrl-tab = 'move-node-to-workspace --focus-follows-window --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-ctrl-semicolon = 'mode service'
