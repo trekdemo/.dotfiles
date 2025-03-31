@@ -148,6 +148,7 @@ return { -- LSP Configuration & Plugins
       gopls = {},
       dockerls = {},
       html = {},
+      ts_ls = {},
       jsonls = {},
       yamlls = {},
       tailwindcss = {},
