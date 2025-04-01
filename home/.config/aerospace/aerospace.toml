@@ -126,10 +126,9 @@ alt-ctrl-h = ['join-with left', 'mode main']
 alt-ctrl-j = ['join-with down', 'mode main']
 alt-ctrl-k = ['join-with up', 'mode main']
 alt-ctrl-l = ['join-with right', 'mode main']
-backspace = ['close-all-windows-but-current', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+alt-ctrl-r = ['flatten-workspace-tree', 'mode main'] # reset layout
+alt-ctrl-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+alt-ctrl-equal = ['balance-sizes', 'mode main'] # Toggle between floating and tiling layout
 
 
 # How to configure an app specific hook
