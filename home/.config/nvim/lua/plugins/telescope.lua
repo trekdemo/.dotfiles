@@ -64,7 +64,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
         },
       },
       pickers = {
+        find_files = { theme = 'ivy' },
         buffers = {
+          theme = 'ivy',
           mappings = {
             i = {
               ['<C-d>'] = 'delete_buffer',
