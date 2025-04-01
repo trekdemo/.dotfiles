@@ -9,6 +9,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
     { -- If encountering errors, see telescope-fzf-native README for install instructions
       'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -22,7 +23,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
         return vim.fn.executable 'make' == 1
       end,
     },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
 
     -- Useful for getting pretty icons, but requires special font.
     --  If you already have a Nerd Font, or terminal set up with fallback fonts
@@ -52,11 +52,19 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
-      -- You can put your default mappings / updates / etc. in here
-      --  All the info you're looking for is in `:help telescope.setup()`
-      --
       defaults = {
+        border = true,
+        borderchars = {
+          preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+          prompt = { '─', ' ', ' ', ' ', '─', '─', ' ', ' ' },
+          results = { ' ' },
+        },
+        layout_config = {
+          height = 25,
+        },
         layout_strategy = 'bottom_pane',
+        sorting_strategy = 'ascending',
+        theme = 'ivy',
         mappings = {
           i = {
             ['<Esc>'] = 'close',
@@ -64,13 +72,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
         },
       },
       pickers = {
-        find_files = { theme = 'ivy' },
+        spell_suggest = { theme = 'cursor' },
+        find_files = { hidden = true },
+        live_grep = { hidden = true },
         buffers = {
-          theme = 'ivy',
           mappings = {
-            i = {
-              ['<C-d>'] = 'delete_buffer',
-            },
+            i = { ['<C-d>'] = 'delete_buffer' },
           },
         },
       },
@@ -86,19 +93,17 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
 
+    -- Make accessing Telescope easier
+    vim.cmd [[cabbrev t Telescope]]
+    vim.keymap.set('n', '<leader>t<space>', ':Telescope ')
+
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<C-b>', builtin.buffers, { desc = 'Find buffers' })
-    vim.keymap.set('n', '<C-g>', function()
-      builtin.live_grep { hidden = true }
-    end, { desc = 'Telescope live_grep' })
-    vim.keymap.set('n', '<C-p>', function()
-      builtin.find_files { hidden = true }
-    end, { desc = 'Telescope find_files' })
     vim.keymap.set('n', '<C-q>', builtin.quickfix, { desc = 'Telescope quickfix' })
-    vim.keymap.set('n', '<C-t>', function()
-      builtin.treesitter()
-    end, { desc = 'Telescope treesitter' })
+    vim.keymap.set('n', '<C-t>', builtin.treesitter, { desc = 'Telescope treesitter' })
+    vim.keymap.set('n', '<C-g>', builtin.live_grep, { desc = 'Telescope live_grep' })
+    vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find_files' })
 
     vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = 'Find [C]ommands' })
     vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = 'Find LSP [S]ymbols' })
@@ -108,41 +113,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Find [H]elp' })
     vim.keymap.set('n', '<leader>fm', builtin.keymaps, { desc = 'Find key [M]appings' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Find [R]esume' })
-    vim.keymap.set('n', 'z=', function()
-      builtin.spell_suggest {
-        sorting_strategy = 'ascending',
-        layout_strategy = 'cursor',
-        layout_config = {
-          width = 0.3,
-          height = 0.4,
-        },
-      }
-    end)
-
-    -- Slightly advanced example of overriding default behavior and theme
-    vim.keymap.set('n', '<leader>/', function()
-      -- You can pass additional configuration to telescope to change theme, layout, etc.
-      builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
-        previewer = false,
-      })
-    end, { desc = '[/] Fuzzily search in current buffer' })
-
-    -- Shortcut for searching your neovim configuration files
-    vim.keymap.set('n', '<leader>fv', function()
-      builtin.find_files { cwd = vim.fn.stdpath 'config' }
-    end, { desc = '[F]ind in Neo[V]im files' })
-
-    vim.keymap.set('n', '<leader>gS', function()
-      builtin.git_status { layout_config = { height = 0.9 } }
-    end, { desc = 'Telescope git_status' })
-    vim.keymap.set('n', '<leader>gc', function()
-      builtin.git_bcommits { layout_config = { height = 0.9 } }
-    end, { desc = 'Telescope git_bcommits' })
+    vim.keymap.set('n', '<leader>gg', builtin.git_status, { desc = 'Telescope git_status' })
+    vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = 'Telescope git_bcommits' })
     vim.keymap.set('n', '<leader>gB', builtin.git_branches, { desc = 'Telescope git_branches' })
 
-    vim.cmd [[cabbrev t Telescope]]
-    vim.keymap.set('n', '<leader>t<space>', ':Telescope ', { desc = 'Telescope git_branches' })
+    vim.keymap.set('n', 'z=', builtin.spell_suggest)
+
+    -- Shortcut for searching dotfiles
+    vim.keymap.set('n', '<leader>fv', function()
+      builtin.find_files { cwd = vim.env.HOME .. '/projects/dotfiles/home/', hidden = true }
+    end, { desc = 'Find in dotfiles' })
 
     local function find_files_within_glob(globs, glob_name)
       return function()
@@ -166,7 +146,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       end
     end
 
-    -- Rails related finders
+    -- Rails and Ruby related finders
     vim.keymap.set('n', '<leader>ra', find_files_within_glob('**/app/assets/**', 'Assets'), { desc = 'Find Rails Assets' })
     vim.keymap.set(
       'n',

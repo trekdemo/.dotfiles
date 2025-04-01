@@ -20,7 +20,6 @@ return {
 
       vim.keymap.set('n', '<leader>g<Space>', ':Git<Space>')
       vim.keymap.set('n', '<leader>gs', ':Git<cr>')
-      vim.keymap.set('n', '<leader>gg', ':Git<cr>')
       vim.keymap.set('n', '<leader>gw', ':Gwrite<cr>')
       vim.keymap.set('n', '<leader>ga', ':Gadd<cr>')
       vim.keymap.set('n', '<leader>gb', ':Git blame<CR>')
