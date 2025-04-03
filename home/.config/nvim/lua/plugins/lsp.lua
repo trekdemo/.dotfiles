@@ -118,15 +118,23 @@ return { -- LSP Configuration & Plugins
         if client and client.server_capabilities.inlayHintProvider then
           vim.lsp.inlay_hint.enable(true)
         end
+
+        if client and client.server_capabilities.foldingRangeProvider then
+          -- Set the current window's foldexpr to 'v:lua.vim.lsp.foldexpr()'
+          vim.api.nvim_win_set_option(0, 'foldexpr', 'v:lua.vim.lsp.foldexpr()')
+        end
       end,
     })
 
-    -- Detach LSP in vim when all related buffers are closed
-    -- https://www.reddit.com/r/neovim/s/UkwEMkZlNE
     vim.api.nvim_create_autocmd({ 'LspDetach' }, {
       group = vim.api.nvim_create_augroup('LspStopWithLastClient', {}),
       desc = 'Stop lsp client when no buffer is attached',
       callback = function(args)
+        -- Set the foldexpr back to the previous value
+        vim.cmd 'setl foldexpr<'
+
+        -- Detach LSP in vim when all related buffers are closed
+        -- https://www.reddit.com/r/neovim/s/UkwEMkZlNE
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client and client.attached_buffers then
           return
