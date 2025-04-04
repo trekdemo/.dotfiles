@@ -60,7 +60,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
           results = { ' ' },
         },
         layout_config = {
-          height = 25,
+          height = 35,
         },
         layout_strategy = 'bottom_pane',
         sorting_strategy = 'ascending',
@@ -170,7 +170,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
     )
     vim.keymap.set('n', '<leader>rv', find_files_within_glob({ '**/app/views/**', '**/app/serializers/**' }, 'Views'), { desc = 'Find Rails Views' })
     vim.keymap.set('n', '<leader>rs', find_files_within_glob('**/spec/**', 'RSpec Specs'), { desc = 'Find RSpec Specs' })
-    vim.keymap.set('n', '<leader>ri', find_files_within_glob('db/migrate/*.rb', 'Database Migrations'), { desc = 'Find Rails Migrations' })
+    vim.keymap.set(
+      'n',
+      '<leader>ri',
+      find_files_within_glob({ 'db/migrate/*.rb', '**/app/jobs/data_migrations/**' }, 'Database Migrations'),
+      { desc = 'Find Rails Migrations' }
+    )
 
     vim.keymap.set('n', '<leader>rg', function()
       local gem_paths = vim.split(os.getenv 'GEM_PATH', ':', { trimempty = true })
