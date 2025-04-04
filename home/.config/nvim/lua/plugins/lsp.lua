@@ -234,7 +234,19 @@ return { -- LSP Configuration & Plugins
     -- Install solargraph & rusy-lsp manually for each Ruby version
     -- cmd = { 'chruby-exec', '$RUBY_VERSION', '--', 'solargraph', 'stdio' },
     -- require('lspconfig').solargraph.setup { capabilities = capabilities }
-    require('lspconfig').ruby_lsp.setup { capabilities = require('blink.cmp').get_lsp_capabilities() }
+    require('lspconfig').ruby_lsp.setup {
+      capabilities = require('blink.cmp').get_lsp_capabilities(),
+      init_options = {
+        indexing = {
+          includedPatterns = { 'packs/*/**' },
+        },
+        addonSettings = {
+          ['Ruby LSP Rails'] = {
+            enablePendingMigrationsPrompt = false,
+          },
+        },
+      },
+    }
     require('lspconfig').turbo_ls.setup { capabilities = require('blink.cmp').get_lsp_capabilities() }
   end,
 }
