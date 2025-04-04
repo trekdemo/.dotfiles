@@ -8,6 +8,10 @@ return {
   {
     'sindrets/diffview.nvim',
     opts = {},
+    keys = {
+      { '<leader>gvo', '<cmd>DiffviewOpen<cr>', desc = '[diffview]: Open' },
+      { '<leader>gvc', '<cmd>DiffviewClose<cr>', desc = '[diffview]: Open' },
+    },
   },
 
   -- A Git wrapper so awesome, it should be illegal
