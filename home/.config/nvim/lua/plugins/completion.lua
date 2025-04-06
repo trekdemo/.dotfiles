@@ -43,8 +43,8 @@ return {
     fuzzy = { sorts = { 'exact', 'score', 'sort_text' } },
 
     sources = {
-      -- default = { 'buffer', 'snippets', 'copilot', 'lsp', 'path', 'avante' },
-      default = { 'buffer', 'snippets', 'lsp', 'path' },
+      default = { 'buffer', 'snippets', 'copilot', 'lsp', 'path', 'avante' }, -- with AI
+      -- default = { 'buffer', 'snippets', 'lsp', 'path' }, -- without AI
       per_filetype = { sql = { 'dadbod' } },
       providers = {
         snippets = { max_items = 3, min_keyword_length = 1 },
