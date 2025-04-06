@@ -17,7 +17,7 @@ local function configVimRails()
   --     },
   --   },
   -- }
-  vim.keymap.set('n', '<leader>rI', ':Eschema<space>', { desc = 'Edit Rails schema' })
+  vim.keymap.set('n', '<leader>ri', ':Eschema<space>', { desc = 'Edit Rails schema' })
 end
 
 return {

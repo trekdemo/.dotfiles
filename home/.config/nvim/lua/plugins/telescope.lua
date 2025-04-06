@@ -172,7 +172,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>rs', find_files_within_glob('**/spec/**', 'RSpec Specs'), { desc = 'Find RSpec Specs' })
     vim.keymap.set(
       'n',
-      '<leader>ri',
+      '<leader>rI',
       find_files_within_glob({ 'db/migrate/*.rb', '**/app/jobs/data_migrations/**' }, 'Database Migrations'),
       { desc = 'Find Rails Migrations' }
     )
