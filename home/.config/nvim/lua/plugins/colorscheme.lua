@@ -41,6 +41,9 @@ local specs = {
           light = 'latte',
           dark = 'macchiato',
         },
+        styles = {
+          comments = {}, -- Change the style of comments
+        },
         integrations = {
           blink_cmp = true,
           gitsigns = true,
