@@ -119,10 +119,10 @@ return { -- LSP Configuration & Plugins
           vim.lsp.inlay_hint.enable(true)
         end
 
-        if client and client.server_capabilities.foldingRangeProvider then
-          -- Set the current window's foldexpr to 'v:lua.vim.lsp.foldexpr()'
-          vim.api.nvim_win_set_option(0, 'foldexpr', 'v:lua.vim.lsp.foldexpr()')
-        end
+        -- if client and client.server_capabilities.foldingRangeProvider then
+        --   -- Set the current window's foldexpr to 'v:lua.vim.lsp.foldexpr()'
+        --   vim.api.nvim_win_set_option(0, 'foldexpr', 'v:lua.vim.lsp.foldexpr()')
+        -- end
       end,
     })
 
