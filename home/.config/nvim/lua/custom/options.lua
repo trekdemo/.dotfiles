@@ -85,3 +85,6 @@ vim.o.foldtext = ''
 vim.opt.foldcolumn = '0'
 vim.opt.fillchars:append { fold = ' ' }
 vim.opt.foldlevelstart = 99 -- Do not close folds on file open
+
+-- Completion
+vim.o.completeopt = 'menu,preview,popup,noinsert,noselect'
