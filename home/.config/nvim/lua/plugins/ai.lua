@@ -8,6 +8,7 @@ return {
     build = 'make tiktoken', -- Only on MacOS or Linux
     keys = {
       { '<leader>at', '<cmd>CopilotChatToggle<cr>', desc = 'Toggle Copilot Chat' },
+      { '<leader>ap', '<cmd>CopilotChatPrompts<cr>', mode = 'v', desc = 'CopilotChat Prompts' },
     },
     opts = {
       model = 'claude-3.5-sonnet',
