@@ -6,10 +6,16 @@ return {
       { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
     },
     build = 'make tiktoken', -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
+    keys = {
+      { '<leader>at', '<cmd>CopilotChatToggle<cr>', desc = 'Toggle Copilot Chat' },
     },
-    -- See Commands section for default commands if you want to lazy load on them
+    opts = {
+      model = 'claude-3.5-sonnet',
+      question_header = ' Geri ',
+      answer_header = ' Copilot ',
+      auto_insert_mode = false,
+      window = { width = 0.45 },
+    },
   },
 }
 -- return {
