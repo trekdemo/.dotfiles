@@ -43,9 +43,12 @@ return {
     fuzzy = { sorts = { 'exact', 'score', 'sort_text' } },
 
     sources = {
-      default = { 'buffer', 'snippets', 'copilot', 'lsp', 'path', 'avante' }, -- with AI
+      default = { 'buffer', 'snippets', 'copilot', 'lsp', 'path' }, -- with AI
       -- default = { 'buffer', 'snippets', 'lsp', 'path' }, -- without AI
-      per_filetype = { sql = { 'dadbod' } },
+      per_filetype = {
+        sql = { 'dadbod' },
+        codecompanion = { 'codecompanion' },
+      },
       providers = {
         snippets = { max_items = 3, min_keyword_length = 1 },
         dadbod = { module = 'vim_dadbod_completion.blink' },
