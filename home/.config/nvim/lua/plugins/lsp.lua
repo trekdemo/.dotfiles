@@ -7,6 +7,7 @@ return { -- LSP Configuration & Plugins
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     { 'kosayoda/nvim-lightbulb', event = 'LspAttach', opts = { autocmd = { enabled = true } } },
+    { 'j-hui/fidget.nvim', opts = {} },
   },
   config = function()
     -- Brief Aside: **What is LSP?**
