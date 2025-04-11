@@ -24,12 +24,11 @@ return {
       ['<C-n>'] = { 'show', 'select_next', 'fallback_to_mappings' },
       ['<C-f>'] = { 'select_and_accept', 'fallback' },
     },
-
     completion = {
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
       ghost_text = { enabled = true },
       menu = {
-        auto_show = true,
+        auto_show = false,
         border = 'padded',
         draw = {
           columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' } },

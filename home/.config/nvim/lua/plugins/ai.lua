@@ -23,11 +23,35 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = { file_types = { 'markdown', 'codecompanion' } },
+        ft = { 'markdown', 'codecompanion' },
+      },
     },
-    opts = {},
+    config = function()
+      -- Create an augroup to manage the autocmd
+      vim.api.nvim_create_augroup('CodeCompanionSettings', { clear = true })
+      vim.api.nvim_create_autocmd('FileType', {
+        group = 'CodeCompanionSettings',
+        pattern = 'codecompanion',
+        callback = function()
+          vim.opt_local.number = false
+          vim.opt_local.relativenumber = false
+          vim.opt_local.signcolumn = 'yes'
+          vim.opt_local.cursorline = false
+        end,
+      })
+      vim.cmd [[cab cc CodeCompanion]]
+      require('codecompanion').setup {}
+    end,
     keys = {
       { '<leader>at', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion' },
+      { '<leader>av', '<cmd>CodeCompanionChat Add<cr>', mode = 'v' },
+      { '<leader>aa', '<cmd>CodeCompanionActions<cr>', mode = { 'n', 'v' } },
     },
+    cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions' },
   },
   -- {
   --   'yetone/avante.nvim',
