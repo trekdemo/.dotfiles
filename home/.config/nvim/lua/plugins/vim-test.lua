@@ -5,9 +5,13 @@ return {
     {
       'tpope/vim-dispatch',
       config = function()
+        -- This needs to be set to 1, to be able to use REPL-based debugging
+        -- Also, when the output is messy use :Copen! command to load the
+        -- unformmatted test output
+        vim.g['dispatch_tmux_pipe_pane'] = 0
         vim.keymap.set('n', "'r", ':Start bundle exec rails console<CR>')
         vim.keymap.set('n', "'m", ':Start rails-mycli<CR>')
-        vim.keymap.set('n', "'n", ':Start nnn<CR>')
+        vim.keymap.set('n', "'n", ':Start yazi<CR>')
       end,
     },
   },
@@ -16,8 +20,8 @@ return {
       vim.g['test#neovim_sticky#reopen_window'] = 1
       vim.g['test#strategy'] = 'neovim_sticky'
     else
-      vim.g['test#strategy'] = 'vimux'
-      -- vim.g['test#strategy'] = 'dispatch'
+      -- vim.g['test#strategy'] = 'vimux'
+      vim.g['test#strategy'] = 'dispatch'
     end
 
     vim.keymap.set('n', '<leader>tl', '<Cmd>TestLast<CR>', { desc = '[T]est [L]ast' })

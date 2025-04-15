@@ -6,6 +6,7 @@ endfunction
 
 let g:VimuxDebug = v:false
 let g:VimuxUseNearest = v:true
+" let g:VimuxRunnerType = "pane" " or "window"
 " let g:VimuxRunnerName = 'vimux'
 " let g:VimuxRunnerQuery = {
 "   \ 'pane': '{down-of}',
@@ -15,8 +16,8 @@ let g:VimuxUseNearest = v:true
 " Key mappings
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 nnoremap <Leader>v<C-l> :VimuxClearTerminalScreen<CR>
-nnoremap <Leader>vc :VimuxClearRunnerHistory<CR>
-nnoremap <Leader>vC :VimuxCloseRunner<CR>
+nnoremap <Leader>vC :VimuxClearRunnerHistory<CR>
+nnoremap <Leader>vc :VimuxCloseRunner<CR>
 nnoremap <Leader>vz :VimuxZoomRunner<CR>
 nnoremap <Leader>vi :VimuxInspectRunner<CR>
 vnoremap <Leader>vs "vy :call VimuxSlime()<CR>
