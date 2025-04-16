@@ -5,12 +5,17 @@ return {
     -- Also, when the output is messy use :Copen! command to load the
     -- unformmatted test output
     vim.g['dispatch_tmux_pipe_pane'] = 0
-    local set_editor_to_current_instance = 'EDITOR="nvr --servername ' .. vim.v['servername']
-    vim.keymap.set('n', "'r", ':Start bin/rails console<CR>')
-    vim.keymap.set('n', "'c", ':Start bin/dcr<CR>')
-    vim.keymap.set('n', "'m", ':Start rails-mycli<CR>')
-    vim.keymap.set('n', "'n", ':Start ' .. set_editor_to_current_instance .. ' yazi<CR>')
-    vim.keymap.set('n', "'d", ':Start ' .. set_editor_to_current_instance .. ' lazydocker<CR>')
-    vim.keymap.set('n', "'g", ':Start ' .. set_editor_to_current_instance .. ' lazygit<CR>')
+
+    local map_start_cmd = function(mapping, command)
+      vim.keymap.set('n', mapping, ':Start ' .. command .. '<CR>')
+    end
+
+    map_start_cmd("'a", 'aider')
+    map_start_cmd("'c", 'bin/dcr')
+    map_start_cmd("'d", 'lazydocker')
+    map_start_cmd("'g", 'lazygit')
+    map_start_cmd("'m", 'rails-mycli')
+    map_start_cmd("'n", 'yazi')
+    map_start_cmd("'r", 'bin/rails console')
   end,
 }
