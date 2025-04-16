@@ -22,6 +22,29 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
+  desc = 'Resize quickfix list on focus',
+  group = custom_autocmds,
+  callback = function()
+    local win_id = vim.api.nvim_get_current_win()
+    if vim.bo.filetype == 'qf' then
+      local height = math.floor(vim.o.lines * 0.5)
+      vim.api.nvim_win_set_height(win_id, height)
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufLeave' }, {
+  desc = 'Resize quickfix list on blur',
+  group = custom_autocmds,
+  callback = function()
+    local win_id = vim.api.nvim_get_current_win()
+    if vim.bo.filetype == 'qf' then
+      vim.api.nvim_win_set_height(win_id, 10)
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   desc = 'Display cursor line',
   group = custom_autocmds,
