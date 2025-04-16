@@ -87,8 +87,8 @@ return { -- Collection of various small independent plugins/modules
             { hl = 'MiniStatuslineFilename', strings = { filename } },
             '%=', -- End left alignment
             { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
-            { hl = mode_hl, strings = { lsp } },
-            -- { hl = mode_hl, strings = { location } },
+            { hl = 'MiniStatuslineFileinfo', strings = { lsp } },
+            { hl = mode_hl, strings = { location } },
           }
         end,
       },
