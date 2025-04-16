@@ -6,7 +6,8 @@ return {
     -- unformmatted test output
     vim.g['dispatch_tmux_pipe_pane'] = 0
     local set_editor_to_current_instance = 'EDITOR="nvr --servername ' .. vim.v['servername']
-    vim.keymap.set('n', "'r", ':Start bundle exec rails console<CR>')
+    vim.keymap.set('n', "'r", ':Start bin/rails console<CR>')
+    vim.keymap.set('n', "'c", ':Start bin/dcr<CR>')
     vim.keymap.set('n', "'m", ':Start rails-mycli<CR>')
     vim.keymap.set('n', "'n", ':Start ' .. set_editor_to_current_instance .. ' yazi<CR>')
     vim.keymap.set('n', "'d", ':Start ' .. set_editor_to_current_instance .. ' lazydocker<CR>')
