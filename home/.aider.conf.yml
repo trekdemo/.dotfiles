@@ -222,7 +222,7 @@ dark-mode: true
 #completion-menu-current-bg-color: xxx
 
 ## Set the markdown code theme (default: default, other options include monokai, solarized-dark, solarized-light, or a Pygments builtin style, see https://pygments.org/styles for available themes)
-#code-theme: default
+code-theme: material
 
 ## Show diffs when committing changes (default: False)
 #show-diffs: false
