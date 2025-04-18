@@ -51,6 +51,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
+    local actions = require 'telescope.actions'
     require('telescope').setup {
       defaults = {
         border = true,
@@ -67,7 +68,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
         theme = 'ivy',
         mappings = {
           i = {
-            ['<Esc>'] = 'close',
+            ['<Esc>'] = actions.close,
+            ['<M-l>'] = actions.send_selected_to_loclist + actions.open_locflist,
           },
         },
       },
