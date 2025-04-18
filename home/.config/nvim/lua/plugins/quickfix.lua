@@ -3,5 +3,6 @@ return {
   ft = { 'qf' },
   opts = {
     preview = { auto_preview = false },
+    auto_resize_height = true,
   },
 }

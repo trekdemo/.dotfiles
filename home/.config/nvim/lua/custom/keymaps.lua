@@ -70,10 +70,9 @@ vim.keymap.set('i', '{', '{<c-g>u')
 vim.keymap.set('i', '}', '}<c-g>u')
 
 -- Open location-list and quickfix list
-vim.keymap.set('n', '<leader>lo', ':lopen<CR>')
+vim.keymap.set('n', '<leader>lo', ':lopen 35<CR>')
+vim.keymap.set('n', '<leader>co', ':copen 35<CR>')
 vim.keymap.set('n', '<leader>lc', ':lclose<CR>')
-vim.keymap.set('n', '<leader>co', ':copen<CR>')
-vim.keymap.set('n', '<leader>cO', ':Copen!<CR>') -- Load the unfiltered output from the last Dispatch
 vim.keymap.set('n', '<leader>cc', ':cclose<CR>')
 
 -- Move lines in visual mode
