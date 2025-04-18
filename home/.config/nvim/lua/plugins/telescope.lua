@@ -69,7 +69,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         mappings = {
           i = {
             ['<Esc>'] = actions.close,
-            ['<M-l>'] = actions.send_selected_to_loclist + actions.open_locflist,
+            ['<M-l>'] = actions.send_selected_to_loclist + actions.open_loclist,
           },
         },
       },
