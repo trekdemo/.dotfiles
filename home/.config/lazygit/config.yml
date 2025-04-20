@@ -1,5 +1,7 @@
 gui:
   showFileTree: false # Just the list the files changed
-# git:
-#   paging:
-#     externalDiffCommand: difft --color=always --display=inline --syntax-highlight=on --tab-width=2
+git:
+  paging:
+    # externalDiffCommand: difft --color=always --display=inline --syntax-highlight=on --tab-width=2
+    colorArg: always
+    pager: delta --color-only --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

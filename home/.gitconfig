@@ -46,7 +46,11 @@
   logallrefupdates = true
   ignorecase = true
   precomposeunicode = true
-  pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+  ; pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+  pager = delta --color-only
+
+[interactive]
+  diffFilter = delta --color-only
 
 [init]
   defaultBranch = main
@@ -149,6 +153,9 @@
 [gpg]
   program = /usr/local/MacGPG2/bin/gpg2
   format = openpgp
+
+[delta]
+  line-numbers = false
 
 [help]
   autocorrect = prompt
