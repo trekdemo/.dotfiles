@@ -2,17 +2,8 @@ return {
   'saghen/blink.cmp',
   version = '*', -- Use a release tag to download pre-built binaries
   dependencies = {
-    {
-      'zbirenbaum/copilot.lua',
-      config = function()
-        require('copilot').setup {
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        }
-      end,
-    },
     'rafamadriz/friendly-snippets',
-    'giuxtaposition/blink-cmp-copilot',
+    { 'giuxtaposition/blink-cmp-copilot', dependencies = { 'zbirenbaum/copilot.lua' } },
     'Kaiser-Yang/blink-cmp-avante',
   },
 
