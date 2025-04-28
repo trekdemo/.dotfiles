@@ -77,6 +77,12 @@ for _, spec in ipairs(specs) do
   end
 end
 
+-- Make the background transparent
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
+
 -- Change the name of the colorscheme plugin below, and then
 -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
 return specs
