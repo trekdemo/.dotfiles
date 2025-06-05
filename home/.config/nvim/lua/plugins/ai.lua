@@ -22,7 +22,18 @@ return {
         ft = { 'markdown', 'codecompanion' },
       },
     },
-    opts = {},
+    opts = {
+      extensions = {
+        mcphub = {
+          callback = 'mcphub.extensions.codecompanion',
+          opts = {
+            show_result_in_chat = true, -- Show mcp tool results in chat
+            make_vars = true, -- Convert resources to #variables
+            make_slash_commands = true, -- Add prompts as /slash commands
+          },
+        },
+      },
+    },
     init = function()
       vim.cmd [[cab cc CodeCompanion]]
     end,
@@ -34,13 +45,11 @@ return {
     cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions' },
   },
   {
-    'joshuavial/aider.nvim',
-    opts = {
-      -- your configuration comes here
-      -- if you don't want to use the default settings
-      auto_manage_context = true, -- automatically manage buffer context
-      default_bindings = true, -- use default <leader>A keybindings
-      debug = false, -- enable debug logging
-    },
+    'ravitemer/mcphub.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    build = 'npm install -g mcp-hub@latest', -- Installs `mcp-hub` node binary globally
+    config = function()
+      require('mcphub').setup()
+    end,
   },
 }
