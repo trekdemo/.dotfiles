@@ -103,7 +103,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<C-b>', builtin.buffers, { desc = 'Find buffers' })
     vim.keymap.set('n', '<C-q>', builtin.quickfix, { desc = 'Telescope quickfix' })
-    vim.keymap.set('n', '<C-t>', builtin.treesitter, { desc = 'Telescope treesitter' })
+    vim.keymap.set('n', '<C-t>', function()
+      builtin.treesitter { default_text = ':function:' }
+    end, { desc = 'Telescope treesitter' })
     vim.keymap.set('n', '<C-g>', builtin.live_grep, { desc = 'Telescope live_grep' })
     vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find_files' })
 
