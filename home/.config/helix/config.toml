@@ -1,4 +1,4 @@
-theme = "gruvbox"
+theme = "catppuccin_macchiato"
 
 [editor]
 true-color = true
