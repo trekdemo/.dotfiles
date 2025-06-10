@@ -21,8 +21,25 @@ return {
         opts = { file_types = { 'markdown', 'codecompanion' } },
         ft = { 'markdown', 'codecompanion' },
       },
+      {
+        'ravitemer/mcphub.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        build = 'npm install -g mcp-hub@latest', -- Installs `mcp-hub` node binary globally
+        opts = {},
+        cmd = { 'MCPHub' },
+      },
     },
     opts = {
+      display = {
+        chat = {
+          window = {
+            opts = {
+              number = false,
+              signcolumn = 'yes:1',
+            },
+          },
+        },
+      },
       extensions = {
         mcphub = {
           callback = 'mcphub.extensions.codecompanion',
@@ -43,11 +60,5 @@ return {
       { '<leader>aa', '<cmd>CodeCompanionActions<cr>', mode = { 'n', 'v' } },
     },
     cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions' },
-  },
-  {
-    'ravitemer/mcphub.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    build = 'npm install -g mcp-hub@latest', -- Installs `mcp-hub` node binary globally
-    opts = {},
   },
 }
