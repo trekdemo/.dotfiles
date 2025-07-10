@@ -24,9 +24,8 @@ return {
       end
     end
     vim.keymap.set('n', '<leader>tv', switchStrategy 'vimux', { desc = 'Run [T]ests with [V]imux' })
-    vim.keymap.set('n', '<leader>tS', switchStrategy 'neovim_sticky', { desc = 'Run [T]ests with Neovim [S]ticky' })
+    vim.keymap.set('n', '<leader>tk', switchStrategy 'kitty', { desc = 'Run [T]ests with Kitty' })
     vim.keymap.set('n', '<leader>td', switchStrategy 'dispatch', { desc = 'Run [T]ests with [D]ispatch' })
-    vim.keymap.set('n', '<leader>tD', switchStrategy 'dispatch_background', { desc = 'Run [T]ests with [D]ispatch!' })
 
     -- [LANGUAGE SPECIFIC SETTINGS] -------------------------------------------
     -- Ruby settings for RSpec
