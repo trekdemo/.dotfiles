@@ -32,7 +32,9 @@ return {
     opts = {
       display = {
         chat = {
+          -- show_settings = true,
           window = {
+            width = 100,
             opts = {
               number = false,
               signcolumn = 'yes:1',
