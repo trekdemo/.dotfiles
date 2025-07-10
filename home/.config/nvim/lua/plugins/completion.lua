@@ -4,7 +4,6 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     { 'giuxtaposition/blink-cmp-copilot', dependencies = { 'zbirenbaum/copilot.lua' } },
-    'Kaiser-Yang/blink-cmp-avante',
   },
 
   ---@module 'blink.cmp'
@@ -40,18 +39,13 @@ return {
         codecompanion = { 'codecompanion' },
       },
       providers = {
-        snippets = { max_items = 3, min_keyword_length = 1 },
+        snippets = { max_items = 3, min_keyword_length = 1, score_offset = 50 },
         dadbod = { module = 'vim_dadbod_completion.blink' },
         copilot = {
           name = 'copilot',
           module = 'blink-cmp-copilot',
           score_offset = 100, -- Move copilot completions to the top
           async = true,
-        },
-        avante = {
-          module = 'blink-cmp-avante',
-          name = 'Avante',
-          opts = {}, -- options for blink-cmp-avante
         },
       },
     },
