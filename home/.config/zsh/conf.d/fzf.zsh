@@ -8,3 +8,11 @@ source <(fzf --zsh)
 _fzf_complete_brew() {
   _fzf_complete --multi --reverse --prompt="brew packages> " -- "$@" < <(brew list)
 }
+
+# Switch to a prject directory
+pj() {
+  local projects_dir=~/projects
+  local selected
+  selected=$(find "$projects_dir" -mindepth 1 -maxdepth 1 -type d | sed "s|$projects_dir/||" | fzf) || return
+  cd "$projects_dir/$selected"
+}
