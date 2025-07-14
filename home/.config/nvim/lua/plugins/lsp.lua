@@ -169,7 +169,7 @@ return { -- LSP Configuration & Plugins
           SpellCheck = false,
         },
       },
-      stimulus_ls = {},
+      -- stimulus_ls = {},
       bashls = {},
       lua_ls = {
         -- cmd = {...},
@@ -247,6 +247,9 @@ return { -- LSP Configuration & Plugins
         },
       },
     }
-    require('lspconfig').turbo_ls.setup { capabilities = require('blink.cmp').get_lsp_capabilities() }
+    require('lspconfig').turbo_ls.setup {
+      filetypes = { 'html', 'eruby' },
+      capabilities = require('blink.cmp').get_lsp_capabilities(),
+    }
   end,
 }
