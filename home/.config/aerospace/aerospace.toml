@@ -87,6 +87,21 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 
+ # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+
+ctrl-left = 'workspace prev'
+ctrl-right = 'workspace next'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-ctrl-enter = 'fullscreen'
 alt-ctrl-slash = 'layout tiles horizontal vertical'
