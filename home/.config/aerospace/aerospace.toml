@@ -13,7 +13,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders active_color=0xbbffff2b inactive_color=0x00000000 width=10.0 hidpi=on'
+  'exec-and-forget borders active_color=0xbb7b819c inactive_color=0x00000000 width=10.0 hidpi=on'
 ]
 
 # Start AeroSpace at login
@@ -50,8 +50,8 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical =   5
+inner.horizontal = 10
+inner.vertical =   10
 outer.left =       5
 outer.bottom =     5
 outer.top =        5
