@@ -247,9 +247,9 @@ return { -- LSP Configuration & Plugins
         },
       },
     }
-    require('lspconfig').turbo_ls.setup {
-      filetypes = { 'html', 'eruby' },
-      capabilities = require('blink.cmp').get_lsp_capabilities(),
-    }
+    -- require('lspconfig').turbo_ls.setup {
+    --   filetypes = { 'html', 'eruby' },
+    --   capabilities = require('blink.cmp').get_lsp_capabilities(),
+    -- }
   end,
 }
