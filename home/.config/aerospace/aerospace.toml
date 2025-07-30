@@ -105,8 +105,8 @@ alt-ctrl-4 = ['move-node-to-workspace 4', 'workspace 4']
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-ctrl-enter = 'fullscreen'
 alt-ctrl-comma = 'layout h_accordion h_tiles'
-alt-ctrl-period = 'layout accordion horizontal vertical'
-alt-ctrl-slash = 'layout tiles horizontal vertical'
+alt-ctrl-period = 'layout accordion tiles'
+alt-ctrl-slash = 'layout horizontal vertical'
 alt-ctrl-f = ['layout floating tiling'] # Toggle between floating and tiling layout
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
