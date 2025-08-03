@@ -35,23 +35,20 @@ local specs = {
     name = 'catppuccin',
     priority = 1000,
     config = function()
-      local isDark = vim.fn.system 'osascript -e \'tell application "System Events" to tell appearance preferences to return dark mode\''
-      local flavour = 'auto'
-      if isDark == 'true\n' then
-        flavour = 'macchiato'
-      else
-        flavour = 'frappe'
-      end
+      local flavour = 'frappe'
 
       require('catppuccin').setup {
         flavour = flavour, -- latte, frappe, macchiato, mocha
         styles = {
           comments = {}, -- Change the style of comments
         },
+        transparent_background = true,
         integrations = {
           blink_cmp = true,
           gitsigns = true,
           treesitter = true,
+          treesitter_context = true,
+          fidget = true,
           mini = {
             enabled = true,
             indentscope_color = '',
@@ -59,6 +56,9 @@ local specs = {
           mason = true,
           which_key = true,
           dadbod_ui = true,
+          dap = true,
+          dap_ui = true,
+          native_lsp = { enabled = true },
         },
       }
       vim.opt_global.background = 'dark'
