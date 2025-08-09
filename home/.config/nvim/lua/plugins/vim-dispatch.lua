@@ -12,7 +12,6 @@ return {
       vim.keymap.set('n', mapping, ':Start ' .. command .. '<CR>')
     end
 
-    map_start_cmd("'a", 'aider')
     map_start_cmd("'c", 'bin/dcr')
     map_start_cmd("'d", 'lazydocker')
     map_start_cmd("'g", 'lazygit')
