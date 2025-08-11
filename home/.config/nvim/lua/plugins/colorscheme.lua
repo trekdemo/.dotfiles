@@ -42,7 +42,7 @@ local specs = {
         styles = {
           comments = {}, -- Change the style of comments
         },
-        transparent_background = true,
+        transparent_background = false,
         integrations = {
           blink_cmp = true,
           gitsigns = true,
