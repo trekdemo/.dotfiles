@@ -38,3 +38,7 @@ telepresence.log
 .yardoc/
 
 .aider.*
+
+# Crush AI assistant directory
+.crush/
+CRUSH.md
