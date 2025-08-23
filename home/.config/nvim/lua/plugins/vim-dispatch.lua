@@ -1,5 +1,9 @@
 return {
-  'tpope/vim-dispatch',
+  'trekdemo/vim-dispatch',
+  branch = 'kitty-support',
+  -- 'tpope/vim-dispatch',
+  -- dev = true,
+  -- path = '~/projects/vim-dispatch',
   config = function()
     vim.g.dispatch_compilers = { ['bundle exec'] = '', ['bin/'] = '' }
 

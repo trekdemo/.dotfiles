@@ -1,14 +1,8 @@
 return {
   'vim-test/vim-test',
-  dependencies = { 'benmills/vimux', 'tpope/vim-dispatch' },
+  dependencies = { 'vim-dispatch' },
   config = function()
-    if vim.g.neovide then
-      vim.g['test#neovim_sticky#reopen_window'] = 1
-      vim.g['test#strategy'] = 'neovim_sticky'
-    else
-      -- vim.g['test#strategy'] = 'vimux'
-      vim.g['test#strategy'] = 'dispatch'
-    end
+    vim.g['test#strategy'] = 'dispatch'
 
     vim.keymap.set('n', '<leader>tl', '<Cmd>TestLast<CR>', { desc = '[T]est [L]ast' })
     vim.keymap.set('n', '<leader>ta', '<Cmd>AbortDispatch<CR>', { desc = '[T]est Dispatch [A]bort' })
@@ -23,7 +17,6 @@ return {
         vim.notify('Using ' .. strategy .. ' to run tests', vim.log.levels.INFO)
       end
     end
-    vim.keymap.set('n', '<leader>tv', switchStrategy 'vimux', { desc = 'Run [T]ests with [V]imux' })
     vim.keymap.set('n', '<leader>tk', switchStrategy 'kitty', { desc = 'Run [T]ests with Kitty' })
     vim.keymap.set('n', '<leader>td', switchStrategy 'dispatch', { desc = 'Run [T]ests with [D]ispatch' })
 
