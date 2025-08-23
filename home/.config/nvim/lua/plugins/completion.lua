@@ -40,6 +40,16 @@ return {
           score_offset = 100, -- Move copilot completions to the top
           async = true,
         },
+        lsp = {
+          name = 'LSP',
+          module = 'blink.cmp.sources.lsp',
+          -- Hide keyword items
+          transform_items = function(_, items)
+            return vim.tbl_filter(function(item)
+              return item.kind ~= require('blink.cmp.types').CompletionItemKind.Keyword
+            end, items)
+          end,
+        },
       },
     },
   },
