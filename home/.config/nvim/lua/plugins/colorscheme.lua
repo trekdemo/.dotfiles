@@ -62,6 +62,7 @@ local specs = {
         },
       }
       vim.opt_global.background = 'dark'
+      vim.cmd.hi('link', 'QuickfixLine', 'CursorLine')
       vim.cmd.colorscheme 'catppuccin'
     end,
   },
