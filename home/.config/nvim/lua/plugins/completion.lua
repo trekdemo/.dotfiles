@@ -3,7 +3,7 @@ return {
   version = '*', -- Use a release tag to download pre-built binaries
   dependencies = {
     'rafamadriz/friendly-snippets',
-    { 'giuxtaposition/blink-cmp-copilot', dependencies = { 'zbirenbaum/copilot.lua' } },
+    { 'giuxtaposition/blink-cmp-copilot', dependencies = { 'copilot.lua' } },
   },
 
   ---@module 'blink.cmp'
@@ -11,12 +11,10 @@ return {
   opts = {
     cmdline = { enabled = false },
     keymap = {
-      ['<C-space>'] = { 'show', 'hide' },
-      ['<C-n>'] = { 'show', 'select_next', 'fallback_to_mappings' },
       ['<C-f>'] = { 'select_and_accept', 'fallback' },
     },
     completion = {
-      documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      trigger = { show_in_snippet = false },
       ghost_text = { enabled = true },
       menu = {
         auto_show = false,
@@ -26,21 +24,15 @@ return {
         },
       },
     },
-    -- Experimental signature help support
-    signature = { enabled = false },
-
-    -- Use exact to prioritize snippets when exact matching.
-    fuzzy = { sorts = { 'exact', 'score', 'sort_text' } },
 
     sources = {
-      default = { 'buffer', 'snippets', 'copilot', 'lsp', 'path' }, -- with AI
-      -- default = { 'buffer', 'snippets', 'lsp', 'path' }, -- without AI
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
       per_filetype = {
         sql = { 'dadbod' },
         codecompanion = { 'codecompanion' },
       },
       providers = {
-        snippets = { max_items = 3, min_keyword_length = 1, score_offset = 50 },
+        snippets = { max_items = 3, min_keyword_length = 1 },
         dadbod = { module = 'vim_dadbod_completion.blink' },
         copilot = {
           name = 'copilot',
