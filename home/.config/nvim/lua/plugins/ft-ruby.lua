@@ -24,6 +24,7 @@ return {
   { 'mikepjb/vim-chruby', ft = { 'ruby' } },
   { 'noprompt/vim-yardoc', ft = { 'ruby' } },
   { 'tpope/vim-bundler', ft = { 'ruby' } },
+  { 'vim-ruby/vim-ruby', ft = { 'ruby' } },
   -- See the Rails-related Telescope finders in telescope.lua
   { 'tpope/vim-rails', ft = { 'ruby' }, config = configVimRails },
   { 'rbong/vim-flog', ft = { 'ruby' } },
