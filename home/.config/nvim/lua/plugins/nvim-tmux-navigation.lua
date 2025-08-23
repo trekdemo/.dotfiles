@@ -1,5 +1,6 @@
 return {
   'alexghergh/nvim-tmux-navigation',
+  cond = vim.env.TMUX ~= nil,
   config = function()
     local nav = require 'nvim-tmux-navigation'
     nav.setup {

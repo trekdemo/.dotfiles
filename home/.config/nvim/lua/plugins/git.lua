@@ -20,14 +20,12 @@ return {
     dependencies = { 'tpope/vim-rhubarb' },
     config = function()
       local vim = vim
-      vim.cmd.cabbrev('g', 'Git')
-
       vim.keymap.set('n', '<leader>g<Space>', ':Git<Space>')
       vim.keymap.set('n', '<leader>gs', ':Git<cr>')
       vim.keymap.set('n', '<leader>gw', ':Gwrite<cr>')
       vim.keymap.set('n', '<leader>ga', ':Gadd<cr>')
       vim.keymap.set('n', '<leader>gb', ':Git blame<CR>')
-      vim.keymap.set('n', '<leader>gl', ':Git log origin/main..HEAD<CR>')
+      vim.keymap.set('n', '<leader>gl', ':Git bl<CR>')
       vim.keymap.set('n', '<leader>gP', ':!gh pr view -w || gh pr create -w<cr>', { desc = 'Create or view [G]itHub [P]R' })
 
       local augrp = vim.api.nvim_create_augroup('FugitiveUserMappings', {})

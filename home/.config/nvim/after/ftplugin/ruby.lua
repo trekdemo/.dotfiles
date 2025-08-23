@@ -11,7 +11,7 @@ vim.keymap.set('n', '}', '}w', { buffer = true, desc = 'Jump to next block' })
 -- See :help b:dispatch
 local file = vim.fn.expand '%'
 if file:match '_spec.rb$' then
-  vim.b['dispatch'] = 'bundle exec rspec %'
+  vim.b['dispatch'] = 'bin/rspec %'
 else
   vim.b['dispatch'] = 'bundle exec ruby %'
 end

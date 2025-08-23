@@ -49,3 +49,6 @@
 /home/.config/raycast/config.json
 /home/.config/1Password/
 /home/.config/colima/
+/home/.claude/*
+!/home/.claude/agents
+!/home/.claude/commands

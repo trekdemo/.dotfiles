@@ -154,3 +154,90 @@ vim.keymap.set('i', '<C-b>', '<Left>', { desc = 'Previous char' })
 vim.keymap.set('i', '<M-f>', '<C-o>w', { desc = 'Next word' })
 vim.keymap.set('i', '<M-b>', '<C-o>b', { desc = 'Previous word' })
 vim.keymap.set('i', '<C-u>', '<esc>gUiwea', { desc = 'Upcase last word' })
+
+-- Copy relative file path mapping
+vim.keymap.set('n', '<leader>yp', function()
+  local relative_path = vim.fn.expand '%'
+  if relative_path == '' then
+    vim.notify('No file in current buffer', vim.log.levels.WARN)
+    return
+  end
+
+  vim.fn.setreg('+', relative_path)
+  vim.fn.setreg('"', relative_path)
+  vim.notify('Copied: ' .. relative_path, vim.log.levels.INFO)
+end, { desc = 'Copy relative file path' })
+
+-- Copy symbol name (class/module/method) using Treesitter
+vim.keymap.set('n', '<leader>yn', function()
+  local ts = vim.treesitter
+  local ts_utils = require 'nvim-treesitter.ts_utils'
+
+  -- Node types we're interested in (varies by language)
+  local target_types = {
+    'module',
+    'class',
+    'class_definition',
+    'class_declaration',
+    'function_definition',
+    'function_declaration',
+    'method_definition',
+    'method_declaration',
+    'module_definition',
+    'module_declaration',
+    'const_declaration',
+    'constant_declaration',
+    'variable_declaration',
+    'struct_declaration',
+    'interface_declaration',
+    'enum_declaration',
+    'impl_item',
+    'trait_definition',
+    'namespace_definition',
+  }
+
+  -- Find the symbol by traversing up the tree
+  local function find_symbol_node(current_node)
+    if not current_node then
+      return nil
+    end
+
+    local node_type = current_node:type()
+    if vim.tbl_contains(target_types, node_type) then
+      print(ts.get_node_text(current_node, 0))
+
+      -- Look for name/identifier child nodes
+      for child in current_node:iter_children() do
+        local child_type = child:type()
+        if child_type == 'identifier' or child_type == 'name' or child_type == 'type_identifier' then
+          local name = ts.get_node_text(child, 0)
+          if name and name ~= '' then
+            return name, node_type
+          end
+        end
+      end
+    end
+
+    -- Try parent node
+    return find_symbol_node(current_node:parent())
+  end
+
+  -- Get the node at cursor position
+  local node = ts_utils.get_node_at_cursor()
+  if not node then
+    vim.notify('No treesitter node at cursor', vim.log.levels.WARN)
+    return
+  end
+  local symbol_name, symbol_type = find_symbol_node(node)
+
+  if symbol_name then
+    vim.fn.setreg('+', symbol_name)
+    vim.fn.setreg('"', symbol_name)
+
+    -- Clean up the symbol type for display
+    local display_type = symbol_type:gsub('_', ' '):gsub('definition', ''):gsub('declaration', ''):gsub('%s+', ' ')
+    vim.notify('Copied ' .. display_type .. ': ' .. symbol_name, vim.log.levels.INFO)
+  else
+    vim.notify('No symbol found at cursor', vim.log.levels.WARN)
+  end
+end, { desc = 'Copy symbol name at cursor' })

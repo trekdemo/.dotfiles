@@ -161,15 +161,15 @@ return { -- LSP Configuration & Plugins
       yamlls = {},
       tailwindcss = {},
       marksman = {},
+      codebook = {},
       -- https://writewithharper.com/docs/integrations/neovim#Configuration
-      harper_ls = {
-        userDictPath = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add',
-        linters = {
-          SentenceCapitalization = false,
-          SpellCheck = false,
-        },
-      },
-      stimulus_ls = {},
+      -- harper_ls = {
+      --   userDictPath = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add',
+      --   linters = {
+      --     SentenceCapitalization = false,
+      --     SpellCheck = false,
+      --   },
+      -- },
       bashls = {},
       lua_ls = {
         -- cmd = {...},
@@ -247,6 +247,9 @@ return { -- LSP Configuration & Plugins
         },
       },
     }
-    require('lspconfig').turbo_ls.setup { capabilities = require('blink.cmp').get_lsp_capabilities() }
+    -- require('lspconfig').turbo_ls.setup {
+    --   filetypes = { 'html', 'eruby' },
+    --   capabilities = require('blink.cmp').get_lsp_capabilities(),
+    -- }
   end,
 }

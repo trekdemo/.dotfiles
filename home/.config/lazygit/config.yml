@@ -1,7 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 
 gui:
+  border: single
   showFileTree: false # Just the list the files changed
+  showCommandLog: false
+  commitHashLength: 0 # Hide SHAs in commit log
+  expandFocusedSidePanel: true
+  expandedSidePanelWeight: 3
+  enlargedSideViewLocation: top
   theme:
     activeBorderColor:
       - '#8aadf4'
@@ -30,3 +36,4 @@ git:
     # externalDiffCommand: difft --color=always --display=inline --syntax-highlight=on --tab-width=2
     colorArg: always
     pager: delta --color-only --dark --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  overrideGpg: true

@@ -1,0 +1,10 @@
+#!/bin/sh
+# git branch-log
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$branch" = "main" ]; then
+  git log -10
+else
+  git log origin/main..HEAD
+fi
