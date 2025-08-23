@@ -9,6 +9,7 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    cmdline = { enabled = false },
     keymap = {
       ['<C-space>'] = { 'show', 'hide' },
       ['<C-n>'] = { 'show', 'select_next', 'fallback_to_mappings' },
