@@ -5,7 +5,6 @@
 
 -- Colorscheme
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
 
 -- Text flow
 vim.opt.wrap = false
@@ -69,19 +68,15 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
 vim.opt.diffopt = 'filler,internal,algorithm:histogram,indent-heuristic,iwhite,linematch:60'
 vim.opt.fillchars = 'diff: ,vert:│,foldclose:,foldopen:,eob: ' -- Comment needed to allow empty eob char
 
 -- Nice and simple folding:
-vim.o.foldenable = true
-vim.o.foldlevel = 99
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.o.foldtext = ''
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldtext = ''
 vim.opt.foldcolumn = '0'
 vim.opt.fillchars:append { fold = ' ' }
 vim.opt.foldlevelstart = 99 -- Do not close folds on file open
