@@ -10,7 +10,7 @@ return {
     opts = {},
     keys = {
       { '<leader>gvo', '<cmd>DiffviewOpen<cr>', desc = '[diffview]: Open' },
-      { '<leader>gvc', '<cmd>DiffviewClose<cr>', desc = '[diffview]: Open' },
+      { '<leader>gvc', '<cmd>DiffviewClose<cr>', desc = '[diffview]: Close' },
     },
   },
 
@@ -26,31 +26,7 @@ return {
       vim.keymap.set('n', '<leader>ga', ':Gadd<cr>')
       vim.keymap.set('n', '<leader>gb', ':Git blame<CR>')
       vim.keymap.set('n', '<leader>gl', ':Git bl<CR>')
-      vim.keymap.set('n', '<leader>gP', ':!gh pr view -w || gh pr create -w<cr>', { desc = 'Create or view [G]itHub [P]R' })
-
-      local augrp = vim.api.nvim_create_augroup('FugitiveUserMappings', {})
-      vim.api.nvim_create_autocmd('BufWinEnter', {
-        group = augrp,
-        pattern = '*',
-        callback = function()
-          if vim.bo.ft ~= 'fugitive' then
-            return
-          end
-
-          local bufnr = vim.api.nvim_get_current_buf()
-
-          vim.keymap.set('n', 'g<space>', ':Git ', { buffer = bufnr, remap = false, desc = 'Git ' })
-
-          vim.keymap.set('n', '<leader>p', function()
-            vim.cmd ':Git push'
-          end, { buffer = bufnr, remap = false, desc = 'Git push' })
-
-          -- rebase always
-          vim.keymap.set('n', '<leader>P', function()
-            vim.cmd ':Git pull --rebase'
-          end, { buffer = bufnr, remap = false, desc = 'Git pull --rebase' })
-        end,
-      })
+      vim.keymap.set('n', '<leader>ghp', ':!gh pr view -w || gh pr create -w<cr>', { desc = 'Create or view GitHub PR' })
     end,
   },
 }

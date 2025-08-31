@@ -18,6 +18,7 @@ return {
     map_start_cmd("'c", 'bin/dcr')
     map_start_cmd("'d", 'lazydocker')
     map_start_cmd("'g", 'lazygit')
+    map_start_cmd("'h", 'gh dash')
     map_start_cmd("'m", 'rails-mycli')
     map_start_cmd("'n", 'yazi')
     map_start_cmd("'r", 'bin/rails console')
