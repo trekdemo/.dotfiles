@@ -22,7 +22,6 @@ return {
 
     -- [LANGUAGE SPECIFIC SETTINGS] -------------------------------------------
     -- Ruby settings for RSpec
-    vim.g['test#ruby#rspec#executable'] = 'bin/rspec'
     vim.g['test#ruby#rspec#options'] = {
       nearest = '--format documentation',
       file = '--format documentation',
