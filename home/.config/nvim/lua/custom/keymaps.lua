@@ -4,8 +4,6 @@ vim.keymap.set('n', '<leader>l<space>', ':Lazy ', { desc = 'Lazy' })
 
 -- Better defaults
 vim.keymap.set('n', 'Q', '<nop>')
--- Keep the previous clipboard value
-vim.keymap.set('v', 'p', '"_dp', { desc = 'Paste (keep clipboard)' })
 -- Paste without overwriting default register (doesn't work with other registers)
 vim.keymap.set('x', 'p', 'pgvy')
 -- Select the previously pasted text
