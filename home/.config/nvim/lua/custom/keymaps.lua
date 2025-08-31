@@ -28,10 +28,10 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- Easier to type, and I never use the default behavior.
-vim.keymap.set({ 'n', 'v', 'o' }, 'H', '^')
-vim.keymap.set({ 'n', 'v', 'o' }, 'L', 'g_')
-vim.keymap.set({ 'n', 'v', 'o' }, '<Home>', '^')
-vim.keymap.set({ 'n', 'v', 'o' }, '<End>', '$')
+vim.keymap.set({ 'n', 'x', 'o' }, 'H', '^')
+vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_')
+vim.keymap.set({ 'n', 'x', 'o' }, '<Home>', '^')
+vim.keymap.set({ 'n', 'x', 'o' }, '<End>', '$')
 
 -- Have relative jumps in the jump list (bigger than 5)
 vim.keymap.set('n', 'j', [[(v:count > 5 ? "m'" . v:count : "") . 'gj']], { expr = true, silent = true })
