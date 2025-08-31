@@ -1,23 +1,5 @@
 local specs = {
   {
-    'Verf/deepwhite.nvim',
-    name = 'deepwhite',
-    config = function()
-      -- Load the colorscheme here
-      vim.opt_global.background = 'light'
-      vim.cmd.colorscheme 'deepwhite'
-    end,
-  },
-  {
-    'cvigilv/patana.nvim',
-    name = 'patana',
-    config = function()
-      -- Load the colorscheme here
-      vim.opt_global.background = 'light'
-      vim.cmd.colorscheme 'patana'
-    end,
-  },
-  {
     'folke/tokyonight.nvim',
     name = 'tokyonight',
     config = function()
