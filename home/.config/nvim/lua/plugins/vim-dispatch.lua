@@ -6,6 +6,7 @@ return {
   -- path = '~/projects/vim-dispatch',
   config = function()
     vim.g.dispatch_compilers = { ['bundle exec'] = '', ['bin/'] = '' }
+    vim.g.dispatch_quickfix_height = 30
 
     vim.keymap.set('n', '<leader>co', ':Copen<CR>') -- Load the output from the last Dispatch
     vim.keymap.set('n', '<leader>cO', ':Copen!<CR>') -- Load the unfiltered output from the last Dispatch
