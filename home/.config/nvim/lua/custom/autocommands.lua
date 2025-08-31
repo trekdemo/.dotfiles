@@ -14,14 +14,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 local custom_autocmds = vim.api.nvim_create_augroup('custom-autocmds', { clear = true })
 
-vim.api.nvim_create_autocmd({ 'VimResized' }, {
-  desc = 'Egalize windows',
-  group = custom_autocmds,
-  callback = function()
-    vim.cmd 'wincmd ='
-  end,
-})
-
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   desc = 'Display cursor line',
   group = custom_autocmds,
