@@ -11,6 +11,11 @@ return { -- Collection of various small independent plugins/modules
     -- Better Around/Inside textobjects
     require('mini.ai').setup { n_lines = 500 }
 
+    require('mini.animate').setup {
+      cursor = { enable = false },
+      resize = { enable = false },
+    }
+
     -- Buffer	[B [b ]b ]B	MiniBracketed.buffer()
     -- Comment block	[C [c ]c ]C	MiniBracketed.comment()
     -- Conflict marker	[X [x ]x ]X	MiniBracketed.conflict()
