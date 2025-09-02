@@ -1,6 +1,7 @@
 return {
   'saghen/blink.cmp',
   version = '*', -- Use a release tag to download pre-built binaries
+  event = 'InsertEnter',
   dependencies = {
     'rafamadriz/friendly-snippets',
     { 'giuxtaposition/blink-cmp-copilot', dependencies = { 'copilot.lua' } },

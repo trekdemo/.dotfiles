@@ -1,15 +1,15 @@
 return {
   'vim-test/vim-test',
   dependencies = { 'vim-dispatch' },
+  keys = {
+    { '<leader>tl', '<Cmd>TestLast<CR>', { desc = '[T]est [L]ast' } },
+    { '<leader>ta', '<Cmd>AbortDispatch<CR>', { desc = '[T]est Dispatch [A]bort' } },
+    { '<leader>tn', '<Cmd>TestNearest<CR>', { desc = '[T]est [N]earest' } },
+    { '<leader>tf', '<Cmd>TestFile<CR>', { desc = '[T]est [F]ile' } },
+    { '<leader>ts', '<Cmd>TestSuite<CR>', { desc = '[T]est [S]uite' } },
+  },
   config = function()
     vim.g['test#strategy'] = 'dispatch'
-
-    vim.keymap.set('n', '<leader>tl', '<Cmd>TestLast<CR>', { desc = '[T]est [L]ast' })
-    vim.keymap.set('n', '<leader>ta', '<Cmd>AbortDispatch<CR>', { desc = '[T]est Dispatch [A]bort' })
-
-    vim.keymap.set('n', '<leader>tn', '<Cmd>TestNearest<CR>', { desc = '[T]est [N]earest' })
-    vim.keymap.set('n', '<leader>tf', '<Cmd>TestFile<CR>', { desc = '[T]est [F]ile' })
-    vim.keymap.set('n', '<leader>ts', '<Cmd>TestSuite<CR>', { desc = '[T]est [S]uite' })
 
     local switchStrategy = function(strategy)
       return function()

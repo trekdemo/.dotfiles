@@ -1,7 +1,6 @@
 return {
   'rmagatti/goto-preview',
   dependencies = { 'rmagatti/logger.nvim' },
-  event = 'BufEnter',
   keys = {
     { 'gpi', '<cmd>lua require("goto-preview").goto_preview_definition()<cr>', desc = 'Preview implementation' },
   },

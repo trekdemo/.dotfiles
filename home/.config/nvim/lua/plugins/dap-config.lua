@@ -55,13 +55,6 @@ local function setup_dap_keymaps(dap)
   vim.keymap.set('n', '<space>?', function()
     require('dapui').eval(nil, { enter = true })
   end)
-
-  vim.keymap.set('n', '<F1>', dap.continue)
-  vim.keymap.set('n', '<F2>', dap.step_into)
-  vim.keymap.set('n', '<F3>', dap.step_over)
-  vim.keymap.set('n', '<F4>', dap.step_out)
-  vim.keymap.set('n', '<F5>', dap.step_back)
-  vim.keymap.set('n', '<F6>', dap.restart)
 end
 
 return {
@@ -74,6 +67,14 @@ return {
       'leoluz/nvim-dap-go',
       { 'suketa/nvim-dap-ruby' },
     },
+    keys = {
+      { '<F1>', '<Cmd>DapContinue<CR>' },
+      { '<F2>', '<Cmd>DapStepInto<CR>' },
+      { '<F3>', '<Cmd>DapStepOver<CR>' },
+      { '<F4>', '<Cmd>DapStepOut<CR>' },
+      { '<F5>', '<Cmd>DapToggleBreakpoint<CR>' },
+    },
+    commands = { 'DapContinue', 'DapToggleBreakpoint' },
     config = function()
       local dap = require 'dap'
 

@@ -16,16 +16,11 @@ return {
       -- (see :h highlight-group for options)
       highlight_group = 'CursorLine',
     }
-    -- Movement
-    vim.keymap.set({ 'n', 'v' }, '<C-t><C-k>', '<cmd>Treewalker Up<cr>', { silent = true })
-    vim.keymap.set({ 'n', 'v' }, '<C-t><C-j>', '<cmd>Treewalker Down<cr>', { silent = true })
-    vim.keymap.set({ 'n', 'v' }, '<C-t><C-h>', '<cmd>Treewalker Left<cr>', { silent = true })
-    vim.keymap.set({ 'n', 'v' }, '<C-t><C-l>', '<cmd>Treewalker Right<cr>', { silent = true })
-
-    -- Swapping
-    -- vim.keymap.set('n', '<C-M-k>', '<cmd>Treewalker SwapUp<cr>', { silent = true })
-    -- vim.keymap.set('n', '<C-M-j>', '<cmd>Treewalker SwapDown<cr>', { silent = true })
-    -- vim.keymap.set('n', '<C-M-h>', '<cmd>Treewalker SwapLeft<cr>', { silent = true })
-    -- vim.keymap.set('n', '<C-M-l>', '<cmd>Treewalker SwapRight<cr>', { silent = true })
   end,
+  keys = {
+    { '<C-t><C-k>', '<cmd>Treewalker Up<cr>' },
+    { '<C-t><C-j>', '<cmd>Treewalker Down<cr>' },
+    { '<C-t><C-h>', '<cmd>Treewalker Left<cr>' },
+    { '<C-t><C-l>', '<cmd>Treewalker Right<cr>' },
+  },
 }

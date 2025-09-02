@@ -27,7 +27,6 @@ return {
         },
       },
     }
-
-    vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = '[Z]en Mode' })
   end,
+  keys = { '<leader>z', '<Cmd>ZenMode<CR>' },
 }
