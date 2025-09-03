@@ -1,0 +1,4 @@
+#!/bin/sh
+
+watch --color --interval 15 --no-title \
+  git -c color.status=always status --short --branch

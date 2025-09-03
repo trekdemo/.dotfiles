@@ -11,6 +11,8 @@ return {
     vim.keymap.set('n', '<leader>co', ':Copen<CR>') -- Load the output from the last Dispatch
     vim.keymap.set('n', '<leader>cO', ':Copen!<CR>') -- Load the unfiltered output from the last Dispatch
 
+    vim.keymap.set('n', "'b", ':Start bundle<space>')
+
     local map_start_cmd = function(mapping, command)
       vim.keymap.set('n', mapping, ':Start ' .. command .. '<CR>')
     end
@@ -21,6 +23,8 @@ return {
     map_start_cmd("'h", 'gh dash')
     map_start_cmd("'m", 'rails-mycli')
     map_start_cmd("'n", 'yazi')
+    map_start_cmd("'i", 'irb')
     map_start_cmd("'r", 'bin/rails console')
+    map_start_cmd("'p", 'pgcli postgresql://postgres@localhost:54320/better_up_development')
   end,
 }

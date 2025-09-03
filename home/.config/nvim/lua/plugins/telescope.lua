@@ -120,6 +120,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>gg', builtin.git_status, { desc = 'Telescope git_status' })
     vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = 'Telescope git_bcommits' })
     vim.keymap.set('n', '<leader>gB', builtin.git_branches, { desc = 'Telescope git_branches' })
+    vim.keymap.set('n', '<leader>fp', function()
+      local pack_name = string.match(vim.fn.expand '%:h', 'packs/([^/]+)')
+      if pack_name then
+        builtin.find_files { cwd = 'packs/' .. pack_name }
+      else
+        builtin.find_files()
+      end
+    end, { desc = 'Telescope find_files' })
 
     vim.keymap.set('n', 'z=', builtin.spell_suggest)
 
