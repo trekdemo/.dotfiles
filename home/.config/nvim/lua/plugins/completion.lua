@@ -2,10 +2,7 @@ return {
   'saghen/blink.cmp',
   version = '*', -- Use a release tag to download pre-built binaries
   event = 'InsertEnter',
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-    { 'giuxtaposition/blink-cmp-copilot', dependencies = { 'copilot.lua' } },
-  },
+  dependencies = { 'rafamadriz/friendly-snippets' },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -27,7 +24,6 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
       per_filetype = {
         sql = { 'dadbod' },
         codecompanion = { 'codecompanion' },
@@ -35,12 +31,6 @@ return {
       providers = {
         snippets = { max_items = 3, min_keyword_length = 1 },
         dadbod = { module = 'vim_dadbod_completion.blink' },
-        copilot = {
-          name = 'copilot',
-          module = 'blink-cmp-copilot',
-          score_offset = 100, -- Move copilot completions to the top
-          async = true,
-        },
         lsp = {
           name = 'LSP',
           module = 'blink.cmp.sources.lsp',
