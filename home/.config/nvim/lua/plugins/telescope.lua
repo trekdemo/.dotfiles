@@ -110,7 +110,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find_files' })
 
     vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = 'Find [C]ommands' })
-    vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = 'Find LSP [S]ymbols' })
+    vim.keymap.set('n', '<leader>fs', builtin.lsp_dynamic_workspace_symbols, { desc = 'Find LSP [S]ymbols' })
+    vim.keymap.set('n', '<leader>fi', builtin.lsp_definitions, { desc = 'Goto definition' })
+    vim.keymap.set('n', '<leader>fI', function()
+      builtin.lsp_definitions { jump_type = 'vsplit' }
+    end, { desc = 'Goto defInition in a split' })
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope [D]iagnostics' })
     vim.keymap.set('n', '<leader>ff', builtin.builtin, { desc = 'Telescope builtin' })
     vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Telescope builtin' })
