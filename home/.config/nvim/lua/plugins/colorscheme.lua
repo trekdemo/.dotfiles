@@ -35,12 +35,20 @@ local specs = {
             enabled = true,
             indentscope_color = '',
           },
-          mason = true,
           which_key = true,
           dadbod_ui = true,
           dap = true,
           dap_ui = true,
-          native_lsp = { enabled = true },
+          markdown = true,
+          native_lsp = {
+            enabled = true,
+            underlines = {
+              errors = { 'undercurl' },
+              hints = { 'undercurl' },
+              warnings = { 'undercurl' },
+              information = { 'undercurl' },
+            },
+          },
         },
       }
       vim.opt_global.background = 'dark'
