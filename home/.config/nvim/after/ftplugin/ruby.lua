@@ -1,16 +1,18 @@
 -- Telescope keymaps are in lua/plugins/telescope.lua
-if vim.b.did_ftplugin then
-  return
-end
-vim.b.did_ftplugin = 1
+-- if vim.b.did_ftplugin then
+--   return
+-- end
+-- vim.b.did_ftplugin = 1
 
 vim.opt_local.iskeyword:append { '?', '!' }
 vim.g.ruby_spellcheck_strings = 1
 
 -- Gary Bernhardt's hashrocket
 vim.keymap.set('i', '<C-l>', '<Space>=><Space>', { buffer = true, desc = 'Insert =>' })
-vim.keymap.set('n', '{', '2{w', { buffer = true, desc = 'Jump to previous block' })
-vim.keymap.set('n', '}', '}w', { buffer = true, desc = 'Jump to next block' })
+
+-- - |K| is mapped to |vim.lsp.buf.hover()| unless |'keywordprg'| is customized or
+--   a custom keymap for `K` exists.
+vim.keymap.set({ 'n', 'v' }, 'K', vim.lsp.buf.hover, { buffer = true })
 
 -- See :help b:dispatch
 local file = vim.fn.expand '%:t'
