@@ -10,6 +10,7 @@ local hint = [[
   _c_ %{cul} cursor line
   _n_ %{nu} number
   _r_ %{rnu} relative number
+  _d_ %{diagnostics} diagnostics
   ^
        ^^^^            _q_ _<Esc>_
 ]]
@@ -23,6 +24,15 @@ Hydra {
     hint = {
       float_opts = { style = 'minimal', border = 'rounded' },
       position = 'middle',
+      funcs = {
+        diagnostics = function()
+          if vim.diagnostic.is_enabled() then
+            return '[x]'
+          else
+            return '[ ]'
+          end
+        end,
+      },
     },
   },
   mode = { 'n', 'x' },
@@ -119,6 +129,13 @@ Hydra {
         end
       end,
       { desc = 'cursor line' },
+    },
+    {
+      'd',
+      function()
+        vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+      end,
+      { exit = true, desc = 'diagnostics' },
     },
     { 'q', nil, { exit = true } },
     { '<Esc>', nil, { exit = true } },
