@@ -111,7 +111,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = 'Find [C]ommands' })
     vim.keymap.set('n', '<leader>fs', builtin.lsp_dynamic_workspace_symbols, { desc = 'Find LSP [S]ymbols' })
+    vim.keymap.set('n', 'gi', builtin.lsp_definitions, { desc = 'Goto definition' })
     vim.keymap.set('n', '<leader>fi', builtin.lsp_definitions, { desc = 'Goto definition' })
+    vim.keymap.set('n', 'gI', function()
+      builtin.lsp_definitions { jump_type = 'vsplit' }
+    end, { desc = 'Goto defInition in a split' })
     vim.keymap.set('n', '<leader>fI', function()
       builtin.lsp_definitions { jump_type = 'vsplit' }
     end, { desc = 'Goto defInition in a split' })
