@@ -42,3 +42,4 @@ telepresence.log
 # Crush AI assistant directory
 .crush/
 CRUSH.md
+.nvim.lua
