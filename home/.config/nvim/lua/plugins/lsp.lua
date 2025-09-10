@@ -52,20 +52,19 @@ return { -- LSP Configuration & Plugins
       end,
     })
 
-    vim.lsp.enable 'gopls'
-    vim.lsp.enable 'dockerls'
+    vim.lsp.enable 'marksman' -- brew install marksman
+    vim.lsp.enable 'codebook'
+    vim.lsp.enable 'dockerls' -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
     vim.lsp.enable 'html'
     vim.lsp.enable 'ts_ls'
     vim.lsp.enable 'jsonls'
-    vim.lsp.enable 'yamlls' -- brew install yaml-language-server
-    vim.lsp.enable 'tailwindcss'
-    vim.lsp.enable 'marksman' -- brew install marksman
-    vim.lsp.enable 'codebook'
-    vim.lsp.enable 'bashls'
+    vim.lsp.enable 'yamlls'      -- brew install yaml-language-server
+    vim.lsp.enable 'tailwindcss' -- npm install -g @tailwindcss/language-server
+    vim.lsp.enable 'bashls'      -- npm install -g bash-language-server
     vim.lsp.enable 'lua_ls'
     -- Do this to debug https://lsp-devtools.readthedocs.io/en/latest/lsp-devtools/guide/getting-started.html
     -- vim.lsp.config('ruby_lsp', { cmd = { 'lsp-devtools', 'agent', '--', 'ruby-lsp' } })
     vim.lsp.enable 'ruby_lsp' -- gem install ruby-lsp ruby-lsp-rails ruby-lsp-rspec
-    vim.lsp.enable 'herb_ls' -- npm install -g @herb-tools/language-server
+    vim.lsp.enable 'herb_ls'  -- npm install -g @herb-tools/language-server
   end,
 }
