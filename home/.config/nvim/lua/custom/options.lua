@@ -87,3 +87,5 @@ vim.o.completeopt = 'menu,preview,popup,noinsert,noselect'
 -- Allow project specific vim settings
 -- :help exrc -> 7.c -> .nvim.lua
 vim.opt.exrc = true
+
+vim.opt.winborder = 'solid'
