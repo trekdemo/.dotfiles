@@ -81,6 +81,11 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action.AdjustPaneSize({ "Right", 5 }),
 	},
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
 }
 
 config.window_padding = {
