@@ -24,3 +24,4 @@ sorting:
   # When "classic" is set, this is set to "none".
   # Possible values: first, last, none
   dir-grouping: first
+hyperlink: auto
