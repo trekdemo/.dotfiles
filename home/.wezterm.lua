@@ -9,7 +9,7 @@ config.color_scheme = "Catppuccin Frappe"
 config.window_decorations = "RESIZE"
 
 config.enable_tab_bar = true
--- config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = true
 
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 tabline.setup({
@@ -38,7 +38,6 @@ tabline.setup({
 					["btop"] = { wezterm.nerdfonts.md_chart_areaspline },
 					["bun"] = { wezterm.nerdfonts.md_hamburger },
 					["cargo"] = { wezterm.nerdfonts.dev_rust },
-					["cmd.exe"] = { wezterm.nerdfonts.md_console_line },
 					["curl"] = wezterm.nerdfonts.md_flattr,
 					["debug"] = { wezterm.nerdfonts.cod_debug },
 					["default"] = wezterm.nerdfonts.md_application,
@@ -141,10 +140,10 @@ config.keys = {
 }
 
 config.window_padding = {
-	left = 2,
-	right = 2,
 	top = 0,
-	bottom = "1px",
+	right = 5,
+	bottom = 0,
+	left = 5,
 }
 
 return config
