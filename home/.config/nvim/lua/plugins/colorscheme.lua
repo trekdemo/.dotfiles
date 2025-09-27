@@ -24,7 +24,7 @@ local specs = {
         styles = {
           comments = {}, -- Change the style of comments
         },
-        transparent_background = false,
+        transparent_background = true,
         integrations = {
           blink_cmp = true,
           gitsigns = true,
