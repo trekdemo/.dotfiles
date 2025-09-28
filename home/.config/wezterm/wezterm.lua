@@ -13,12 +13,13 @@ config.font = wezterm.font("VictorMono Nerd Font Mono", { weight = "Medium" })
 config.font_size = 14
 config.line_height = 1.0
 
+require("tabline").apply_to_config(config)
 config.window_decorations = "RESIZE"
--- config.window_padding = { top = "0.5cell", right = "1cell", bottom = 0, left = "1cell" }
-config.window_background_opacity = 0.9
-config.macos_window_background_blur = 30
+config.window_padding = { top = "0.5cell", right = "1cell", bottom = 0, left = "1cell" }
+config.window_background_opacity = 0.97
+config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.7 }
+config.macos_window_background_blur = 20
 config.native_macos_fullscreen_mode = true
-config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
 
 config.skip_close_confirmation_for_processes_named = { "bash", "sh", "zsh", "tmux" }
 
@@ -46,7 +47,6 @@ config.keys = {
 	},
 }
 
-require("tabline").apply_to_config(config)
 require("splits-navigation").apply_to_config(config)
 
 return config

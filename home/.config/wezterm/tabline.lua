@@ -11,7 +11,7 @@ function M.apply_to_config(config)
 			theme = "Catppuccin Frappe",
 			section_separators = "",
 			component_separators = "",
-			tab_separators = "",
+			tab_separators = " ",
 		},
 		sections = {
 			tabline_a = { "mode" },
