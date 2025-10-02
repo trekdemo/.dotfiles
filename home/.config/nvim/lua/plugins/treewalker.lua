@@ -17,6 +17,7 @@ return {
       highlight_group = 'CursorLine',
     }
   end,
+  commands = { 'Treewalker' },
   keys = {
     { '<C-t><C-k>', '<cmd>Treewalker Up<cr>' },
     { '<C-t><C-j>', '<cmd>Treewalker Down<cr>' },

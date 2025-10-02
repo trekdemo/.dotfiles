@@ -5,14 +5,16 @@ return {
   dependencies = {
     { 'folke/twilight.nvim', opts = {} },
   },
+  keys = { { '<leader>z', '<Cmd>ZenMode<CR>' } },
+  commands = { 'ZenMode' },
   config = function()
     require('zen-mode').setup {
       window = {
-        backdrop = 1, -- Shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-        width = 100, -- Width of the Zen window
-        height = 0.8, -- Height of the Zen window
+        backdrop = 1,             -- Shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+        width = 100,              -- Width of the Zen window
+        height = 0.8,             -- Height of the Zen window
         options = {
-          number = false, -- disable number column
+          number = false,         -- disable number column
           relativenumber = false, -- disable relative numbers
         },
       },
@@ -28,5 +30,4 @@ return {
       },
     }
   end,
-  keys = { '<leader>z', '<Cmd>ZenMode<CR>' },
 }
