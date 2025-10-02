@@ -44,3 +44,4 @@ telepresence.log
 CRUSH.md
 MYTODO.md
 .nvim.lua
+tasks/*.md
