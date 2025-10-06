@@ -2,16 +2,12 @@
 description: Generate vertical slice task list from PRD using complexity-aware Shape Up workflow
 argument-hint: [prd-filename] [complexity-budget: 1-32]
 ---
-version: "1.0.0"
-re4c_version: "1.0.0"
-category: "core"
-last_updated: "2025-09-08"
 
 # /generate-slices - Complexity-Aware Vertical Slice Task Generation
 
-**Purpose**: Transform PRD, DRD, and TRD into implementable vertical slices with TDD-first complexity budgeting and validation requirements  
-**Philosophy**: Test-first development, fixed complexity budget, variable scope - ship validated, tested software at each slice  
-**Previous Steps**: Complete `/create-prd`, optionally `/create-drd` and `/create-trd` first  
+**Purpose**: Transform PRD, DRD, and TRD into implementable vertical slices with TDD-first complexity budgeting and validation requirements
+**Philosophy**: Test-first development, fixed complexity budget, variable scope - ship validated, tested software at each slice
+**Previous Steps**: Complete `/create-prd`, optionally `/create-drd` and `/create-trd` first
 **Next Step**: Use `/process-slices` with mandatory TDD and validation framework
 
 Generate a complexity-aware task list driven by design and technical requirements using vertical slices that each deliver demonstrable value.
@@ -34,18 +30,18 @@ If not explicitly told which documents to use:
    - Load PRD, DRD (if available), and TRD (if available)
 
 2. **Analyze Requirements:** Read and understand business, design, and technical requirements
-   
+
    **From PRD:**
    - Identify core user flow that demonstrates primary value
    - List all mentioned features and requirements
    - Note future requirements that affect architecture decisions
-   
+
    **From DRD (if available):**
    - Review component hierarchy and user journey maps
-   - Understand visual complexity and interaction patterns  
+   - Understand visual complexity and interaction patterns
    - Note design system requirements and responsive considerations
    - Identify design circuit breakers and fallback options
-   
+
    **From TRD (if available):**
    - Review system architecture and data models
    - Understand technical complexity and integration requirements
@@ -66,19 +62,19 @@ If not explicitly told which documents to use:
 4. **🧪 TDD-Aware Complexity Assessment:** Calculate complexity using enhanced model incorporating DRD/TRD insights and mandatory testing requirements
    ```
    Layer 0: Static (1 pt) - No runtime logic, pure UI + component tests + Playwright screenshots
-   Layer 1: Interactive (2 pts) - Client state, no persistence + unit tests + integration tests + Playwright interactions  
+   Layer 1: Interactive (2 pts) - Client state, no persistence + unit tests + integration tests + Playwright interactions
    Layer 2: Persistent (4 pts) - Single data source, CRUD + API tests + database tests + E2E tests
    Layer 3: Integrated (8 pts) - Multiple services, sync coordination + contract tests + integration tests + system tests
    Layer 4: Orchestrated (16 pts) - Workflows, async state machines + comprehensive test pyramid + performance tests
    Layer 5: Distributed (32 pts) - Multi-deployment, event-driven + distributed testing + chaos testing
    ```
-   
+
    **Enhanced Complexity Factors (from DRD/TRD + Testing Requirements):**
    - **Design Complexity:** Component hierarchy depth, interaction complexity, responsive requirements + UI testing requirements
    - **Technical Complexity:** Data model relationships, API integrations, performance requirements + API testing complexity
    - **Integration Complexity:** External service dependencies, real-time requirements, security constraints + E2E testing needs
    - **🧪 Testing Complexity:** TDD requirements, test pyramid completeness, Playwright UI testing, validation framework overhead
-   
+
    Present integrated assessment to user:
    - **Business Requirements (PRD):** X points needed for core functionality
    - **Design Requirements (DRD):** Y points for visual and interaction requirements
@@ -90,25 +86,25 @@ If not explicitly told which documents to use:
    - **Recommendation:** What can be achieved within budget, emphasizing testing and validation requirements
 
 5. **Generate DRD/TRD-Driven Parent Slices:** Create vertical slices based on design and technical requirements
-   
+
    **Slice Definition Strategy:**
    - Each slice must deliver user-visible value (PRD-driven)
    - Each slice must be independently deployable/demoable
    - Slice boundaries follow component hierarchy from DRD (when available)
    - Technical complexity follows data flow from TRD (when available)
    - Order slices by value delivery prioritized by business requirements
-   
+
    **🧪 Enhanced "Test-First, Fake High, Make Low" Pattern:**
    - **Slice 0:** Static mockup using DRD component hierarchy (Layer 0) + component tests + Playwright screenshots
    - **Slice 1:** Add interactions following DRD user flows (Layer 1) + interaction tests + Playwright user flows
-   - **Slice 2:** Add persistence following TRD data models (Layer 2) + API tests + database tests + E2E validation  
+   - **Slice 2:** Add persistence following TRD data models (Layer 2) + API tests + database tests + E2E validation
    - **Slice 3+:** Add integrations per TRD architecture (Layer 3+) + contract tests + system tests + validation gates
-   
+
    **Fallback Strategy (when DRD/TRD unavailable):**
    - Generate slices based on PRD requirements only
    - Make educated guesses about component hierarchy
    - Use standard technical patterns for data and integrations
-   
+
    **Present slices and wait for confirmation:**
    ```
    "I've generated X vertical slices within your complexity budget of Y points.
@@ -125,7 +121,7 @@ If not explicitly told which documents to use:
    - Each sub-task should be completable in one sitting
    - Include "Definition of Done" for each slice
    - Add circuit breaker/fallback for each risky task
-   
+
    Sub-task categories per slice:
    - Setup tasks (routes, components, configs)
    - Core functionality tasks
@@ -153,10 +149,10 @@ If not explicitly told which documents to use:
 
 ```markdown
 # Task List: [Feature Name]
-**Generated from:** `[prd-filename]` + `[drd-filename]` + `[trd-filename]`  
-**Date:** [timestamp]  
-**Complexity Budget:** [X] points  
-**Estimated Complexity:** [Y] points  
+**Generated from:** `[prd-filename]` + `[drd-filename]` + `[trd-filename]`
+**Date:** [timestamp]
+**Complexity Budget:** [X] points
+**Estimated Complexity:** [Y] points
 **Slices:** [N] vertical slices
 
 ## Requirements Integration
@@ -172,7 +168,7 @@ If not explicitly told which documents to use:
 - Visual complexity: [Design system requirements]
 - Responsive requirements: [Mobile/tablet considerations]
 
-### Technical Requirements (from TRD - if available)  
+### Technical Requirements (from TRD - if available)
 - System architecture: [Key technical decisions]
 - Data requirements: [Database and API patterns]
 - Integration requirements: [External services and complexity]
@@ -184,7 +180,7 @@ If not explicitly told which documents to use:
 - Playwright testing: Mandatory for web UI with screenshots
 - Validation framework: Multi-agent validation for each slice completion
 
-### 🔍 Validation Requirements (Mandatory)  
+### 🔍 Validation Requirements (Mandatory)
 - Architecture validation: Technical implementation review
 - TDD validation: Test-first development compliance
 - UI testing validation: Playwright test execution and screenshots
@@ -195,7 +191,7 @@ If not explicitly told which documents to use:
 
 ### Combined Requirements Analysis
 - **Business Complexity (PRD):** [X] points for core functionality
-- **Design Complexity (DRD):** [Y] points for UI/UX requirements  
+- **Design Complexity (DRD):** [Y] points for UI/UX requirements
 - **Technical Complexity (TRD):** [Z] points for architecture/integrations
 - **🧪 Testing Complexity:** [A] points for TDD, Playwright, test pyramid
 - **🔍 Validation Complexity:** [B] points for multi-agent validation overhead
@@ -211,7 +207,7 @@ If not explicitly told which documents to use:
 
 ### Simplification Strategy (Circuit Breakers Applied)
 - **Design Fallbacks:** [Which DRD circuit breakers were activated]
-- **Technical Fallbacks:** [Which TRD circuit breakers were activated]  
+- **Technical Fallbacks:** [Which TRD circuit breakers were activated]
 - **Scope Reductions:** [What was cut to fit budget]
 
 ## Relevant Files by Slice
@@ -232,8 +228,8 @@ If not explicitly told which documents to use:
 ## Vertical Slices
 
 ### ✓ Slice 0: "See It" - Static Mockup (Complexity: 1, Running Total: 1)
-**Goal:** Deploy working URL with complete UI following DRD design specifications  
-**Demo:** User can navigate to URL and see the feature interface matching DRD mockups  
+**Goal:** Deploy working URL with complete UI following DRD design specifications
+**Demo:** User can navigate to URL and see the feature interface matching DRD mockups
 **🧪 TDD Requirements:** Component tests written first, Playwright screenshots taken
 **🔍 Validation Requirements:** Architecture + TDD + UI Testing + Cleanup validation required
 **Definition of Done:** Deployed to Vercel, all UI elements visible per DRD component hierarchy, all tests pass, validation agents approve
@@ -252,8 +248,8 @@ If not explicitly told which documents to use:
   - **Circuit Breaker:** If DRD unavailable, use standard component patterns
 
 ### ✓ Slice 1: "Use It" - Interactive State (Complexity: 2, Running Total: 3)
-**Goal:** Make UI functional following DRD user flow specifications  
-**Demo:** User can complete DRD-defined user journeys with client-side state  
+**Goal:** Make UI functional following DRD user flow specifications
+**Demo:** User can complete DRD-defined user journeys with client-side state
 **🧪 TDD Requirements:** Interaction tests written first, Playwright user flow testing
 **🔍 Validation Requirements:** Architecture + TDD + UI Testing + UX Evaluation + Cleanup validation required
 **Definition of Done:** All DRD interaction patterns work in browser (doesn't persist), all tests pass, validation agents approve
@@ -262,15 +258,15 @@ If not explicitly told which documents to use:
 - [ ] 1.1 Implement state management following DRD state diagrams
 - [ ] 1.2 Wire up form interactions per DRD form specifications
 - [ ] 1.3 Add client-side validation per DRD validation patterns
-- [ ] 1.4 Implement DRD micro-interactions and transitions  
+- [ ] 1.4 Implement DRD micro-interactions and transitions
 - [ ] 1.5 Create error handling following DRD error state designs
 - [ ] 1.6 Add loading states per DRD loading patterns
 - [ ] 1.7 Write interaction tests for DRD-defined user flows
   - **Circuit Breaker:** If DRD interactions too complex, use basic form patterns
 
 ### ✓ Slice 2: "Save It" - Add Persistence (Complexity: 4, Running Total: 7)
-**Goal:** Data persists following TRD data architecture specifications  
-**Demo:** User actions persist per TRD data flow, can return later  
+**Goal:** Data persists following TRD data architecture specifications
+**Demo:** User actions persist per TRD data flow, can return later
 **Definition of Done:** CRUD operations work per TRD database design
 **Driven by:** TRD data models, API design, and persistence patterns
 
@@ -279,13 +275,13 @@ If not explicitly told which documents to use:
 - [ ] 2.3 Replace mock data with TRD-specified database queries
 - [ ] 2.4 Add authentication/authorization per TRD security requirements
 - [ ] 2.5 Implement error handling per TRD error handling strategies
-- [ ] 2.6 Add caching layers per TRD caching specifications  
+- [ ] 2.6 Add caching layers per TRD caching specifications
 - [ ] 2.7 Write integration tests for TRD API contracts
   - **Circuit Breaker:** If TRD complexity too high, fallback to simple localStorage
 
 ### ⚠️ Slice 3: "Connect It" - External Integration (Complexity: 8, Running Total: 15)
-**Goal:** Integrate external services per TRD integration architecture  
-**Demo:** External integrations work per TRD-defined integration patterns  
+**Goal:** Integrate external services per TRD integration architecture
+**Demo:** External integrations work per TRD-defined integration patterns
 **Definition of Done:** TRD integration requirements work in production with circuit breakers
 **Driven by:** TRD integration specifications, security requirements, and performance constraints
 
@@ -299,7 +295,7 @@ If not explicitly told which documents to use:
   - **Circuit Breaker:** If TRD integrations too complex, use TRD-specified mock responses
 
 ### ✗ Slice 4: "Automate It" - Workflows (Complexity: 16, Total: 31 - EXCEEDS BUDGET)
-**Status:** NOT IMPLEMENTED - Exceeds complexity budget  
+**Status:** NOT IMPLEMENTED - Exceeds complexity budget
 **Alternative:** Could be added in future iteration or simplified to polling
 
 [Document what would have been included but is cut for budget]
@@ -362,7 +358,7 @@ This ensures alignment before diving into details while maintaining vertical sli
 
 ## Target Audience
 
-Primary: **Junior developers** who need clear, achievable tasks with fallback options  
+Primary: **Junior developers** who need clear, achievable tasks with fallback options
 Secondary: **AI agents** that can follow structured complexity assessments
 
 ## Usage Example
@@ -372,7 +368,7 @@ Secondary: **AI agents** that can follow structured complexity assessments
 
 # Output: 3 slices within 10-point budget
 # Slice 0: Static editor UI (1 pt)
-# Slice 1: Syntax highlighting (2 pts)  
+# Slice 1: Syntax highlighting (2 pts)
 # Slice 2: Save/load files (4 pts)
 # Slice 3: Share via URL (3 pts)
 # Total: 10 points allocated
