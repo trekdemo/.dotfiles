@@ -1,7 +1,14 @@
 return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'kosayoda/nvim-lightbulb', opts = { autocmd = { enabled = true } } },
+    {
+      'kosayoda/nvim-lightbulb',
+      opts = {
+        autocmd = { enabled = true },
+        sign = { enabled = false },
+        virtual_text = { enabled = true },
+      }
+    },
     { 'j-hui/fidget.nvim', opts = {} },
   },
   opts = {
