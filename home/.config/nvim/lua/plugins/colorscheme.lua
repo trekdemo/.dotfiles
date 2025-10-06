@@ -22,9 +22,9 @@ local specs = {
       require('catppuccin').setup {
         flavour = flavour, -- latte, frappe, macchiato, mocha
         styles = {
-          comments = {}, -- Change the style of comments
+          comments = {},   -- Change the style of comments
         },
-        transparent_background = true,
+        transparent_background = false,
         integrations = {
           blink_cmp = true,
           gitsigns = true,
@@ -61,7 +61,7 @@ local specs = {
 local name = 'catppuccin'
 for _, spec in ipairs(specs) do
   if spec.name == name then
-    spec.lazy = false -- make sure we load this during startup if it is your main colorscheme
+    spec.lazy = false    -- make sure we load this during startup if it is your main colorscheme
     spec.priority = 1000 -- make sure to load this before all the other start plugins
   else
     spec.lazy = true
