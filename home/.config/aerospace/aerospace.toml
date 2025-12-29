@@ -93,9 +93,6 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 
-ctrl-left = 'workspace prev'
-ctrl-right = 'workspace next'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-ctrl-1 = ['move-node-to-workspace 1', 'workspace 1']
 alt-ctrl-2 = ['move-node-to-workspace 2', 'workspace 2']
@@ -107,7 +104,6 @@ alt-ctrl-enter = 'fullscreen'
 alt-ctrl-comma = 'layout h_accordion h_tiles'
 alt-ctrl-period = 'layout accordion tiles'
 alt-ctrl-slash = 'layout horizontal vertical'
-alt-ctrl-f = ['layout floating tiling'] # Toggle between floating and tiling layout
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-ctrl-h = 'focus --boundaries-action wrap-around-the-workspace left'
@@ -120,6 +116,8 @@ alt-ctrl-shift-h = 'move left'
 alt-ctrl-shift-j = 'move down'
 alt-ctrl-shift-k = 'move up'
 alt-ctrl-shift-l = 'move right'
+alt-ctrl-f = 'swap --wrap-around dfs-next'
+alt-ctrl-b = 'swap --wrap-around dfs-prev'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-ctrl-minus = 'resize smart -50'
