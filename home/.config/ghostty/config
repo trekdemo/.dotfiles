@@ -1,9 +1,10 @@
-theme = tokyonight-storm
+theme = Tokyonight Storm
 font-family = VictorMono Nerd Font Mono
 font-size = 14
 
+window-colorspace = display-p3
 macos-option-as-alt = true
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 shell-integration = zsh
 
 # background = #3b4261
