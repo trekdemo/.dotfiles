@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-unfunction chruby
-source "$(brew --prefix chruby)/share/chruby/chruby.sh"
-
-\chruby "$@"

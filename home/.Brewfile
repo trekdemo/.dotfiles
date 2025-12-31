@@ -37,11 +37,10 @@ brew 'glow' # Markdown rendering in the terminal
 # ------------------------------------------------------------------------------
 brew 'bash-language-server'
 brew 'bats'
-brew 'chruby'
 brew 'go'
 brew 'lua-language-server'
+brew 'mise'
 brew 'node'
-brew 'ruby-install'
 brew 'shellcheck'
 brew 'yarn'
 
