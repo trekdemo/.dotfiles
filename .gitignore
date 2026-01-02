@@ -1,7 +1,6 @@
 !/home/.config/fish/fisher-pkg/fishfile
 /home/.Brewfile.lock.json
 !/terminfo/.terminfo/src
-/.DS_Store
 /home/.config/raycast/extensions
 /home/.config/cliptic/*
 /home/.config/configstore

@@ -45,3 +45,6 @@ CRUSH.md
 MYTODO.md
 .nvim.lua
 tasks/*.md
+
+# Claude Code
+**/.claude/settings.local.json
