@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 brew 'stow'         # Organize software neatly under a single directory tree
 brew 'tmux'         # My choice of terminal multiplexer
-brew 'lsd'
+brew 'eza'          # Modern ls replacement
 brew 'entr'         # Run command on filechange
 brew 'starship'     # The cross-shell prompt for astronauts; https://starship.rs
 brew 'neovim'       # , args: %w[HEAD]
