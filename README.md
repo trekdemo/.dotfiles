@@ -1,6 +1,6 @@
 # Install config files
 
-By running the `install.sh`.
+By running the `make install`.
 
 ## Manual steps
 
