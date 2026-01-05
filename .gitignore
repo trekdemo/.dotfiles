@@ -49,5 +49,7 @@
 /home/.config/1Password/
 /home/.config/colima/
 /home/.claude/*
+/home/.claude/settings.json
+/home/.claude/CLAUDE.md
 !/home/.claude/agents
 !/home/.claude/commands

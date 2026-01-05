@@ -1,0 +1,30 @@
+{
+  "env": {},
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "say \"what next?\""
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/bin/claude-statusline.sh",
+    "padding": 0
+  },
+  "alwaysThinkingEnabled": true,
+  "enabledPlugins": {
+    "atlassian@claude-plugins-official": true
+  }
+}
