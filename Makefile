@@ -28,7 +28,7 @@ ensure_brew:
 	fi
 
 brew_bundle_install: ensure_brew
-	brew bundle install --file=.Brewfile
+	brew bundle install --file=./home/.Brewfile
 
 install_tmux_plugins:
 	@if [ ! -d ~/.tmux/plugins/tpm ]; then \
