@@ -1,7 +1,22 @@
 {
   "env": {},
   "permissions": {
-    "allow": [],
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(echo:*)",
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(git status:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git log:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list:*)",
+      "Bash(bin/rails:*)",
+      "Bash(bin/restart)",
+      "Bash(bin/rspec:*)",
+      "Bash(bin/rubocop:*)",
+      "mcp__ide__getDiagnostics"
+    ],
     "deny": []
   },
   "model": "opus",
